@@ -5,9 +5,7 @@ import {NavItems} from "../Components/export"
 const Navbar = () => {
   let location = useLocation();
   const path = location.pathname === '/login'
-// const ppath = PathMatch()
 
-console.log(path);
   return (
     <header className='nav-header'>
       <nav>

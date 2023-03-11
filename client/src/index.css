@@ -147,6 +147,8 @@ body {
 	line-height: 1;
 	background-color: #FFF;
 	margin: 1rem;
+
+	
 }
 
 .Link {
@@ -251,20 +253,24 @@ transform: scale(0.97);
 	transform: translateY(0);
 }
 
-.register-main {
-	height: 80vh;
-	display: flex;
-}
+
+	.register-main {
+		padding: 3rem 0 0 0;
+		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+	}
+
 
 .form-container {
 	justify-content: center;
 	flex-direction: column;
 	display: flex;
-	margin: 0 auto;
+	margin: 0 1.5rem 0 1.5rem;
 	align-items: center;
 	/* padding-top: 5rem; */
 	justify-content: space-evenly;
-	padding: 0.6rem;
+	padding: 3rem 0;
 	border-radius: 10px;
 	border-top: 5px solid #1C1C1C;
 	border-bottom: 5px solid #1C1C1C;
@@ -300,8 +306,45 @@ form {
 	align-items: center;
 }
 
-.input-container>.input {
+.form-para{
+	margin-top: 1rem;
+}
 
+.form-para > .form-link{
+	text-decoration: none;
+	color: rgb(0, 0, 0);
+	border: 1px solid #1C1C1C;
+	padding: 0.3rem;
+	border-radius: 5px;
+	margin-left: 0.5rem;
+}
+
+.form-para > .form-link:hover{
+	background-color: #1C1C1C;
+color: #fff;
+transition: linear 0.2s;
+}
+
+.form-para > .form-link:active{
+background-color: #1C1C1C;
+color: #fff;
+}
+
+.password-container{
+	position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 0px;
+    top: -5px;
+    height: 100%;
+    background: rgb(255, 255, 255);
+	z-index: 10;
+	cursor: pointer;
+}
+
+.input-container>.input {
 	outline: none;
 	border: none;
 	letter-spacing: 1.1px;
@@ -321,4 +364,15 @@ form {
 
 .btn-hide{
 	display: none;
+}
+
+.alert-heading {
+    position: absolute;
+	font-family: 'Open Sans';
+	font-weight: 400;
+    top: -15px;
+    margin-left: 0.5rem;
+    color: tomato;
+    font-size: 0.9rem;
+	letter-spacing: 1px;
 }
