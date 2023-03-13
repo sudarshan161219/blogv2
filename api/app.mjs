@@ -7,6 +7,7 @@ import connectDB from "./Db/connectDb.mjs";
 import Post from "./models/Post.mjs"
 import User from "./models/User.mjs"
 import bcrypt from "bcryptjs"
+import Jwt from "jsonwebtoken";
 
 const salt = bcrypt.genSaltSync(10)
 
@@ -28,25 +29,68 @@ app.post("/register", async (req, res) => {
         const userDoc = await User.create({
             useremail,
             username,
-            // password
             userpassword: bcrypt.hashSync(userpassword, salt)
         })
         res.send({ hello: "world" })
     } catch (error) {
-       res.status(400).json({ msg: { error } })
+        res.status(400).json({ msg: { error } })
     }
 })
 
-// app.get("/register", async (req, res) => {
 
-//     try {
-//         const userDoc = await User.find()
-//         res.json(userDoc)
-//     } catch (error) {
-//         res.status(400).json({ msg: { error } })
-//     }
 
-// })
+app.post("/login", async (req, res) => {
+    try {
+        const { username, userpassword } = req.body
+        const userDoc = await User.findOne({
+            username
+        })
+        const passOk = bcrypt.compareSync(userpassword, userDoc.userpassword)
+
+        if (!passOk) {
+            return res.json({ errMsg: "password does't match" }).status(400)
+        }
+
+        const accessToken = Jwt.sign({ username, id: userDoc._id },
+            process.env.ACCESS_TOKEN_KEY,
+            { expiresIn: '1d' })
+
+
+        const refreshToken = Jwt.sign({ username, id: userDoc._id },
+            process.env.REFRESH_TOKEN_KEY,
+            { expiresIn: '1d' })
+
+
+        const currentUser = { username, refreshToken }
+        res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 })
+        res.json({ accessToken })
+
+    } catch (error) {
+        res.status(400).json({ msg: "yeno gadul agyda" })
+    }
+})
+
+
+
+app.get("/profile", verifyToken, async (req, res) => {
+    Jwt.verify(req.token, process.env.PRIATEKEY, (err, authData) => {
+        if (err) throw err;
+        res.json(authData)
+    })
+})
+
+
+function verifyToken(req, res, next) {
+    const bearerHeader = req.headers['authorization']
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(" ")
+        const token = bearer[1]
+        req.token = token;
+        next()
+    } else {
+        res.send({ msg: "invalid token" })
+    }
+}
 
 const start = async () => {
     try {

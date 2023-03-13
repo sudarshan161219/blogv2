@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from "react";
+// import { profileFn } from "../Actions/Actions";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+  // useEffect(() => {
+  //   profileFn();
+  // }, []);
 
-export default Home
+  return <div>Home</div>;
+};
+
+export default Home;
