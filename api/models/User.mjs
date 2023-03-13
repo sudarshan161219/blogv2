@@ -3,6 +3,10 @@ const { Schema, model } = mongoose
 
 
 const UserSchema = new Schema({
+    useremail: {
+        type: String,
+        required: [true, "must have email"],
+    },
     username: {
         type: String,
         required: [true, "must have name"],
@@ -10,8 +14,8 @@ const UserSchema = new Schema({
         unique: true,
         maxlength: [15, 'name can not be more than 15 characters']
     },
-    email: String,
-    password: {
+
+    userpassword: {
         type: String,
         required: true,
     }

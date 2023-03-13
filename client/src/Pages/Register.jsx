@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   AiOutlineMail,
   AiOutlineKey,
@@ -9,11 +9,18 @@ import {
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
 import Alert from "../Alert/Alert";
+import {registerFn} from "../Actions/Actions"
+import { toast } from "react-toastify";
 
 const Register = () => {
   const {
+
     password,
     setPassword,
+    userEmail,
+    setUserEmail,
+    userName,
+    setUserName,
     togglePass,
     setTogglePass,
     visible,
@@ -25,6 +32,42 @@ const Register = () => {
     Cvisible,
     setCVisible,
   } = useContext(Context);
+
+
+
+  const CheckPass = password === Cpassword;
+
+  const handleSubmit =  (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
+    const values = [...formData.values()];
+    const isEmpty = values.includes("");
+
+    if (isEmpty) {
+      toast.error("🦄 please provide all values!", {
+        position: "top-right",
+        autoClose: 3026,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+
+    const data = Object.fromEntries(formData);
+    const {email, name, password} = data
+
+    registerFn(email, name, password)
+    e.currentTarget.reset();
+    setUserName("");
+    setUserEmail("");
+    setPassword(""),
+    setCPassword("")
+  };
 
   const togglePassword = () => {
     if (togglePass === "password") {
@@ -53,7 +96,13 @@ const Register = () => {
     setCPassword(e.target.value);
   };
 
-  const CheckPass = password === Cpassword;
+  const handleEmailChange = (e) => {
+    setUserEmail(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setUserName(e.target.value);
+  };
 
   return (
     <main className='register-main'>
@@ -63,7 +112,7 @@ const Register = () => {
           <p className='form-para'>Sign up to get the most out of RBlog.</p>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className='input-container'>
             <label htmlFor='email'>
               <AiOutlineMail className='aiIcons' />
@@ -71,7 +120,10 @@ const Register = () => {
             <input
               className='input'
               id='email'
+              name='email'
               type='email'
+              value={userEmail}
+              onChange={handleEmailChange}
               placeholder='e.g. stephenking@lorem.com'
               required
             />
@@ -85,7 +137,10 @@ const Register = () => {
             <input
               className='input'
               id='name'
+              name='name'
               type='text'
+              value={userName}
+              onChange={handleNameChange}
               placeholder='e.g. Stephen King'
             />
           </div>
@@ -98,6 +153,8 @@ const Register = () => {
             <input
               className='input'
               id='password'
+              name='password'
+              value={password}
               type={togglePass}
               onChange={handleChange}
               placeholder='Password'
@@ -118,18 +175,21 @@ const Register = () => {
 
           <div className='input-container password-container'>
             <label htmlFor='confirm-password'>
-              <AiOutlineKey className='aiIcons' />
+             {password  &&  <AiOutlineKey className='aiIcons' />}
             </label>
-            {!CheckPass && Cpassword && <Alert />}
-            <input
+            {Cpassword && !CheckPass &&  <Alert />}
+
+         {password &&  <input
               className='input'
               id='confirm-password'
               type={CtogglePass}
+              value={Cpassword}
               onChange={handleChangePasswordConfirm}
               placeholder='Confirm Password'
-            />
+            /> } 
+
             {Cpassword &&
-              (Cvisible ? (
+              ( Cvisible ? (
                 <AiOutlineEyeInvisible
                   className='aiIcons eye-icon'
                   onClick={togglePasswordConfirm}
@@ -140,17 +200,22 @@ const Register = () => {
                   onClick={togglePasswordConfirm}
                 />
               ))}
+
           </div>
 
-          <button type='submit' className='button-28'>
+          <button
+            type='submit'
+            className='button-28'
+            disabled={!CheckPass ? true : false}
+          >
             Register
           </button>
         </form>
         <p className='form-para'>
-          Already a member{" "}
+          Already a member
           <Link className='form-link Link' to='/login'>
             Login here
-          </Link>{" "}
+          </Link>
         </p>
       </div>
     </main>
