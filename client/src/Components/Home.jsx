@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
-// import { profileFn } from "../Actions/Actions";
+import { profileFn } from "../Actions/Actions";
+import {Hero} from "../sections/export"
 
 const Home = () => {
-  // useEffect(() => {
-  //   profileFn();
-  // }, []);
+  useEffect(() => {
+    // profileFn(token);
+  }, []);
 
-  return <div>Home</div>;
+  return (
+    <Hero />
+  )
+
 };
 
 export default Home;

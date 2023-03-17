@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, Home, FeaturedArticle } from "./Components/export";
+import { Navbar, Home} from "./Components/export";
 import { Login, Register } from "./Pages/export";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,7 +25,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/post:id' element={<FeaturedArticle />} />
+        {/* <Route path='/post:id' element={<FeaturedArticle />} /> */}
       </Routes>
     </>
   );

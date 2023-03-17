@@ -82,18 +82,19 @@ export const loginFn = async (username, userpassword) => {
   }
 }
 
-// export const profileFn = async (token) => {
-//   try {
-//     await fetch("http://localhost:3000/profile", {
-//       credentials: "include",
-//       // Authorization: token
-//     }).then((response) => {
-//       response.json().then((userInfo) => {
-//         console.log(userInfo);
-//       })
-//     })
+export const profileFn = async (token) => {
+  try {
+    await fetch("http://localhost:3000/profile", {
+      credentials: "include",
+      headers: { "authorization": `Bearer  ${token}` },
+      // Authorization: token
+    }).then((response) => {
+      response.json().then((userInfo) => {
+        console.log(userInfo);
+      })
+    })
 
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+  } catch (error) {
+    console.log(error);
+  }
+}

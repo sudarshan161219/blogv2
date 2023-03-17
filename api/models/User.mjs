@@ -18,7 +18,11 @@ const UserSchema = new Schema({
     userpassword: {
         type: String,
         required: true,
+    },
+    usertoken: {
+        type: String,
     }
+
 })
 
 

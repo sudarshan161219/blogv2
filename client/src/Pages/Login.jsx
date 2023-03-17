@@ -42,8 +42,7 @@ const Login = () => {
 
     const data = Object.fromEntries(formData);
     const { name, password } = data;
-    loginFn(name, password)
-console.log(data);
+    loginFn(name, password);
     e.currentTarget.reset();
   };
 
