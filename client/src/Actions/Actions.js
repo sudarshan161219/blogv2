@@ -7,7 +7,7 @@ export const registerFn = async (useremail, username, userpassword) => {
 
   try {
 
-    const response = await fetch("http://localhost:3000/register", {
+    const response = await fetch("http://localhost:3000/api/register", {
       method: "POST",
       body: JSON.stringify({ useremail, username, userpassword }),
       headers: { "content-Type": "application/json" },
@@ -50,7 +50,7 @@ export const registerFn = async (useremail, username, userpassword) => {
 
 export const loginFn = async (username, userpassword) => {
   try {
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch("http://localhost:3000/api/login", {
       method: "POST",
       body: JSON.stringify({ username, userpassword }),
       headers: { "content-Type": "application/json" },
@@ -68,10 +68,10 @@ export const loginFn = async (username, userpassword) => {
         progress: undefined,
         theme: "dark",
       });
-      // function navigate() {
-      //   window.location.href = "/"
-      // }
-      // setTimeout(navigate, 3000)
+      function navigate() {
+        window.location.href = "/"
+      }
+      setTimeout(navigate, 3000)
     } else {
       toast.error(`Opps!!, Login failed`, {
         position: toast.POSITION.TOP_RIGHT,
