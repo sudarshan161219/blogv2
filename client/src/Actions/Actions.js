@@ -57,6 +57,8 @@ export const loginFn = async (username, userpassword) => {
       credentials: "include",
     })
 
+   
+
     if (response.status === 200) {
       toast.success(`successfully logged in`, {
         position: "top-right",
@@ -68,10 +70,11 @@ export const loginFn = async (username, userpassword) => {
         progress: undefined,
         theme: "dark",
       });
-      function navigate() {
-        window.location.href = "/"
-      }
-      setTimeout(navigate, 3000)
+      console.log(response);
+      // function navigate() {
+      //   window.location.href = "/"
+      // }
+      // setTimeout(navigate, 3000)
     } else {
       toast.error(`Opps!!, Login failed`, {
         position: toast.POSITION.TOP_RIGHT,

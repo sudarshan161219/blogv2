@@ -26,7 +26,7 @@ const register = async (req, res) => {
       username,
       userpassword: bcrypt.hashSync(userpassword, salt),
     });
-    res.send({ hello: "world" });
+    res.status(201).json({msg: "User successfuly registered"})
   } catch (error) {
     res.status(400).json({ msg: { error } });
   }
@@ -88,8 +88,8 @@ const refresh = async (req, res) => {
       process.env.REFRESH_TOKEN_KEY,
       async (err, data) => {
         if (err) throw err;
-        // if everthing is ok , create new access token, refresh token and send to user
 
+        //$ if everthing is ok , create new access token, refresh token and send to user
         const newAccessToken = generateAccessToken(data, userDoc.id);
         const newRefreshToken = generateRefreshToken(data, userDoc.id);
         const update = { usertoken: newRefreshToken };
@@ -114,14 +114,8 @@ const profile = async (req, res) => {
   });
 };
 
-// app.get("/profile", verifyToken, async (req, res)  => {
-//   Jwt.verify(req.token, process.env.ACCESS_TOKEN_KEY, (err, authData) => {
-//     if (err) throw err;
-//     res.json({ token: authData });
-//   });
-// });
 
-function verifyToken(req, res, next) {
+function verifyToken (req, res, next) {
   const bearerHeader = req.headers.authorization;
   if (bearerHeader) {
     const bearer = bearerHeader.split("  ");
@@ -141,4 +135,4 @@ const logout = async (req, res) => {
   res.status(200).json("logout");
 };
 
-export { logout, login, refresh, register, profile };
+export { logout, login, refresh, register, profile, verifyToken };
