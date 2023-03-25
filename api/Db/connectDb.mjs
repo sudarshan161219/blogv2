@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 
 const connectDB = (uri) => {
-return mongoose.connect(uri, {
+  mongoose.set("strictQuery", true);
+  return mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    // useCreateIndex: true
-})
-}
+  });
+};
 
-export default  connectDB
-
-// module.exports = 
+export default connectDB;

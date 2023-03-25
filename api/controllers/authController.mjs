@@ -18,22 +18,23 @@ const generateRefreshToken = (username, userDoc) => {
 };
 
 //* post register
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     const { useremail, username, userpassword } = req.body;
- await User.create({
+    await User.create({
       useremail,
       username,
       userpassword: bcrypt.hashSync(userpassword, salt),
     });
-    res.status(201).json({msg: "User successfuly registered"})
+    res.status(201).json({ msg: "User successfuly registered" });
   } catch (error) {
-    res.status(400).json({ msg: { error } });
+    // res.status(400).json({ msg: { error } });
+    next(error)
   }
 };
 
 //* post login
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { username, userpassword } = req.body;
     const userDoc = await User.findOne({ username });
@@ -61,48 +62,7 @@ const login = async (req, res) => {
       res.json({ msg: "err in login " }).status(400);
     }
   } catch (error) {
-    res.status(400).json({ msg: "yeno gadul agyda" });
-  }
-};
-
-//* post refresh
-const refresh = async (req, res) => {
-  try {
-    // take the refresh toke from the user
-    const { username } = req.body;
-    const refreshtoken = req.body.token;
-    const userDoc = await User.findOne({ username });
-    const userOk = username === userDoc.username;
-
-    // send err if there is no token or it's invalid
-    if (!refreshtoken) {
-      return res.status(401).json("You are not authenticated!");
-    }
-
-    if (!userOk) {
-      return res.status(403).json("Refresh token is not valid!");
-    }
-
-    Jwt.verify(
-      userDoc.usertoken,
-      process.env.REFRESH_TOKEN_KEY,
-      async (err, data) => {
-        if (err) throw err;
-
-        //$ if everthing is ok , create new access token, refresh token and send to user
-        const newAccessToken = generateAccessToken(data, userDoc.id);
-        const newRefreshToken = generateRefreshToken(data, userDoc.id);
-        const update = { usertoken: newRefreshToken };
-        await User.findOneAndUpdate(update);
-
-        res.status(200).json({
-          accessToken: newAccessToken,
-          refreshtoken: newRefreshToken,
-        });
-      }
-    );
-  } catch (error) {
-    console.log(error);
+    next(error)
   }
 };
 
@@ -114,8 +74,7 @@ const profile = async (req, res) => {
   });
 };
 
-
-function verifyToken (req, res, next) {
+function verifyToken(req, res, next) {
   const bearerHeader = req.headers.authorization;
   if (bearerHeader) {
     const bearer = bearerHeader.split("  ");
@@ -127,6 +86,11 @@ function verifyToken (req, res, next) {
   }
 }
 
+//* PATCH req
+const updateUser = async (req, res) => {
+  return res.send({ fn: "update user" });
+};
+
 // * post logout
 const logout = async (req, res) => {
   const refreshToken = req.body.token;
@@ -135,4 +99,4 @@ const logout = async (req, res) => {
   res.status(200).json("logout");
 };
 
-export { logout, login, refresh, register, profile, verifyToken };
+export { register, login, updateUser, profile, verifyToken, logout };

@@ -4,16 +4,14 @@ import { toast } from "react-toastify";
 
 export const registerFn = async (useremail, username, userpassword) => {
 
-
   try {
-
     const response = await fetch("http://localhost:3000/api/register", {
       method: "POST",
       body: JSON.stringify({ useremail, username, userpassword }),
       headers: { "content-Type": "application/json" },
     });
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       toast.success(`you have successfully created your account `, {
         position: "top-right",
         autoClose: 3026,
@@ -57,8 +55,6 @@ export const loginFn = async (username, userpassword) => {
       credentials: "include",
     })
 
-   
-
     if (response.status === 200) {
       toast.success(`successfully logged in`, {
         position: "top-right",
@@ -70,11 +66,10 @@ export const loginFn = async (username, userpassword) => {
         progress: undefined,
         theme: "dark",
       });
-      console.log(response);
-      // function navigate() {
-      //   window.location.href = "/"
-      // }
-      // setTimeout(navigate, 3000)
+      function navigate() {
+        window.location.href = "/"
+      }
+      setTimeout(navigate, 3000)
     } else {
       toast.error(`Opps!!, Login failed`, {
         position: toast.POSITION.TOP_RIGHT,
