@@ -1,43 +1,66 @@
-import { createContext, useState } from "react";
+import React, { useReducer, createContext, useState, useContext } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import reducer from "./reducer";
+import { REGISTER_USER_BEGIN } from "./action";
 
-export const Context = createContext({});
+const initialState = {
+  isLoading: false,
+  Cvisible: false,
+  visible: false,
+  togglePass: "password",
+};
 
-export const ContextProvider = ({ children }) => {
-  const [password, setPassword] = useState("");
-  const [togglePass, setTogglePass] = useState("password");
-  const [visible, setVisible] = useState(true);
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+const Context = createContext({});
 
-  const [Cpassword, setCPassword] = useState("");
-  const [CtogglePass, setCTogglePass] = useState("password");
-  const [Cvisible, setCVisible] = useState(true);
-  const [redirect, setRedirect] = useState(false);
+const ContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
+  const registerFn = async (userData) => {
+    dispatch({ type: REGISTER_USER_BEGIN });
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/register",
+        userData
+      );
 
-
+      if (response.status === 201) {
+        toast.success(`you have successfully created your account `, {
+          position: "top-right",
+          autoClose: 3026,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        // function navigate() {
+        //   window.location.href = "/login"
+        // }
+        // setTimeout(navigate, 3000)
+      } else {
+        toast.error(`Opps!!, username  or email is already in use`, {
+          position: "top-right",
+          autoClose: 3026,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Context.Provider
       value={{
-        redirect,
-         setRedirect,
-        visible,
-        setVisible,
-        togglePass,
-        setTogglePass,
-        password,
-        setPassword,
-        userName,
-         setUserName,
-        userEmail,
-         setUserEmail,
-        Cvisible,
-        setCVisible,
-        CtogglePass,
-        setCTogglePass,
-        Cpassword,
-        setCPassword,
+        ...state,
+        registerFn,
       }}
     >
       {children}
@@ -45,4 +68,8 @@ export const ContextProvider = ({ children }) => {
   );
 };
 
+const useAppContext = () => {
+  return useContext(Context);
+};
 
+export { ContextProvider, useAppContext, initialState };
