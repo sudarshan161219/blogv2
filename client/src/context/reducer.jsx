@@ -5,7 +5,6 @@ import {
 } from "./action";
 
 const reducer = (state, action) => {
-  
   if (action.type === REGISTER_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -16,19 +15,15 @@ const reducer = (state, action) => {
       isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
-      alertText: "User Created!,  Redirecting.....",
-      alertType: "success",
     };
   }
 
-  // if (action.type === REGISTER_USER_ERROR) {
-  //   return {
-  //     ...state,
-  //     isLoading: false,
-  //     alertText: action.payload.msg,
-  //     alertType: "error",
-  //   };
-  // }
+  if (action.type === REGISTER_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
 
   throw new Error(`no such action : ${action.type}`);
 };

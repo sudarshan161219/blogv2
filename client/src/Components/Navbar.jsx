@@ -4,7 +4,7 @@ import logo from "../assets/rblog-logo-logo.png";
 import { NavItems } from "../Components/export";
 const Navbar = () => {
   let location = useLocation();
-  const path = location.pathname === "/login";
+  const path = location.pathname === "/register";
 
   return (
     <header className='nav-header'>

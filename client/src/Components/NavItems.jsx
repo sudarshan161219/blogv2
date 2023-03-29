@@ -6,7 +6,7 @@ const NavItems = () => {
     <div className='nav-items '>
     <Link
       className='nav-link register Link nav-btn register-btn button-28'
-      to='/login'
+      to='/register'
     >
       Login
     </Link>

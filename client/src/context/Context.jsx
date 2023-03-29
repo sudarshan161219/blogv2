@@ -28,18 +28,18 @@ const ContextProvider = ({ children }) => {
         "http://localhost:3000/api/register",
         userData
       );
-      console.log(response);
       const { user, token } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: { user, token },
       });
+      toast.success("User Created!,  Redirecting.....");
     } catch (error) {
-      console.log(error);
-      // dispatch({
-      //   type: REGISTER_USER_ERROR,
-      //   payload: { msg: error.response.data },
-      // });
+      // console.log(error.response.data.msg);
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: REGISTER_USER_ERROR,
+      });
     }
   };
 
