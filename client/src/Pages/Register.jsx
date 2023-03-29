@@ -6,9 +6,9 @@ import {
   AiOutlineEyeInvisible,
   AiOutlineEye,
 } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Logo } from "../Components/export";
 import { useAppContext } from "../context/Context";
-import Alert from "../Alert/Alert";
 import { Toaster } from "react-hot-toast";
 import gif from "../assets/Rolling-1s-31px.svg";
 
@@ -27,13 +27,20 @@ const initialState = {
 const Register = () => {
   const [values, setValues] = useState(initialState);
   const [togglePass, setTogglePass] = useState("password");
-  const [CtogglePass, setCTogglePass] = useState("password");
+  const { user, isLoading, registerFn, loginFn } = useAppContext();
+  const { password, visible, isMember } = values;
+  const navigate = useNavigate();
 
-  const { isLoading, registerFn } = useAppContext();
-
-  const { name, password, email, Cpassword, visible } = values;
-
-  const CheckPass = password === Cpassword;
+  useEffect(() => {
+    if (user) {
+      setTimeout(
+        () => {
+          navigate("/");
+        },
+        3000
+      );
+    }
+  },[user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,10 +49,12 @@ const Register = () => {
     const values = [...formData.values()];
 
     const data = Object.fromEntries(formData);
-    if (data.Cpassword) {
-      delete data.Cpassword;
+    if (isMember) {
+      loginFn(data);
+    } else {
+      registerFn(data);
     }
-    registerFn(data);
+
     e.currentTarget.reset();
   };
 
@@ -72,6 +81,7 @@ const Register = () => {
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="form-container">
         <div className="heading-para">
+          <Logo />
           {/* <h1 className="form-heading">Welcome to RBlog!</h1>
           <p className="form-para">Sign up to get the most out of RBlog.</p> */}
           <h3 className="form-heading">
