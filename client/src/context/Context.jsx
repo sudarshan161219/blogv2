@@ -1,14 +1,19 @@
-import React, { useReducer, createContext, useState, useContext } from "react";
+import React, { useReducer, createContext, useContext } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import reducer from "./reducer";
-import { REGISTER_USER_BEGIN } from "./action";
+import {
+  REGISTER_USER_BEGIN,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR,
+} from "./action";
 
 const initialState = {
   isLoading: false,
-  Cvisible: false,
-  visible: false,
-  togglePass: "password",
+  user: null,
+  token: null,
+  alertText: "",
+  alertType: "",
 };
 
 const Context = createContext({});
@@ -23,36 +28,18 @@ const ContextProvider = ({ children }) => {
         "http://localhost:3000/api/register",
         userData
       );
-
-      if (response.status === 201) {
-        toast.success(`you have successfully created your account `, {
-          position: "top-right",
-          autoClose: 3026,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        // function navigate() {
-        //   window.location.href = "/login"
-        // }
-        // setTimeout(navigate, 3000)
-      } else {
-        toast.error(`Opps!!, username  or email is already in use`, {
-          position: "top-right",
-          autoClose: 3026,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      }
+      console.log(response);
+      const { user, token } = response.data;
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: { user, token },
+      });
     } catch (error) {
       console.log(error);
+      // dispatch({
+      //   type: REGISTER_USER_ERROR,
+      //   payload: { msg: error.response.data },
+      // });
     }
   };
 

@@ -5,15 +5,22 @@ import { BadRequestError } from "../errors/export.mjs";
 //* post register
 const register = async (req, res) => {
   const { email, name, password } = req.body;
+
+
   if (!email || !name || !password) {
     throw new BadRequestError("Please provide all values");
   }
+
   const userAlreadyExist = await User.findOne({
-    email,
+    email
   });
+
   if (userAlreadyExist) {
     throw new BadRequestError("Email already in use");
   }
+
+
+
   const user = await User.create({ email, name, password });
   const token = user.createJWT();
   return res.status(StatusCodes.CREATED).json({
@@ -21,7 +28,7 @@ const register = async (req, res) => {
       name: user.name,
       email: user.email,
     },
-    token,
+    token
   });
 };
 

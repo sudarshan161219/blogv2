@@ -9,7 +9,8 @@ import {
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 import Alert from "../Alert/Alert";
-import { toast } from "react-toastify";
+import { Toaster } from "react-hot-toast";
+
 
 const initialState = {
   name: "",
@@ -19,7 +20,7 @@ const initialState = {
   togglePass: "password",
   CtogglePass: "password",
   visible: false,
-  Cvisible:false,
+  Cvisible: false,
 };
 
 const Register = () => {
@@ -31,8 +32,6 @@ const Register = () => {
 
   const { name, password, email, Cpassword, visible } = values;
 
-
-
   const CheckPass = password === Cpassword;
 
   const handleSubmit = (e) => {
@@ -42,22 +41,10 @@ const Register = () => {
     const values = [...formData.values()];
     const isEmpty = values.includes("");
 
-    if (isEmpty) {
-      toast.error("🦄 please provide all values!", {
-        position: "top-right",
-        autoClose: 3026,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-      return;
-    }
-
     const data = Object.fromEntries(formData);
-    console.log(data);
+    if(data.Cpassword){
+       delete data.Cpassword
+    }
     registerFn(data);
     e.currentTarget.reset();
   };
@@ -66,28 +53,26 @@ const Register = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-
   const togglePassword = () => {
     if (togglePass === "password") {
-      setTogglePass("text")
-      setValues({ ...values, visible: !values.visible})
+      setTogglePass("text");
+      setValues({ ...values, visible: !values.visible });
       return;
     }
     setTogglePass("password");
-    setValues({ ...values, visible: !values.visible})
+    setValues({ ...values, visible: !values.visible });
   };
 
   const togglePasswordConfirm = () => {
     if (CtogglePass === "password") {
       setCTogglePass("text");
-      setValues({ ...values, Cvisible: !values.Cvisible})
+      setValues({ ...values, Cvisible: !values.Cvisible });
 
       return;
     }
     setCTogglePass("password");
-    setValues({ ...values, Cvisible: !values.Cvisible})
+    setValues({ ...values, Cvisible: !values.Cvisible });
   };
-
 
   return (
     <main className="register-main">
@@ -108,7 +93,7 @@ const Register = () => {
               name="email"
               type="email"
               value={values.email}
-              onChange={ handleChange}
+              onChange={handleChange}
               placeholder="e.g. stephenking@lorem.com"
               required
             />
@@ -125,7 +110,7 @@ const Register = () => {
               name="name"
               type="text"
               value={values.name}
-              onChange={ handleChange}
+              onChange={handleChange}
               placeholder="e.g. Stephen King"
             />
           </div>
@@ -195,7 +180,8 @@ const Register = () => {
             className="button-28"
             disabled={!CheckPass ? true : false}
           >
-           { isLoading ? "loading" : "Register"} 
+            Register
+            {/* {isLoading ? "loading" : "Register"} */}
           </button>
         </form>
         <p className="form-para">
