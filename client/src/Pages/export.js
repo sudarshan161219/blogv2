@@ -1,3 +1,3 @@
 import Register from "./Register";
-
-export { Register}
+import Profile from "./Profile";
+export { Register, Profile }

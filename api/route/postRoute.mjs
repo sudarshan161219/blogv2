@@ -8,10 +8,10 @@ import {createPost, getAllPost, getSinglePost, editPost, deletePost } from "../c
 
 //* POST , PATCH &  DELETE
 router.route("/createpost").post(createPost);
-router.route("/:id").delete(deletePost).patch(editPost);
+router.route("/:id").delete(deletePost).patch( editPost);
 
 //* GET
-router.route("/:id/post").get(getSinglePost)
+router.route("/:id/post").get( getSinglePost)
 router.route("/allposts").get(getAllPost)
 
 

@@ -11,6 +11,7 @@ import postRoute from "./route/postRoute.mjs";
 //* middleware imports
 import notFoundMiddleware from "./middlewares/not-found.mjs";
 import errorHandlerMiddleware from "./middlewares/error-handler.mjs";
+import auth from "./middlewares/auth.mjs"
 
 const PORT = process.env.PORT || 4000
 const uri = process.env.MONGO_URI
@@ -34,7 +35,7 @@ app.get("/", (req, res) => {
 
 //* api routes
 app.use("/api", authRoute)
-app.use("/api", postRoute)
+app.use("/api",  auth, postRoute)
 
 //* Middlewares
 app.use(notFoundMiddleware)

@@ -1,17 +1,29 @@
-import React from 'react'
+import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-
+import { useAppContext } from "../context/Context";
+import { AiOutlineUser } from "react-icons/ai";
+import profile from "../assets/dummy-profile.jpg";
 const NavItems = () => {
-  return (
-    <div className='nav-items '>
-    <Link
-      className='nav-link register Link nav-btn register-btn button-28'
-      to='/register'
-    >
-      Login
-    </Link>
-</div>
-  )
-}
+  const { user } = useAppContext();
 
-export default NavItems
+  return (
+    <div className="nav-items ">
+      {!user ? (
+        <Link
+          className="nav-link register Link nav-btn register-btn button-28"
+          to="/register"
+        >
+          Login
+        </Link>
+      ) : (
+        <Link className="profile-btn" to="/profile">
+          <div className="img-container">
+            <img className="profile-img" src={profile} alt="profile" />
+          </div>
+        </Link>
+      )}
+    </div>
+  );
+};
+
+export default NavItems;

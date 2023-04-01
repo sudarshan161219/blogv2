@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Hero} from "../sections/export";
-import  Navbar from "./Navbar"
+import {Profile} from "../Pages/export"
 const Home = () => {
   return (
     <>
-      <Navbar />
       <Hero />
     </>
   );
