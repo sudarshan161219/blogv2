@@ -141,9 +141,6 @@ body::-webkit-scrollbar-thumb {
   border-radius: 50px;
 }
 
-
-
-
 body {
   /* font-family: 'Open Sans', sans-serif; */
   font-family: "Libre Baskerville", serif;
@@ -155,6 +152,7 @@ body {
 
 .Link {
   -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
 }
 
 .nav-header {
@@ -423,6 +421,7 @@ form {
 }
 
 .profile-btn {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -438,22 +437,15 @@ form {
   text-transform: capitalize;
 }
 
-
-
-
-
 .img-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   overflow: hidden;
 }
-
-
-
 
 .img-container:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -462,6 +454,22 @@ form {
 
 .profile-img {
   width: 80%;
+}
+
+.img-container:hover > .profile-name {
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+  transform: translate(-90%, 0);
+  opacity: 1;
+}
+
+.profile-name {
+  font-family: 'Open Sans', sans-serif;
+  position: absolute;
+  transform: translate(10%, 0);
+  opacity: 0;
+  color: #1a1a1a;
+  text-transform: capitalize;
+  letter-spacing: 1.1px;
 }
 
 @media (min-width: 1024px) {

@@ -16,9 +16,10 @@ const NavItems = () => {
           Login
         </Link>
       ) : (
-        <Link className="profile-btn" to="/profile">
+        <Link className="profile-btn Link" to="/profile">
           <div className="img-container">
             <img className="profile-img" src={profile} alt="profile" />
+            <span className="profile-name">{user.name}</span>
           </div>
         </Link>
       )}
