@@ -1,5 +1,6 @@
 import Navbar from './Navbar'
-import Home from './Home'
 import NavItems from './NavItems'
 import Logo from './Logo'
-export  {Navbar,  Home, NavItems,  Logo }
+import HeroSec from './HeroSec.jsx'
+import EditorsPickSec from "./EditorsPickSec.jsx"
+export  {Navbar,  NavItems,  Logo, HeroSec, EditorsPickSec }

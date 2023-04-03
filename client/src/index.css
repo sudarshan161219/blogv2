@@ -471,6 +471,10 @@ form {
   text-transform: capitalize;
   letter-spacing: 1.1px;
 }
+.home-page-container{
+  display: grid;
+  gap: 2.3rem;
+}
 
 @media (min-width: 1024px) {
   .logo {

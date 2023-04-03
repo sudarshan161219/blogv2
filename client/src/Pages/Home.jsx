@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Hero} from "../sections/export";
-import {Profile} from "../Pages/export"
+import { Main} from "../sections/export";
+
 const Home = () => {
   return (
     <>
-      <Hero />
+      <Main />
     </>
   );
 };

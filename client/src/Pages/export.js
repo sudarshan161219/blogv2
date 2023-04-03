@@ -1,3 +1,4 @@
 import Register from "./Register";
 import Profile from "./Profile";
-export { Register, Profile }
+import Home from "./Home"
+export { Register, Profile,  Home  }

@@ -1,0 +1,54 @@
+/* font-family: 'Open Sans', sans-serif; */
+/* font-family: "Libre Baskerville", serif; */
+
+.editor-page-container {
+    padding: 2rem 0;
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.editor-page-heading {
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Open Sans", sans-serif;
+}
+
+.editor-page-heading-container {
+  display: grid;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.heading-underline {
+  display: flex;
+  width: 100px;
+  height: 4px;
+  background-color: black;
+  justify-self: center;
+}
+
+.editor-page-img-container, .editor-page-content{
+    /* height: 300px;
+    overflow: hidden; */
+    display: grid;
+  justify-content: center;
+
+}
+
+.editor-page-flex-box {
+  display: grid;
+  justify-content: center;
+}
+
+/* .editor-page-img{
+    width: 100%;
+} */
+
+@media (min-width: 756px) {
+  .editor-page-flex-box {
+    display: flex;
+    align-items: center;
+    width: 700px;
+  }
+}

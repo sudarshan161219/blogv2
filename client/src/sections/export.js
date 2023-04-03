@@ -1,2 +1,2 @@
-import Hero from "./Hero";
-export { Hero }
+import Main from "./Main";
+export { Main }
