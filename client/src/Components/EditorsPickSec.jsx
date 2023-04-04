@@ -1,4 +1,5 @@
 import React from "react";
+import {BsPersonCircle} from "react-icons/bs"
 import blogimg1 from "../assets/Rectangle-2.png";
 import blogimg2 from "../assets/Rectangle-3.png";
 import blogimg3 from "../assets/Rectangle-4.png";
@@ -23,9 +24,9 @@ const EditorsPickSec = () => {
             Culpa sit Laboris Exercitation ea Fugiat
           </h2>
           <div className="meta">
-            <span className="span-se">Leslie Pena</span>
+            <span className="span-se"><BsPersonCircle />Leslie Pena</span>
             <span className="span-th">/</span>
-            <span className="span-fo">April 25, 2012 (6 mins read)</span>
+            <span className="span-fo">April 25, 2012 </span>
           </div>
           <p className="editor-para">
             Incididunt occaecat et qui dolore consectetur magna. Lorem veniam ut
@@ -49,9 +50,9 @@ const EditorsPickSec = () => {
           Amet non Ex Officia nulla Cupidatat
           </h2>
           <div className="meta">
-            <span className="span-se">Jacob Henry</span>
+            <span className="span-se"><BsPersonCircle />Jacob Henry</span>
             <span className="span-th">/</span>
-            <span className="span-fo">September 27, 2017 (8 mins read)</span>
+            <span className="span-fo">September 27, 2017</span>
           </div>
           <p className="editor-para">
           Sint anim Lorem aute duis Lorem incididunt. Nulla nostrud irure id ipsum aute excepteur duis sint. Do occaecat sit dolor magna esse. Mollit incididunt cillum consectetur fugiat adipisicing dolor est id minim amet cillum esse Lorem. Deserunt non duis excepteur aliqua duis eu reprehenderit.
@@ -72,9 +73,9 @@ const EditorsPickSec = () => {
             Culpa sit Laboris Exercitation ea Fugiat
           </h2>
           <div className="meta">
-            <span className="span-se">Leslie Pena</span>
+            <span className="span-se"><BsPersonCircle />Leslie Pena</span>
             <span className="span-th">/</span>
-            <span className="span-fo">April 25, 2012 (6 mins read)</span>
+            <span className="span-fo">April 25, 2012</span>
           </div>
           <p className="editor-para">
             Incididunt occaecat et qui dolore consectetur magna. Lorem veniam ut
