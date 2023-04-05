@@ -37,7 +37,7 @@ const Register = () => {
         () => {
           navigate("/");
         },
-        3000
+        2000
       );
     }
   },[user, navigate]);

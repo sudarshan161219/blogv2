@@ -7,7 +7,7 @@ import "./Navitems.css";
 
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
-  const { user } = useAppContext();
+  const { user, logoutUser } = useAppContext();
 
   return (
     <div className="nav-items ">
@@ -37,10 +37,8 @@ const NavItems = () => {
                   write a post
                 </Link>
               </li>
-              <li className="list-items">
-                <Link className="Link list-items" to="/logout">
-                  Log out
-                </Link>
+              <li className=" list-items" onClick={() => logoutUser()}>
+                  Log out 
               </li>
             </ul>
           </div>
