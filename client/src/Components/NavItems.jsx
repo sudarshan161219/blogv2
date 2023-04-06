@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useAppContext } from "../context/Context";
-import { AiOutlineUser } from "react-icons/ai";
 import profile from "../assets/dummy-profile.jpg";
-import "./Navitems.css";
+import Wrapper from "../assets/Wrappers/NavItem";
 
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
   const { user, logoutUser } = useAppContext();
+  
+const handleToggle = () => {
+   setToggle(!toggle)
+}
 
+const handleDivBlur = event => {
+  console.log('Div lost focus');
+};
+ 
   return (
-    <div className="nav-items ">
+    <Wrapper className="nav-items ">
       {!user ? (
         <Link
           className="nav-link register Link nav-btn register-btn button-28"
@@ -19,7 +26,7 @@ const NavItems = () => {
           Login
         </Link>
       ) : (
-        <div className="profile-container" onClick={() => setToggle(!toggle)}>
+        <div className="profile-container" onBlur={handleDivBlur} onClick={handleToggle}>
           <div className="img-container">
             <img className="profile-img" src={profile} alt="profile" />
             <ul className={toggle ? "drop-down show-drop-down" : "drop-down"}>
@@ -44,7 +51,7 @@ const NavItems = () => {
           </div>
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 };
 

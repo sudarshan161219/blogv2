@@ -3,11 +3,11 @@ import {BsPersonCircle} from "react-icons/bs"
 import blogimg1 from "../assets/Rectangle-2.png";
 import blogimg2 from "../assets/Rectangle-3.png";
 import blogimg3 from "../assets/Rectangle-4.png";
-import "./EditorsPickSec.css";
+import Wrapper from "../assets/Wrappers/Editorspick";
 
 const EditorsPickSec = () => {
   return (
-    <div className="editor-page-container">
+    <Wrapper className="editor-page-container">
       <div className="editor-page-heading-container">
         <h1 className="editor-page-heading"> Editor's Picks</h1>
         <span className="heading-underline"></span>
@@ -45,7 +45,7 @@ const EditorsPickSec = () => {
         </div>
 
         <div className="editor-page-content">
-          <span className="span-fi">TECHNOLOGY</span>
+          <span className="span-fi">Technology</span>
           <h2 className="editor-page-heading-two">
           Amet non Ex Officia nulla Cupidatat
           </h2>
@@ -86,7 +86,7 @@ const EditorsPickSec = () => {
           </p>
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
