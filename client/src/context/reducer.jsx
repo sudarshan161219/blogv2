@@ -6,9 +6,15 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  TOGGLE_SIDEBAR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
+  
+  if (action.type === TOGGLE_SIDEBAR) {
+    return { ...state, showSidebar: !state.showSidebar };
+  }
+
   if (action.type === REGISTER_USER_BEGIN) {
     return { ...state, isLoading: true };
   }

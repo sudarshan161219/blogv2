@@ -9,7 +9,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
-  LOGOUT_USER
+  LOGOUT_USER,
+  TOGGLE_SIDEBAR
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -17,6 +18,7 @@ const token = localStorage.getItem("token");
 
 const initialState = {
   isLoading: false,
+  showSidebar: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
   alertText: "",
@@ -37,6 +39,12 @@ const ContextProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
   };
+
+
+    //* toggle sidebar
+    const toggleSidebar = () => {
+      dispatch({ type: TOGGLE_SIDEBAR });
+    };
 
   const registerFn = async (userData) => {
     dispatch({ type: REGISTER_USER_BEGIN });
@@ -90,6 +98,7 @@ const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         ...state,
+        toggleSidebar,
         registerFn,
         loginFn,
         logoutUser

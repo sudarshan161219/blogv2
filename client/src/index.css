@@ -147,6 +147,7 @@ body {
   background-color: #fff;
   margin: 1rem 1.5rem;
   height: 100vh;
+  position: relative;
 }
 
 h1,
