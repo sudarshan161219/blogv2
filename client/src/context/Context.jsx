@@ -13,8 +13,8 @@ import {
   TOGGLE_SIDEBAR
 } from "./action";
 
-const user = localStorage.getItem("user");
-const token = localStorage.getItem("token");
+const user = localStorage.getItem("userInfo");
+const token = localStorage.getItem("UserToken");
 
 const initialState = {
   isLoading: false,
@@ -31,13 +31,13 @@ const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addUserToLocalStorage = ({ user, token }) => {
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
+    localStorage.setItem("userInfo", JSON.stringify(user));
+    localStorage.setItem("userToken", token);
   };
 
   const removeUserFromLocalStorage = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("userToken");
   };
 
 

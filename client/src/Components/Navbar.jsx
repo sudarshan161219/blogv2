@@ -8,7 +8,7 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import Wrapper from "../assets/Wrappers/Nav";
 import { useAppContext } from "../context/Context";
 const Navbar = () => {
-  const { toggleSidebar, showSidebar } = useAppContext();
+  const { toggleSidebar } = useAppContext();
   let location = useLocation();
   const path = location.pathname === "/register";
 
