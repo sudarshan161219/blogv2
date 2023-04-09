@@ -24,7 +24,7 @@ const Wrapper = styled.header`
     font-size: 2rem;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width:768px) {
     ul {
       color: #1c1c1c;
       display: flex;

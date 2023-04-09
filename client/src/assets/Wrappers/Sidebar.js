@@ -5,9 +5,9 @@ const Wrapper = styled.aside`
     display: none;
   }
 
-  @media (min-width: 992px) {
+  /* @media (min-width: 992px) {
     display: none;
-  }
+  } */
 
   .sidebar {
     display: block;

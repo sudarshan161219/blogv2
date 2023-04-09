@@ -7,6 +7,7 @@ const Wrapper = styled.div`
       width: 100%;
       max-width: 500px;
       margin: 0 auto;
+      
   .logo {
     width: 120px;
     display: flex;
