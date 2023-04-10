@@ -7,8 +7,8 @@ import Navlinks from "./Navlinks";
 import Sidebar from "./Sidebar";
 import AboutHeroS from "./AboutHeroS";
 import AboutS from "./AboutS";
-import AbooutConclusionS from "./AbooutConclusionS";
 import AboutContactS from "./AboutContactS";
+import AboutConS from "./AboutConS";
 
 export {
   Navbar,
@@ -20,6 +20,6 @@ export {
   Sidebar,
   AboutHeroS,
   AboutS,
-  AbooutConclusionS,
   AboutContactS,
+  AboutConS
 };

@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   padding: 2rem;
   color: antiquewhite;
   position: relative;
-  height: 100%;
+  /* height: 100%; */
 
   .first-info-container {
     background-color: #191919;
@@ -102,7 +102,7 @@ const Wrapper = styled.div`
       opacity: 0.7;
       content: " ";
       width: 100%;
-      height: 88%;
+      height: 100%;
       background-color: #191919;
       overflow: hidden;
     }

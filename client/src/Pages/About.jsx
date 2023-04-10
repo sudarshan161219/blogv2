@@ -2,7 +2,7 @@ import React from "react";
 import {
   AboutHeroS,
   AboutS,
-  AbooutConclusionS,
+  AboutConS,
   AboutContactS,
 } from "../Components/export";
 
@@ -11,8 +11,8 @@ const About = () => {
     <div className="about-container">
       <AboutHeroS />
       <AboutS />
-      {/* <AbooutConclusionS />
-      <AboutContactS /> */}
+      <AboutConS />
+      <AboutContactS />
     </div>
   );
 };
