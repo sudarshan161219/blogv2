@@ -281,12 +281,12 @@ h5 {
 }
 
 .register-main {
+  /* width: 300px; */
   padding: 5rem 0 0 0;
   margin: 0 auto;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
-
 .form-container {
   justify-content: center;
   flex-direction: column;
@@ -295,7 +295,7 @@ h5 {
   align-items: center;
   /* padding-top: 5rem; */
   justify-content: space-evenly;
-  padding: 3rem 0;
+  padding: 1.2rem 0;
   border-radius: 10px;
   border-top: 5px solid #1c1c1c;
   border-bottom: 5px solid #1c1c1c;
@@ -304,6 +304,7 @@ h5 {
 .heading-para {
   display: grid;
   text-align: center;
+  justify-items: center;
   gap: 0.8rem;
   letter-spacing: 1.1px;
   margin-bottom: 2rem;
@@ -321,13 +322,15 @@ h5 {
 }
 
 form {
-  display: grid;
+  width: 100%;
+  /* display: grid; */
   gap: 1rem;
   padding: 0.6rem 0;
 }
 
 .input-container {
   display: flex;
+  margin-bottom: 1.5rem;
   align-items: center;
 }
 
@@ -376,6 +379,7 @@ form {
   width: 300px;
   padding: 0.8rem 1rem;
   font-size: 1.2rem;
+
 }
 
 .input-container > .input::placeholder {
@@ -448,6 +452,13 @@ form {
   width: 100%;
   display: grid;
   gap: 3rem;
+}
+
+@media (min-width:768px) {
+  .register-main {
+    width: 400px;
+    padding-top: 0;
+}
 }
 
 

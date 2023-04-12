@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.header`
   color: #1c1c1c;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   /* margin: 1rem; */
   ul {
     display: none;

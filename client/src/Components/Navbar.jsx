@@ -7,6 +7,8 @@ import { NavItems } from "../Components/export";
 import { BiMenuAltLeft } from "react-icons/bi";
 import Wrapper from "../assets/Wrappers/Nav";
 import { useAppContext } from "../context/Context";
+
+
 const Navbar = () => {
   const { toggleSidebar } = useAppContext();
   let location = useLocation();
@@ -15,7 +17,6 @@ const Navbar = () => {
   const userPathP = location.pathname === "/user-profile/profile";
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === "/user-profile/allpost";
-
 
   return (
     <Wrapper className="nav-header">
@@ -28,7 +29,9 @@ const Navbar = () => {
           <Link to="/" className="Link logo-logo-name">
             <Logo />
           </Link>
-          {!regpath && !userPath && !userPathP && !userPathC && !userPathA  ? <Navlinks /> : null}
+          {!regpath && !userPath && !userPathP && !userPathC && !userPathA ? (
+            <Navlinks />
+          ) : null}
         </div>
         {!regpath ? <NavItems /> : null}
       </nav>

@@ -33,14 +33,11 @@ const Register = () => {
 
   useEffect(() => {
     if (user) {
-      setTimeout(
-        () => {
-          navigate("/");
-        },
-        2000
-      );
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
-  },[user, navigate]);
+  }, [user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,8 +82,11 @@ const Register = () => {
           {/* <h1 className="form-heading">Welcome to RBlog!</h1>
           <p className="form-para">Sign up to get the most out of RBlog.</p> */}
           <h3 className="form-heading">
-            {values.isMember ? "Login" : "Register"}
+            {values.isMember ? "Welcome back!" : "Welcome to RBlog!"}
           </h3>
+          <h5 className="form-heading">
+            {values.isMember ? "Login" : "Register"}
+          </h5>
         </div>
 
         <form onSubmit={handleSubmit}>
