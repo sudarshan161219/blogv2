@@ -2,7 +2,7 @@ import React from "react";
 import Wrapper from "../assets/Wrappers/Sidebar";
 import { useAppContext } from "../context/Context";
 import { GrClose } from "react-icons/gr";
-import Logo from "./Logo";
+import Logo2 from "./Logo2";
 import Navlinks from "./Navlinks";
 
 const Sidebar = () => {
@@ -12,7 +12,7 @@ const Sidebar = () => {
       <aside className={showSidebar ? "sidebar show-sidebar" : "sidebar"}>
         <div className="aside-nav">
           <GrClose className="close-icon" onClick={toggleSidebar} />
-          <Logo />
+          <Logo2 />
         </div>
         <div className="navlinks-container">
           <Navlinks />

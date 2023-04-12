@@ -1,9 +1,8 @@
 import Register from "./Register";
-import Profile from "./Profile";
+
 import Home from "./Home";
-import Dashboard from "./Dashboard";
-import Createpost from "./Createpost"
 import Tags from "./Tags"
 import About from "./About"
+import ProtectedRoutes from "./ProtectedRoutes";
 
-export { Register, Profile, Home, Dashboard, Createpost, Tags, About };
+export { Register, Home,   Tags, About, ProtectedRoutes };

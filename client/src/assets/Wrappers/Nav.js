@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const Wrapper = styled.header`
   color: #1c1c1c;
-  margin-bottom: 3rem;
-
+  padding-bottom: 3rem;
+  /* margin: 1rem; */
   ul {
     display: none;
   }
@@ -24,7 +24,7 @@ const Wrapper = styled.header`
     font-size: 2rem;
   }
 
-  @media (min-width:768px) {
+  @media (min-width: 768px) {
     ul {
       color: #1c1c1c;
       display: flex;

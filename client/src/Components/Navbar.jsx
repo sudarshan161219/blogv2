@@ -10,20 +10,27 @@ import { useAppContext } from "../context/Context";
 const Navbar = () => {
   const { toggleSidebar } = useAppContext();
   let location = useLocation();
-  const path = location.pathname === "/register";
+  const regpath = location.pathname === "/register";
+  const userPath = location.pathname === "/user-profile";
+  const userPathP = location.pathname === "/user-profile/profile";
+  const userPathC = location.pathname === "/user-profile/createpost";
+  const userPathA = location.pathname === "/user-profile/allpost";
+
 
   return (
     <Wrapper className="nav-header">
-        <Sidebar />
+      <Sidebar />
       <nav className="nav">
-      {!path ?<BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} /> : null}
+        {!regpath ? (
+          <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
+        ) : null}
         <div className="nav-links">
           <Link to="/" className="Link logo-logo-name">
             <Logo />
           </Link>
-          <Navlinks />
+          {!regpath && !userPath && !userPathP && !userPathC && !userPathA  ? <Navlinks /> : null}
         </div>
-        {!path ? <NavItems /> : null}
+        {!regpath ? <NavItems /> : null}
       </nav>
     </Wrapper>
   );

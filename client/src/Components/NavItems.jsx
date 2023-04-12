@@ -12,9 +12,9 @@ const handleToggle = () => {
    setToggle(!toggle)
 }
 
-const handleDivBlur = event => {
-  console.log('Div lost focus');
-};
+// const handleDivBlur = event => {
+//   setToggle(!toggle)
+// };
  
   return (
     <Wrapper className="nav-items ">
@@ -26,7 +26,7 @@ const handleDivBlur = event => {
           Login
         </Link>
       ) : (
-        <div className="profile-container" onBlur={handleDivBlur} onClick={handleToggle}>
+        <div className="profile-container" onClick={handleToggle}>
           <div className="img-container">
             <img className="profile-img" src={profile} alt="profile" />
             <ul className={toggle ? "drop-down show-drop-down" : "drop-down"}>
@@ -35,12 +35,12 @@ const handleDivBlur = event => {
                 <span className="email">{user.email}</span>
               </li>
               <li className="list-items">
-                <Link className="Link list-items" to="/dashboard">
+                <Link className="Link list-items" to="/user-profile">
                   Dashboard
                 </Link>
               </li>
               <li className="list-items">
-                <Link className="Link list-items" to="/createpost">
+                <Link className="Link list-items" to="/user-profile/createpost">
                   write a post
                 </Link>
               </li>

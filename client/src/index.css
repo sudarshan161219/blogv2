@@ -145,8 +145,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1;
   background-color: #fff;
-  margin: 1rem 1.5rem;
-  height: 100vh;
+  margin: 1.5rem 1rem 0 1.5rem;
+  /* height: 100vh; */
   position: relative;
 }
 
@@ -281,7 +281,7 @@ h5 {
 }
 
 .register-main {
-  padding: 7rem 0 0 0;
+  padding: 5rem 0 0 0;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -454,5 +454,9 @@ form {
 @media (min-width: 1024px) {
   .logo {
     width: 105px;
+  }
+
+  .register-main {
+    padding: 2rem 0 0 0;
   }
 }
