@@ -142,10 +142,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 1;
   background-color: #fff;
-  margin: 1.5rem 1rem 0 1.5rem;
+  margin: 1.5rem 1rem 0 1rem;
   /* height: 100vh; */
   position: relative;
 }
@@ -154,17 +154,17 @@ h1,
 h2,
 h3,
 h4,
-h5{
-  color: #0F0E0E;
+h5 {
+  color: #0f0e0e;
   font-weight: 400;
   line-height: 1.3;
   text-transform: capitalize;
-  font-family:"Libre Baskerville", serif; 
+  font-family: "Libre Baskerville", serif;
 }
 
-p{
+p {
   font-family: "Open Sans", sans-serif;
-  color: #2B2B2B;
+  color: #2b2b2b;
 }
 
 h1 {
@@ -188,13 +188,10 @@ h5 {
   font-size: 1.25rem;
 }
 
-
 .Link {
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
-
-
 
 .logo {
   width: 85px;
@@ -379,7 +376,6 @@ form {
   width: 300px;
   padding: 0.8rem 1rem;
   font-size: 1.2rem;
-
 }
 
 .input-container > .input::placeholder {
@@ -448,19 +444,22 @@ form {
   text-transform: capitalize;
 }
 
-.about-container{
+.about-container {
   width: 100%;
   display: grid;
   gap: 3rem;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .register-main {
     width: 400px;
     padding-top: 0;
-}
-}
+  }
 
+  .sidebar-icons {
+    display: none;
+  }
+}
 
 @media (min-width: 1024px) {
   .logo {

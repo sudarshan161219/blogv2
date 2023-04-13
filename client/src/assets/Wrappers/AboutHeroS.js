@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   justify-content: center;
-  background-color: aliceblue;
+  /* background-color: #fff; */
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
