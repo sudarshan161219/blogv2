@@ -12,20 +12,43 @@ const Wrapper = styled.aside`
     background-color: #3b3f44;
     border-radius: 10px;
     position: fixed;
+    visibility: hidden;
     left: 0;
-    transform: translateX(7px);
+    transform: translateX(-500px);
     background: rgba(36, 35, 35, 0.6);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: ease-in-out 0.3s;
   }
 
-  .dash-menu-icon{
+  .show-dashboard-nav {
+    visibility: visible;
+    transform: translateX(7px);
+    transition: ease-in-out 0.3s;
+  }
+
+  .dash-close-icon {
     position: fixed;
     top: 3px;
     font-size: 1.5rem;
     color: #fff;
+  }
+
+  .icon-container{
+    top: -1px;
+    padding: 0.1rem 0.2rem;
+    background-color:#3b3f44;
+    border-radius:50%;
+  }
+
+  .dash-menu-icon {
+    /* position: fixed; */
+    /* color: #fff; */
+    color: black;
+    margin-top:0.2rem;
+    font-size: 1.5rem;
   }
   .dashboard-nav > ul {
     display: flex;
@@ -54,7 +77,7 @@ const Wrapper = styled.aside`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color:#fff;;
+    color: #fff;
     font-size: 0.8rem;
     font-weight: 500;
     letter-spacing: 1px;
@@ -79,16 +102,17 @@ const Wrapper = styled.aside`
     background-color: #3b3f44;
 
     .dashboard-nav {
+      visibility: visible;
       margin-top: 4rem;
       background-color: inherit;
       border: none;
       box-shadow: none;
       position: initial;
-transform: none;
-width: initial;
+      transform: none;
+      width: initial;
     }
 
-    .dash-menu-icon{
+    .dash-menu-icon, .toggle-li {
       display: none;
     }
 

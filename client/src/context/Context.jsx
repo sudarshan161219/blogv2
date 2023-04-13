@@ -10,7 +10,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
-  TOGGLE_SIDEBAR
+  TOGGLE_SIDEBAR,
+  TOGGLE_DASHNAV
 } from "./action";
 
 const user = localStorage.getItem("userInfo");
@@ -19,6 +20,7 @@ const token = localStorage.getItem("UserToken");
 const initialState = {
   isLoading: false,
   showSidebar: false,
+  dashNav:false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
   alertText: "",
@@ -45,6 +47,11 @@ const ContextProvider = ({ children }) => {
     const toggleSidebar = () => {
       dispatch({ type: TOGGLE_SIDEBAR });
     };
+
+        //* toggle dashnav
+        const toggleDashNav = () => {
+          dispatch({ type: TOGGLE_DASHNAV });
+        };
 
   const registerFn = async (userData) => {
     dispatch({ type: REGISTER_USER_BEGIN });
@@ -99,6 +106,7 @@ const ContextProvider = ({ children }) => {
       value={{
         ...state,
         toggleSidebar,
+        toggleDashNav,
         registerFn,
         loginFn,
         logoutUser

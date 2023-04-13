@@ -6,22 +6,36 @@ import { IoGridOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
-import {CiGrid42} from "react-icons/ci"
+import { CiGrid42 } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
-
+import { useAppContext } from "../context/Context";
 
 const Dashboardnav = () => {
+  const { toggleDashNav, dashNav } = useAppContext();
+
   return (
     <Wrapper>
       <Link to="/">
         <Logo2 />
-      </Link> 
+      </Link>
+      {!dashNav ? (
+          <CiGrid42 onClick={toggleDashNav} className="dash-menu-icon" />
+      ) : null}
 
-
-
-      <div className="dashboard-nav">
+      <div
+        className={
+          dashNav ? "dashboard-nav show-dashboard-nav" : "dashboard-nav"
+        }
+      >
         <ul>
-          <li><AiOutlineClose className="dash-menu-icon"/></li>
+          <li className="toggle-li">
+            {dashNav ? (
+              <AiOutlineClose
+                onClick={toggleDashNav}
+                className="dash-close-icon"
+              />
+            ) : null}
+          </li>
           <li>
             <Link to="/user-profile" className="Link ">
               <IoGridOutline className="dash-icons" />
@@ -48,8 +62,6 @@ const Dashboardnav = () => {
           </li>
         </ul>
       </div>
-
-      
     </Wrapper>
   );
 };
