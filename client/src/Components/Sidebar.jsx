@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Wrapper from "../assets/Wrappers/Sidebar";
 import { useAppContext } from "../context/Context";
 import { AiOutlineClose } from "react-icons/ai";
@@ -14,7 +14,7 @@ const Sidebar = () => {
 
   const handleEvent = (e) => {
     if(!refOne.current.contains(e.target)){
-      console.log("outside");
+     return
     }else{
       !toggleSidebar()
     }

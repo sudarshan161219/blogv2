@@ -7,7 +7,7 @@ import {
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
-  TOGGLE_DASHNAV
+  TOGGLE_DASHNAV,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -19,6 +19,7 @@ const reducer = (state, action) => {
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
   }
+
   if (action.type === REGISTER_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
