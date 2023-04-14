@@ -6,6 +6,7 @@ import {
   Profile,
   Dashboard,
   Createpost,
+  Allposts,
   SharedLayout,
 } from "./Pages/profile/export";
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
           <Route path="createpost" element={<Createpost />} />
+          <Route path="all-posts" element={<Allposts />} />
         </Route>
 
         <Route path="/tags" element={<Tags />} />

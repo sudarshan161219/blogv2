@@ -21,9 +21,9 @@ const Dashboardnav = () => {
 
   const handleToggle = (e) => {
     if (!refTwo.current.contains(e.target)) {
-     return
+      return;
     } else {
-      toggleDashNav()
+      toggleDashNav();
     }
   };
 
@@ -35,13 +35,15 @@ const Dashboardnav = () => {
 
       <BsGrid1X2
         onClick={dashNav ? toggleDashNav : null}
-        className={ !dashNav ? "hide-dash-menu-icon" : "dash-menu-icon"}
+        className={!dashNav ? "hide-dash-menu-icon" : "dash-menu-icon"}
       />
 
       <div
         ref={refTwo}
         className={
-          !showSidebar && !dashNav ? "dashboard-nav show-dashboard-nav" : "dashboard-nav"
+          !showSidebar && !dashNav
+            ? "dashboard-nav show-dashboard-nav"
+            : "dashboard-nav"
         }
       >
         <ul>
@@ -72,7 +74,7 @@ const Dashboardnav = () => {
             </Link>
           </li>
           <li>
-            <Link className="Link ">
+            <Link to="all-posts" className="Link ">
               <FiBookOpen className="dash-icons" />
               Posts
             </Link>

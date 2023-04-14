@@ -21,12 +21,12 @@ const Wrapper = styled.aside`
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     transition: ease-in-out 0.3s;
-    z-index: 10;
+    z-index: 11;
 
   }
 
   .show-dashboard-nav {
-    z-index: 10;
+    z-index: 11;
     visibility: visible;
     transform: translateX(7px);
     transition: ease-in-out 0.3s;
@@ -60,6 +60,10 @@ const Wrapper = styled.aside`
     color: black;
     font-size: 1.2rem;
     font-weight: 500;
+  }
+
+  li{
+    z-index: 20;
   }
 
   .toggle-li {
@@ -110,6 +114,12 @@ const Wrapper = styled.aside`
     display: none;
   }
 
+  @media (min-width: 768px) {
+    .dashboard-nav{
+      width: 50%;
+    }
+  }
+
   @media (min-width: 1024px) {
     .logo {
       display: block;
@@ -136,7 +146,7 @@ const Wrapper = styled.aside`
     }
 
     .dash-menu-icon,
-    .toggle-li {
+    .toggle-li,  .hide-dash-menu-icon {
       display: none;
     }
 
@@ -153,6 +163,10 @@ const Wrapper = styled.aside`
       gap: 0.8rem;
       color: white;
       font-size: 1rem;
+    }
+
+    .dashboard-nav.show-dashboard-nav::before{
+      display:none
     }
 
     .dash-icons {
