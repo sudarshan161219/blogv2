@@ -77,10 +77,12 @@ const Wrapper = styled.div`
     gap: 1rem;
   }
 
-  /* .btn-profile{
-    width: 200px;
-    margin: 0 auto
-  } */
+@media (min-width: 1024px) {
+  /* .eiiINd .dashboard-page { */
+    width: 70%;
+    padding: 0px 12rem;
+/* } */
+}
 `;
 
 export default Wrapper;

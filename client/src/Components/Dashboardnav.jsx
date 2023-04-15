@@ -13,14 +13,15 @@ import { useAppContext } from "../context/Context";
 const Dashboardnav = () => {
   const { toggleDashNav, dashNav, showSidebar } = useAppContext();
 
+  const refTwo = useRef(null);
   useEffect(() => {
     document.addEventListener("click", handleToggle, true);
-  }, []);
+  }, [refTwo]);
 
-  const refTwo = useRef(null);
 
   const handleToggle = (e) => {
     if (!refTwo.current.contains(e.target)) {
+      console.log("outside");
       return;
     } else {
       toggleDashNav();
