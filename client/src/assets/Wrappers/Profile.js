@@ -82,16 +82,20 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     .profile-container {
-      width: 650px;
+      width: 700px;
       display: flex;
-      align-items:center;
-      padding-left:5rem;
+      align-items: center;
+      padding-left: 5rem;
     }
 
     .img-container {
-    width: 500px;
-    height: 200px;
-  }
+      width: 400px;
+      height: 200px;
+    }
+
+    .profile-info {
+      text-align: left;
+    }
   }
 `;
 

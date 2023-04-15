@@ -5,7 +5,7 @@ import Logo2 from "../Components/Logo2";
 import { IoGridOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
-import { FiBookOpen } from "react-icons/fi";
+import { FiBookOpen, FiEdit } from "react-icons/fi";
 import { BsGrid1X2 } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
@@ -79,6 +79,12 @@ const Dashboardnav = () => {
               Posts
             </Link>
           </li>
+          {/* <li>
+            <Link to="edit" className="Link ">
+              <FiEdit className="dash-icons" />
+             Edit
+            </Link>
+          </li> */}
         </ul>
       </div>
     </Wrapper>

@@ -16,6 +16,7 @@ const NavItems = () => {
   const userPathP = location.pathname === "/user-profile/profile";
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === "/user-profile/all-posts";
+  const userPathE = location.pathname === "/user-profile/edit";
 
   return (
     <Wrapper className="nav-items ">
@@ -35,7 +36,11 @@ const NavItems = () => {
                 <span className="name">{user.name}</span>
                 <span className="email">{user.email}</span>
               </li>
-              {!userPath && !userPathP && !userPathC && !userPathA ? (
+              {!userPath &&
+              !userPathP &&
+              !userPathC &&
+              !userPathA &&
+              !userPathE ? (
                 <>
                   <li className="list-items">
                     <Link className="Link list-items" to="/user-profile">
@@ -52,6 +57,11 @@ const NavItems = () => {
                   </li>
                 </>
               ) : null}
+              <li className="list-items">
+                <Link className="Link list-items" to="/user-profile/edit">
+                  edit profile
+                </Link>
+              </li>
               <li className=" list-items" onClick={() => logoutUser()}>
                 Log out
               </li>

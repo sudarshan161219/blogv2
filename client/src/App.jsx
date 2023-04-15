@@ -7,6 +7,7 @@ import {
   Dashboard,
   Createpost,
   Allposts,
+  EditPage,
   SharedLayout,
 } from "./Pages/profile/export";
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="createpost" element={<Createpost />} />
           <Route path="all-posts" element={<Allposts />} />
+          <Route path="edit" element={<EditPage />} />
         </Route>
 
         <Route path="/tags" element={<Tags />} />

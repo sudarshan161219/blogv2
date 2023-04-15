@@ -2,6 +2,9 @@ import React from "react";
 import Wrapper from "../../assets/Wrappers/Profile";
 import profileImg from "../../assets/dummy-profile.jpg";
 import { BsLink45Deg } from "react-icons/bs";
+import { FiBookOpen, FiEdit } from "react-icons/fi";
+
+
 import {
   AiOutlineTwitter,
   AiFillInstagram,
