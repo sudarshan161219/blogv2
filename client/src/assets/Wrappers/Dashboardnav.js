@@ -80,7 +80,7 @@ const Wrapper = styled.aside`
   }
   .dashboard-nav > ul {
     display: flex;
-    gap: 1rem;
+    /* gap: 1rem; */
     justify-content: center;
     border-radius: 10px;
   }
@@ -112,6 +112,12 @@ const Wrapper = styled.aside`
 
   .dash-icons {
     display: none;
+  }
+
+  @media (min-width: 500px) {
+    .dashboard-nav > ul {
+    gap: 1rem;
+  }
   }
 
   @media (min-width: 768px) {

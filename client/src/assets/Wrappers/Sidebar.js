@@ -43,6 +43,7 @@ const Wrapper = styled.aside`
     top: 0;
     left: 0;
     transition: ease-in-out 0.1s;
+ 
   }
 
   .Link {

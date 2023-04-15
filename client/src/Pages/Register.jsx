@@ -43,7 +43,7 @@ const Register = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const values = [...formData.values()];
+    // const values = [...formData.values()];
 
     const data = Object.fromEntries(formData);
     if (isMember) {
@@ -89,7 +89,7 @@ const Register = () => {
           </h5>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form className="register-form" onSubmit={handleSubmit}>
           {!values.isMember && (
             <div className="input-container">
               <label htmlFor="name">
