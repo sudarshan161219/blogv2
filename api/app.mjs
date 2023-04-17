@@ -45,7 +45,7 @@ const start = async () => {
     try {
         await connectDB(uri )
         console.log('connected to Db....');
-        app.listen(PORT, () => console.log(`server is listening on port http://localhost:4000`))
+        app.listen(PORT, () => console.log(`server is listening on port http://localhost:${PORT}`))
     } catch (error) {
         console.log(error);
     }

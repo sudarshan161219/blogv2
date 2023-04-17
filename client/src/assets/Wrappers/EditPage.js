@@ -60,10 +60,17 @@ const Wrapper = styled.div`
   }
 
   .img-input-container {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin:0 auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    width: 200px;
-    border-radius: 50%;
-    margin: 0 auto;
   }
   .profile-img {
     width: 100%;

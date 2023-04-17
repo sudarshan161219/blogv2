@@ -11,7 +11,10 @@ import {
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
-  TOGGLE_DASHNAV
+  TOGGLE_DASHNAV,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("userInfo");
@@ -95,6 +98,10 @@ const ContextProvider = ({ children }) => {
       });
     }
   };
+
+  const updateUserFn = async (updateData) => {
+
+  }
 
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });

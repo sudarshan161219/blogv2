@@ -21,7 +21,7 @@ const Dashboardnav = () => {
 
   const handleToggle = (e) => {
     if (!refTwo.current.contains(e.target)) {
-      console.log("outside");
+      console.log(":)");
       return;
     } else {
       toggleDashNav();

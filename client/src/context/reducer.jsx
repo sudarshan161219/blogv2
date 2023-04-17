@@ -8,6 +8,9 @@ import {
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {

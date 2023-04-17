@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Wrapper from "../../assets/Wrappers/EditPage";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
+import convertToBase64 from "../../utils/convert"
+
 import {
   AiOutlineUser,
   AiOutlineTwitter,
@@ -13,6 +15,7 @@ import {
 const initialState = {
   name: "",
   info: "",
+  profile:"",
   pLink: "",
   tLink: "",
   iLink: "",
@@ -21,13 +24,20 @@ const initialState = {
 
 const EditPage = () => {
   const [values, setValues] = useState(initialState);
+  const [file, setFile] = useState();
 
-  const onUpload = () => {
-    console.log("img");
+
+  const onUpload = async (e) => {
+    const base64 = await convertToBase64(e.target.files[0]);
+    setFile(base64);
   };
+  // console.log(file);     
+
+
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    setValues({ ...values, [e.target.name]: e.target.files[0]});
   };
 
   const handleSubmit = (e) => {
@@ -43,13 +53,14 @@ const EditPage = () => {
       <form className="profile-form" onSubmit={handleSubmit}>
         <div className="img-input-container">
           <label htmlFor="profile">
-            <img className="profile-img" src={profile || avatar} alt="avatar" />
+            <img className="profile-img" src={ file||profile } alt="avatar" />
           </label>
           <input
             className="file-input"
             type="file"
             name="profile"
             id="profile"
+            accept='.jpg,.png,.jpeg'
             onChange={onUpload}
           />
         </div>
