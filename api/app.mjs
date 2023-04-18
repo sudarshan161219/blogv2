@@ -23,9 +23,11 @@ const corsOptions = {
     optionSuccessStatus: 200,
 }
 
-
-app.use(express.json())
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended: false, limit: '50mb'}));
 app.use(cors(corsOptions))
+app.use(express.static('profile'));
+
 
 
 //* HTTP GET Request

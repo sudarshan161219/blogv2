@@ -5,6 +5,7 @@ import { BsLink45Deg } from "react-icons/bs";
 import convertToBase64 from "../../utils/convert";
 import { useAppContext } from "../../context/Context";
 import { Toaster } from "react-hot-toast";
+import Resizer from "react-image-file-resizer";
 
 import {
   AiOutlineUser,
@@ -17,7 +18,7 @@ import {
 const initialState = {
   name: "",
   userInfo: "",
-  profileImg: "",
+  profileImg: null,
   personalLink: "",
   twitter: "",
   instagram: "",
@@ -31,34 +32,36 @@ const EditPage = () => {
 
   const onUpload = async (e) => {
     const base64 = await convertToBase64(e.target.files[0]);
-    setValues({ ...values, [e.target.name]: e.target.files[0] });
-
     setFile(base64);
   };
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
+    data.userProfile = file
 
     const {
       name,
       userInfo,
       profileImg,
+      userProfile,
       personalLink,
       twitter,
       instagram,
       linkden,
     } = data;
+  
 
     updateUserFn({
       name,
       userInfo,
       profileImg,
+      userProfile,
       personalLink,
       twitter,
       instagram,

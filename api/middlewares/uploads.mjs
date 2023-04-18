@@ -1,22 +1,30 @@
-import multer from "multer"
-const upload = multer({ dest: 'uploads/' })
+import multer from "multer";
+import path from "path";
 import User from "../models/User.mjs";
 
 const fileUpload = async (req, res, next) => {
-  const {profileImg } = req.body;
-  const user = await User.findOne({ _id: req.user.userId });
-  
-upload.single('file')
-const {originalname, path} = req.file
-const parts = originalname.split('.')
-const ext = parts[parts.length - 1]
-const newPath = path + '.' + ext
-fs.renameSync(path, newPath)
-
- (user.profileImg = newPath);
-console.log("fileupload");
-next();
+try {
+   const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "profile");
+    },
+    filename: (req, file, cb) => {
+      console.log(file);
+      cb(null, Date.now() + "-" + path.extname(file.originalname));
+    },
+  });
+  const upload = multer({ storage: storage }).single("profileImg");
+  upload(req, res, (err) => {
+    if (err) {
+      res.sendStatus(500);
+    }
+    res.json(req.file)
+  });
+  next();
+} catch (error) {
+  console.log(error);
 }
+ 
+};
 
-
-export default fileUpload
+export default fileUpload;

@@ -56,6 +56,7 @@ const updateUser = async (req, res) => {
   const {
     name,
     profileImg,
+    userProfile,
     userInfo,
     personalLink,
     twitter,
@@ -67,7 +68,7 @@ const updateUser = async (req, res) => {
 
     (user.name = name),
     (user.userInfo = userInfo),
-    (user.profileImg = profileImg);
+    (user.userImg = userProfile);
     (user.twitter = twitter),
     (user.personalLink = personalLink),
     (user.instagram = instagram),
