@@ -63,6 +63,27 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === UPDATE_USER_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === UPDATE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      token: action.payload.token,
+      user: action.payload.user,
+    };
+  }
+
+  if (action.type === UPDATE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
+
+
   if (action.type === LOGOUT_USER) {
     return {
       ...initialState,

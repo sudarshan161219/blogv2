@@ -9,6 +9,10 @@ const Sidebar = () => {
   const { toggleSidebar, showSidebar } = useAppContext();
   useEffect(() => {
     document.addEventListener("click", handleEvent, true)
+    return () => {
+      // console.log("component unmounted");
+      document.removeEventListener("click", handleEvent, true);
+    };
   }, []);
   const refOne = useRef(null);
 

@@ -1,5 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/User.mjs";
+import multer from "multer";
+const upload = multer({ dest: "uploads/" });
 import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 
 //* post register
@@ -49,34 +51,38 @@ const login = async (req, res) => {
   return res.status(StatusCodes.OK).json({ user, token });
 };
 
+//* PATCH req
+const updateUser = async (req, res) => {
+  const {
+    name,
+    profileImg,
+    userInfo,
+    personalLink,
+    twitter,
+    instagram,
+    linkden,
+  } = req.body;
+
+  const user = await User.findOne({ _id: req.user.userId });
+
+    (user.name = name),
+    (user.userInfo = userInfo),
+    (user.profileImg = profileImg);
+    (user.twitter = twitter),
+    (user.personalLink = personalLink),
+    (user.instagram = instagram),
+    (user.linkden = linkden),
+    await user.save();
+  const token = user.createJWT();
+
+  return res.status(StatusCodes.OK).json({
+    user, token
+  });
+};
+
 //* get profile
 const profile = async (req, res) => {
   return res.send({ fn: " user profile" });
-};
-
-//* PATCH req
-const updateUser = async (req, res) => {
-  const { name, profileImg, userInfo, twitter, instagram, linkden } = req.body;
-  if (!name || !profileImg || !userInfo || !twitter || !instagram || !linkden) {
-    console.log("please provide all value");
-  }
-  const user = await User.findOne({ _id: req.user.userId });
-
-  (user.name = name),
-    (user.twitter = twitter),
-    (user.instagram = instagram),
-    (user.linkden = linkden),
-    (user.userInfo = userInfo),
-    (user.profileImg = profileImg);
-
-  await user.save();
-  const token = user.createJWT();
-
-  res
-    .status(StatusCodes.OK)
-    .json({ name, profileImg, userInfo, twitter, instagram, linkden, token });
- 
-
 };
 
 // * post logout

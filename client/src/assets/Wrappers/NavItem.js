@@ -49,7 +49,7 @@ const Wrapper = styled.div`
     position: absolute;
     top: 45px;
     z-index: 1;
-    left: -75px;
+    left: -95px;
     padding: 1.1rem 0.8rem;
     background-color: white;
     border-radius: 8px;

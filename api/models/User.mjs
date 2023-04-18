@@ -33,15 +33,15 @@ const UserSchema = new Schema({
     select: false,
   },
 
-  profileImg: {
+  userImg: {
     type: String,
   },
 
   userInfo: {
     type: String,
-    minlength: [5, "info  should have min lenght of 6 char"],
-  },
 
+  },
+  personalLink:{type:String},
   twitter: { type: String },
   instagram: { type: String },
   linkden: { type: String },
@@ -49,7 +49,7 @@ const UserSchema = new Schema({
 
 //* saving documents
 UserSchema.pre("save", async function () {
-  if(!this.isModified('password'))return
+  if(!this.isModified('password')) return
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });

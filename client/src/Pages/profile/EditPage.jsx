@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Wrapper from "../../assets/Wrappers/EditPage";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
-import convertToBase64 from "../../utils/convert"
+import convertToBase64 from "../../utils/convert";
+import { useAppContext } from "../../context/Context";
+import { Toaster } from "react-hot-toast";
 
 import {
   AiOutlineUser,
@@ -14,53 +16,75 @@ import {
 
 const initialState = {
   name: "",
-  info: "",
-  profile:"",
-  pLink: "",
-  tLink: "",
-  iLink: "",
-  lLink: "",
+  userInfo: "",
+  profileImg: "",
+  personalLink: "",
+  twitter: "",
+  instagram: "",
+  linkden: "",
 };
 
 const EditPage = () => {
+  const { updateUserFn, isLoading } = useAppContext();
   const [values, setValues] = useState(initialState);
   const [file, setFile] = useState();
 
-
   const onUpload = async (e) => {
     const base64 = await convertToBase64(e.target.files[0]);
+    setValues({ ...values, [e.target.name]: e.target.files[0] });
+
     setFile(base64);
   };
-  // console.log(file);     
-
-
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    setValues({ ...values, [e.target.name]: e.target.files[0]});
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
-    console.log(data);
+
+    const {
+      name,
+      userInfo,
+      profileImg,
+      personalLink,
+      twitter,
+      instagram,
+      linkden,
+    } = data;
+
+    updateUserFn({
+      name,
+      userInfo,
+      profileImg,
+      personalLink,
+      twitter,
+      instagram,
+      linkden,
+    });
     e.currentTarget.reset();
   };
 
   return (
     <Wrapper>
-      <form className="profile-form" onSubmit={handleSubmit}>
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      <form
+        className="profile-form"
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <div className="img-input-container">
           <label htmlFor="profile">
-            <img className="profile-img" src={ file||profile } alt="avatar" />
+            <img className="profile-img" src={file || profile} alt="avatar" />
           </label>
           <input
             className="file-input"
             type="file"
-            name="profile"
+            name="profileImg"
             id="profile"
-            accept='.jpg,.png,.jpeg'
+            accept=".jpg,.png,.jpeg"
             onChange={onUpload}
           />
         </div>
@@ -79,7 +103,7 @@ const EditPage = () => {
           <label htmlFor="info" className="textarea-label">
             <AiOutlineInfoCircle className="label-icons" />
             <textarea
-              name="info"
+              name="userInfo"
               id="info"
               cols="30"
               placeholder="about your self"
@@ -92,7 +116,7 @@ const EditPage = () => {
             <BsLink45Deg className="label-icons" />
             <input
               type="text"
-              name="pLink"
+              name="personalLink"
               id="personal-link"
               placeholder="personal website"
               onChange={handleChange}
@@ -102,7 +126,7 @@ const EditPage = () => {
             <AiOutlineTwitter className="label-icons" />
             <input
               type="text"
-              name="tLink"
+              name="twitter"
               id="twitter"
               placeholder="twitter"
               onChange={handleChange}
@@ -113,7 +137,7 @@ const EditPage = () => {
             <AiFillInstagram className="label-icons" />
             <input
               type="text"
-              name="insLink"
+              name="instagram"
               id="instagram"
               placeholder="instagram"
               onChange={handleChange}
@@ -124,7 +148,7 @@ const EditPage = () => {
             <AiFillLinkedin className="label-icons" />
             <input
               type="text"
-              name="lLink"
+              name="linkden"
               id="linkden"
               placeholder="linkden"
               onChange={handleChange}
@@ -132,7 +156,7 @@ const EditPage = () => {
           </label>
         </div>
         <button type="submit" className="button-28 btn-profile">
-          Update
+          {isLoading ? "Please wait...." : "save"}
         </button>
       </form>
     </Wrapper>

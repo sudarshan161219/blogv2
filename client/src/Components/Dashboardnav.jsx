@@ -16,12 +16,14 @@ const Dashboardnav = () => {
   const refTwo = useRef(null);
   useEffect(() => {
     document.addEventListener("click", handleToggle, true);
-  }, [refTwo]);
-
+    return () => {
+      // console.log("component unmounted");
+      document.removeEventListener("click", handleToggle, true);
+    };
+  }, []);
 
   const handleToggle = (e) => {
     if (!refTwo.current.contains(e.target)) {
-      console.log(":)");
       return;
     } else {
       toggleDashNav();
