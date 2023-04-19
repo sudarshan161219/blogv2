@@ -7,11 +7,11 @@ const SharedLayout = () => {
   return (
 <Wrapper>
     <div>
-      <Dashboardnav />
       <div className="dashboard-page">
         <Outlet />
       </div>
     </div>
+      <Dashboardnav />
     </Wrapper>
   );
 };

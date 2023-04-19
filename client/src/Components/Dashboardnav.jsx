@@ -6,29 +6,9 @@ import { IoGridOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
 import { FiBookOpen, FiEdit } from "react-icons/fi";
-import { BsGrid1X2 } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
 
 const Dashboardnav = () => {
-  const { toggleDashNav, dashNav, showSidebar } = useAppContext();
-
-  const refTwo = useRef(null);
-  useEffect(() => {
-    document.addEventListener("click", handleToggle, true);
-    return () => {
-      // console.log("component unmounted");
-      document.removeEventListener("click", handleToggle, true);
-    };
-  }, []);
-
-  const handleToggle = (e) => {
-    if (!refTwo.current.contains(e.target)) {
-      return;
-    } else {
-      toggleDashNav();
-    }
-  };
 
   return (
     <Wrapper>
@@ -36,28 +16,15 @@ const Dashboardnav = () => {
         <Logo2 />
       </Link>
 
-      <BsGrid1X2
+      {/* <BsGrid1X2
         onClick={dashNav ? toggleDashNav : null}
         className={!dashNav ? "hide-dash-menu-icon" : "dash-menu-icon"}
-      />
+      /> */}
 
       <div
-        ref={refTwo}
-        className={
-          !showSidebar && !dashNav
-            ? "dashboard-nav show-dashboard-nav"
-            : "dashboard-nav"
-        }
+        className="dashboard-nav"
       >
         <ul>
-          <li className="toggle-li">
-            {!dashNav ? (
-              <AiOutlineClose
-                onClick={toggleDashNav}
-                className="dash-close-icon"
-              />
-            ) : null}
-          </li>
           <li>
             <Link to="/user-profile" className="Link ">
               <IoGridOutline className="dash-icons" />
