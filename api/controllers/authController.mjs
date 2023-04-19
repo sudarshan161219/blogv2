@@ -1,7 +1,5 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/User.mjs";
-import multer from "multer";
-const upload = multer({ dest: "uploads/" });
 import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 
 //* post register
@@ -55,7 +53,6 @@ const login = async (req, res) => {
 const updateUser = async (req, res) => {
   const {
     name,
-    profileImg,
     userProfile,
     userInfo,
     personalLink,

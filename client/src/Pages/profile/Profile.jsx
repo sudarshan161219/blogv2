@@ -3,7 +3,7 @@ import Wrapper from "../../assets/Wrappers/Profile";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
 import { useAppContext } from "../../context/Context";
-import load from "../../assets/Rolling-1s-31px.svg";
+
 import { Loading } from "../../Components/export";
 
 import {
@@ -15,10 +15,8 @@ import {
 const Profile = () => {
   const { getProfile, user, isLoading } = useAppContext();
 
-  useEffect(() => {
-    getProfile();
-  }, []);
 
+  
   const {
     name,
     userInfo,
@@ -29,6 +27,11 @@ const Profile = () => {
     instagram,
     linkden,
   } = user;
+
+  useEffect(() => {
+    getProfile();
+  }, [user.name]);
+
 
   if (isLoading) {
     return <Loading />;
@@ -48,24 +51,21 @@ const Profile = () => {
           <p>{userInfo}</p>
           <div className="profile-social-container">
             <ul className="link">
-              {personalLink !== "" ? (
-                <li>
-                  <a href={personalLink} target="_blank">
+                <li className={personalLink === " " ? "atag" : null}>
+                  <a href={personalLink || "hello"} target="_blank">
                     <BsLink45Deg className="link-icon" />
-                    {personalLink}
                   </a>
                 </li>
-              ) : null}
             </ul>
 
             <ul className="socials">
-              <li>
+              <li className={twitter === " " ? "atag" : null}>
                 <AiOutlineTwitter className="social-icon" />
               </li>
-              <li>
+              <li className={instagram === " " ? "atag" : null}>
                 <AiFillInstagram className="social-icon" />
               </li>
-              <li>
+              <li className={linkden === " " ? "atag" : null}>
                 <AiFillLinkedin className="social-icon" />
               </li>
             </ul>

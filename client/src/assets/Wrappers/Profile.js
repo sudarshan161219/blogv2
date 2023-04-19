@@ -1,15 +1,6 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  /* height: 100vh; */
-  width: 100%;
-
-  .profile-container {
-    display: grid;
-    gap: 1.5rem;
-    justify-content: center;
-  }
-
   .img-container {
     margin: 0 auto;
     display: flex;
@@ -45,7 +36,7 @@ const Wrapper = styled.div`
 
   .profile-social-container {
     margin-top: 1rem;
-
+    padding: 0 0.8rem;
     display: flex;
     justify-content: space-between;
   }
@@ -73,6 +64,10 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
   }
 
+  .atag{
+    pointer-events: none
+  }
+
   @media (min-width: 768px) {
     .profile-container {
       width: 500px;
@@ -82,19 +77,20 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     .profile-container {
-      width: 700px;
+      width: 800px;
       display: flex;
+      gap: 1.5rem;
       align-items: center;
-      padding-left: 5rem;
+      justify-content: center;
     }
 
     .img-container {
-      width: 500px;
-      height: 185px;
+      margin: 0;
     }
 
     .profile-info {
       text-align: left;
+      width: 450px;
     }
   }
 `;

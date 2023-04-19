@@ -51,7 +51,6 @@ const Wrapper = styled.aside`
     position: fixed;
     top: 3px;
     left: 5px;
-    /* left:3px;  */
   }
 
   .hide-dash-menu-icon {
@@ -63,7 +62,7 @@ const Wrapper = styled.aside`
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
-    padding: 0.5rem 0.2rem;
+    padding: 0.5rem 0.2rem 2rem 0.2rem;
   }
 
   li {

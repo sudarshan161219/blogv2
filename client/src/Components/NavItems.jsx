@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../context/Context";
-import profile from "../assets/dummy-profile.jpg";
+import profile from "../assets/imgs/profile.png";
 import Wrapper from "../assets/Wrappers/NavItem";
 
 const NavItems = () => {
@@ -30,7 +30,7 @@ const NavItems = () => {
       ) : (
         <div className="profile-container" onClick={handleToggle}>
           <div className="img-container">
-            <img className="profile-img" src={profile} alt="profile" />
+            <img className="profile-img" src={user.userImg || profile} alt="profile" />
             <ul className={toggle ? "drop-down show-drop-down" : "drop-down"}>
               <li className="name-email">
                 <span className="name">{user.name}</span>

@@ -49,7 +49,6 @@ const EditPage = () => {
     const {
       name,
       userInfo,
-      profileImg,
       userProfile,
       personalLink,
       twitter,
@@ -57,13 +56,13 @@ const EditPage = () => {
       linkden,
     } = data;
 
-    validateUrl(personalLink, twitter, instagram, linkden);
-    if (validateUrl(personalLink, twitter, instagram, linkden)) {
-   
+    // validateUrl(personalLink, twitter, instagram, linkden);
+  //   if (validateUrl(personalLink, twitter, instagram, linkden)) {
+  //  return
+  //       } 
         updateUserFn({
           name,
           userInfo,
-          profileImg,
           userProfile,
           personalLink,
           twitter,
@@ -72,7 +71,6 @@ const EditPage = () => {
         });
         
       
-    }
     if (!isLoading) {
       e.currentTarget.reset();
     }
@@ -109,7 +107,7 @@ const EditPage = () => {
               type="text"
               name="name"
               id="name"
-              value={user.name}
+              // value={user.name}
               placeholder="name"
               onChange={handleChange}
             />

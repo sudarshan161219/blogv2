@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 }
 
 .profile-img {
-  width: 80%;
+  width: 100%;
 }
 
 .img-container:hover > .profile-name {

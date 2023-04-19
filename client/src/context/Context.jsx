@@ -64,9 +64,10 @@ const ContextProvider = ({ children }) => {
       return response
     },
     (error) => {
-      if(error.response.status === 401){
-        logoutUser()
-      }
+      // if(error.response.status === 401){
+      //   logoutUser()
+      // }
+      console.log(error);
       return Promise.reject(error)
     }
   )
@@ -168,14 +169,14 @@ try {
   const { data } = await  authFetch.get("/profile");
   const { user } = data;
   dispatch({
-    type: UPDATE_USER_SUCCESS,
+    type:  GET_PROFILE_SUCCESS,
     payload: { user },
   });
 } catch (error) {
   console.log(error);
-  if (error.response.status === 401) {
- logoutUser()
-  }
+//   if (error.response.status === 401) {
+//  logoutUser()
+//   }
 }
 }
 
