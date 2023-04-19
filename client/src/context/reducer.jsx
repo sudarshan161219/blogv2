@@ -8,13 +8,14 @@ import {
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
+  GET_PROFILE_BEGIN,
+  GET_PROFILE_SUCCESS,
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
-  
   if (action.type === TOGGLE_SIDEBAR) {
     return { ...state, showSidebar: !state.showSidebar };
   }
@@ -63,6 +64,18 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === GET_PROFILE_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_PROFILE_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      user: action.payload.user,
+    };
+  }
+
   if (action.type === UPDATE_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -82,7 +95,6 @@ const reducer = (state, action) => {
       isLoading: false,
     };
   }
-
 
   if (action.type === LOGOUT_USER) {
     return {

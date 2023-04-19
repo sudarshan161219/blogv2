@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wrapper from "../../assets/Wrappers/Profile";
-import profileImg from "../../assets/dummy-profile.jpg";
+import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
-import { FiBookOpen, FiEdit } from "react-icons/fi";
-
+import { useAppContext } from "../../context/Context";
+import load from "../../assets/Rolling-1s-31px.svg";
+import { Loading } from "../../Components/export";
 
 import {
   AiOutlineTwitter,
@@ -11,45 +12,65 @@ import {
   AiFillLinkedin,
 } from "react-icons/ai";
 
-
 const Profile = () => {
+  const { getProfile, user, isLoading } = useAppContext();
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  const {
+    name,
+    userInfo,
+    userProfile,
+    userImg,
+    personalLink,
+    twitter,
+    instagram,
+    linkden,
+  } = user;
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Wrapper>
       <div className="profile-container">
         <div className="img-container">
-          <img className="profile-img" src={profileImg} alt="profile" />
+          <img className="profile-img" src={userImg || profile} alt="profile" />
         </div>
 
         <div className="profile-info">
-          <h1>Test</h1>
+          <h1>{name}</h1>
           <strong>@test123</strong>
 
-          <p>
-            Ipsum adipisicing culpa est nisi consequat ex amet magna culpa
-            veniam tempor irure ea. <br />
-            Reprehenderit labore do tempor eiusmod in consectetur ex sunt id
-            mollit commodo ipsum deserunt quis.
-          </p>
-        <div className="profile-social-container">
-          <ul className="link">
-            <li>
-              <a href="https://www.youtube.com/" target="_blank">
-                <BsLink45Deg className="link-icon" />
-                Test123.com
-              </a>
-            </li>
-          </ul>
+          <p>{userInfo}</p>
+          <div className="profile-social-container">
+            <ul className="link">
+              {personalLink !== "" ? (
+                <li>
+                  <a href={personalLink} target="_blank">
+                    <BsLink45Deg className="link-icon" />
+                    {personalLink}
+                  </a>
+                </li>
+              ) : null}
+            </ul>
 
-          <ul className="socials">
-          <li><AiOutlineTwitter className="social-icon"/></li>
-          <li><AiFillInstagram  className="social-icon"/></li>
-          <li><AiFillLinkedin className="social-icon"/></li>
-          </ul>
+            <ul className="socials">
+              <li>
+                <AiOutlineTwitter className="social-icon" />
+              </li>
+              <li>
+                <AiFillInstagram className="social-icon" />
+              </li>
+              <li>
+                <AiFillLinkedin className="social-icon" />
+              </li>
+            </ul>
+          </div>
         </div>
-
-        </div>
-
-
       </div>
     </Wrapper>
   );

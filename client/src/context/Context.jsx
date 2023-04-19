@@ -12,6 +12,8 @@ import {
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
+  GET_PROFILE_BEGIN,
+  GET_PROFILE_SUCCESS,
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
@@ -160,7 +162,22 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
+const getProfile = async () => {
+dispatch({type: GET_PROFILE_BEGIN})
+try {
+  const { data } = await  authFetch.get("/profile");
+  const { user } = data;
+  dispatch({
+    type: UPDATE_USER_SUCCESS,
+    payload: { user },
+  });
+} catch (error) {
+  console.log(error);
+  if (error.response.status === 401) {
+ logoutUser()
+  }
+}
+}
 
   return (
     <Context.Provider
@@ -170,6 +187,7 @@ const ContextProvider = ({ children }) => {
         toggleDashNav,
         registerFn,
         loginFn,
+        getProfile,
         logoutUser,
         updateUserFn,
       }}

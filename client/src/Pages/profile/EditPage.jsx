@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/EditPage";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
 import convertToBase64 from "../../utils/convert";
+import validateUrl from "../../utils/validateUrls";
 import { useAppContext } from "../../context/Context";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import Resizer from "react-image-file-resizer";
 
 import {
@@ -27,7 +28,7 @@ const initialState = {
 };
 
 const EditPage = () => {
-  const { updateUserFn, isLoading } = useAppContext();
+  const { updateUserFn, isLoading, user } = useAppContext();
   const [values, setValues] = useState(initialState);
   const [file, setFile] = useState();
 
@@ -45,7 +46,6 @@ const EditPage = () => {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     data.userProfile = file;
-
     const {
       name,
       userInfo,
@@ -57,23 +57,33 @@ const EditPage = () => {
       linkden,
     } = data;
 
-    updateUserFn({
-      name,
-      userInfo,
-      profileImg,
-      userProfile,
-      personalLink,
-      twitter,
-      instagram,
-      linkden,
-    });
-    e.currentTarget.reset();
+    validateUrl(personalLink, twitter, instagram, linkden);
+    if (validateUrl(personalLink, twitter, instagram, linkden)) {
+   
+        updateUserFn({
+          name,
+          userInfo,
+          profileImg,
+          userProfile,
+          personalLink,
+          twitter,
+          instagram,
+          linkden,
+        });
+        
+      
+    }
+    if (!isLoading) {
+      e.currentTarget.reset();
+    }
   };
 
   return (
     <Wrapper>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <Link to="/user-profile"  className="edit-btn button-28">back to Dashboard</Link>
+      <Link to="/user-profile" className="edit-btn button-28">
+        back to Dashboard
+      </Link>
       <form
         className="profile-form"
         onSubmit={handleSubmit}
@@ -99,6 +109,7 @@ const EditPage = () => {
               type="text"
               name="name"
               id="name"
+              value={user.name}
               placeholder="name"
               onChange={handleChange}
             />
@@ -159,7 +170,11 @@ const EditPage = () => {
             />
           </label>
         </div>
-        <button type="submit" className="button-28 btn-profile">
+        <button
+          disabled={isLoading}
+          type="submit"
+          className="button-28 btn-profile"
+        >
           {isLoading ? "Please wait...." : "save"}
         </button>
       </form>

@@ -66,10 +66,8 @@ const updateUser = async (req, res) => {
 
   const user = await User.findOne({ _id: req.user.userId });
 
-    (user.name = name),
-    (user.userInfo = userInfo),
-    (user.userImg = userProfile);
-    (user.twitter = twitter),
+  (user.name = name), (user.userInfo = userInfo), (user.userImg = userProfile);
+  (user.twitter = twitter),
     (user.personalLink = personalLink),
     (user.instagram = instagram),
     (user.linkden = linkden),
@@ -77,13 +75,17 @@ const updateUser = async (req, res) => {
   const token = user.createJWT();
 
   return res.status(StatusCodes.OK).json({
-    user, token
+    user,
+    token,
   });
 };
 
 //* get profile
 const profile = async (req, res) => {
-  return res.send({ fn: " user profile" });
+  const user = await User.findOne({ _id: req.user.userId });
+  return res.status(StatusCodes.OK).json({
+    user
+  });
 };
 
 // * post logout

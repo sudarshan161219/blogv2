@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   }
 
   .profile-img {
-    width: 70%;
+    width: 100%;
   }
 
   .profile-info {
@@ -89,8 +89,8 @@ const Wrapper = styled.div`
     }
 
     .img-container {
-      width: 400px;
-      height: 200px;
+      width: 500px;
+      height: 185px;
     }
 
     .profile-info {

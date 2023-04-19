@@ -451,6 +451,18 @@ h5 {
   gap: 3rem;
 }
 
+.loading {
+  width: 100%;
+  height: 300px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.loader {
+  width: 65px;
+}
+
 @media (min-width: 768px) {
   .register-main {
     width: 400px;
@@ -469,5 +481,9 @@ h5 {
 
   .register-main {
     padding: 2rem 0 0 0;
+  }
+
+  .loading {
+    padding-left: 5rem;
   }
 }
