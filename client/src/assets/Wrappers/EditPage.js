@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  /* width: 100%; */
-
   .profile-form {
     width: 100%;
-    gap: 1rem;
-    padding: 0.6rem 0;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    border-top:5px solid #000 ;
+    border-bottom: 1px solid #000;
+    border-radius: 10px;
   }
   input[type="file"] {
     display: none;
@@ -17,7 +18,6 @@ const Wrapper = styled.div`
     border: none;
     letter-spacing: 1.1px;
     width: 100%;
-    /* width: 300px; */
     padding: 0.8rem 1rem;
     font-size: 1.2rem;
     border-radius: 8px;
@@ -28,7 +28,6 @@ const Wrapper = styled.div`
     border: none;
     letter-spacing: 1.1px;
     width: 100%;
-    /* width: 300px; */
     padding: 0.8rem 1rem;
     font-size: 1.2rem;
     border-radius: 8px;
@@ -69,7 +68,7 @@ const Wrapper = styled.div`
     height: 250px;
     border-radius: 100%;
     overflow: hidden;
-    margin:0 auto;
+    margin: 0 auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   .profile-img {
@@ -79,17 +78,19 @@ const Wrapper = styled.div`
     resize: vertical;
   }
   .input-container {
-    margin-top:2rem;
+    margin-top: 2rem;
     display: grid;
     gap: 1rem;
   }
 
-@media (min-width: 1024px) {
-  /* .eiiINd .dashboard-page { */
+  .edit-btn {
+    width: 200px;
+  }
+
+  @media (min-width: 1024px) {
     width: 70%;
     padding: 0px 12rem;
-/* } */
-}
+  }
 `;
 
 export default Wrapper;

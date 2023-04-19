@@ -11,7 +11,7 @@ const NavItems = () => {
   const handleToggle = () => {
     setToggle(!toggle);
   };
-
+  const location = useLocation();
   const userPath = location.pathname === "/user-profile";
   const userPathP = location.pathname === "/user-profile/profile";
   const userPathC = location.pathname === "/user-profile/createpost";

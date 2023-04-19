@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom'
 import Wrapper from "../../assets/Wrappers/EditPage";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
@@ -39,11 +40,11 @@ const EditPage = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
-    data.userProfile = file
+    data.userProfile = file;
 
     const {
       name,
@@ -55,7 +56,6 @@ const EditPage = () => {
       instagram,
       linkden,
     } = data;
-  
 
     updateUserFn({
       name,
@@ -73,6 +73,7 @@ const EditPage = () => {
   return (
     <Wrapper>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
+      <Link to="/user-profile"  className="edit-btn button-28">back to Dashboard</Link>
       <form
         className="profile-form"
         onSubmit={handleSubmit}

@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/Dashboardnav";
 import Logo2 from "../Components/Logo2";
 import { IoGridOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
 import { FiBookOpen, FiEdit } from "react-icons/fi";
-import { useAppContext } from "../context/Context";
 
 const Dashboardnav = () => {
+
+  const location = useLocation();
+  const userPathE = location.pathname === "/user-profile/edit";
+
 
   return (
     <Wrapper>
@@ -16,14 +19,7 @@ const Dashboardnav = () => {
         <Logo2 />
       </Link>
 
-      {/* <BsGrid1X2
-        onClick={dashNav ? toggleDashNav : null}
-        className={!dashNav ? "hide-dash-menu-icon" : "dash-menu-icon"}
-      /> */}
-
-      <div
-        className="dashboard-nav"
-      >
+      <div className={userPathE ? "dashboard-nav hide-dashboard-nav" : "dashboard-nav"}>
         <ul>
           <li>
             <Link to="/user-profile" className="Link ">
@@ -49,12 +45,6 @@ const Dashboardnav = () => {
               Posts
             </Link>
           </li>
-          {/* <li>
-            <Link to="edit" className="Link ">
-              <FiEdit className="dash-icons" />
-             Edit
-            </Link>
-          </li> */}
         </ul>
       </div>
     </Wrapper>
