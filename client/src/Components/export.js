@@ -12,6 +12,7 @@ import AboutS from "./AboutS";
 import AboutContactS from "./AboutContactS";
 import AboutConS from "./AboutConS";
 import Dashboardnav from "./Dashboardnav";
+import TextEditor from "./TextEditor";
 
 export {
   Navbar,
@@ -28,4 +29,5 @@ export {
   AboutContactS,
   AboutConS,
   Dashboardnav,
+  TextEditor
 };

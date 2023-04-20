@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useEditor, EditorContent } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
 import Wrapper from "../../assets/Wrappers/Createpost";
-
+import { TextEditor} from "../../Components/export"
 
 const Createpost = () => {
   const [value, setValue] = useState("");
 
   const addDetails = () => {};
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-    ],
-    content: '<p>Hello World!</p>',
-  })
+
   return (
     <>
       <Wrapper className="container">
@@ -38,8 +31,8 @@ const Createpost = () => {
                 />
               </div>
               <br />
-              <EditorContent editor={editor} />
-              {/* {isError !== null && <div className="errors"> {isError} </div>} */}
+              <TextEditor/>
+ 
               <div className="btn-container">
                 <button type="submit" className="button-28 quill-btn">
                   Submit
