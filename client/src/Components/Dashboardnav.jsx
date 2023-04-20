@@ -5,7 +5,7 @@ import Logo2 from "../Components/Logo2";
 import { IoGridOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
-import { FiBookOpen, FiEdit } from "react-icons/fi";
+import { FiBookOpen } from "react-icons/fi";
 
 const Dashboardnav = () => {
 
@@ -24,25 +24,25 @@ const Dashboardnav = () => {
           <li>
             <Link to="/user-profile" className="Link ">
               <IoGridOutline className="dash-icons" />
-              Stats
+            <span className="dash-nav-text">Stats</span>  
             </Link>
           </li>
           <li>
             <Link to="profile" className="Link ">
               <BsPerson className="dash-icons" />
-              Profile
+            <span className="dash-nav-text">Profile</span>  
             </Link>
           </li>
           <li>
             <Link to="createpost" className="Link ">
               <HiOutlinePencil className="dash-icons" />
-              Write a Post
+            <span className="dash-nav-text">Write a Post</span>  
             </Link>
           </li>
           <li>
             <Link to="all-posts" className="Link ">
               <FiBookOpen className="dash-icons" />
-              Posts
+             <span className="dash-nav-text">Posts</span> 
             </Link>
           </li>
         </ul>

@@ -13,20 +13,18 @@ const Wrapper = styled.aside`
     position: fixed;
     left: 0px;
     top: 94vh;
-    background: rgba(36, 35, 35, 0.6);
-    box-shadow: rgba(31, 38, 135, 0.37) 0px 8px 32px 0px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* background: rgba(36, 35, 35, 0.6); */
+    background-color:#0F0E0E;
+    /* box-shadow: rgba(31, 38, 135, 0.37) 0px 8px 32px 0px;
+    backdrop-filter: blur(12px); */
+    /* border: 1px solid rgba(255, 255, 255, 0.18); */
   }
 
-  .hide-dashboard-nav {
+  .hide-dashboard-nav, .dash-nav-text {
     display: none;
   }
 
-  .dash-close-icon {
-    font-size: 1.5rem;
-    color: #fff;
-  }
+
 
   .icon-container {
     top: -1px;
@@ -35,9 +33,8 @@ const Wrapper = styled.aside`
     border-radius: 50%;
   }
 
-  .dash-menu-icon {
+  .dash-icons {
     opacity: 1;
-    color: black;
     font-size: 1.2rem;
     font-weight: 500;
   }
@@ -60,7 +57,8 @@ const Wrapper = styled.aside`
 
   .dashboard-nav > ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    
     border-radius: 10px;
     padding: 0.5rem 0.2rem 2rem 0.2rem;
   }
@@ -108,6 +106,11 @@ const Wrapper = styled.aside`
   }
 
   @media (min-width: 1024px) {
+
+    .dash-nav-text {
+      display:block
+    }
+
     .logo {
       display: block;
       padding: 1.5rem 0.5rem;
