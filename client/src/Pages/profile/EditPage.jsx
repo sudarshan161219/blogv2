@@ -28,7 +28,7 @@ const initialState = {
 };
 
 const EditPage = () => {
-  const { updateUserFn, isLoading, user } = useAppContext();
+  const { updateUserFn, isLoading } = useAppContext();
   const [values, setValues] = useState(initialState);
   const [file, setFile] = useState();
 

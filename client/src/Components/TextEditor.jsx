@@ -3,8 +3,6 @@ import { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Wrapper from "../assets/Wrappers/TextEditor";
 
-
-
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ font: [] }],
@@ -25,7 +23,12 @@ const TextEditor = () => {
     wrapper.innerHTML = "";
     const editor = document.createElement("div");
     wrapper.append(editor);
-    new Quill(editor, { theme: "snow", modules:{toolbar:  TOOLBAR_OPTIONS} });
+    new Quill(editor, {
+      theme: "snow",
+      name: "content",
+      placeholder: "write something awesome :)" ,
+      modules: { toolbar: TOOLBAR_OPTIONS },
+    });
   }, []);
 
   return <Wrapper id="container" ref={wrapperRef}></Wrapper>;
