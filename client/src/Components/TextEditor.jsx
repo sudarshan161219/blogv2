@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Wrapper from "../assets/Wrappers/TextEditor";
+
+
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -11,7 +13,7 @@ const TOOLBAR_OPTIONS = [
   [{ color: [] }, { background: [] }],
   [{ script: "sub" }, { script: "super" }],
   [{ align: [] }],
-  ["image", "blockquote", "code-block"],
+  ["image", "video", "blockquote", "code-block"],
   ["clean"],
 ];
 
