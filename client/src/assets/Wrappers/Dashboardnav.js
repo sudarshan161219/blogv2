@@ -100,7 +100,7 @@ const Wrapper = styled.aside`
 
   @media (min-width: 768px) {
     .dashboard-nav {
-      width: 50%;
+      /* width: 50%; */
       display: block;
     }
   }

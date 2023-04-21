@@ -3,6 +3,8 @@ import styled from "styled-components";
 const Wrapper = styled.header`
   color: #1c1c1c;
   padding-bottom: 2rem;
+  background-color:#f3f3f3;
+
   /* margin: 1rem; */
   ul {
     display: none;

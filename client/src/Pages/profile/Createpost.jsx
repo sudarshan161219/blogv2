@@ -30,7 +30,7 @@ const Createpost = () => {
                   required
                 />
               </div>
-              <br />
+
               <TextEditor/>
  
               <div className="btn-container">
