@@ -5,7 +5,7 @@ import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.jpg";
 var icons = ReactQuill.Quill.import("ui/icons");
-
+import { useQuill } from "react-quilljs";
 icons["undo"] = "UNDO";
 icons["redo"] = "REDO";
 
@@ -22,75 +22,153 @@ icons["redo"] = `<svg viewbox="0 0 18 18">
 const initialState = {
   title: "",
   summary: "",
-  content: "",
 };
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ font: [] }],
   [{ list: "ordered" }, { list: "bullet" }],
-  ["bold", "italic", "underline"],
+  ["bold", "italic", "underline", "strike"],
   [{ color: [] }, { background: [] }],
   [{ script: "sub" }, { script: "super" }],
+  [{ list: "ordered" }, { list: "bullet" }],
+  [{ direction: "rtl" }],
+  [{ indent: "-1" }, { indent: "+1" }],
+  [{ font: [] }],
   [{ align: [] }],
-  [("image", "video", "blockquote", "code-block")],
+  ["image", "video", "link"],
+  ["blockquote", "code-block"],
   ["clean"],
   [{ undo: "undo" }, { redo: "redo" }],
 ];
 
+
+const formats = [
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "align",
+  "list",
+  "indent",
+  "size",
+  "header",
+  "link",
+  "image",
+  "video",
+  "color",
+  "background",
+  "code-block",
+  "clean",
+  "undo",
+  "redo",
+];
+
+const LInk = (value) => {
+  if (value) {
+    var href = prompt("Enter the URL");
+    this.quill.format("link", href);
+  } else {
+    this.quill.format("link", false);
+  }
+};
+
+function Undo() {
+  this.quill.history.undo();
+}
+
+function Redo() {
+  this.quill.history.redo();
+}
+
+var toolbarOptions = {
+  handlers: {
+    'link': LInk,
+    'undo': Undo,
+    'redo': Redo,
+  },
+};
+
+const theme = "snow";
+const placeholder = "Compose an epic...";
+const modules = {
+  history: {
+    delay: 2000,
+    maxStack: 500,
+    userOnly: true,
+  },
+  toolbar: {
+    container: TOOLBAR_OPTIONS,
+    toolbarOptions,
+  },
+};
+
 const Createpost = () => {
   const [value, setValue] = useState(initialState);
-  // const [quill, setQuill] = useState();
+  const [vquill, setVQuill] = useState();
+  const { quill, quillRef, Quill } = useQuill({
+    modules,
+    formats,
+    placeholder,
+    theme,
+  });
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    setQuill(e.target.value);
   };
 
-  const omegaHandlerFunction = (e) => {
-    console.log("hello");
-  };
+  // const wrapperRef = useCallback((wrapper) => {
+  //   if (wrapper == null) return;
+  //   wrapper.innerHTML = "";
 
-  const wrapperRef = useCallback((wrapper) => {
-    if (wrapper == null) return;
-    wrapper.innerHTML = "";
+  //   const editor = document.createElement("div");
+  //   wrapper.append(editor);
 
-    const editor = document.createElement("div");
-    wrapper.append(editor);
+  //   // var quill = new Quill(editor, {
+  //   //   theme: "snow",
+  //   //   name: "content",
+  //   //   placeholder: "write something awesome :)",
 
-    var quill = new Quill(editor, {
-      theme: "snow",
-      name: "content",
-      onChange: { handleChange },
-      placeholder: "write something awesome :)",
-      modules: {
-        toolbar: {
-          container: TOOLBAR_OPTIONS,
-          handlers: {
-            undo: myUndo,
-            redo: myRedo,
-          },
-          history: {
-            delay: 2000,
-            maxStack: 500,
-            userOnly: true,
-          },
-        },
-      },
-    });
-    quill.getModule("toolbar").addHandler("omega", omegaHandlerFunction);
+  //   //   modules: {
+  //   //     toolbar: {
+  //   //       container: TOOLBAR_OPTIONS,
+  //   //       handlers: {
+  //   //         undo: myUndo,
+  //   //         redo: myRedo,
+  //   //       },
+  //   //       history: {
+  //   //         delay: 2000,
+  //   //         maxStack: 500,
+  //   //         userOnly: true,
+  //   //       },
+  //   //     },
+  //   //   },
+  //   // });
 
-    function myUndo() {
-      quill.history.undo();
+  //   function myUndo() {
+  //     quill.history.undo();
+  //   }
+
+  //   function myRedo() {
+  //     quill.history.redo();
+  //   }
+  //   if (quill) {
+  //     quill.on("text-change", () => {
+  //       setVQuill();
+  //     });
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    if (quill) {
+      quill.on("text-change", () => {
+        setVQuill(quillRef.current.firstChild.innerHTML);
+      });
     }
-
-    function myRedo() {
-      quill.history.redo();
-    }
-  }, []);
-
+  }, [quill]);
 
   const addDetails = () => {};
+  console.log(vquill);
+
 
   return (
     <>
@@ -141,11 +219,15 @@ const Createpost = () => {
               </div>
 
               {/* <TextEditor /> */}
-              <EdittorWrapper
+              {/* <EdittorWrapper
                 id="container"
                 name="content"
                 ref={wrapperRef}
-              ></EdittorWrapper>
+              ></EdittorWrapper> */}
+
+              <EdittorWrapper>
+                <div ref={quillRef} formats={ formats} modules={TOOLBAR_OPTIONS} />
+              </EdittorWrapper>
 
               <div className="btn-container">
                 <button type="submit" className="button-28 quill-btn">
