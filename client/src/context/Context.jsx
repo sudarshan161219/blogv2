@@ -64,11 +64,9 @@ const ContextProvider = ({ children }) => {
       return response
     },
     (error) => {
-      // if(error.response.status === 401){
-      //   logoutUser()
-      // }
-      console.log(error);
-      return Promise.reject(error)
+      if(error.response.status === 401){
+        logoutUser()
+      }
     }
   )
 

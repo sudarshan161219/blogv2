@@ -63,7 +63,9 @@ const updateUser = async (req, res) => {
 
   const user = await User.findOne({ _id: req.user.userId });
 
-  (user.name = name), (user.userInfo = userInfo), (user.userImg = userProfile);
+  (user.name = name),
+  userInfo && (user.userInfo = userInfo),
+  userProfile && (user.userImg = userProfile);
   (user.twitter = twitter),
     (user.personalLink = personalLink),
     (user.instagram = instagram),
@@ -81,7 +83,7 @@ const updateUser = async (req, res) => {
 const profile = async (req, res) => {
   const user = await User.findOne({ _id: req.user.userId });
   return res.status(StatusCodes.OK).json({
-    user
+    user,
   });
 };
 
