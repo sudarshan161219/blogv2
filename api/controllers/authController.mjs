@@ -63,9 +63,13 @@ const updateUser = async (req, res) => {
 
   const user = await User.findOne({ _id: req.user.userId });
 
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+
   (user.name = name),
-  userInfo && (user.userInfo = userInfo),
-  userProfile && (user.userImg = userProfile);
+    userInfo && (user.userInfo = userInfo),
+    userProfile && (user.userImg = userProfile);
   (user.twitter = twitter),
     (user.personalLink = personalLink),
     (user.instagram = instagram),

@@ -13,7 +13,7 @@ const PostSchema = new Schema(
       required: [true, "Please provide Summary"],
       maxlength: 100,
     },
-    image: {
+    coverImg: {
       type: String,
     },
     content: {

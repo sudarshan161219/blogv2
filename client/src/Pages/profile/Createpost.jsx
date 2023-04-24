@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.jpg";
-
+import { useAppContext } from "../../context/Context";
 import convertToBase64 from "../../utils/convert";
 import { useQuill } from "react-quilljs";
 
@@ -31,6 +31,7 @@ const Createpost = () => {
     placeholder,
     theme,
   });
+  const { handleContextSubmit } = useAppContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ const Createpost = () => {
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-
+    handleContextSubmit(data);
     console.log(data);
   };
 
@@ -153,7 +154,6 @@ const Createpost = () => {
                 </div>
               </div>
 
-
               <EdittorWrapper>
                 <div
                   ref={quillRef}
@@ -161,7 +161,6 @@ const Createpost = () => {
                   modules={TOOLBAR_OPTIONS}
                 />
               </EdittorWrapper>
-
 
               <div className="btn-container">
                 <button type="submit" className="button-28 quill-btn">

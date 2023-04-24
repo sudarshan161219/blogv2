@@ -13,6 +13,10 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  HANDLE_SUBMIT,
+  CREATE_POST_BEGIN,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -102,6 +106,28 @@ const reducer = (state, action) => {
       token: null,
       user: null,
     };
+  }
+
+  if (action.type === HANDLE_SUBMIT) {
+    return {
+      ...state,
+      title: action.payload.title,
+      summary: action.payload.summary,
+      coverImg: action.payload.coverImg,
+      content: action.payload.content,
+    };
+  }
+
+  if (action.type === CREATE_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === CREATE_POST_SUCCESS) {
+    return { ...state, isLoading: false };
+  }
+
+  if (action.type === CREATE_POST_ERROR) {
+    return { ...state, isLoading: false };
   }
 
   throw new Error(`no such action : ${action.type}`);

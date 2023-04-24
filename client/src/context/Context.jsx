@@ -17,11 +17,11 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  HANDLE_SUBMIT,
 } from "./action";
 
 const user = localStorage.getItem("user");
 const token = localStorage.getItem("userToken");
-
 
 const initialState = {
   isLoading: false,
@@ -29,8 +29,10 @@ const initialState = {
   dashNav: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
-  alertText: "",
-  alertType: "",
+  title: "",
+  summary: "",
+  coverImg: "",
+  content: "",
 };
 
 const Context = createContext({});
@@ -47,7 +49,6 @@ const ContextProvider = ({ children }) => {
     },
   });
 
-
   authFetch.interceptors.request.use(
     (config) => {
       config.headers["Authorization"] = `Bearer ${state.token}`;
@@ -58,17 +59,16 @@ const ContextProvider = ({ children }) => {
     }
   );
 
-
   authFetch.interceptors.response.use(
     (response) => {
-      return response
+      return response;
     },
     (error) => {
-      if(error.response.status === 401){
-        logoutUser()
+      if (error.response.status === 401) {
+        logoutUser();
       }
     }
-  )
+  );
 
   const addUserToLocalStorage = ({ user, token }) => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -79,8 +79,6 @@ const ContextProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("userToken");
   };
-
-
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -101,10 +99,11 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/register", userData
-      )
+        "http://localhost:3000/api/register",
+        userData
+      );
 
-      // authFetch 
+      // authFetch
       const { user, token } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
@@ -122,8 +121,10 @@ const ContextProvider = ({ children }) => {
   const loginFn = async (userData) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
-
-      const response = await authFetch.post("http://localhost:3000/api/login", userData)
+      const response = await authFetch.post(
+        "http://localhost:3000/api/login",
+        userData
+      );
       const { user, token } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
@@ -142,7 +143,7 @@ const ContextProvider = ({ children }) => {
   const updateUserFn = async (updateData) => {
     dispatch({ type: UPDATE_USER_BEGIN });
     try {
-      const { data } = await  authFetch.patch("/updateUser", updateData);
+      const { data } = await authFetch.patch("/updateUser", updateData);
       const { user, token } = data;
 
       dispatch({
@@ -150,7 +151,7 @@ const ContextProvider = ({ children }) => {
         payload: { user, token },
       });
       toast.success("User Profile, Updated!");
-      addUserToLocalStorage({ user, token});
+      addUserToLocalStorage({ user, token });
     } catch (error) {
       if (error.response.status !== 401) {
         toast.error(error.response.data.msg);
@@ -161,22 +162,46 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-const getProfile = async () => {
-dispatch({type: GET_PROFILE_BEGIN})
-try {
-  const { data } = await  authFetch.get("/profile");
-  const { user } = data;
-  dispatch({
-    type:  GET_PROFILE_SUCCESS,
-    payload: { user },
-  });
-} catch (error) {
-  console.log(error);
-//   if (error.response.status === 401) {
-//  logoutUser()
-//   }
-}
-}
+  const getProfile = async () => {
+    dispatch({ type: GET_PROFILE_BEGIN });
+    try {
+      const { data } = await authFetch.get("/profile");
+      const { user } = data;
+      dispatch({
+        type: GET_PROFILE_SUCCESS,
+        payload: { user },
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401) {
+        logoutUser();
+      }
+    }
+  };
+
+  const handleContextSubmit = ({ title, summary, coverImg, content }) => {
+    dispatch({
+      type: HANDLE_SUBMIT,
+      payload: { title, summary, coverImg, content },
+    });
+  };
+
+  const createPost = async (postcontent) => {
+    dispatch({ type: CREATE_POST_BEGINS });
+    try {
+      const { data } = await authFetch.post("/createpost");
+      // const { user } = data
+      dispatch({ type: CREATE_POST_SUCCESS });
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      dispatch({
+        type: CREATE_POST_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+  };
 
   return (
     <Context.Provider
@@ -189,6 +214,8 @@ try {
         getProfile,
         logoutUser,
         updateUserFn,
+        createPost,
+        handleContextSubmit
       }}
     >
       {children}
