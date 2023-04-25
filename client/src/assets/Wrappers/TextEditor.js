@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  /* height: 100vh; */
-  /* margin-bottom: 5rem; */
   .ql-editor {
-    min-height: 3in;
+    min-height: 5in;
     padding-top: 2rem;
   }
 

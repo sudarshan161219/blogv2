@@ -1,9 +1,9 @@
+import imageCompression from 'browser-image-compression';
 //* image onto base64
-export default function convertToBase64 (File) {
+ function convertToBase64 (File) {
     return new Promise((resolve, reject) => {
         const fileReader = new FileReader()
         fileReader.readAsDataURL(File)
-
         fileReader.onload = () => {
             resolve(fileReader.result)
         }
@@ -13,6 +13,29 @@ export default function convertToBase64 (File) {
         }
     })
 }
+
+
+ function handleImageUpload(event) {
+    var options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    }
+    imageCompression(event, options)
+      .then(function (compressedFile) {
+        return convertToBase64(compressedFile);
+      })
+      .catch(function (error) {
+        console.log(error.message);
+      });
+  }
+
+export  {convertToBase64 , handleImageUpload}
+
+ 
+
+
+
 
 
 

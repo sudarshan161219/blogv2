@@ -18,6 +18,9 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
   HANDLE_SUBMIT,
+  CREATE_POST_BEGIN,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -186,11 +189,16 @@ const ContextProvider = ({ children }) => {
     });
   };
 
-  const createPost = async (postcontent) => {
-    dispatch({ type: CREATE_POST_BEGINS });
+  const createPost = async () => {
+    dispatch({ type: CREATE_POST_BEGIN });
     try {
-      const { data } = await authFetch.post("/createpost");
-      // const { user } = data
+      const { title, summary, coverImg, content } = state;
+      await authFetch.post("/createpost", {
+        title,
+        summary,
+        coverImg,
+        content,
+      });
       dispatch({ type: CREATE_POST_SUCCESS });
     } catch (error) {
       if (error.response.status === 401) {
@@ -215,7 +223,7 @@ const ContextProvider = ({ children }) => {
         logoutUser,
         updateUserFn,
         createPost,
-        handleContextSubmit
+        handleContextSubmit,
       }}
     >
       {children}

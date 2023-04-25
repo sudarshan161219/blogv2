@@ -16,13 +16,13 @@ const createPost = async (req, res) => {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
-  const userAlreadyExist = await Post.findOne({
-    title, summary, coverImg, content 
-  });
+  // const postAlreadyExist = await Post.aggregate({
+  //   title
+  // });
 
-  if (userAlreadyExist) {
-    throw new BadRequestError("you have already have post with same title");
-  }
+  // if (postAlreadyExist) {
+  //   throw new BadRequestError("you have already have post with same title");
+  // }
 
   req.body.author = req.user.userId;
   const post = await Post.create(req.body);

@@ -5,8 +5,9 @@ import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.jpg";
 import { useAppContext } from "../../context/Context";
-import convertToBase64 from "../../utils/convert";
+import { convertToBase64, handleImageUpload } from "../../utils/convert";
 import { useQuill } from "react-quilljs";
+import imageCompression from "browser-image-compression";
 
 import {
   TOOLBAR_OPTIONS,
@@ -31,7 +32,7 @@ const Createpost = () => {
     placeholder,
     theme,
   });
-  const { handleContextSubmit } = useAppContext();
+  const { createPost, handleContextSubmit, isLoading } = useAppContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +42,10 @@ const Createpost = () => {
     data.content = vquill;
     handleContextSubmit(data);
     console.log(data);
+    createPost();
+    // if (!isLoading) {
+    //   e.currentTarget.reset();
+    // }
   };
 
   const handleChange = (e) => {
@@ -48,9 +53,31 @@ const Createpost = () => {
   };
 
   const onUpload = async (e) => {
-    const base64 = await convertToBase64(e.target.files[0]);
-    setFile(base64);
+ const event = e.target.files[0];
+    const options = {
+      maxSizeMB: 0.3,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+      alwaysKeepResolution: true,
+    }
+    try {
+      const compressedFile = await imageCompression(event, options);
+      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+  
+       const base64 = await convertToBase64(compressedFile);
+      setFile(base64);
+    } catch (error) {
+      console.log(error);
+    }
+
+
+
+   
+    // handleImageUpload(e.target.files[0]);
   };
+
+  console.log(file);
 
   // const wrapperRef = useCallback((wrapper) => {
   //   if (wrapper == null) return;
@@ -147,9 +174,9 @@ const Createpost = () => {
                   <input
                     type="file"
                     id="cover-image"
-                    // name="file"
+                    name="cover-image"
                     onChange={onUpload}
-                    accept=".jpg,.png,.jpeg"
+                    accept="image/*"
                   />
                 </div>
               </div>
@@ -163,8 +190,12 @@ const Createpost = () => {
               </EdittorWrapper>
 
               <div className="btn-container">
-                <button type="submit" className="button-28 quill-btn">
-                  Submit
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="button-28 quill-btn"
+                >
+                  {isLoading ? "Please wait...." : " Submit"}
                 </button>
               </div>
             </div>

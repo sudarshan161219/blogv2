@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/EditPage";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
-import convertToBase64 from "../../utils/convert";
+import {convertToBase64} from "../../utils/convert";
 import validateUrl from "../../utils/validateUrls";
 import { useAppContext } from "../../context/Context";
 import { Toaster, toast } from "react-hot-toast";
