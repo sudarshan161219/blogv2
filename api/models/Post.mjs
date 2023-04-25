@@ -19,7 +19,7 @@ const PostSchema = new Schema(
     content: {
       type: String,
       required: [true, "Please provide content"],
-      minlength: 200,
+      // minlength: 50,
     },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },

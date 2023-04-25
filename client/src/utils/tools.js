@@ -1,7 +1,8 @@
 import ReactQuill, { Quill } from "react-quill";
 var icons = ReactQuill.Quill.import("ui/icons");
 const Font = Quill.import("formats/font");
-
+import ImageCompress from "quill-image-compress";
+Quill.register("modules/imageCompress", ImageCompress);
 
 icons["undo"] = "UNDO";
 icons["redo"] = "REDO";
@@ -26,10 +27,8 @@ Font.whitelist = [
 ];
 Quill.register(Font, true);
 
-
 const theme = "snow";
 const placeholder = "Compose an epic...";
-
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -50,26 +49,26 @@ const TOOLBAR_OPTIONS = [
 ];
 
 const formats = [
-    "font",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "align",
-    "list",
-    "indent",
-    "size",
-    "header",
-    "link",
-    "image",
-    "video",
-    "color",
-    "background",
-    "code-block",
-    "clean",
-    "undo",
-    "redo",
-  ];
+  "font",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "align",
+  "list",
+  "indent",
+  "size",
+  "header",
+  "link",
+  "image",
+  "video",
+  "color",
+  "background",
+  "code-block",
+  "clean",
+  "undo",
+  "redo",
+];
 
 function Link(value) {
   if (value) {
@@ -89,21 +88,39 @@ function Redo() {
 }
 
 const modules = {
-      history: {
-        delay: 1000,
-        maxStack: 100,
-        userOnly: false,
-      },
-    
-      toolbar: {
-        container: TOOLBAR_OPTIONS,
-        handlers: {
-          undo: Undo,
-          redo: Redo,
-          link: Link,
-        },
-      },
-    };
-   
+  history: {
+    delay: 1000,
+    maxStack: 100,
+    userOnly: false,
+  },
 
-export { TOOLBAR_OPTIONS, formats, theme, placeholder, modules, Link, Undo, Redo };
+  toolbar: {
+    container: TOOLBAR_OPTIONS,
+    handlers: {
+      undo: Undo,
+      redo: Redo,
+      link: Link,
+    },
+  },
+
+  imageCompress: {
+    quality: 0.7, // default
+    maxWidth: 1000, // default
+    maxHeight: 1000, // default
+    // imageType: "image/jpeg",
+    debug: true, // default
+    suppressErrorLogging: false, // default
+    insertIntoEditor: undefined, // default
+  },
+};
+
+export {
+  TOOLBAR_OPTIONS,
+  formats,
+  theme,
+  placeholder,
+  modules,
+  Link,
+  Undo,
+  Redo,
+};

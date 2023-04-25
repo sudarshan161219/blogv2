@@ -1,13 +1,14 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
-import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.jpg";
 import { useAppContext } from "../../context/Context";
-import { convertToBase64, handleImageUpload } from "../../utils/convert";
+import { convertToBase64 } from "../../utils/convert";
 import { useQuill } from "react-quilljs";
 import imageCompression from "browser-image-compression";
+import { Toaster, toast } from "react-hot-toast";
+import Select from "react-select";
 
 import {
   TOOLBAR_OPTIONS,
@@ -33,7 +34,11 @@ const Createpost = () => {
     theme,
   });
   const { createPost, handleContextSubmit, isLoading } = useAppContext();
-
+  const tagOptions = [
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
+  ];
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -41,11 +46,15 @@ const Createpost = () => {
     data.coverImg = file;
     data.content = vquill;
     handleContextSubmit(data);
-    console.log(data);
-    createPost();
-    // if (!isLoading) {
-    //   e.currentTarget.reset();
-    // }
+
+    const { title, summary, coverImg, content } = data;
+
+    if ((title, summary, coverImg, content)) {
+      createPost();
+      e.currentTarget.reset();
+    } else {
+      toast.error("please provide all values");
+    }
   };
 
   const handleChange = (e) => {
@@ -53,31 +62,23 @@ const Createpost = () => {
   };
 
   const onUpload = async (e) => {
- const event = e.target.files[0];
+    const event = e.target.files[0];
     const options = {
       maxSizeMB: 0.3,
       maxWidthOrHeight: 1920,
       useWebWorker: true,
       alwaysKeepResolution: true,
-    }
+    };
     try {
       const compressedFile = await imageCompression(event, options);
-      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
-  
-       const base64 = await convertToBase64(compressedFile);
+      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
+      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+      const base64 = await convertToBase64(compressedFile);
       setFile(base64);
     } catch (error) {
       console.log(error);
     }
-
-
-
-   
-    // handleImageUpload(e.target.files[0]);
   };
-
-  console.log(file);
 
   // const wrapperRef = useCallback((wrapper) => {
   //   if (wrapper == null) return;
@@ -132,6 +133,7 @@ const Createpost = () => {
   return (
     <>
       <Wrapper className="container">
+        <Toaster position="top-center" reverseOrder={false}></Toaster>
         <div className="row">
           <form onSubmit={handleSubmit} className="quill-form">
             <h3> Add </h3>
@@ -162,6 +164,15 @@ const Createpost = () => {
                   />
                 </label>
 
+                <Select
+                  defaultValue={[tagOptions[2], tagOptions[3]]}
+                  isMulti
+                  name="colors"
+                  options={tagOptions}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                />
+
                 <div className="cover-img-container">
                   <span>Cover image</span>
                   <label className="image-label" htmlFor="cover-image">
@@ -174,7 +185,6 @@ const Createpost = () => {
                   <input
                     type="file"
                     id="cover-image"
-                    name="cover-image"
                     onChange={onUpload}
                     accept="image/*"
                   />

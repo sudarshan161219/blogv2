@@ -199,15 +199,17 @@ const ContextProvider = ({ children }) => {
         coverImg,
         content,
       });
+
       dispatch({ type: CREATE_POST_SUCCESS });
+      toast.success("Post successfully created!");
     } catch (error) {
       if (error.response.status === 401) {
+        toast.error(error.response.data.msg);
+        dispatch({
+          type: CREATE_POST_ERROR,
+        });
         return;
       }
-      dispatch({
-        type: CREATE_POST_ERROR,
-        payload: { msg: error.response.data.msg },
-      });
     }
   };
 

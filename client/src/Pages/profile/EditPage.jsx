@@ -6,7 +6,7 @@ import { BsLink45Deg } from "react-icons/bs";
 import {convertToBase64} from "../../utils/convert";
 import validateUrl from "../../utils/validateUrls";
 import { useAppContext } from "../../context/Context";
-import { Toaster, toast } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 
 import {

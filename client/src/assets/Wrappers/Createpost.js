@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     gap: 0.7rem;
   }
 
-  .cover-img-container{
+  .cover-img-container {
     display: grid;
     gap: 0.7rem;
   }
@@ -33,8 +33,7 @@ const Wrapper = styled.div`
     display: none;
   }
 
-
-  .cover-img{
+  .cover-img {
     width: 100%;
   }
 
@@ -59,6 +58,11 @@ const Wrapper = styled.div`
     margin-top: 1rem;
   }
 
+  .basic-multi-select.css-b62m3t-container {
+    margin: 1rem 0;
+    width: 300px;
+  }
+
   @media (min-width: 1024px) {
     padding: 1rem 2rem;
     .btn-container {
@@ -69,7 +73,7 @@ const Wrapper = styled.div`
       width: 200px;
     }
 
-    .image-label{
+    .image-label {
       width: 500px;
     }
   }

@@ -6,7 +6,7 @@ import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 const createPost = async (req, res) => {
   const { title, summary, coverImg, content } = req.body;
 
-  if (!title || !summary || !coverImg || !content) {
+  if (!title || !summary || !coverImg) {
     throw new BadRequestError("please provide all values");
   }
 
@@ -31,12 +31,18 @@ const createPost = async (req, res) => {
   });
 };
 
-const getSinglePost = async (req, res) => {
-  return res.send("get single post");
+const getAllPost = async (req, res) => {
+  const posts = await Post.find()
+    .populate("author", ["name"])
+    .sort({ createdAt: -1 })
+    .limit(20);
+  return res.status(StatusCodes.OK).json({
+    posts,
+  });
 };
 
-const getAllPost = async (req, res) => {
-  return res.send("get all post");
+const getSinglePost = async (req, res) => {
+  return res.send("get single post");
 };
 
 const editPost = async (req, res) => {

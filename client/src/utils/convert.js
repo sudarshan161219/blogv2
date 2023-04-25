@@ -17,7 +17,7 @@ import imageCompression from 'browser-image-compression';
 
  function handleImageUpload(event) {
     var options = {
-      maxSizeMB: 1,
+      maxSizeMB: 0.4,
       maxWidthOrHeight: 1920,
       useWebWorker: true
     }
