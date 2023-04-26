@@ -41,6 +41,20 @@ const getAllPost = async (req, res) => {
   });
 };
 
+const authorPosts = async (req, res) => {
+  const user = await User.findById({ _id: req.user.userId });
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+  const authorpost = await Post.find({ author: req.user.userId })
+    .populate("author", ["name"])
+    .sort({ createdAt: -1 })
+    .limit(20);
+  return res.status(StatusCodes.OK).json({
+    authorpost,
+  });
+};
+
 const getSinglePost = async (req, res) => {
   return res.send("get single post");
 };
@@ -53,4 +67,11 @@ const deletePost = async (req, res) => {
   return res.send("delete post");
 };
 
-export { createPost, getAllPost, getSinglePost, editPost, deletePost };
+export {
+  createPost,
+  getAllPost,
+  authorPosts,
+  getSinglePost,
+  editPost,
+  deletePost,
+};

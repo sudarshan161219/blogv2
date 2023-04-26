@@ -34,11 +34,11 @@ const Createpost = () => {
     theme,
   });
   const { createPost, handleContextSubmit, isLoading } = useAppContext();
-  const tagOptions = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  // const tagOptions = [
+  //   { value: "chocolate", label: "Chocolate" },
+  //   { value: "strawberry", label: "Strawberry" },
+  //   { value: "vanilla", label: "Vanilla" },
+  // ];
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -71,56 +71,12 @@ const Createpost = () => {
     };
     try {
       const compressedFile = await imageCompression(event, options);
-      // console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
-      // console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
       const base64 = await convertToBase64(compressedFile);
       setFile(base64);
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const wrapperRef = useCallback((wrapper) => {
-  //   if (wrapper == null) return;
-  //   wrapper.innerHTML = "";
-
-  //   const editor = document.createElement("div");
-  //   wrapper.append(editor);
-
-  //   // var quill = new Quill(editor, {
-  //   //   theme: "snow",
-  //   //   name: "content",
-  //   //   placeholder: "write something awesome :)",
-
-  //   //   modules: {
-  //   //     toolbar: {
-  //   //       container: TOOLBAR_OPTIONS,
-  //   //       handlers: {
-  //   //         undo: myUndo,
-  //   //         redo: myRedo,
-  //   //       },
-  //   //       history: {
-  //   //         delay: 2000,
-  //   //         maxStack: 500,
-  //   //         userOnly: true,
-  //   //       },
-  //   //     },
-  //   //   },
-  //   // });
-
-  //   function myUndo() {
-  //     quill.history.undo();
-  //   }
-
-  //   function myRedo() {
-  //     quill.history.redo();
-  //   }
-  //   if (quill) {
-  //     quill.on("text-change", () => {
-  //       setVQuill();
-  //     });
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (quill) {
@@ -136,7 +92,7 @@ const Createpost = () => {
         <Toaster position="top-center" reverseOrder={false}></Toaster>
         <div className="row">
           <form onSubmit={handleSubmit} className="quill-form">
-            <h3> Add </h3>
+            <h3> Create Post </h3>
             <div className="form-row">
               <div className="input-container">
                 <label className="title-input">
@@ -164,14 +120,7 @@ const Createpost = () => {
                   />
                 </label>
 
-                <Select
-                  defaultValue={[tagOptions[2], tagOptions[3]]}
-                  isMulti
-                  name="colors"
-                  options={tagOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                />
+         
 
                 <div className="cover-img-container">
                   <span>Cover image</span>
@@ -190,6 +139,15 @@ const Createpost = () => {
                   />
                 </div>
               </div>
+
+              {/* <Select
+                  defaultValue={[tagOptions[2], tagOptions[3]]}
+                  isMulti
+                  name="colors"
+                  options={tagOptions}
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                /> */}
 
               <EdittorWrapper>
                 <div

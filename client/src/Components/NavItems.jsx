@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 import profile from "../assets/imgs/profile.png";
 import Wrapper from "../assets/Wrappers/NavItem";
@@ -7,7 +7,7 @@ import Wrapper from "../assets/Wrappers/NavItem";
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
   const { user, logoutUser } = useAppContext();
-
+  const { id } = useParams();
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -15,7 +15,7 @@ const NavItems = () => {
   const userPath = location.pathname === "/user-profile";
   const userPathP = location.pathname === "/user-profile/profile";
   const userPathC = location.pathname === "/user-profile/createpost";
-  const userPathA = location.pathname === "/user-profile/all-posts";
+  const userPathA = location.pathname === `/user-profile/all-posts`;
   const userPathE = location.pathname === "/user-profile/edit";
 
   return (

@@ -13,21 +13,23 @@ import AboutContactS from "./AboutContactS";
 import AboutConS from "./AboutConS";
 import Dashboardnav from "./Dashboardnav";
 import TextEditor from "./TextEditor";
+import AuthorPosts from "./AuthorPosts";
 
 export {
-  Navbar,
-  NavItems,
-  Logo,
-  Logo2,
-  Loading,
-  HeroSec,
-  EditorsPickSec,
-  Navlinks,
-  Sidebar,
   AboutHeroS,
   AboutS,
   AboutContactS,
   AboutConS,
+  AuthorPosts,
   Dashboardnav,
+  EditorsPickSec,
+  HeroSec,
+  Logo,
+  Logo2,
+  Loading,
+  Navbar,
+  NavItems,
+  Navlinks,
+  Sidebar,
   TextEditor
 };

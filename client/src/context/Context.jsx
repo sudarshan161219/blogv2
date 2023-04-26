@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useContext } from "react";
+import React, { useReducer, createContext, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import reducer from "./reducer";
@@ -21,6 +21,9 @@ import {
   CREATE_POST_BEGIN,
   CREATE_POST_SUCCESS,
   CREATE_POST_ERROR,
+  GET_AUTHOR_POST_BEGIN,
+  GET_AUTHOR_POST_SUCCESS,
+  GET_AUTHOR_POST_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -36,6 +39,7 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
+  authorpost: [],
 };
 
 const Context = createContext({});
@@ -182,6 +186,25 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const getAuthorPost = async () => {
+    dispatch({ type: GET_AUTHOR_POST_BEGIN });
+    try {
+      const { data } = await authFetch.get("/author-post");
+      const { authorpost } = data;
+      dispatch({
+        type: GET_AUTHOR_POST_SUCCESS,
+        payload: { authorpost },
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401) {
+        logoutUser();
+      }
+    }
+  };
+
+
+
   const handleContextSubmit = ({ title, summary, coverImg, content }) => {
     dispatch({
       type: HANDLE_SUBMIT,
@@ -226,6 +249,7 @@ const ContextProvider = ({ children }) => {
         updateUserFn,
         createPost,
         handleContextSubmit,
+        getAuthorPost
       }}
     >
       {children}

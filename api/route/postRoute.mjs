@@ -6,6 +6,7 @@ const router = Router();
 import {
   createPost,
   getAllPost,
+  authorPosts,
   getSinglePost,
   editPost,
   deletePost,
@@ -19,5 +20,5 @@ router.route("/:id").delete(deletePost).patch(editPost);
 //* GET
 router.route("/:id/post").get(getSinglePost);
 router.route("/allposts").get(getAllPost);
-
+router.route("/author-post").get(authorPosts)
 export default router;

@@ -61,6 +61,7 @@ const Wrapper = styled.div`
   .basic-multi-select.css-b62m3t-container {
     margin: 1rem 0;
     width: 300px;
+    z-index: 5;
   }
 
   @media (min-width: 1024px) {

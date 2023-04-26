@@ -17,6 +17,9 @@ import {
   CREATE_POST_BEGIN,
   CREATE_POST_SUCCESS,
   CREATE_POST_ERROR,
+  GET_AUTHOR_POST_BEGIN,
+  GET_AUTHOR_POST_SUCCESS,
+  GET_AUTHOR_POST_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -79,6 +82,21 @@ const reducer = (state, action) => {
       user: action.payload.user,
     };
   }
+
+  if (action.type === GET_AUTHOR_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_AUTHOR_POST_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+     authorpost: action.payload.authorpost,
+    };
+  }
+  
+  
+
 
   if (action.type === UPDATE_USER_BEGIN) {
     return { ...state, isLoading: true };
