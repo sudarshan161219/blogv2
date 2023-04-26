@@ -105,8 +105,8 @@ const modules = {
 
   imageCompress: {
     quality: 0.7, // default
-    maxWidth: 1000, // default
-    maxHeight: 1000, // default
+    maxWidth: 550, // default
+    maxHeight: 550, // default
     // imageType: "image/jpeg",
     debug: true, // default
     suppressErrorLogging: false, // default

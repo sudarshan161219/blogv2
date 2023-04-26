@@ -6,12 +6,12 @@ const PostSchema = new Schema(
     title: {
       type: String,
       required: [true, "Please title name"],
-      maxlength: 50,
+      minlength: 10,
     },
     summary: {
       type: String,
       required: [true, "Please provide Summary"],
-      maxlength: 100,
+      minlength: 10,
     },
     coverImg: {
       type: String,

@@ -6,7 +6,7 @@ import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 const createPost = async (req, res) => {
   const { title, summary, coverImg, content } = req.body;
 
-  if (!title || !summary || !coverImg) {
+  if (!title || !summary || !coverImg || !content) {
     throw new BadRequestError("please provide all values");
   }
 
@@ -15,14 +15,6 @@ const createPost = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
-
-  // const postAlreadyExist = await Post.aggregate({
-  //   title
-  // });
-
-  // if (postAlreadyExist) {
-  //   throw new BadRequestError("you have already have post with same title");
-  // }
 
   req.body.author = req.user.userId;
   const post = await Post.create(req.body);

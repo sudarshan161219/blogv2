@@ -49,7 +49,7 @@ const Createpost = () => {
 
     const { title, summary, coverImg, content } = data;
 
-    if ((title, summary, coverImg, content)) {
+    if (title, summary, coverImg, content) {
       createPost();
       e.currentTarget.reset();
     } else {
@@ -65,7 +65,7 @@ const Createpost = () => {
     const event = e.target.files[0];
     const options = {
       maxSizeMB: 0.3,
-      maxWidthOrHeight: 1920,
+      maxWidthOrHeight: 500,
       useWebWorker: true,
       alwaysKeepResolution: true,
     };
