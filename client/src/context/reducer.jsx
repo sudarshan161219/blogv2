@@ -20,6 +20,10 @@ import {
   GET_AUTHOR_POST_BEGIN,
   GET_AUTHOR_POST_SUCCESS,
   GET_AUTHOR_POST_ERROR,
+  GET_AUTHOR_SINGLE_POST_BEGIN,
+  GET_AUTHOR_SINGLE_POST_SUCCESS,
+  GET_AUTHOR_SINGLE_POST_ERROR,
+  POST_ID,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -91,12 +95,35 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-     authorpost: action.payload.authorpost,
+      authorpost: action.payload.authorpost,
     };
   }
-  
-  
 
+  if (action.type === GET_AUTHOR_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
+
+  if (action.type === GET_AUTHOR_SINGLE_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_AUTHOR_SINGLE_POST_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      authors_post: action.payload.singlepost,
+    };
+  }
+
+  if (action.type === GET_AUTHOR_SINGLE_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
 
   if (action.type === UPDATE_USER_BEGIN) {
     return { ...state, isLoading: true };
@@ -146,6 +173,10 @@ const reducer = (state, action) => {
 
   if (action.type === CREATE_POST_ERROR) {
     return { ...state, isLoading: false };
+  }
+
+  if (action.type === POST_ID) {
+    return { ...state, postId: action.payload.postId };
   }
 
   throw new Error(`no such action : ${action.type}`);

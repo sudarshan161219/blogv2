@@ -1,7 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar } from "./Components/export";
-import { Register, Home, Tags, About, ProtectedRoutes } from "./Pages/export";
+import {
+  Register,
+  Home,
+  Tags,
+  About,
+  SinglePost,
+  ProtectedRoutes,
+  AuthorsSinglePost,
+} from "./Pages/export";
 import {
   Profile,
   Dashboard,
@@ -33,6 +41,8 @@ const App = () => {
 
         <Route path="/tags" element={<Tags />} />
         <Route path="/about" element={<About />} />
+          <Route path="/authorsposts/:id" element={<AuthorsSinglePost />} />
+        <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
     </>
   );

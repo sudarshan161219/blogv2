@@ -24,6 +24,10 @@ import {
   GET_AUTHOR_POST_BEGIN,
   GET_AUTHOR_POST_SUCCESS,
   GET_AUTHOR_POST_ERROR,
+  GET_AUTHOR_SINGLE_POST_BEGIN,
+  GET_AUTHOR_SINGLE_POST_SUCCESS,
+  GET_AUTHOR_SINGLE_POST_ERROR,
+  POST_ID,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -39,7 +43,9 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
+  postId: "",
   authorpost: [],
+  authors_post: [],
 };
 
 const Context = createContext({});
@@ -200,10 +206,36 @@ const ContextProvider = ({ children }) => {
       if (error.response.status === 401) {
         logoutUser();
       }
+      dispatch({
+        type: GET_AUTHOR_POST_ERROR,
+      });
     }
   };
 
+  const setPostId = (postId) => {
+    dispatch({ type: POST_ID, payload: { postId } });
+  };
 
+  const getSingleAuthorPost = async () => {
+    dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
+    const { postId } = state;
+    try {
+      const { data } = await authFetch.get(`/single-post/${postId}`);
+      const { singlepost } = data;
+      dispatch({
+        type: GET_AUTHOR_SINGLE_POST_SUCCESS,
+        payload: { singlepost },
+      });
+    } catch (error) {
+      console.log(error);
+      // if (error.response.status === 401) {
+      //   logoutUser();
+      // }
+      dispatch({
+        type: GET_AUTHOR_SINGLE_POST_ERROR,
+      });
+    }
+  };
 
   const handleContextSubmit = ({ title, summary, coverImg, content }) => {
     dispatch({
@@ -249,7 +281,9 @@ const ContextProvider = ({ children }) => {
         updateUserFn,
         createPost,
         handleContextSubmit,
-        getAuthorPost
+        getAuthorPost,
+        setPostId,
+        getSingleAuthorPost,
       }}
     >
       {children}

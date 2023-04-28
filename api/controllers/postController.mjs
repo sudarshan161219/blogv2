@@ -2,6 +2,8 @@ import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
+import checkPermissions from "../utils/checkPermissions.mjs";
+
 
 const createPost = async (req, res) => {
   const { title, summary, coverImg, content } = req.body;
@@ -48,7 +50,15 @@ const authorPosts = async (req, res) => {
 };
 
 const getSinglePost = async (req, res) => {
-  return res.send("get single post");
+  const { id: postId } = req.params;
+  const singlepost = await Post.findOne({ _id: postId });
+
+  if (!singlepost) {
+    throw new NotFoundError(`No post with id : ${id}`);
+  }
+
+  checkPermissions(req.user, singlepost.author);
+  res.status(StatusCodes.OK).json({ singlepost });
 };
 
 const editPost = async (req, res) => {

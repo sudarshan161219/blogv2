@@ -31,7 +31,7 @@ const Createpost = () => {
     modules,
     formats,
     placeholder,
-    theme,
+    theme, 
   });
   const { createPost, handleContextSubmit, isLoading } = useAppContext();
   // const tagOptions = [

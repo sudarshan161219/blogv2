@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: grid;
-  gap: 1rem;
-  /* justify-content: center; */
-  margin-top: 1rem;
-  overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  .authorpost-container {
+    display: grid;
+    gap: 1rem;
+    /* justify-content: center; */
+    margin-top: 1rem;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
 
   .image-containner > img {
     width: 100%;
@@ -30,15 +32,22 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1024px) {
-    box-shadow: none;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    width: 750px;
-    border-left: 1px solid #9BA4B5;
-    border-right: 1px solid #9BA4B5;
-    border-radius: 8px;
-    padding: 0 0.5rem;
+    .authorpost-container {
+      box-shadow: none;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      width: 750px;
+      border-left: 1px solid #9ba4b5;
+      border-right: 1px solid #9ba4b5;
+      border-radius: 8px;
+      padding: 0 0.5rem;
+    }
+
+    .authorpost-container:hover{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      transition:all 0.3s;
+    }
 
     /* .image-containner {
     width: 300px;

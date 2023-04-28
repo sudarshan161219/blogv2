@@ -18,7 +18,7 @@ router.route("/createpost").post(createPost);
 router.route("/:id").delete(deletePost).patch(editPost);
 
 //* GET
-router.route("/:id/post").get(getSinglePost);
 router.route("/allposts").get(getAllPost);
 router.route("/author-post").get(authorPosts)
+router.route("/single-post/:id").get(getSinglePost);
 export default router;
