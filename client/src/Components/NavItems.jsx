@@ -17,7 +17,7 @@ const NavItems = () => {
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === `/user-profile/all-posts`;
   const userPathE = location.pathname === "/user-profile/edit";
-
+  const userPathSP = location.pathname === `/user-profile/${id}`;
   return (
     <Wrapper className="nav-items ">
       {!user ? (
@@ -30,7 +30,11 @@ const NavItems = () => {
       ) : (
         <div className="profile-container" onClick={handleToggle}>
           <div className="img-container">
-            <img className="profile-img" src={user.userImg || profile} alt="profile" />
+            <img
+              className="profile-img"
+              src={user.userImg || profile}
+              alt="profile"
+            />
             <ul className={toggle ? "drop-down show-drop-down" : "drop-down"}>
               <li className="name-email">
                 <span className="name">{user.name}</span>
@@ -40,7 +44,8 @@ const NavItems = () => {
               !userPathP &&
               !userPathC &&
               !userPathA &&
-              !userPathE ? (
+              !userPathE &&
+              userPathSP ? (
                 <>
                   <li className="list-items">
                     <Link className="Link list-items" to="/user-profile">

@@ -18,6 +18,7 @@ const Navbar = () => {
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === `/user-profile/all-posts`;
   const userPathE = location.pathname === "/user-profile/edit";
+  const userPathSP = location.pathname === `/user-profile/${id}`;
 
   return (
     <Wrapper className="nav-header">
@@ -35,7 +36,8 @@ const Navbar = () => {
           !userPathP &&
           !userPathC &&
           !userPathA &&
-          !userPathE ? (
+          !userPathE &&
+          userPathSP ? (
             <Navlinks />
           ) : null}
         </div>

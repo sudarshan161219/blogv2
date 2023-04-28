@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "react-quill/dist/quill.snow.css";
 import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
@@ -24,6 +24,7 @@ const initialState = {
 };
 
 const Createpost = () => {
+  const { createPost, handleContextSubmit, isLoading } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
   const [vquill, setVQuill] = useState();
@@ -33,7 +34,20 @@ const Createpost = () => {
     placeholder,
     theme, 
   });
-  const { createPost, handleContextSubmit, isLoading } = useAppContext();
+
+  useEffect(() => {
+    if (quill) {
+      quill.on("text-change", () => {
+        setVQuill(quillRef.current.firstChild.innerHTML);
+      });
+    }
+  }, [quill]);
+
+
+
+
+  
+
   // const tagOptions = [
   //   { value: "chocolate", label: "Chocolate" },
   //   { value: "strawberry", label: "Strawberry" },
@@ -45,13 +59,13 @@ const Createpost = () => {
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-    handleContextSubmit(data);
-
+   
     const { title, summary, coverImg, content } = data;
 
     if (title, summary, coverImg, content) {
-      createPost();
-      e.currentTarget.reset();
+      handleContextSubmit(data);
+      createPost( data);
+      // e.currentTarget.reset();
     } else {
       toast.error("please provide all values");
     }
@@ -78,13 +92,7 @@ const Createpost = () => {
     }
   };
 
-  useEffect(() => {
-    if (quill) {
-      quill.on("text-change", () => {
-        setVQuill(quillRef.current.firstChild.innerHTML);
-      });
-    }
-  }, [quill]);
+
 
   return (
     <>

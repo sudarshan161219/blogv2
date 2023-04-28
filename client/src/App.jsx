@@ -8,7 +8,7 @@ import {
   About,
   SinglePost,
   ProtectedRoutes,
-  AuthorsSinglePost,
+  // AuthorsSinglePost,
 } from "./Pages/export";
 import {
   Profile,
@@ -17,6 +17,7 @@ import {
   Allposts,
   EditPage,
   SharedLayout,
+  AuthorsSinglePost
 } from "./Pages/profile/export";
 
 const App = () => {
@@ -37,11 +38,11 @@ const App = () => {
           <Route path="createpost" element={<Createpost />} />
           <Route path="all-posts" element={<Allposts />} />
           <Route path="edit" element={<EditPage />} />
+          <Route path=":id" element={<AuthorsSinglePost />} />
         </Route>
 
         <Route path="/tags" element={<Tags />} />
         <Route path="/about" element={<About />} />
-          <Route path="/authorsposts/:id" element={<AuthorsSinglePost />} />
         <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
     </>

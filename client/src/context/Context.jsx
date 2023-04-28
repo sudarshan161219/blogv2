@@ -32,6 +32,7 @@ import {
 
 const user = localStorage.getItem("user");
 const token = localStorage.getItem("userToken");
+const post_id = localStorage.getItem("post_id");
 
 const initialState = {
   isLoading: false,
@@ -43,7 +44,7 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
-  postId: "",
+  postId: post_id ? post_id : null,
   authorpost: [],
   authors_post: [],
 };
@@ -88,10 +89,16 @@ const ContextProvider = ({ children }) => {
     localStorage.setItem("userToken", token);
   };
 
+  const addPostIdToLocalStorage = (Id) => {
+    localStorage.setItem("post_id", Id);
+  };
+
   const removeUserFromLocalStorage = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("userToken");
   };
+
+
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -214,13 +221,14 @@ const ContextProvider = ({ children }) => {
 
   const setPostId = (postId) => {
     dispatch({ type: POST_ID, payload: { postId } });
+    addPostIdToLocalStorage(postId);
   };
 
-  const getSingleAuthorPost = async () => {
+  const getSingleAuthorPost = async (id) => {
     dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
-    const { postId } = state;
     try {
-      const { data } = await authFetch.get(`/single-post/${postId}`);
+      const { postId } = state;
+      const { data } = await authFetch.get(`/single-post/${id}`);
       const { singlepost } = data;
       dispatch({
         type: GET_AUTHOR_SINGLE_POST_SUCCESS,
@@ -244,10 +252,10 @@ const ContextProvider = ({ children }) => {
     });
   };
 
-  const createPost = async () => {
+  const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
     try {
-      const { title, summary, coverImg, content } = state;
+      const { title, summary, coverImg, content } = data;
       await authFetch.post("/createpost", {
         title,
         summary,
@@ -259,12 +267,12 @@ const ContextProvider = ({ children }) => {
       toast.success("Post successfully created!");
     } catch (error) {
       if (error.response.status === 401) {
-        toast.error(error.response.data.msg);
-        dispatch({
-          type: CREATE_POST_ERROR,
-        });
         return;
       }
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: CREATE_POST_ERROR,
+      });
     }
   };
 

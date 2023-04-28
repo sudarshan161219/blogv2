@@ -1,22 +1,19 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams} from "react-router-dom";
 import Wrapper from "../assets/Wrappers/AuthorPosts";
 import dummyImg from "../assets/imgs/dummy-cover.jpg";
 import moment from "moment";
 import { useAppContext } from "../context/Context";
 
 const AuthorPosts = ({ item }) => {
-  const { setPostId } = useAppContext();
-  const { _id, title, summary, coverImg, createdAt, content } = item;
-  useEffect(() => {
-    setPostId(_id);
-  }, []);
+  const { _id, title, summary, coverImg, createdAt} = item;
+
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
 
   return (
     <Wrapper>
-      <Link className="Link authorpost-container" to={`/authorsposts/${_id}`}>
+      <Link className="Link authorpost-container" to={`/user-profile/${_id}`}>
         <div className="image-containner">
           <img src={coverImg} alt="dummyImg" />
         </div>
