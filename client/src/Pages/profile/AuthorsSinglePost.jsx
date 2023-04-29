@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useAppContext } from "../../context/Context";
 import { Loading } from "../../Components/export";
 import { useParams } from "react-router-dom";
+import Wrapper from "../../assets/Wrappers/AuthorsSinglePost";
 
 const AuthorsSinglePost = () => {
   const { getSingleAuthorPost, authors_post, isLoading, setPostId, postId } =
@@ -10,8 +11,8 @@ const AuthorsSinglePost = () => {
   const { _id, title, summary, coverImg, createdAt, content } = authors_post;
 
   useEffect(() => {
-    getSingleAuthorPost(id);
     setPostId(id);
+    getSingleAuthorPost(id);
   }, [id]);
 
   if (isLoading) {
@@ -19,10 +20,15 @@ const AuthorsSinglePost = () => {
   }
 
   return (
-    <>
-      <img src={coverImg} alt="" />
-      <h1>{title}</h1>
-      <p>{summary}</p>
+    <Wrapper>
+      <div className="img-container">
+        <img src={coverImg} alt={title} />
+      </div>
+
+      <div className="info-content">
+        <h1>{title}</h1>
+        <p>{summary}</p>
+      </div>
       <br />
       <div className="ql-snow">
         <div
@@ -30,9 +36,8 @@ const AuthorsSinglePost = () => {
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
       </div>
-    </>
+    </Wrapper>
   );
-
 };
 
 export default AuthorsSinglePost;

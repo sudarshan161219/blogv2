@@ -51,7 +51,7 @@ const authorPosts = async (req, res) => {
 
 const getSinglePost = async (req, res) => {
   const { id: postId } = req.params;
-  const singlepost = await Post.findOne({ _id: postId });
+  const singlepost = await Post.findById({ _id: postId });
 
   if (!singlepost) {
     throw new NotFoundError(`No post with id : ${id}`);

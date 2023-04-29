@@ -46,7 +46,7 @@ const initialState = {
   content: "",
   postId: post_id ? post_id : null,
   authorpost: [],
-  authors_post: [],
+  authors_post: post_id ? [] : null,
 };
 
 const Context = createContext({});

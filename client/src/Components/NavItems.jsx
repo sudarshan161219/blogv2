@@ -45,7 +45,7 @@ const NavItems = () => {
               !userPathC &&
               !userPathA &&
               !userPathE &&
-              userPathSP ? (
+              !userPathSP ? (
                 <>
                   <li className="list-items">
                     <Link className="Link list-items" to="/user-profile">
