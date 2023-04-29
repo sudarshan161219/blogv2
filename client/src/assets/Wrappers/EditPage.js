@@ -5,7 +5,7 @@ const Wrapper = styled.div`
     width: 100%;
     margin-top: 2rem;
     padding: 1rem 0;
-    border-top:5px solid #000 ;
+    border-top: 5px solid #000;
     border-bottom: 1px solid #000;
     border-radius: 10px;
   }
@@ -89,7 +89,8 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     width: 70%;
-    padding: 0px 12rem;
+    display: grid;
+    margin: 0 auto;
   }
 `;
 

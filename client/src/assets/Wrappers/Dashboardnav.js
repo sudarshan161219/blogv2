@@ -12,7 +12,7 @@ const Wrapper = styled.aside`
     width: 100%;
     position: fixed;
     left: 0px;
-    top: 94vh;
+    bottom: 0;
     background-color: #0f0e0e;
     z-index: 2;
   }
@@ -56,7 +56,7 @@ const Wrapper = styled.aside`
     justify-content: space-evenly;
 
     border-radius: 10px;
-    padding: 0.5rem 0.2rem 2rem 0.2rem;
+    padding: 0.5rem 0.2rem 0.2rem 0.2rem;
   }
 
   li {

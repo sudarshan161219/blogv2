@@ -24,6 +24,7 @@ import {
   GET_AUTHOR_SINGLE_POST_SUCCESS,
   GET_AUTHOR_SINGLE_POST_ERROR,
   POST_ID,
+  CLEAR_AUTHOR_SINGLE_POST
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -122,6 +123,14 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+    };
+  }
+
+  if(action.type ===  CLEAR_AUTHOR_SINGLE_POST){
+    return {
+      ...state,
+      isLoading: false,
+      authors_post: [],
     };
   }
 

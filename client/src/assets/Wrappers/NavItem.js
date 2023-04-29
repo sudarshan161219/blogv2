@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   .drop-down {
     font-family: "Open Sans", sans-serif;
     position: absolute;
-    top: 45px;
+    top: 50px;
     z-index: 1;
     left: -95px;
     padding: 1.1rem 0.8rem;

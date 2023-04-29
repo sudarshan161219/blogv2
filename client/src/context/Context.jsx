@@ -27,6 +27,7 @@ import {
   GET_AUTHOR_SINGLE_POST_BEGIN,
   GET_AUTHOR_SINGLE_POST_SUCCESS,
   GET_AUTHOR_SINGLE_POST_ERROR,
+  CLEAR_AUTHOR_SINGLE_POST,
   POST_ID,
 } from "./action";
 
@@ -276,6 +277,10 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const clearAuthorSinglePost = () => {
+    dispatch({type:  CLEAR_AUTHOR_SINGLE_POST})
+  }
+
   return (
     <Context.Provider
       value={{
@@ -292,6 +297,7 @@ const ContextProvider = ({ children }) => {
         getAuthorPost,
         setPostId,
         getSingleAuthorPost,
+        clearAuthorSinglePost,
       }}
     >
       {children}

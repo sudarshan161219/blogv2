@@ -20,8 +20,6 @@ const Navbar = () => {
   const userPathE = location.pathname === "/user-profile/edit";
   const userPathSP = location.pathname === `/user-profile/${ postId}`;
 
-  console.log( userPathSP,  id);
-
   return (
     <Wrapper className="nav-header">
       <Sidebar />
