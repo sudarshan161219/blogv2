@@ -18,8 +18,13 @@ const Wrapper = styled.div`
 
   .info-content > p {
     text-align: center;
+  font-family: "Open Sans", sans-serif;
     line-height: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: 500;
   }
+
+  
 
   @media (min-width: 768px) {
     .img-container {

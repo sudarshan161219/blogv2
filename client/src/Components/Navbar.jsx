@@ -10,7 +10,7 @@ import { useAppContext } from "../context/Context";
 
 const Navbar = () => {
   const { id } = useParams();
-  const { toggleSidebar } = useAppContext();
+  const { toggleSidebar, postId } = useAppContext();
   let location = useLocation();
   const regpath = location.pathname === "/register";
   const userPath = location.pathname === "/user-profile";
@@ -18,7 +18,9 @@ const Navbar = () => {
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === `/user-profile/all-posts`;
   const userPathE = location.pathname === "/user-profile/edit";
-  const userPathSP = location.pathname === `/user-profile/${id}`;
+  const userPathSP = location.pathname === `/user-profile/${ postId}`;
+
+  console.log( userPathSP,  id);
 
   return (
     <Wrapper className="nav-header">
@@ -31,15 +33,15 @@ const Navbar = () => {
           <Link to="/" className="Link logo-logo-name">
             <Logo />
           </Link>
-          {!regpath &&
-          !userPath &&
-          !userPathP &&
-          !userPathC &&
-          !userPathA &&
-          !userPathE &&
-          userPathSP ? (
+          {regpath ||
+          userPath ||
+          userPathP ||
+          userPathC ||
+          userPathA ||
+          userPathE ||
+          userPathSP ? null : 
             <Navlinks />
-          ) : null}
+          }
         </div>
         {!regpath ? <NavItems /> : null}
       </nav>

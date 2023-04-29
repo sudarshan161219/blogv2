@@ -4,10 +4,12 @@ import { useAppContext } from "../context/Context";
 import profile from "../assets/imgs/profile.png";
 import Wrapper from "../assets/Wrappers/NavItem";
 
+
+
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
-  const { user, logoutUser } = useAppContext();
-  const { id } = useParams();
+  const { user, logoutUser, postId } = useAppContext();
+
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -17,7 +19,7 @@ const NavItems = () => {
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === `/user-profile/all-posts`;
   const userPathE = location.pathname === "/user-profile/edit";
-  const userPathSP = location.pathname === `/user-profile/${id}`;
+  const userPathSP = location.pathname === `/user-profile/${postId }`;
   return (
     <Wrapper className="nav-items ">
       {!user ? (
