@@ -29,6 +29,7 @@ import {
   GET_AUTHOR_SINGLE_POST_ERROR,
   CLEAR_AUTHOR_SINGLE_POST,
   POST_ID,
+  SET_EDIT_POST,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -45,7 +46,9 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
+  isEditing: false,
   postId: post_id ? post_id : null,
+  editPostId: "",
   authorpost: [],
   authors_post: post_id ? [] : null,
 };
@@ -98,8 +101,6 @@ const ContextProvider = ({ children }) => {
     localStorage.removeItem("user");
     localStorage.removeItem("userToken");
   };
-
-
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -278,8 +279,16 @@ const ContextProvider = ({ children }) => {
   };
 
   const clearAuthorSinglePost = () => {
-    dispatch({type:  CLEAR_AUTHOR_SINGLE_POST})
-  }
+    dispatch({ type: CLEAR_AUTHOR_SINGLE_POST });
+  };
+
+  const setEditPost = (id) => {
+    dispatch({ type: SET_EDIT_POST, payload: { id } });
+  };
+
+  const editPost = () => {
+    console.log("edit post");
+  };
 
   return (
     <Context.Provider
@@ -298,6 +307,8 @@ const ContextProvider = ({ children }) => {
         setPostId,
         getSingleAuthorPost,
         clearAuthorSinglePost,
+        setEditPost,
+        editPost,
       }}
     >
       {children}

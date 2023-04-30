@@ -24,7 +24,8 @@ import {
   GET_AUTHOR_SINGLE_POST_SUCCESS,
   GET_AUTHOR_SINGLE_POST_ERROR,
   POST_ID,
-  CLEAR_AUTHOR_SINGLE_POST
+  CLEAR_AUTHOR_SINGLE_POST,
+  SET_EDIT_POST,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -126,7 +127,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if(action.type ===  CLEAR_AUTHOR_SINGLE_POST){
+  if (action.type === CLEAR_AUTHOR_SINGLE_POST) {
     return {
       ...state,
       isLoading: false,
@@ -188,6 +189,21 @@ const reducer = (state, action) => {
     return { ...state, postId: action.payload.postId };
   }
 
+  if (action.type === SET_EDIT_POST) {
+    const authorsPosts = state.authorpost.find(
+      (post) => post._id === action.payload.id
+    );
+    const { _id, title, summary, coverImg, content } = authorsPosts;
+    return {
+      ...state,
+      isEditing: true,
+      editPostId: _id,
+      title,
+      summary,
+      coverImg,
+      content,
+    };
+  }
   throw new Error(`no such action : ${action.type}`);
 };
 
