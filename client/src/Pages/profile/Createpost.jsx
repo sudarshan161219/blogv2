@@ -57,6 +57,11 @@ const Createpost = () => {
     }
     if (isEditing) {
       setVQuill(content);
+      if (file === undefined) {
+        setFile(coverImg);
+      } else if(file !== undefined)(
+        setFile(file)
+      )
     }
   }, [quill]);
 
@@ -73,9 +78,10 @@ const Createpost = () => {
     data.coverImg = file;
     data.content = vquill;
 
-    
     if (isEditing) {
       editPost();
+      console.log(data);
+      // console.log(file);
       return;
     }
 
@@ -95,7 +101,6 @@ const Createpost = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(value);
   };
 
   const onUpload = async (e) => {
@@ -110,6 +115,7 @@ const Createpost = () => {
       const compressedFile = await imageCompression(event, options);
       const base64 = await convertToBase64(compressedFile);
       setFile(base64);
+   
     } catch (error) {
       console.log(error);
     }
@@ -155,7 +161,7 @@ const Createpost = () => {
                   <label className="image-label" htmlFor="cover-image">
                     <img
                       className="cover-img"
-                      src={isEditing ? coverImg : file}
+                      src={file || dummyImg}
                       alt="loading"
                     />
                   </label>
