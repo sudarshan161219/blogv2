@@ -5,7 +5,10 @@ import moment from "moment";
 import { CgReadme } from "react-icons/cg";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { useAppContext } from "../context/Context";
+
 const AuthorPosts = ({ item }) => {
+  const { setEditPost } = useAppContext();
   const { _id, title, summary, coverImg, createdAt } = item;
 
   const date = moment(createdAt);
@@ -24,7 +27,11 @@ const AuthorPosts = ({ item }) => {
           <p>{summary}</p>
           <div className="action-link-container">
             <div className="action-container">
-              <Link className="Link " to={"/user-profile/createpost"}>
+              <Link
+                className="Link "
+                onClick={() => setEditPost(_id)}
+                to={"/user-profile/createpost"}
+              >
                 <BiEdit className="edit-icon" />
               </Link>
               <Link className="Link ">

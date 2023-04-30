@@ -24,7 +24,21 @@ const initialState = {
 };
 
 const Createpost = () => {
-  const { createPost, handleContextSubmit, isLoading } = useAppContext();
+  // const [value, setValue] = useState({
+  //   title: "ds",
+  //   summary: "",
+  // });
+  const {
+    title,
+    summary,
+    coverImg,
+    content,
+    createPost,
+    handleContextSubmit,
+    isLoading,
+    isEditing,
+    editPost,
+  } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
   const [vquill, setVQuill] = useState();
@@ -32,21 +46,19 @@ const Createpost = () => {
     modules,
     formats,
     placeholder,
-    theme, 
+    theme,
   });
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", () => {
+      quill.on("text-change", function (delta, oldDelta, source, editor) {
         setVQuill(quillRef.current.firstChild.innerHTML);
       });
     }
+    if (isEditing) {
+      setVQuill(content);
+    }
   }, [quill]);
-
-
-
-
-  
 
   // const tagOptions = [
   //   { value: "chocolate", label: "Chocolate" },
@@ -55,24 +67,35 @@ const Createpost = () => {
   // ];
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-   
+
+    
+    if (isEditing) {
+      editPost();
+      return;
+    }
+
     const { title, summary, coverImg, content } = data;
 
-    if (title, summary, coverImg, content) {
+    if ((title, summary, coverImg, content)) {
       handleContextSubmit(data);
-      createPost( data);
-      // e.currentTarget.reset();
+      createPost(data);
+      e.currentTarget.reset();
     } else {
       toast.error("please provide all values");
     }
   };
 
   const handleChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    setValue((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+    console.log(value);
   };
 
   const onUpload = async (e) => {
@@ -92,15 +115,13 @@ const Createpost = () => {
     }
   };
 
-
-
   return (
     <>
       <Wrapper className="container">
         <Toaster position="top-center" reverseOrder={false}></Toaster>
         <div className="row">
           <form onSubmit={handleSubmit} className="quill-form">
-            <h3> Create Post </h3>
+            <h3> {isEditing ? "Edit Post" : "Create Post"} </h3>
             <div className="form-row">
               <div className="input-container">
                 <label className="title-input">
@@ -108,7 +129,8 @@ const Createpost = () => {
                   <input
                     type="text"
                     name="title"
-                    // value={userInfo.title}
+                    // value={title}
+                    defaultValue={title}
                     onChange={handleChange}
                     className="form-control"
                     placeholder="Title"
@@ -123,19 +145,17 @@ const Createpost = () => {
                     name="summary"
                     placeholder="summary"
                     id="summary"
-                    // value={summary}
+                    defaultValue={summary}
                     onChange={handleChange}
                   />
                 </label>
-
-         
 
                 <div className="cover-img-container">
                   <span>Cover image</span>
                   <label className="image-label" htmlFor="cover-image">
                     <img
                       className="cover-img"
-                      src={file || dummyImg}
+                      src={isEditing ? coverImg : file}
                       alt="loading"
                     />
                   </label>
@@ -148,20 +168,13 @@ const Createpost = () => {
                 </div>
               </div>
 
-              {/* <Select
-                  defaultValue={[tagOptions[2], tagOptions[3]]}
-                  isMulti
-                  name="colors"
-                  options={tagOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                /> */}
-
               <EdittorWrapper>
                 <div
                   ref={quillRef}
                   formats={formats}
                   modules={TOOLBAR_OPTIONS}
+                  dangerouslySetInnerHTML={{ __html: content }}
+                  // value={quill}
                 />
               </EdittorWrapper>
 
@@ -171,7 +184,11 @@ const Createpost = () => {
                   disabled={isLoading}
                   className="button-28 quill-btn"
                 >
-                  {isLoading ? "Please wait...." : " Submit"}
+                  {isLoading
+                    ? "Please wait...."
+                    : isEditing
+                    ? "edit"
+                    : "Submit"}
                 </button>
               </div>
             </div>
