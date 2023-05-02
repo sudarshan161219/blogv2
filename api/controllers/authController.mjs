@@ -67,13 +67,13 @@ const updateUser = async (req, res) => {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
-  (user.name = name),
+  name && (user.name = name),
     userInfo && (user.userInfo = userInfo),
     userProfile && (user.userImg = userProfile);
-  (user.twitter = twitter),
-    (user.personalLink = personalLink),
-    (user.instagram = instagram),
-    (user.linkden = linkden),
+  twitter && (user.twitter = twitter),
+    personalLink && (user.personalLink = personalLink),
+    instagram && (user.instagram = instagram),
+    linkden && (user.linkden = linkden),
     await user.save();
   const token = user.createJWT();
 
