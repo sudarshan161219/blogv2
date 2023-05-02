@@ -12,13 +12,13 @@ import {
   deletePost,
 } from "../controllers/postController.mjs";
 
+
 //* POST , PATCH &  DELETE
 router.route("/createpost").post(createPost);
-
-router.route("/:id").delete(deletePost).patch(editPost);
-
 //* GET
 router.route("/allposts").get(getAllPost);
 router.route("/author-post").get(authorPosts)
 router.route("/single-post/:id").get(getSinglePost);
+router.route("/ud/:id").delete(deletePost).patch(editPost);
+
 export default router;

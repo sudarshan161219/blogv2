@@ -18,6 +18,7 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
   HANDLE_SUBMIT,
+  HANDLE_CHANGE,
   CREATE_POST_BEGIN,
   CREATE_POST_SUCCESS,
   CREATE_POST_ERROR,
@@ -30,6 +31,9 @@ import {
   CLEAR_AUTHOR_SINGLE_POST,
   POST_ID,
   SET_EDIT_POST,
+  EDIT_POST_BEGIN,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -286,8 +290,30 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: SET_EDIT_POST, payload: { id } });
   };
 
-  const editPost = () => {
-    console.log("edit post");
+  //$ edit post
+  const editPost = async (data) => {
+    dispatch({ type: EDIT_POST_BEGIN });
+    const { editPostId } = state;
+    try {
+      const { title, summary, coverImg, content } = data;
+      await authFetch.patch(`/ud/${editPostId}`, {
+        title,
+        summary,
+        coverImg,
+        content,
+      });
+
+      dispatch({ type: EDIT_POST_SUCCESS });
+      toast.success("Post edited successfully!");
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: EDIT_POST_ERROR,
+      });
+    }
   };
 
   return (

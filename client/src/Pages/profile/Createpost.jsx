@@ -38,6 +38,7 @@ const Createpost = () => {
     isLoading,
     isEditing,
     editPost,
+    ghandleChange,
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
@@ -59,9 +60,9 @@ const Createpost = () => {
       setVQuill(content);
       if (file === undefined) {
         setFile(coverImg);
-      } else if(file !== undefined)(
-        setFile(file)
-      )
+      } else if (file !== undefined) {
+        setFile(file);
+      }
     }
   }, [quill]);
 
@@ -79,9 +80,7 @@ const Createpost = () => {
     data.content = vquill;
 
     if (isEditing) {
-      editPost();
-      console.log(data);
-      // console.log(file);
+      editPost(data);
       return;
     }
 
@@ -115,7 +114,6 @@ const Createpost = () => {
       const compressedFile = await imageCompression(event, options);
       const base64 = await convertToBase64(compressedFile);
       setFile(base64);
-   
     } catch (error) {
       console.log(error);
     }

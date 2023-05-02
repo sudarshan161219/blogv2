@@ -26,6 +26,10 @@ import {
   POST_ID,
   CLEAR_AUTHOR_SINGLE_POST,
   SET_EDIT_POST,
+  HANDLE_CHANGE,
+  EDIT_POST_BEGIN,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -173,6 +177,10 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === HANDLE_CHANGE) {
+    return { ...state, [action.payload.name]: action.payload.value };
+  }
+
   if (action.type === CREATE_POST_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -182,6 +190,18 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_POST_ERROR) {
+    return { ...state, isLoading: false };
+  }
+
+  if (action.type === EDIT_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === EDIT_POST_SUCCESS) {
+    return { ...state, isLoading: false };
+  }
+
+  if (action.type === EDIT_POST_ERROR) {
     return { ...state, isLoading: false };
   }
 

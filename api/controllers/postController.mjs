@@ -4,7 +4,6 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 
-
 const createPost = async (req, res) => {
   const { title, summary, coverImg, content } = req.body;
 
@@ -62,7 +61,22 @@ const getSinglePost = async (req, res) => {
 };
 
 const editPost = async (req, res) => {
-  return res.send("edit single post");
+  const { id: postId } = req.params;
+  const post = await Post.findById({ _id: postId });
+  // const { title, summary, coverImg, content } = req.body;
+
+  if (!post) {
+    throw new NotFoundError(`No post with id : ${id}`);
+  }
+
+  checkPermissions(req.user, post.author);
+
+  const updatedJob = await Post.findOneAndUpdate({ _id: postId  }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(StatusCodes.OK).json({ updatedJob });
 };
 
 const deletePost = async (req, res) => {
