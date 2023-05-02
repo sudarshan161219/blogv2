@@ -87,7 +87,7 @@ const Createpost = () => {
     const { title, summary, coverImg, content } = data;
 
     if ((title, summary, coverImg, content)) {
-      handleContextSubmit(data);
+      // handleContextSubmit(data);
       createPost(data);
       e.currentTarget.reset();
     } else {

@@ -252,12 +252,12 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const handleContextSubmit = ({ title, summary, coverImg, content }) => {
-    dispatch({
-      type: HANDLE_SUBMIT,
-      payload: { title, summary, coverImg, content },
-    });
-  };
+  // const handleContextSubmit = ({ title, summary, coverImg, content }) => {
+  //   dispatch({
+  //     type: HANDLE_SUBMIT,
+  //     payload: { title, summary, coverImg, content },
+  //   });
+  // };
 
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
@@ -322,7 +322,7 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: DELETE_POST_BEGIN });
     try {
       await authFetch.delete(`/ud/${id}`);
-      getSingleAuthorPost(id);
+      getAuthorPost()
     } catch (error) {
       logoutUser();
     }
@@ -340,7 +340,7 @@ const ContextProvider = ({ children }) => {
         logoutUser,
         updateUserFn,
         createPost,
-        handleContextSubmit,
+        // handleContextSubmit,
         getAuthorPost,
         setPostId,
         getSingleAuthorPost,

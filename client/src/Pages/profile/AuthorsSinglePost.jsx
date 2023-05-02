@@ -13,7 +13,6 @@ const AuthorsSinglePost = () => {
     authors_post,
     isLoading,
     setPostId,
-    postId,
   } = useAppContext();
   const { id } = useParams();
   const { _id, title, summary, coverImg, createdAt, content } = authors_post;
