@@ -30,6 +30,7 @@ import {
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
+  DELETE_POST_BEGIN
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -203,6 +204,10 @@ const reducer = (state, action) => {
 
   if (action.type === EDIT_POST_ERROR) {
     return { ...state, isLoading: false };
+  }
+
+  if (action.type === DELETE_POST_BEGIN) {
+    return { ...state, isLoading: true };
   }
 
   if (action.type === POST_ID) {

@@ -1,7 +1,7 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
 import { StatusCodes } from "http-status-codes";
-import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
+import { BadRequestError, UnauthenticatedError, NotFoundError } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const createPost = async (req, res) => {
@@ -53,7 +53,7 @@ const getSinglePost = async (req, res) => {
   const singlepost = await Post.findById({ _id: postId });
 
   if (!singlepost) {
-    throw new NotFoundError(`No post with id : ${id}`);
+    throw new NotFoundError(`No post with id : ${ postId}`);
   }
 
   checkPermissions(req.user, singlepost.author);
@@ -71,7 +71,7 @@ const editPost = async (req, res) => {
 
   checkPermissions(req.user, post.author);
 
-  const updatedJob = await Post.findOneAndUpdate({ _id: postId  }, req.body, {
+  const updatedJob = await Post.findOneAndUpdate({ _id: postId }, req.body, {
     new: true,
     runValidators: true,
   });
@@ -80,7 +80,14 @@ const editPost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  return res.send("delete post");
+  const { id: postId } = req.params;
+  const post = await Post.findById({ _id: postId });
+  if (!post) {
+    throw new NotFoundError(`No post with id : ${id}`);
+  }
+  checkPermissions(req.user, post.author);
+  await Post.findByIdAndDelete({ _id: postId });
+  res.status(StatusCodes.OK).json({ msg: "Success Post removed" });
 };
 
 export {

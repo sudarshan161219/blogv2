@@ -34,6 +34,7 @@ import {
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
+  DELETE_POST_BEGIN,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -316,6 +317,17 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  // $ Delete Post
+  const deletePost = async (id) => {
+    dispatch({ type: DELETE_POST_BEGIN });
+    try {
+      await authFetch.delete(`/ud/${id}`);
+      getSingleAuthorPost(id);
+    } catch (error) {
+      logoutUser();
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -335,6 +347,7 @@ const ContextProvider = ({ children }) => {
         clearAuthorSinglePost,
         setEditPost,
         editPost,
+        deletePost,
       }}
     >
       {children}
