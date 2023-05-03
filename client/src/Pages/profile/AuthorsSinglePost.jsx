@@ -13,10 +13,7 @@ const AuthorsSinglePost = () => {
     authors_post,
     isLoading,
     setPostId,
-<<<<<<< HEAD
-=======
     setEditPost
->>>>>>> 161891e (09:54pm)
   } = useAppContext();
   const { id } = useParams();
   const { _id, title, summary, coverImg, createdAt, content } = authors_post;
@@ -47,18 +44,16 @@ const AuthorsSinglePost = () => {
         <img src={coverImg} alt={title} />
       </div>
       <div className="action-container">
-<<<<<<< HEAD
+
         <Link className="Link " to={"/user-profile/createpost"}>
           <BiEdit className="edit-icon" />
         </Link>
         <Link className="Link ">
           <AiOutlineDelete className="delete-icon " />
         </Link>
-=======
         <Link className="Link "    onClick={() => setEditPost(_id)}  to={"/user-profile/createpost"}>
           <BiEdit className="edit-icon" />
         </Link>
->>>>>>> 161891e (09:54pm)
       </div>
       <div className="info-content">
         <h1>{title}</h1>

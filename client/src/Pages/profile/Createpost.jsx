@@ -28,10 +28,7 @@ const Createpost = () => {
     summary,
     coverImg,
     content,
-<<<<<<< HEAD
-=======
     postTags,
->>>>>>> 161891e (09:54pm)
     createPost,
     isLoading,
     isEditing,
@@ -82,15 +79,11 @@ const Createpost = () => {
 
     if ((title, summary, coverImg, content, postTags)) {
       // handleContextSubmit(data);
-<<<<<<< HEAD
       // createPost(data);
       console.log(data);
-      e.currentTarget.reset();
-=======
       createPost(data);
       console.log(data);
       // e.currentTarget.reset();
->>>>>>> 161891e (09:54pm)
     } else {
       toast.error("please provide all values");
     }
@@ -131,11 +124,9 @@ const Createpost = () => {
 
     if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
       e.preventDefault();
-<<<<<<< HEAD
       setTags((prevState) => [...prevState, trimmedInput]);
       setInput("");
       console.log(tags);
-=======
       setTags((prevState) => [...prevState, "#" + trimmedInput]);
       if (isEditing) {
         postTags.push("#" + trimmedInput);
@@ -145,17 +136,12 @@ const Createpost = () => {
         setInput("");
       }
       setInput("");
->>>>>>> 161891e (09:54pm)
     }
 
     if (key === "Backspace" && !input.length && tags.length) {
       e.preventDefault();
       const tagsCopy = [...tags];
       const poppedTag = tagsCopy.pop();
-<<<<<<< HEAD
-
-=======
->>>>>>> 161891e (09:54pm)
       setTags(tagsCopy);
       setInput(poppedTag);
     }
@@ -163,10 +149,7 @@ const Createpost = () => {
 
   const deleteTag = (index) => {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
-<<<<<<< HEAD
-=======
     postTags.pop(index);
->>>>>>> 161891e (09:54pm)
   };
 
   return (
@@ -227,7 +210,6 @@ const Createpost = () => {
                   Add Tags <span>press " , " (comma) to add tag</span>
                 </strong>
                 <div className="container tag-title-input">
-<<<<<<< HEAD
                   {tags.map((tag, index) => (
                     <div key={index} className="tag-container">
                       <div className="tag">{tag}</div>
@@ -237,10 +219,9 @@ const Createpost = () => {
                       />
                     </div>
                   ))}
-                  <input
-=======
                   {isEditing
-                    ? postTags.map((tag, index) => (
+                    ? (
+                      postTags.map((tag, index) => (
                         <div key={index} className="tag-container">
                           <div className="tag">{tag}</div>
                           <AiOutlineCloseCircle
@@ -249,7 +230,9 @@ const Createpost = () => {
                           />
                         </div>
                       ))
-                    : tags.map((tag, index) => (
+                    )
+                    : (
+                      tags.map((tag, index) => (
                         <div key={index} className="tag-container">
                           <div className="tag">{tag}</div>
                           <AiOutlineCloseCircle
@@ -257,10 +240,10 @@ const Createpost = () => {
                             className="tag-delete-icon"
                           />
                         </div>
-                      ))}
+                      ))
+                    )}
                   <input
                     defaultValue={input}
->>>>>>> 161891e (09:54pm)
                     value={input}
                     placeholder={`Add tags`}
                     onKeyDown={onKeyDown}
