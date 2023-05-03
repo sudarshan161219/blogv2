@@ -64,6 +64,66 @@ const Wrapper = styled.div`
     z-index: 5;
   }
 
+  .tag-title-input {
+    margin: 1rem 0;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 5px;
+    color: black;
+    border: 1px solid #cccccc;
+    align-items: center;
+  }
+
+  .container input {
+    outline: none;
+    border: 0;
+    padding: 0.7rem;
+    font-size: medium;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    color: white;
+  }
+
+  .tag-delete-icon {
+    font-size: 1.5rem;
+  }
+
+  .tag-container > button {
+    outline: none;
+    border: none;
+    background-color: #2b2b2b;
+    color: #cccccc;
+  }
+
+  .tag-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background-color: #2b2b2b;
+    color: #cccccc;
+    height: 30px;
+    padding: 0 0.5rem;
+    border-radius: 10px;
+  }
+
+  .tags-container >  strong > span {
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+  }
+
   @media (min-width: 1024px) {
     padding: 1rem 2rem;
     .btn-container {

@@ -8,8 +8,7 @@ import { convertToBase64 } from "../../utils/convert";
 import { useQuill } from "react-quilljs";
 import imageCompression from "browser-image-compression";
 import { Toaster, toast } from "react-hot-toast";
-import Select from "react-select";
-
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import {
   TOOLBAR_OPTIONS,
   formats,
@@ -24,21 +23,15 @@ const initialState = {
 };
 
 const Createpost = () => {
-  // const [value, setValue] = useState({
-  //   title: "ds",
-  //   summary: "",
-  // });
   const {
     title,
     summary,
     coverImg,
     content,
     createPost,
-    handleContextSubmit,
     isLoading,
     isEditing,
     editPost,
-    ghandleChange,
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
@@ -49,6 +42,8 @@ const Createpost = () => {
     placeholder,
     theme,
   });
+  const [input, setInput] = useState("");
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     if (quill) {
@@ -66,11 +61,6 @@ const Createpost = () => {
     }
   }, [quill]);
 
-  // const tagOptions = [
-  //   { value: "chocolate", label: "Chocolate" },
-  //   { value: "strawberry", label: "Strawberry" },
-  //   { value: "vanilla", label: "Vanilla" },
-  // ];
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -78,17 +68,18 @@ const Createpost = () => {
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-
+    data.postTags = tags;
     if (isEditing) {
       editPost(data);
       return;
     }
 
-    const { title, summary, coverImg, content } = data;
+    const { title, summary, coverImg, content, postTags } = data;
 
-    if ((title, summary, coverImg, content)) {
+    if ((title, summary, coverImg, content, postTags)) {
       // handleContextSubmit(data);
-      createPost(data);
+      // createPost(data);
+      console.log(data);
       e.currentTarget.reset();
     } else {
       toast.error("please provide all values");
@@ -117,6 +108,36 @@ const Createpost = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const onChange = (e) => {
+    const { value } = e.target;
+    setInput(value);
+  };
+
+  const onKeyDown = (e) => {
+    const { key } = e;
+    const trimmedInput = input.trim();
+
+    if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
+      e.preventDefault();
+      setTags((prevState) => [...prevState, trimmedInput]);
+      setInput("");
+      console.log(tags);
+    }
+
+    if (key === "Backspace" && !input.length && tags.length) {
+      e.preventDefault();
+      const tagsCopy = [...tags];
+      const poppedTag = tagsCopy.pop();
+
+      setTags(tagsCopy);
+      setInput(poppedTag);
+    }
+  };
+
+  const deleteTag = (index) => {
+    setTags((prevState) => prevState.filter((tag, i) => i !== index));
   };
 
   return (
@@ -168,6 +189,29 @@ const Createpost = () => {
                     id="cover-image"
                     onChange={onUpload}
                     accept="image/*"
+                  />
+                </div>
+              </div>
+
+              <div className="tags-container">
+                <strong>
+                  Add Tags <span>press " , " (comma) to add tag</span>
+                </strong>
+                <div className="container tag-title-input">
+                  {tags.map((tag, index) => (
+                    <div key={index} className="tag-container">
+                      <div className="tag">{tag}</div>
+                      <AiOutlineCloseCircle
+                        onClick={() => deleteTag(index)}
+                        className="tag-delete-icon"
+                      />
+                    </div>
+                  ))}
+                  <input
+                    value={input}
+                    placeholder={`Add tags`}
+                    onKeyDown={onKeyDown}
+                    onChange={onChange}
                   />
                 </div>
               </div>

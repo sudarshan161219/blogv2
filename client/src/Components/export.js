@@ -14,7 +14,7 @@ import AboutConS from "./AboutConS";
 import Dashboardnav from "./Dashboardnav";
 import TextEditor from "./TextEditor";
 import AuthorPosts from "./AuthorPosts";
-
+import CategoryBox from "./CategoryBox";
 export {
   AboutHeroS,
   AboutS,
@@ -31,5 +31,6 @@ export {
   NavItems,
   Navlinks,
   Sidebar,
-  TextEditor
+  TextEditor,
+  CategoryBox
 };

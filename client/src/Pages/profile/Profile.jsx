@@ -52,7 +52,7 @@ const Profile = () => {
           <div className="profile-social-container">
             <ul className="link">
                 <li className={personalLink === " " ? "atag" : null}>
-                  <a href={personalLink || "hello"} target="_blank">
+                  <a href={personalLink || "https://www.google.com/"} target="_blank">
                     <BsLink45Deg className="link-icon" />
                   </a>
                 </li>
