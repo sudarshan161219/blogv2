@@ -4,7 +4,7 @@ import { Loading } from "../../Components/export";
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/AuthorsSinglePost";
 import { BiEdit } from "react-icons/bi";
-import { AiOutlineDelete } from "react-icons/ai";
+
 
 const AuthorsSinglePost = () => {
   const {
