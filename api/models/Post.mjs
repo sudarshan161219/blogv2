@@ -21,6 +21,13 @@ const PostSchema = new Schema(
       required: [true, "Please provide content"],
       // minlength: 50,
     },
+<<<<<<< HEAD
+=======
+    postTags: {
+      type: Array,
+      unique: true,
+    },
+>>>>>>> 161891e (09:54pm)
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
 

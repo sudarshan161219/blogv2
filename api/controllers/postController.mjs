@@ -5,9 +5,15 @@ import { BadRequestError, UnauthenticatedError, NotFoundError } from "../errors/
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const createPost = async (req, res) => {
+<<<<<<< HEAD
   const { title, summary, coverImg, content } = req.body;
 
   if (!title || !summary || !coverImg || !content) {
+=======
+  const { title, summary, coverImg, content, postTags } = req.body;
+
+  if (!title || !summary || !coverImg || !content || !postTags ) {
+>>>>>>> 161891e (09:54pm)
     throw new BadRequestError("please provide all values");
   }
 
@@ -39,10 +45,21 @@ const authorPosts = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
+<<<<<<< HEAD
   const authorpost = await Post.find({ author: req.user.userId })
     .populate("author", ["name"])
     .sort({ createdAt: -1 })
     .limit(20);
+=======
+
+  
+
+  const authorpost = await Post.find({ author: req.user.userId })
+    .populate("author", ["name"])
+    .sort({ createdAt: -1 })
+    .limit(20)
+
+>>>>>>> 161891e (09:54pm)
   return res.status(StatusCodes.OK).json({
     authorpost,
   });

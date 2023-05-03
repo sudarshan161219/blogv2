@@ -71,7 +71,11 @@ const Wrapper = styled.div`
   .container {
     display: flex;
     flex-wrap: wrap;
+<<<<<<< HEAD
     gap: 0.5rem;
+=======
+    gap: 0.3rem;
+>>>>>>> 161891e (09:54pm)
     width: 100%;
     max-width: 100%;
     border-radius: 5px;
@@ -94,10 +98,18 @@ const Wrapper = styled.div`
     align-items: center;
     white-space: nowrap;
     color: white;
+<<<<<<< HEAD
   }
 
   .tag-delete-icon {
     font-size: 1.5rem;
+=======
+    font-size: 0.8rem;
+  }
+
+  .tag-delete-icon {
+    font-size: 1.3rem;
+>>>>>>> 161891e (09:54pm)
   }
 
   .tag-container > button {
@@ -109,7 +121,11 @@ const Wrapper = styled.div`
 
   .tag-container {
     display: flex;
+<<<<<<< HEAD
     gap: 0.5rem;
+=======
+    gap: 0.3rem;
+>>>>>>> 161891e (09:54pm)
     align-items: center;
     background-color: #2b2b2b;
     color: #cccccc;
@@ -137,6 +153,13 @@ const Wrapper = styled.div`
     .image-label {
       width: 500px;
     }
+<<<<<<< HEAD
+=======
+
+    .tag-delete-icon:hover{
+      cursor: pointer;
+    }
+>>>>>>> 161891e (09:54pm)
   }
 `;
 
