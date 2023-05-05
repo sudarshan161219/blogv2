@@ -218,7 +218,8 @@ const reducer = (state, action) => {
     const authorsPosts = state.authorpost.find(
       (post) => post._id === action.payload.id
     );
-    const { _id, title, summary, coverImg, content } = authorsPosts;
+    const { _id, title, summary, coverImg, content, postTags } = authorsPosts;
+
     return {
       ...state,
       isEditing: true,
@@ -227,6 +228,7 @@ const reducer = (state, action) => {
       summary,
       coverImg,
       content,
+      postTags
     };
   }
   throw new Error(`no such action : ${action.type}`);

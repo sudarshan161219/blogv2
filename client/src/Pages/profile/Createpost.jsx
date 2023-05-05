@@ -28,6 +28,7 @@ const Createpost = () => {
     summary,
     coverImg,
     content,
+    postTags:newTag,
     createPost,
     isLoading,
     isEditing,
@@ -68,19 +69,20 @@ const Createpost = () => {
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-    data.postTags = tags;
-    if (isEditing) {
-      editPost(data);
-      return;
-    }
+   data.postTags = newTag||  tags;
 
     const { title, summary, coverImg, content, postTags } = data;
 
+    if (isEditing) {
+      editPost(data);
+      // e.currentTarget.reset();
+      return;
+    }
+
     if ((title, summary, coverImg, content, postTags)) {
       // handleContextSubmit(data);
-      // createPost(data);
-      console.log(data);
-      e.currentTarget.reset();
+      createPost(data);
+      // e.currentTarget.reset();
     } else {
       toast.error("please provide all values");
     }
@@ -121,16 +123,21 @@ const Createpost = () => {
 
     if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
       e.preventDefault();
-      setTags((prevState) => [...prevState, trimmedInput]);
+      setTags((prevState) => [...prevState, "#" + trimmedInput]);
       setInput("");
-      console.log(tags);
+      if (isEditing) {
+        newTag.push("#" + trimmedInput);
+        const merge = [...tags, ...newTag];
+        let uniqueChars = [...new Set(merge)];
+        setTags(uniqueChars);
+        setInput("");
+      }
     }
 
     if (key === "Backspace" && !input.length && tags.length) {
       e.preventDefault();
       const tagsCopy = [...tags];
       const poppedTag = tagsCopy.pop();
-
       setTags(tagsCopy);
       setInput(poppedTag);
     }
@@ -138,6 +145,9 @@ const Createpost = () => {
 
   const deleteTag = (index) => {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
+    if (isEditing) {
+      newTag.pop(index);
+    }
   };
 
   return (
@@ -198,17 +208,28 @@ const Createpost = () => {
                   Add Tags <span>press " , " (comma) to add tag</span>
                 </strong>
                 <div className="container tag-title-input">
-                  {tags.map((tag, index) => (
-                    <div key={index} className="tag-container">
-                      <div className="tag">{tag}</div>
-                      <AiOutlineCloseCircle
-                        onClick={() => deleteTag(index)}
-                        className="tag-delete-icon"
-                      />
-                    </div>
-                  ))}
+                  {isEditing
+                    ? newTag.map((tag, index) => (
+                        <div key={index} className="tag-container">
+                          <div className="tag">{tag}</div>
+                          <AiOutlineCloseCircle
+                            onClick={() => deleteTag(index)}
+                            className="tag-delete-icon"
+                          />
+                        </div>
+                      ))
+                    : tags.map((tag, index) => (
+                        <div key={index} className="tag-container">
+                          <div className="tag">{tag}</div>
+                          <AiOutlineCloseCircle
+                            onClick={() => deleteTag(index)}
+                            className="tag-delete-icon"
+                          />
+                        </div>
+                      ))}
                   <input
-                    value={input}
+                    defaultValue={input}
+                    // value={input}
                     placeholder={`Add tags`}
                     onKeyDown={onKeyDown}
                     onChange={onChange}

@@ -6,6 +6,8 @@ import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
+  LOGIN_USER_BEGIN,
+  LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
@@ -49,6 +51,7 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
+  postTags: [],
   isEditing: false,
   postId: post_id ? post_id : null,
   editPostId: "",
@@ -260,12 +263,13 @@ const ContextProvider = ({ children }) => {
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
     try {
-      const { title, summary, coverImg, content } = data;
+      const { title, summary, coverImg, content, postTags } = data;
       await authFetch.post("/createpost", {
         title,
         summary,
         coverImg,
         content,
+        postTags,
       });
 
       dispatch({ type: CREATE_POST_SUCCESS });
@@ -294,12 +298,13 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: EDIT_POST_BEGIN });
     const { editPostId } = state;
     try {
-      const { title, summary, coverImg, content } = data;
+      const { title, summary, coverImg, content,  postTags } = data;
       await authFetch.patch(`/ud/${editPostId}`, {
         title,
         summary,
         coverImg,
         content,
+        postTags,
       });
 
       dispatch({ type: EDIT_POST_SUCCESS });
