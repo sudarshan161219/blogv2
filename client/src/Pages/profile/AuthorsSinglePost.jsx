@@ -4,7 +4,6 @@ import { Loading } from "../../Components/export";
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/AuthorsSinglePost";
 import { BiEdit } from "react-icons/bi";
-import { AiOutlineDelete } from "react-icons/ai";
 
 const AuthorsSinglePost = () => {
   const {
@@ -13,6 +12,7 @@ const AuthorsSinglePost = () => {
     authors_post,
     isLoading,
     setPostId,
+    setEditPost
   } = useAppContext();
   const { id } = useParams();
   const { _id, title, summary, coverImg, createdAt, content } = authors_post;
@@ -43,11 +43,8 @@ const AuthorsSinglePost = () => {
         <img src={coverImg} alt={title} />
       </div>
       <div className="action-container">
-        <Link className="Link " to={"/user-profile/createpost"}>
+        <Link className="Link "    onClick={() => setEditPost(_id)}  to={"/user-profile/createpost"}>
           <BiEdit className="edit-icon" />
-        </Link>
-        <Link className="Link ">
-          <AiOutlineDelete className="delete-icon " />
         </Link>
       </div>
       <div className="info-content">
