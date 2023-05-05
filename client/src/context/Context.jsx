@@ -51,10 +51,7 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
-<<<<<<< HEAD
-=======
   postTags: [],
->>>>>>> 161891e (09:54pm)
   isEditing: false,
   postId: post_id ? post_id : null,
   editPostId: "",
@@ -266,20 +263,13 @@ const ContextProvider = ({ children }) => {
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
     try {
-<<<<<<< HEAD
-      const { title, summary, coverImg, content } = data;
-=======
       const { title, summary, coverImg, content, postTags } = data;
->>>>>>> 161891e (09:54pm)
       await authFetch.post("/createpost", {
         title,
         summary,
         coverImg,
         content,
-<<<<<<< HEAD
-=======
-        postTags 
->>>>>>> 161891e (09:54pm)
+        postTags,
       });
 
       dispatch({ type: CREATE_POST_SUCCESS });
@@ -308,20 +298,13 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: EDIT_POST_BEGIN });
     const { editPostId } = state;
     try {
-<<<<<<< HEAD
-      const { title, summary, coverImg, content } = data;
-=======
       const { title, summary, coverImg, content,  postTags } = data;
->>>>>>> 161891e (09:54pm)
       await authFetch.patch(`/ud/${editPostId}`, {
         title,
         summary,
         coverImg,
         content,
-<<<<<<< HEAD
-=======
         postTags,
->>>>>>> 161891e (09:54pm)
       });
 
       dispatch({ type: EDIT_POST_SUCCESS });

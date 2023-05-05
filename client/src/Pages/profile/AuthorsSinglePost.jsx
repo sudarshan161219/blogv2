@@ -44,13 +44,6 @@ const AuthorsSinglePost = () => {
         <img src={coverImg} alt={title} />
       </div>
       <div className="action-container">
-
-        <Link className="Link " to={"/user-profile/createpost"}>
-          <BiEdit className="edit-icon" />
-        </Link>
-        <Link className="Link ">
-          <AiOutlineDelete className="delete-icon " />
-        </Link>
         <Link className="Link "    onClick={() => setEditPost(_id)}  to={"/user-profile/createpost"}>
           <BiEdit className="edit-icon" />
         </Link>
