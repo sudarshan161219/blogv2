@@ -30,6 +30,7 @@ import {
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
+  CLEAR_VALUES,
   DELETE_POST_BEGIN
 } from "./action";
 import { initialState } from "./Context";
@@ -183,27 +184,43 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_POST_BEGIN) {
-    return { ...state, isLoading: true };
+    return { ...state, isLoading: true, created:false };
   }
 
   if (action.type === CREATE_POST_SUCCESS) {
-    return { ...state, isLoading: false };
+    return { ...state, isLoading: false, created:true };
   }
 
   if (action.type === CREATE_POST_ERROR) {
-    return { ...state, isLoading: false };
+    return { ...state, isLoading: false, created:false };
   }
 
   if (action.type === EDIT_POST_BEGIN) {
-    return { ...state, isLoading: true };
+    return { ...state, isLoading: true, edited:false };
   }
 
   if (action.type === EDIT_POST_SUCCESS) {
-    return { ...state, isLoading: false };
+    return { ...state, isLoading: false, edited:true };
   }
 
   if (action.type === EDIT_POST_ERROR) {
-    return { ...state, isLoading: false };
+    return { ...state, isLoading: false, edited:false };
+  }
+
+  
+  if (action.type === CLEAR_VALUES) {
+    const initialState = {
+      isEditing: false,
+      editJobId: "",
+      position: "",
+      company: "",
+      title:"",
+      summary:"",
+      coverImg:"",
+      content:"",
+      postTags:[]
+    };
+    return { ...state, ...initialState };
   }
 
   if (action.type === DELETE_POST_BEGIN) {

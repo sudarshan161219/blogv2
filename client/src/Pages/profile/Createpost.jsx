@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
@@ -9,6 +10,7 @@ import { useQuill } from "react-quilljs";
 import imageCompression from "browser-image-compression";
 import { Toaster, toast } from "react-hot-toast";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+
 import {
   TOOLBAR_OPTIONS,
   formats,
@@ -28,11 +30,13 @@ const Createpost = () => {
     summary,
     coverImg,
     content,
-    postTags:newTag,
+    postTags: newTag,
     createPost,
     isLoading,
     isEditing,
     editPost,
+    created,
+    edited,
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
@@ -45,6 +49,7 @@ const Createpost = () => {
   });
   const [input, setInput] = useState("");
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (quill) {
@@ -60,7 +65,19 @@ const Createpost = () => {
         setFile(file);
       }
     }
-  }, [quill]);
+
+    if (created) {
+      setTimeout(() => {
+        navigate("/user-profile/all-posts");
+      }, 1100);
+    }
+
+    if (edited) {
+      setTimeout(() => {
+        navigate("/user-profile/all-posts");
+      }, 1100);
+    }
+  }, [quill, edited, created, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +86,7 @@ const Createpost = () => {
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-   data.postTags = newTag||  tags;
+    data.postTags = newTag || tags;
 
     const { title, summary, coverImg, content, postTags } = data;
 

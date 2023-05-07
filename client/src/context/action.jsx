@@ -36,7 +36,7 @@ export const CLEAR_AUTHOR_SINGLE_POST = "CLEAR_AUTHOR_SINGLE_POST";
 
 export const POST_ID = "  POST_ID";
 export const SET_EDIT_POST = "SET_EDIT_POST";
-
+export const CLEAR_VALUES = "CLEAR_VALUES"
 export const EDIT_POST_BEGIN = "EDIT_POST_BEGIN"
 export const EDIT_POST_SUCCESS = "EDIT_POST_SUCCESS"
 export const EDIT_POST_ERROR = "EDIT_POST_ERROR"

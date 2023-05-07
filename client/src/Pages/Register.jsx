@@ -35,7 +35,7 @@ const Register = () => {
     if (user) {
       setTimeout(() => {
         navigate("/user-profile");
-      }, 1200);
+      }, 1100);
     }
   }, [user, navigate]);
 

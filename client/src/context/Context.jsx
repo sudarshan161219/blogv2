@@ -35,6 +35,7 @@ import {
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
   DELETE_POST_BEGIN,
+  CLEAR_VALUES,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -53,6 +54,8 @@ const initialState = {
   content: "",
   postTags: [],
   isEditing: false,
+  edited:false,
+  created:false,
   postId: post_id ? post_id : null,
   editPostId: "",
   authorpost: [],
@@ -60,7 +63,6 @@ const initialState = {
 };
 
 const Context = createContext({});
-
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -253,12 +255,9 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  // const handleContextSubmit = ({ title, summary, coverImg, content }) => {
-  //   dispatch({
-  //     type: HANDLE_SUBMIT,
-  //     payload: { title, summary, coverImg, content },
-  //   });
-  // };
+const navigateUser  = () => {
+window.location.pathname === "/"
+}
 
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
@@ -298,7 +297,7 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: EDIT_POST_BEGIN });
     const { editPostId } = state;
     try {
-      const { title, summary, coverImg, content,  postTags } = data;
+      const { title, summary, coverImg, content, postTags } = data;
       await authFetch.patch(`/ud/${editPostId}`, {
         title,
         summary,
@@ -308,6 +307,7 @@ const ContextProvider = ({ children }) => {
       });
 
       dispatch({ type: EDIT_POST_SUCCESS });
+      dispatch({ type: CLEAR_VALUES });
       toast.success("Post edited successfully!");
     } catch (error) {
       if (error.response.status === 401) {
@@ -325,7 +325,7 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: DELETE_POST_BEGIN });
     try {
       await authFetch.delete(`/ud/${id}`);
-      getAuthorPost()
+      getAuthorPost();
     } catch (error) {
       logoutUser();
     }
