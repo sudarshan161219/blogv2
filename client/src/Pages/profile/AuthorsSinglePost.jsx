@@ -12,10 +12,11 @@ const AuthorsSinglePost = () => {
     authors_post,
     isLoading,
     setPostId,
-    setEditPost
+    setEditPost,
   } = useAppContext();
   const { id } = useParams();
-  const { _id, title, summary, coverImg, createdAt, content } = authors_post;
+  const { _id, title, summary, coverImg, createdAt, content, postTags } =
+    authors_post;
 
   useEffect(() => {
     setPostId(id);
@@ -30,6 +31,8 @@ const AuthorsSinglePost = () => {
     return <Loading />;
   }
 
+  console.log(postTags);
+
   return (
     <Wrapper>
       <Link
@@ -43,13 +46,22 @@ const AuthorsSinglePost = () => {
         <img src={coverImg} alt={title} />
       </div>
       <div className="action-container">
-        <Link className="Link "    onClick={() => setEditPost(_id)}  to={"/user-profile/createpost"}>
+        <Link
+          className="Link "
+          onClick={() => setEditPost(_id)}
+          to={"/user-profile/createpost"}
+        >
           <BiEdit className="edit-icon" />
         </Link>
       </div>
       <div className="info-content">
         <h1>{title}</h1>
         <p>{summary}</p>
+        <div className="tags-container">
+          {postTags.map((tag) => {
+            return <strong className="tags">{tag}</strong>;
+          })}
+        </div>
       </div>
       <br />
       <div className="ql-snow">
