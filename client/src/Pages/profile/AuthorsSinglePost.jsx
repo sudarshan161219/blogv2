@@ -31,7 +31,6 @@ const AuthorsSinglePost = () => {
     return <Loading />;
   }
 
-  console.log(postTags);
 
   return (
     <Wrapper>
@@ -58,8 +57,8 @@ const AuthorsSinglePost = () => {
         <h1>{title}</h1>
         <p>{summary}</p>
         <div className="tags-container">
-          {postTags.map((tag) => {
-            return <strong className="tags">{tag}</strong>;
+          {postTags && postTags.map((tag, idx) => {
+            return <strong key={idx} className="tags">{tag}</strong>;
           })}
         </div>
       </div>

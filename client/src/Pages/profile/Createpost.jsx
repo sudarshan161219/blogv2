@@ -6,10 +6,13 @@ import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.jpg";
 import { useAppContext } from "../../context/Context";
 import { convertToBase64 } from "../../utils/convert";
+import {options} from "../../utils/categoryList"
 import { useQuill } from "react-quilljs";
 import imageCompression from "browser-image-compression";
 import { Toaster, toast } from "react-hot-toast";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import Select from "react-select";
+
 
 import {
   TOOLBAR_OPTIONS,
@@ -23,6 +26,7 @@ const initialState = {
   title: "",
   summary: "",
 };
+
 
 const Createpost = () => {
   const {
@@ -49,6 +53,7 @@ const Createpost = () => {
   });
   const [input, setInput] = useState("");
   const [tags, setTags] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -181,7 +186,6 @@ const Createpost = () => {
                   <input
                     type="text"
                     name="title"
-                    // value={title}
                     defaultValue={title}
                     onChange={handleChange}
                     className="form-control"
@@ -220,40 +224,44 @@ const Createpost = () => {
                 </div>
               </div>
 
-              <div className="tags-container">
-                <strong>
-                  Add Tags <span>press " , " (comma) to add tag</span>
-                </strong>
-                <div className="container tag-title-input">
-                  {isEditing
-                    ? newTag.map((tag, index) => (
-                        <div key={index} className="tag-container">
-                          <div className="tag">{tag}</div>
-                          <AiOutlineCloseCircle
-                            onClick={() => deleteTag(index)}
-                            className="tag-delete-icon"
-                          />
-                        </div>
-                      ))
-                    : tags.map((tag, index) => (
-                        <div key={index} className="tag-container">
-                          <div className="tag">{tag}</div>
-                          <AiOutlineCloseCircle
-                            onClick={() => deleteTag(index)}
-                            className="tag-delete-icon"
-                          />
-                        </div>
-                      ))}
-                  <input
-                    defaultValue={input}
-                    // value={input}
-                    placeholder={`Add tags`}
-                    onKeyDown={onKeyDown}
-                    onChange={onChange}
-                  />
+              <div className="tag-select">
+                <Select
+                  defaultValue={selectedOption}
+                  onChange={setSelectedOption}
+                  options={options}
+                />
+
+                <div className="tags-container">
+                  <div className="container tag-title-input">
+                    {isEditing
+                      ? newTag.map((tag, index) => (
+                          <div key={index} className="tag-container">
+                            <div className="tag">{tag}</div>
+                            <AiOutlineCloseCircle
+                              onClick={() => deleteTag(index)}
+                              className="tag-delete-icon"
+                            />
+                          </div>
+                        ))
+                      : tags.map((tag, index) => (
+                          <div key={index} className="tag-container">
+                            <div className="tag">{tag}</div>
+                            <AiOutlineCloseCircle
+                              onClick={() => deleteTag(index)}
+                              className="tag-delete-icon"
+                            />
+                          </div>
+                        ))}
+                    <input
+                      defaultValue={input}
+                      // value={input}
+                      placeholder={`press " , " (comma) to add tag`}
+                      onKeyDown={onKeyDown}
+                      onChange={onChange}
+                    />
+                  </div>
                 </div>
               </div>
-
               <EdittorWrapper>
                 <div
                   ref={quillRef}

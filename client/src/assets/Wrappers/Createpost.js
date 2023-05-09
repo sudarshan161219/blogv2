@@ -125,6 +125,14 @@ const Wrapper = styled.div`
     margin-left: 0.5rem;
   }
 
+  .tag-select{
+    display: grid;
+    /* gap: 0.5rem; */
+  }
+  .css-b62m3t-container{
+    z-index: 10;
+  }
+
   @media (min-width: 1024px) {
     padding: 1rem 2rem;
     .btn-container {
@@ -141,6 +149,18 @@ const Wrapper = styled.div`
     .tag-delete-icon:hover{
       cursor: pointer;
     }
+
+    .tag-select{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .css-b62m3t-container,   .tags-container {
+    width: 50%;
+  }
+
   }
 `;
 
