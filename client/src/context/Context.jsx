@@ -2,12 +2,11 @@ import React, { useReducer, createContext, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import reducer from "./reducer";
+
 import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
-  LOGIN_USER_BEGIN,
-  LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   TOGGLE_SIDEBAR,
@@ -17,8 +16,6 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
-  HANDLE_SUBMIT,
-  HANDLE_CHANGE,
   CREATE_POST_BEGIN,
   CREATE_POST_SUCCESS,
   CREATE_POST_ERROR,
@@ -53,16 +50,17 @@ const initialState = {
   coverImg: "",
   content: "",
   postTags: [],
+  category: "",
   isEditing: false,
-  edited:false,
-  created:false,
+  edited: false,
+  created: false,
   postId: post_id ? post_id : null,
   editPostId: "",
   authorpost: [],
   authors_post: post_id ? [] : null,
 };
-
 const Context = createContext({});
+
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -218,6 +216,7 @@ const ContextProvider = ({ children }) => {
         type: GET_AUTHOR_POST_SUCCESS,
         payload: { authorpost },
       });
+      dispatch({ type: CLEAR_VALUES });
     } catch (error) {
       console.log(error);
       if (error.response.status === 401) {
@@ -244,6 +243,7 @@ const ContextProvider = ({ children }) => {
         type: GET_AUTHOR_SINGLE_POST_SUCCESS,
         payload: { singlepost },
       });
+      dispatch({ type: CLEAR_VALUES });
     } catch (error) {
       console.log(error);
       // if (error.response.status === 401) {
@@ -255,10 +255,6 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-const navigateUser  = () => {
-window.location.pathname === "/"
-}
-
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
     try {
@@ -269,9 +265,11 @@ window.location.pathname === "/"
         coverImg,
         content,
         postTags,
+        category,
       });
 
       dispatch({ type: CREATE_POST_SUCCESS });
+      // dispatch({ type: CLEAR_VALUES });
       toast.success("Post successfully created!");
     } catch (error) {
       if (error.response.status === 401) {
@@ -297,18 +295,20 @@ window.location.pathname === "/"
     dispatch({ type: EDIT_POST_BEGIN });
     const { editPostId } = state;
     try {
-      const { title, summary, coverImg, content, postTags } = data;
+      const { title, summary, coverImg, content, postTags, category } = data;
       await authFetch.patch(`/ud/${editPostId}`, {
         title,
         summary,
         coverImg,
         content,
         postTags,
+        category,
       });
 
       dispatch({ type: EDIT_POST_SUCCESS });
-      dispatch({ type: CLEAR_VALUES });
+      // dispatch({ type: CLEAR_VALUES });
       toast.success("Post edited successfully!");
+ 
     } catch (error) {
       if (error.response.status === 401) {
         return;

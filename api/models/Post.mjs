@@ -23,7 +23,10 @@ const PostSchema = new Schema(
     },
     postTags: {
       type: Array,
-      unique: true,
+      // unique: true,
+    },
+    category: {
+      type: String,
     },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },

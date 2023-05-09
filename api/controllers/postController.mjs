@@ -5,8 +5,8 @@ import { BadRequestError, UnauthenticatedError, NotFoundError } from "../errors/
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const createPost = async (req, res) => {
-  const { title, summary, coverImg, content , postTags} = req.body;
-  if (!title || !summary || !coverImg || !content || !postTags ) {
+  const { title, summary, coverImg, content , postTags, category} = req.body;
+  if (!title || !summary || !coverImg || !content || !postTags || !category ) {
     throw new BadRequestError("please provide all values");
   }
 
@@ -82,6 +82,7 @@ const editPost = async (req, res) => {
   });
 
   res.status(StatusCodes.OK).json({ updatedJob });
+
 };
 
 const deletePost = async (req, res) => {

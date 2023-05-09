@@ -184,11 +184,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_POST_BEGIN) {
-    return { ...state, isLoading: true, created:false };
+    return { ...state, isLoading: true };
   }
 
   if (action.type === CREATE_POST_SUCCESS) {
-    return { ...state, isLoading: false, created:true };
+    return { ...state, isLoading: false,  created:true };
   }
 
   if (action.type === CREATE_POST_ERROR) {
@@ -196,15 +196,15 @@ const reducer = (state, action) => {
   }
 
   if (action.type === EDIT_POST_BEGIN) {
-    return { ...state, isLoading: true, edited:false };
+    return { ...state, isLoading: true };
   }
 
   if (action.type === EDIT_POST_SUCCESS) {
-    return { ...state, isLoading: false, edited:true };
+    return { ...state, isLoading: false,  edited:true };
   }
 
   if (action.type === EDIT_POST_ERROR) {
-    return { ...state, isLoading: false, edited:false };
+    return { ...state, isLoading: false };
   }
 
   
@@ -218,7 +218,9 @@ const reducer = (state, action) => {
       summary:"",
       coverImg:"",
       content:"",
-      postTags:[]
+      postTags:[],
+      edited:false,
+      created:false,
     };
     return { ...state, ...initialState };
   }
@@ -235,7 +237,7 @@ const reducer = (state, action) => {
     const authorsPosts = state.authorpost.find(
       (post) => post._id === action.payload.id
     );
-    const { _id, title, summary, coverImg, content, postTags } = authorsPosts;
+    const { _id, title, summary, coverImg, content, postTags, category } = authorsPosts;
 
     return {
       ...state,
@@ -245,7 +247,10 @@ const reducer = (state, action) => {
       summary,
       coverImg,
       content,
-      postTags
+      postTags,
+      category,
+      // edited:true,
+      // created:true,
     };
   }
   throw new Error(`no such action : ${action.type}`);

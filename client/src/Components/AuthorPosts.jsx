@@ -9,7 +9,7 @@ import { useAppContext } from "../context/Context";
 
 const AuthorPosts = ({ item }) => {
   const { setEditPost, deletePost } = useAppContext();
-  const { _id, title, summary, coverImg, createdAt } = item;
+  const { _id, title, summary, coverImg, createdAt , category} = item;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -21,7 +21,7 @@ const AuthorPosts = ({ item }) => {
           <img src={coverImg} alt="dummyImg" />
         </div>
         <div className="content-container">
-          <span>Category</span>
+          <span>{category}</span>
           <h2>{title}</h2>
           <strong>{Fdate}</strong>
           <p>{summary}</p>

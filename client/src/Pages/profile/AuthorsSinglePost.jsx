@@ -15,7 +15,7 @@ const AuthorsSinglePost = () => {
     setEditPost,
   } = useAppContext();
   const { id } = useParams();
-  const { _id, title, summary, coverImg, createdAt, content, postTags } =
+  const { _id, title, summary, coverImg, createdAt, content, postTags, category } =
     authors_post;
 
   useEffect(() => {

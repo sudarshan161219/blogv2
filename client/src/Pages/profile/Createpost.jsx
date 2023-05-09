@@ -5,15 +5,13 @@ import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.jpg";
 import { useAppContext } from "../../context/Context";
-import { convertToBase64 } from "../../utils/convert";
-import {options} from "../../utils/categoryList"
 import { useQuill } from "react-quilljs";
 import imageCompression from "browser-image-compression";
 import { Toaster, toast } from "react-hot-toast";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Select from "react-select";
-
-
+import { convertToBase64 } from "../../utils/convert";
+import { options } from "../../utils/categoryList";
 import {
   TOOLBAR_OPTIONS,
   formats,
@@ -27,7 +25,6 @@ const initialState = {
   summary: "",
 };
 
-
 const Createpost = () => {
   const {
     title,
@@ -35,6 +32,7 @@ const Createpost = () => {
     coverImg,
     content,
     postTags: newTag,
+    category,
     createPost,
     isLoading,
     isEditing,
@@ -53,7 +51,7 @@ const Createpost = () => {
   });
   const [input, setInput] = useState("");
   const [tags, setTags] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(isEditing ? category : null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,7 +80,13 @@ const Createpost = () => {
         navigate("/user-profile/all-posts");
       }, 1100);
     }
+
   }, [quill, edited, created, navigate]);
+
+
+  // const userNavigate = () => {
+  //     navigate("/user-profile/all-posts");
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -91,22 +95,22 @@ const Createpost = () => {
     const data = Object.fromEntries(formData);
     data.coverImg = file;
     data.content = vquill;
-    data.postTags = newTag || tags;
+    data.postTags = isEditing ? newTag : tags;
+    data.category = selectedOption;
 
-    const { title, summary, coverImg, content, postTags } = data;
+    const { title, summary, coverImg, content, postTags, category } = data;
 
     if (isEditing) {
       editPost(data);
-      // e.currentTarget.reset();
+      e.currentTarget.reset();
       return;
     }
 
-    if ((title, summary, coverImg, content, postTags)) {
-      // handleContextSubmit(data);
-      createPost(data);
-      // e.currentTarget.reset();
-    } else {
+    if (!title || !summary || !coverImg || !content || !postTags || !category) {
       toast.error("please provide all values");
+    } else {
+      createPost(data);
+      e.currentTarget.reset();
     }
   };
 
@@ -172,6 +176,12 @@ const Createpost = () => {
     }
   };
 
+  const handleSelectChange =  (e) => {
+    setSelectedOption(e.value)
+ }
+
+
+
   return (
     <>
       <Wrapper className="container">
@@ -227,7 +237,7 @@ const Createpost = () => {
               <div className="tag-select">
                 <Select
                   defaultValue={selectedOption}
-                  onChange={setSelectedOption}
+                  onChange={handleSelectChange }
                   options={options}
                 />
 
