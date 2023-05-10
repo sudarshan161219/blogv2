@@ -18,7 +18,6 @@ const options = [
     { value: "Movie", label: "Movie" },
     { value: "Religion", label: "Religion" },
     { value: "Political", label: "Political" },
-    { value: "Political", label: "Political" },
     { value: "technology", label: "technology" },
     { value: "Minimalism", label: "Minimalism" },
     { value: "Other", label: "Other" },
