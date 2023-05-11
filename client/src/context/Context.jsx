@@ -210,7 +210,7 @@ const ContextProvider = ({ children }) => {
   const getAuthorPost = async () => {
     dispatch({ type: GET_AUTHOR_POST_BEGIN });
     try {
-      const { data } = await authFetch.get("/author-post");
+      const { data } = await authFetch.get("/author-post", {credentials: 'omit'});
       const { authorpost } = data;
       dispatch({
         type: GET_AUTHOR_POST_SUCCESS,
@@ -237,7 +237,7 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
     try {
       const { postId } = state;
-      const { data } = await authFetch.get(`/single-post/${id}`);
+      const { data } = await authFetch.get(`/single-post/${id}`, {credentials: 'omit'});
       const { singlepost } = data;
       dispatch({
         type: GET_AUTHOR_SINGLE_POST_SUCCESS,
