@@ -8,12 +8,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
-
+  padding-top: 5rem;
   .search-container {
     width: 95%;
   }
 
   .search-container-form {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +49,7 @@ const Wrapper = styled.div`
     padding: 0.4rem 0 0.4rem 0.4rem;
     z-index: 2;
     background-color: white;
+    border-radius: 50%;
   }
 
   .search-container-searchIcon {
@@ -101,6 +103,11 @@ const Wrapper = styled.div`
   .btn-tag:active {
     box-shadow: none;
     transform: translateY(0);
+  }
+
+  @media (min-width: 1024px) {
+    width: 800px;
+    margin: 0 auto;
   }
 `;
 

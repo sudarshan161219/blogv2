@@ -19,14 +19,14 @@ const PostSchema = new Schema(
     content: {
       type: String,
       required: [true, "Please provide content"],
-      // minlength: 50,
     },
     postTags: {
       type: Array,
-      // unique: true,
+      // unique:false
     },
     category: {
       type: String,
+      // unique:false
     },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },

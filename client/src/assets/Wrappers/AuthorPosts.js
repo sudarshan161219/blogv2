@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   }
 
   .content-container > h2 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 
   span,
@@ -65,13 +65,13 @@ const Wrapper = styled.div`
   }
 
   .delete-icon:active {
-      background-color: #e06469;
-      color: antiquewhite;
-    }
+    background-color: #e06469;
+    color: antiquewhite;
+  }
 
-    .edit-icon:active {
-      background-color: #afd3e2;
-    }
+  .edit-icon:active {
+    background-color: #afd3e2;
+  }
 
   @media (min-width: 1024px) {
     .authorpost-container {
@@ -88,22 +88,25 @@ const Wrapper = styled.div`
 
     .authorpost-container:hover {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
       transition: all 0.3s;
     }
 
     /* .image-containner {
     width: 300px;
   } */
+    .image-containner {
+      width: 30%;
+    }
 
     .content-container {
       text-align: left;
       border-radius: 8px;
+      width: 70%;
     }
 
     .content-container > h2 {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
     }
 
     .content-container > strong,

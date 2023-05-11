@@ -4,28 +4,28 @@ import { BsSearch } from "react-icons/bs";
 
 const Tags = () => {
   const tagArr = [
-    "Food",
-    "Travel",
-    "Lifestyle ",
-    "Fashion&beauty ",
-    "Photography",
-    "Personal",
-    "DIY craft",
-    "Parenting",
-    "Music",
-    "Business",
-    "Art&design",
-    "Book&writing",
-    "Personal finance",
-    "Interior design",
-    "Sports",
-    "News",
-    "Movie",
-    "Religion",
-    "Political",
-    "technology",
-    "Minimalism",
-    "Other",
+    "#Food",
+    "#Travel",
+    "#Lifestyle ",
+    "#Fashion&beauty ",
+    "#Photography",
+    "#Personal",
+    "#DIY craft",
+    "#Parenting",
+    "#Music",
+    "#Business",
+    "#Art&design",
+    "#Book&writing",
+    "#Personal finance",
+    "#Interior design",
+    "#Sports",
+    "#News",
+    "#Movie",
+    "#Religion",
+    "#Political",
+    "#technology",
+    "#Minimalism",
+    "#Other",
   ];
 
   return (
@@ -44,8 +44,8 @@ const Tags = () => {
       </div>
 
       <div className="btn-container">
-        {tagArr.map((item) => (
-          <button className="btn-tag">{item}</button>
+        {tagArr.map((item, idx) => (
+          <button className="btn-tag" key={idx}>{item}</button>
         ))}
       </div>
     </Wrapper>

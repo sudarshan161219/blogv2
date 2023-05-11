@@ -9,3 +9,4 @@ const connectDB = (uri) => {
 };
 
 export default connectDB;
+

@@ -24,7 +24,7 @@ const AuthorPosts = ({ item }) => {
           <span>{category}</span>
           <h2>{title}</h2>
           <strong>{Fdate}</strong>
-          <p>{summary}</p>
+          {/* <p>{summary}</p> */}
           <div className="action-link-container">
             <div className="action-container">
               <Link
