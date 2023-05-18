@@ -84,10 +84,6 @@ const Createpost = () => {
   }, [quill, edited, created, navigate]);
 
 
-  // const userNavigate = () => {
-  //     navigate("/user-profile/all-posts");
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

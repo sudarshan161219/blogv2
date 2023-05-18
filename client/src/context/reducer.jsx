@@ -26,12 +26,13 @@ import {
   POST_ID,
   CLEAR_AUTHOR_SINGLE_POST,
   SET_EDIT_POST,
+  SET_EDIT_USER,
   HANDLE_CHANGE,
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
   CLEAR_VALUES,
-  DELETE_POST_BEGIN
+  DELETE_POST_BEGIN,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -141,6 +142,7 @@ const reducer = (state, action) => {
     };
   }
 
+  // $
   if (action.type === UPDATE_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -188,11 +190,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_POST_SUCCESS) {
-    return { ...state, isLoading: false,  created:true };
+    return { ...state, isLoading: false, created: true };
   }
 
   if (action.type === CREATE_POST_ERROR) {
-    return { ...state, isLoading: false, created:false };
+    return { ...state, isLoading: false, created: false };
   }
 
   if (action.type === EDIT_POST_BEGIN) {
@@ -200,27 +202,26 @@ const reducer = (state, action) => {
   }
 
   if (action.type === EDIT_POST_SUCCESS) {
-    return { ...state, isLoading: false,  edited:true };
+    return { ...state, isLoading: false, edited: true };
   }
 
   if (action.type === EDIT_POST_ERROR) {
     return { ...state, isLoading: false };
   }
 
-  
   if (action.type === CLEAR_VALUES) {
     const initialState = {
       isEditing: false,
       editJobId: "",
       position: "",
       company: "",
-      title:"",
-      summary:"",
-      coverImg:"",
-      content:"",
-      postTags:[],
-      edited:false,
-      created:false,
+      title: "",
+      summary: "",
+      coverImg: "",
+      content: "",
+      postTags: [],
+      edited: false,
+      created: false,
     };
     return { ...state, ...initialState };
   }
@@ -237,7 +238,8 @@ const reducer = (state, action) => {
     const authorsPosts = state.authorpost.find(
       (post) => post._id === action.payload.id
     );
-    const { _id, title, summary, coverImg, content, postTags, category } = authorsPosts;
+    const { _id, title, summary, coverImg, content, postTags, category } =
+      authorsPosts;
 
     return {
       ...state,
@@ -253,6 +255,30 @@ const reducer = (state, action) => {
       // created:true,
     };
   }
+
+  if (action.type === SET_EDIT_USER) {
+    const {
+      name,
+      userInfo,
+      instagram,
+      twitter,
+      linkden,
+      personalLink,
+      userImg,
+    } = state.user;
+    return {
+      ...state,
+      isEditing: true,
+      name,
+      userInfo,
+      instagram,
+      twitter,
+      linkden,
+      personalLink,
+      userImg,
+    };
+  }
+
   throw new Error(`no such action : ${action.type}`);
 };
 

@@ -28,6 +28,7 @@ import {
   CLEAR_AUTHOR_SINGLE_POST,
   POST_ID,
   SET_EDIT_POST,
+  SET_EDIT_USER,
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
@@ -45,6 +46,13 @@ const initialState = {
   dashNav: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
+  name:"",
+  userInfo:"",
+  instagram:"",
+  twitter:"",
+  linkden:"",
+  personalLink:"",
+  userImg:"",
   title: "",
   summary: "",
   coverImg: "",
@@ -173,13 +181,13 @@ const ContextProvider = ({ children }) => {
     try {
       const { data } = await authFetch.patch("/updateUser", updateData);
       const { user, token } = data;
-
       dispatch({
         type: UPDATE_USER_SUCCESS,
         payload: { user, token },
       });
-      toast.success("User Profile, Updated!");
       addUserToLocalStorage({ user, token });
+      toast.success("User Profile, Updated!");
+      dispatch({ type: CLEAR_VALUES });
     } catch (error) {
       if (error.response.status !== 401) {
         toast.error(error.response.data.msg);
@@ -290,6 +298,10 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: SET_EDIT_POST, payload: { id } });
   };
 
+  const setEditUser = () => {
+    dispatch({ type: SET_EDIT_USER });
+  };
+
   //$ edit post
   const editPost = async (data) => {
     dispatch({ type: EDIT_POST_BEGIN });
@@ -306,7 +318,6 @@ const ContextProvider = ({ children }) => {
       });
 
       dispatch({ type: EDIT_POST_SUCCESS });
-      // dispatch({ type: CLEAR_VALUES });
       toast.success("Post edited successfully!");
  
     } catch (error) {
@@ -349,6 +360,7 @@ const ContextProvider = ({ children }) => {
         getSingleAuthorPost,
         clearAuthorSinglePost,
         setEditPost,
+        setEditUser,
         editPost,
         deletePost,
       }}

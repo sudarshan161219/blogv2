@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/EditPage";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
-import {convertToBase64} from "../../utils/convert";
-import validateUrl from "../../utils/validateUrls";
+import { convertToBase64 } from "../../utils/convert";
 import { useAppContext } from "../../context/Context";
 import { Toaster } from "react-hot-toast";
-
 
 import {
   AiOutlineUser,
@@ -28,9 +26,33 @@ const initialState = {
 };
 
 const EditPage = () => {
-  const { updateUserFn, isLoading } = useAppContext();
+  const {
+    updateUserFn,
+    isLoading,
+    setEditUser,
+    isEditing,
+    name,
+    userInfo,
+    instagram,
+    twitter,
+    linkden,
+    personalLink,
+    userImg,
+    user
+  } = useAppContext();
   const [values, setValues] = useState(initialState);
   const [file, setFile] = useState();
+
+  useEffect(() => {
+    setEditUser();
+    if (isEditing) {
+      if(file === undefined){
+         setFile(userImg);
+      }
+    }else{
+      setFile(file)
+    }
+  }, [isEditing]);
 
   const onUpload = async (e) => {
     const base64 = await convertToBase64(e.target.files[0]);
@@ -38,7 +60,10 @@ const EditPage = () => {
   };
 
   const handleChange = async (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -46,34 +71,8 @@ const EditPage = () => {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     data.userProfile = file;
-    const {
-      name,
-      userInfo,
-      userProfile,
-      personalLink,
-      twitter,
-      instagram,
-      linkden,
-    } = data;
-
-    // validateUrl(personalLink, twitter, instagram, linkden);
-  //   if (validateUrl(personalLink, twitter, instagram, linkden)) {
-  //  return
-  //       } 
-        updateUserFn({
-          name,
-          userInfo,
-          userProfile,
-          personalLink,
-          twitter,
-          instagram,
-          linkden,
-        });
-        
-      
-    if (!isLoading) {
-      e.currentTarget.reset();
-    }
+    updateUserFn(data);
+    e.currentTarget.reset();
   };
 
   return (
@@ -94,7 +93,6 @@ const EditPage = () => {
           <input
             className="file-input"
             type="file"
-            name="profileImg"
             id="profile"
             accept=".jpg,.png,.jpeg"
             onChange={onUpload}
@@ -107,6 +105,7 @@ const EditPage = () => {
               type="text"
               name="name"
               id="name"
+              defaultValue={name}
               // value={user.name}
               placeholder="name"
               onChange={handleChange}
@@ -121,6 +120,7 @@ const EditPage = () => {
               cols="30"
               placeholder="about your self"
               rows="10"
+              defaultValue={userInfo}
               onChange={handleChange}
             ></textarea>
           </label>
@@ -132,6 +132,7 @@ const EditPage = () => {
               name="personalLink"
               id="personal-link"
               placeholder="personal website"
+              defaultValue={personalLink}
               onChange={handleChange}
             />
           </label>
@@ -142,6 +143,7 @@ const EditPage = () => {
               name="twitter"
               id="twitter"
               placeholder="twitter"
+              defaultValue={twitter}
               onChange={handleChange}
             />
           </label>
@@ -153,6 +155,7 @@ const EditPage = () => {
               name="instagram"
               id="instagram"
               placeholder="instagram"
+              defaultValue={instagram}
               onChange={handleChange}
             />
           </label>
@@ -164,6 +167,7 @@ const EditPage = () => {
               name="linkden"
               id="linkden"
               placeholder="linkden"
+              defaultValue={linkden}
               onChange={handleChange}
             />
           </label>
