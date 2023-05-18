@@ -6,6 +6,7 @@ import { BsLink45Deg } from "react-icons/bs";
 import { convertToBase64 } from "../../utils/convert";
 import { useAppContext } from "../../context/Context";
 import { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import {
   AiOutlineUser,
@@ -18,7 +19,7 @@ import {
 const initialState = {
   name: "",
   userInfo: "",
-  profileImg: null,
+  userImg: null,
   personalLink: "",
   twitter: "",
   instagram: "",
@@ -38,21 +39,25 @@ const EditPage = () => {
     linkden,
     personalLink,
     userImg,
-    user
+    edited,
   } = useAppContext();
   const [values, setValues] = useState(initialState);
   const [file, setFile] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setEditUser();
-    if (isEditing) {
-      if(file === undefined){
-         setFile(userImg);
-      }
-    }else{
-      setFile(file)
+    if (file === undefined || " ") {
+      setFile(userImg);
+    } else {
+      setFile(file);
     }
-  }, [isEditing]);
+    if (edited) {
+      setTimeout(() => {
+        navigate("/user-profile/profile");
+      }, 1100);
+    }
+  }, [isEditing, edited, navigate]);
 
   const onUpload = async (e) => {
     const base64 = await convertToBase64(e.target.files[0]);
@@ -70,7 +75,7 @@ const EditPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
-    data.userProfile = file;
+    data.userImg = file;
     updateUserFn(data);
     e.currentTarget.reset();
   };
@@ -106,7 +111,6 @@ const EditPage = () => {
               name="name"
               id="name"
               defaultValue={name}
-              // value={user.name}
               placeholder="name"
               onChange={handleChange}
             />

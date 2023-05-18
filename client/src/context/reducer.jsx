@@ -74,6 +74,7 @@ const reducer = (state, action) => {
       isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
+      editUser: action.payload.editUser
     };
   }
 
@@ -151,6 +152,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+      edited: true,
       token: action.payload.token,
       user: action.payload.user,
     };
@@ -219,6 +221,13 @@ const reducer = (state, action) => {
       summary: "",
       coverImg: "",
       content: "",
+      name:"",
+      userInfo:"",
+      instagram:"",
+      twitter:"",
+      linkden:"",
+      personalLink:"",
+      userImg:"",
       postTags: [],
       edited: false,
       created: false,
@@ -251,8 +260,6 @@ const reducer = (state, action) => {
       content,
       postTags,
       category,
-      // edited:true,
-      // created:true,
     };
   }
 

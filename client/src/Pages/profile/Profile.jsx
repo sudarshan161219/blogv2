@@ -58,15 +58,21 @@ const Profile = () => {
                 </li>
             </ul>
 
-            <ul className="socials">
+            <ul className="socials link">
               <li className={twitter === " " ? "atag" : null}>
+              <a href={twitter || "https://www.google.com/"} target="_blank">
                 <AiOutlineTwitter className="social-icon" />
+                </a>
               </li>
               <li className={instagram === " " ? "atag" : null}>
+              <a href={instagram || "https://www.google.com/"} target="_blank">
                 <AiFillInstagram className="social-icon" />
+                </a>
               </li>
               <li className={linkden === " " ? "atag" : null}>
+              <a href={linkden || "https://www.google.com/"} target="_blank">
                 <AiFillLinkedin className="social-icon" />
+                </a>
               </li>
             </ul>
           </div>

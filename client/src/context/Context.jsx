@@ -46,13 +46,13 @@ const initialState = {
   dashNav: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
-  name:"",
-  userInfo:"",
-  instagram:"",
-  twitter:"",
-  linkden:"",
-  personalLink:"",
-  userImg:"",
+  name: "",
+  userInfo: "",
+  instagram: "",
+  twitter: "",
+  linkden: "",
+  personalLink: "",
+  userImg: "",
   title: "",
   summary: "",
   coverImg: "",
@@ -179,7 +179,24 @@ const ContextProvider = ({ children }) => {
   const updateUserFn = async (updateData) => {
     dispatch({ type: UPDATE_USER_BEGIN });
     try {
-      const { data } = await authFetch.patch("/updateUser", updateData);
+      const {
+        name,
+        userInfo,
+        instagram,
+        twitter,
+        linkden,
+        personalLink,
+        userImg,
+      } = updateData;
+      const { data } = await authFetch.patch("/updateUser", {
+        name,
+        userInfo,
+        instagram,
+        twitter,
+        linkden,
+        personalLink,
+        userImg,
+      });
       const { user, token } = data;
       dispatch({
         type: UPDATE_USER_SUCCESS,
@@ -187,7 +204,6 @@ const ContextProvider = ({ children }) => {
       });
       addUserToLocalStorage({ user, token });
       toast.success("User Profile, Updated!");
-      dispatch({ type: CLEAR_VALUES });
     } catch (error) {
       if (error.response.status !== 401) {
         toast.error(error.response.data.msg);
@@ -207,6 +223,7 @@ const ContextProvider = ({ children }) => {
         type: GET_PROFILE_SUCCESS,
         payload: { user },
       });
+      dispatch({ type: CLEAR_VALUES });
     } catch (error) {
       console.log(error);
       if (error.response.status === 401) {
@@ -218,7 +235,9 @@ const ContextProvider = ({ children }) => {
   const getAuthorPost = async () => {
     dispatch({ type: GET_AUTHOR_POST_BEGIN });
     try {
-      const { data } = await authFetch.get("/author-post", {credentials: 'omit'});
+      const { data } = await authFetch.get("/author-post", {
+        credentials: "omit",
+      });
       const { authorpost } = data;
       dispatch({
         type: GET_AUTHOR_POST_SUCCESS,
@@ -245,7 +264,9 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
     try {
       const { postId } = state;
-      const { data } = await authFetch.get(`/single-post/${id}`, {credentials: 'omit'});
+      const { data } = await authFetch.get(`/single-post/${id}`, {
+        credentials: "omit",
+      });
       const { singlepost } = data;
       dispatch({
         type: GET_AUTHOR_SINGLE_POST_SUCCESS,
@@ -319,7 +340,6 @@ const ContextProvider = ({ children }) => {
 
       dispatch({ type: EDIT_POST_SUCCESS });
       toast.success("Post edited successfully!");
- 
     } catch (error) {
       if (error.response.status === 401) {
         return;

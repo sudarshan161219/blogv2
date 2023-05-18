@@ -51,30 +51,21 @@ const login = async (req, res) => {
 
 //* PATCH req
 const updateUser = async (req, res) => {
-  const {
-    name,
-    userProfile,
-    userInfo,
-    personalLink,
-    twitter,
-    instagram,
-    linkden,
-  } = req.body;
+  // const {
+  //   name,
+  //   userProfile,
+  //   userInfo,
+  //   personalLink,
+  //   twitter,
+  //   instagram,
+  //   linkden,
+  // } = req.body;
 
-  const user = await User.findOne({ _id: req.user.userId });
-
-  if (!user) {
-    throw new UnauthenticatedError("Invalid Credentials");
-  }
-
-  name && (user.name = name),
-    userInfo && (user.userInfo = userInfo),
-    userProfile && (user.userImg = userProfile);
-  twitter && (user.twitter = twitter),
-    personalLink && (user.personalLink = personalLink),
-    instagram && (user.instagram = instagram),
-    linkden && (user.linkden = linkden),
-    await user.save();
+  const user = await User.findByIdAndUpdate({_id: req.user.userId}, req.body, {
+    new: true,
+    runValidators: true,
+  })
+  await user.save();
   const token = user.createJWT();
 
   return res.status(StatusCodes.OK).json({
