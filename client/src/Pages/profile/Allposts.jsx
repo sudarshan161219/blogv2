@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../context/Context";
 import { AuthorPosts, Loading } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
+import SearchComponent from "../../Components/SearchComponent";
 const Allposts = () => {
   const { getAuthorPost, authorpost, isLoading } = useAppContext();
   const [arr, setArr] = useState(authorpost);
@@ -16,6 +17,7 @@ const Allposts = () => {
   }
   return (
     <Wrapper>
+      <SearchComponent/>
       <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
       {authorpost.map((item) => (
         <AuthorPosts key={item._id} item={item} />

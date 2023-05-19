@@ -30,6 +30,7 @@ const getAllPost = async (req, res) => {
     .limit(20);
   return res.status(StatusCodes.OK).json({
     posts,
+    totalPost: posts.length
   });
 };
 
@@ -50,6 +51,7 @@ const authorPosts = async (req, res) => {
   //   .limit(20)
   return res.status(StatusCodes.OK).json({
     authorpost,
+    totalPost:  authorpost.length
   });
 };
 
