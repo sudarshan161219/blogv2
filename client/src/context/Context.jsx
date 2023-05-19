@@ -9,6 +9,8 @@ import {
   REGISTER_USER_ERROR,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  HANDLE_CHANGE,
+  HANDLE_SECLECT_CHANGE,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
   GET_PROFILE_BEGIN,
@@ -66,6 +68,9 @@ const initialState = {
   editPostId: "",
   authorpost: [],
   authors_post: post_id ? [] : null,
+
+  search:"",
+  category:"all",
 };
 const Context = createContext({});
 
@@ -125,6 +130,15 @@ const ContextProvider = ({ children }) => {
   const toggleDashNav = () => {
     dispatch({ type: TOGGLE_DASHNAV });
   };
+
+    //* global handle change
+    const handleChange = ({ name, value }) => {
+      dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
+    };
+
+    const handleSelectChange = (value) => {
+      dispatch({type:HANDLE_SECLECT_CHANGE, payload: { value }})
+    }
 
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
@@ -368,13 +382,14 @@ const ContextProvider = ({ children }) => {
         ...state,
         toggleSidebar,
         toggleDashNav,
+        handleChange,
+        handleSelectChange,
         registerFn,
         loginFn,
         getProfile,
         logoutUser,
         updateUserFn,
         createPost,
-        // handleContextSubmit,
         getAuthorPost,
         setPostId,
         getSingleAuthorPost,

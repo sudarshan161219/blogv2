@@ -6,6 +6,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
+  HANDLE_CHANGE,
+  HANDLE_SECLECT_CHANGE,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
   GET_PROFILE_BEGIN,
@@ -27,7 +29,6 @@ import {
   CLEAR_AUTHOR_SINGLE_POST,
   SET_EDIT_POST,
   SET_EDIT_USER,
-  HANDLE_CHANGE,
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
@@ -185,6 +186,10 @@ const reducer = (state, action) => {
 
   if (action.type === HANDLE_CHANGE) {
     return { ...state, [action.payload.name]: action.payload.value };
+  }
+
+  if(action.type === HANDLE_SECLECT_CHANGE){
+    return { ...state, category: action.payload.value };
   }
 
   if (action.type === CREATE_POST_BEGIN) {

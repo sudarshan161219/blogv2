@@ -31,7 +31,7 @@ const Wrapper = styled.div`
     outline: none;
     font-size: 1.1rem;
     padding: 0.5rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 15px;
     font-family: "Open Sans", sans-serif;
     letter-spacing: 1px;
     font-weight: 500;
