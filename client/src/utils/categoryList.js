@@ -2,8 +2,8 @@ const options = [
   { value: "All", label: "All" },
   { value: "Food", label: "Food" },
   { value: "Travel", label: "Travel" },
-  { value: "Lifestyle", label: "Lifestyle " },
   { value: "Fashion&beauty", label: "Fashion&beauty " },
+  { value: "Lifestyle", label: "Lifestyle " },
   { value: "Photography", label: "Photography" },
   { value: "Personal", label: "Personal" },
   { value: "DIY craft", label: "DIY craft" },
@@ -20,8 +20,28 @@ const options = [
   { value: "Religion", label: "Religion" },
   { value: "Political", label: "Political" },
   { value: "technology", label: "technology" },
+  { value: "Electronics", label: "Electronics" },
+  { value: "Clothing", label: "Clothing" },
+  { value: "Home&Garden", label: "Home & Garden" },
+  { value: "Sports&Outdoors", label: "Sports & Outdoors" },
+  { value: "Toys&Games", label: "Toys&Games" },
+  { value: "Beauty & Personal", label: "Beauty & Personal" },
+  { value: "Care", label: "Care" },
+  { value: "Books", label: "Books" },
+  { value: "Movies&TV Shows", label: "Movies & TV Shows" },
+  { value: "Pet-Supplies", label: "Pet Supplies" },
+  { value: "Food&Beverages", label: "Food&Beverages" },
+  { value: "Automotive", label: "Automotive" },
+  { value: "Health&Wellness", label: "Health & Wellness" },
+  { value: "Office-Supplies", label: "Office Supplies" },
+  { value: "Jewelry&Watches", label: "Jewelry & Watches" },
   { value: "Minimalism", label: "Minimalism" },
   { value: "Other", label: "Other" },
 ];
 
-export { options };
+const sortOptions = [
+  { value: "latest", label: "latest" },
+  { value: "oldest", label: "oldest" },
+]
+
+export { options, sortOptions };

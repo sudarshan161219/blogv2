@@ -1,12 +1,16 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
 import { StatusCodes } from "http-status-codes";
-import { BadRequestError, UnauthenticatedError, NotFoundError } from "../errors/export.mjs";
+import {
+  BadRequestError,
+  UnauthenticatedError,
+  NotFoundError,
+} from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const createPost = async (req, res) => {
-  const { title, summary, coverImg, content , postTags, category} = req.body;
-  if (!title || !summary || !coverImg || !content || !postTags || !category ) {
+  const { title, summary, coverImg, content, postTags, category } = req.body;
+  if (!title || !summary || !coverImg || !content || !postTags || !category) {
     throw new BadRequestError("please provide all values");
   }
 
@@ -30,20 +34,46 @@ const getAllPost = async (req, res) => {
     .limit(20);
   return res.status(StatusCodes.OK).json({
     posts,
-    totalPost: posts.length
+    totalPost: posts.length,
   });
 };
 
 const authorPosts = async (req, res) => {
+  const { search, sort, category } = req.query;
+
+  const queryObject = {
+    author: req.user.userId,
+  };
+
   const user = await User.findById({ _id: req.user.userId });
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
-  const authorpost = await Post.find({ author: req.user.userId })
-    .populate("author", ["name"])
-    .sort({ createdAt: -1 })
-    .limit(20);
+  //$ add stuff based on condition
+  if (category !== "all") {
+    queryObject.category = category;
+  }
+  if (search) {
+    queryObject.title = { $regex: search, $options: "i" };
+    // queryObject.summary = { $regex: search, $option: "i" };
+  }
+  //$ no Await
+  let result = Post.find(queryObject);
+  // .populate("author", ["name"])
+  // .sort({ createdAt: -1 })
+  // .limit(20);
+
+  //$chain sort condition
+  if (sort === "latest") {
+    result = result.sort("-createdAt");
+  }
+
+  if (sort === "oldest") {
+    result = result.sort("createdAt");
+  }
+
+  const authorpost = await result;
 
   // const authorpost = await Post.find({ author: req.user.userId })
   //   .populate("author", ["name"])
@@ -51,7 +81,7 @@ const authorPosts = async (req, res) => {
   //   .limit(20)
   return res.status(StatusCodes.OK).json({
     authorpost,
-    totalPost:  authorpost.length
+    totalPost: authorpost.length,
   });
 };
 
@@ -60,7 +90,7 @@ const getSinglePost = async (req, res) => {
   const singlepost = await Post.findById({ _id: postId });
 
   if (!singlepost) {
-    throw new NotFoundError(`No post with id : ${ postId}`);
+    throw new NotFoundError(`No post with id : ${postId}`);
   }
 
   checkPermissions(req.user, singlepost.author);
@@ -70,21 +100,16 @@ const getSinglePost = async (req, res) => {
 const editPost = async (req, res) => {
   const { id: postId } = req.params;
   const post = await Post.findById({ _id: postId });
-  // const { title, summary, coverImg, content } = req.body;
-
   if (!post) {
     throw new NotFoundError(`No post with id : ${id}`);
   }
-
   checkPermissions(req.user, post.author);
-
   const updatedJob = await Post.findOneAndUpdate({ _id: postId }, req.body, {
     new: true,
     runValidators: true,
   });
 
   res.status(StatusCodes.OK).json({ updatedJob });
-
 };
 
 const deletePost = async (req, res) => {

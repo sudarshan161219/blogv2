@@ -2,15 +2,25 @@ import React, { useState } from "react";
 import Wrapper from "../assets/Wrappers/SearchComponent";
 import { BsSearch } from "react-icons/bs";
 import Select from "react-select";
-import { options } from "../utils/categoryList";
+import { options, sortOptions } from "../utils/categoryList";
 import { useAppContext } from "../context/Context";
 const SearchComponent = () => {
-  const { handleChange, handleSelectChange, search, category, isLoading } = useAppContext();
-  const [selectedOption, setSelectedOption] = useState();
+  const {
+    handleChange,
+    handleSelectChange,
+    handleSortSelectChange,
+    search,
+    sort,
+    category,
+    isLoading,
+  } = useAppContext();
 
-  const SelectChange = (e) => {
-    // setSelectedOption(e.value);
+  const selectChange = (e) => {
     handleSelectChange(e.value);
+  };
+
+  const selectSortChange = (e) => {
+    handleSortSelectChange(e.value);
   };
 
   const handleSearch = (e) => {
@@ -35,12 +45,22 @@ const SearchComponent = () => {
           </div>
         </form>
       </div>
-      <Select
-       defaultValue={category}
-        name="category"
-        onChange={SelectChange}
-        options={options}
-      />
+      <div className="select-container">
+        <Select
+          defaultValue={category}
+          name="category"
+          placeholder="category"
+          onChange={selectChange}
+          options={options}
+        />
+        <Select
+          defaultValue={sort}
+          name="sort"
+          placeholder="latest - oldest"
+          onChange={selectSortChange}
+          options={sortOptions}
+        />
+      </div>
     </Wrapper>
   );
 };

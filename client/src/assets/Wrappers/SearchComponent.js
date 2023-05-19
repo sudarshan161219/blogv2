@@ -107,7 +107,7 @@ const Wrapper = styled.div`
   }
 
   .css-b62m3t-container{
-    width: 250px;
+    width: 210px;
     border-radius:10px;
   }
 
@@ -116,13 +116,27 @@ const Wrapper = styled.div`
     border-radius: 15px;
   }
 
+  .select-container{
+    display: flex;
+    gap: 1rem;
+  }
+
 
   @media (min-width: 1024px) {
     /* width: 800px; */
+    display: grid;
     margin: 0 auto;
     align-items: baseline;
     flex-direction: inherit;
+
+    .search-container-form {
+    width: 500px;
   }
+  .css-b62m3t-container{
+    width: 50%
+  }
+  }
+
 `;
 
 export default Wrapper;

@@ -7,7 +7,8 @@ import {
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   HANDLE_CHANGE,
-  HANDLE_SECLECT_CHANGE,
+  HANDLE_SELECT_CHANGE,
+  HANDLE_SELECT_SORT_CHANGE,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
   GET_PROFILE_BEGIN,
@@ -75,7 +76,7 @@ const reducer = (state, action) => {
       isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
-      editUser: action.payload.editUser
+      editUser: action.payload.editUser,
     };
   }
 
@@ -188,8 +189,12 @@ const reducer = (state, action) => {
     return { ...state, [action.payload.name]: action.payload.value };
   }
 
-  if(action.type === HANDLE_SECLECT_CHANGE){
+  if (action.type === HANDLE_SELECT_CHANGE) {
     return { ...state, category: action.payload.value };
+  }
+
+  if (action.type === HANDLE_SELECT_SORT_CHANGE) {
+    return { ...state, sort: action.payload.value };
   }
 
   if (action.type === CREATE_POST_BEGIN) {
@@ -226,13 +231,13 @@ const reducer = (state, action) => {
       summary: "",
       coverImg: "",
       content: "",
-      name:"",
-      userInfo:"",
-      instagram:"",
-      twitter:"",
-      linkden:"",
-      personalLink:"",
-      userImg:"",
+      name: "",
+      userInfo: "",
+      instagram: "",
+      twitter: "",
+      linkden: "",
+      personalLink: "",
+      userImg: "",
       postTags: [],
       edited: false,
       created: false,

@@ -24,8 +24,33 @@ const PostSchema = new Schema(
       type: Array,
       // unique:false
     },
+
     category: {
       type: String,
+      enum: [
+        "Food",
+        "Travel",
+        "Lifestyle",
+        "Fashion&beauty",
+        "Photography",
+        "Personal",
+        "DIY craft",
+        "Parenting",
+        "Music",
+        "Business",
+        "Art&design",
+        "Book&writing",
+        "Personal-finance",
+        "Interior-design",
+        "Sports",
+        "News",
+        "Movie",
+        "Religion",
+        "Political",
+        "technology",
+        "Minimalism",
+        "Other",
+      ],
       // unique:false
     },
     author: { type: Schema.Types.ObjectId, ref: "User" },
