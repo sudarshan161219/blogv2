@@ -4,24 +4,33 @@ import { AuthorPosts, Loading } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
 import SearchComponent from "../../Components/SearchComponent";
 const Allposts = () => {
-  const { getAuthorPost, authorpost, isLoading } = useAppContext();
+  const { getAuthorPost, authorpost, isLoading, search, sort, category } =
+    useAppContext();
   const [arr, setArr] = useState(authorpost);
 
   useEffect(() => {
     setArr(authorpost);
     getAuthorPost();
-  }, [arr]);
+  }, [arr, search, sort, category]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if () {
+  //   return <Loading />;
+  // }
   return (
     <Wrapper>
-      <SearchComponent/>
-      <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
-      {authorpost.map((item) => (
-        <AuthorPosts key={item._id} item={item} />
-      ))}
+      <SearchComponent />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
+          <div>
+            {authorpost.map((item) => (
+              <AuthorPosts key={item._id} item={item} />
+            ))}
+          </div>
+        </>
+      )}
     </Wrapper>
   );
 };

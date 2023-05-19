@@ -37,6 +37,7 @@ import {
   EDIT_POST_ERROR,
   DELETE_POST_BEGIN,
   CLEAR_VALUES,
+  CLEAR_FILTERS,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -146,6 +147,10 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: HANDLE_SELECT_SORT_CHANGE, payload: { value } });
   };
 
+  const clearFilters = () => {
+    dispatch({ type: CLEAR_FILTERS });
+  };
+
   const logoutUser = () => {
     dispatch({ type: LOGOUT_USER });
     removeUserFromLocalStorage();
@@ -253,9 +258,14 @@ const ContextProvider = ({ children }) => {
   };
 
   const getAuthorPost = async () => {
+    const { search, category, sort } = state;
+    let url = `/author-post?category=${category}&search=${search}&sort=${sort}`;
+    if (search) {
+      url = url + `search=${search}`;
+    }
     dispatch({ type: GET_AUTHOR_POST_BEGIN });
     try {
-      const { data } = await authFetch.get("/author-post", {
+      const { data } = await authFetch.get(url, {
         credentials: "omit",
       });
       const { authorpost } = data;
@@ -405,6 +415,7 @@ const ContextProvider = ({ children }) => {
         setEditUser,
         editPost,
         deletePost,
+        clearFilters,
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 const options = [
-  { value: "All", label: "All" },
+  { value: "all", label: "All" },
   { value: "Food", label: "Food" },
   { value: "Travel", label: "Travel" },
   { value: "Fashion&beauty", label: "Fashion&beauty " },

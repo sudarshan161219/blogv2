@@ -40,7 +40,7 @@ const Dashboardnav = () => {
             </Link>
           </li>
           <li>
-            <Link to="all-posts" className="Link ">
+            <Link to="author-post" className="Link ">
               <FiBookOpen className="dash-icons" />
              <span className="dash-nav-text">Posts</span> 
             </Link>

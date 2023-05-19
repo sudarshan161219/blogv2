@@ -24,6 +24,7 @@ const SearchComponent = () => {
   };
 
   const handleSearch = (e) => {
+    e.preventDefault()
     if (isLoading) return;
     handleChange({ name: e.target.name, value: e.target.value });
   };
@@ -37,7 +38,7 @@ const SearchComponent = () => {
             type="text"
             name="search"
             value={search}
-            placeholder="Find the topics you care about..."
+            placeholder="Search Posts"
             onChange={handleSearch}
           />
           <div className="icon-container">

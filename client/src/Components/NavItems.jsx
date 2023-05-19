@@ -17,7 +17,7 @@ const NavItems = () => {
   const userPath = location.pathname === "/user-profile";
   const userPathP = location.pathname === "/user-profile/profile";
   const userPathC = location.pathname === "/user-profile/createpost";
-  const userPathA = location.pathname === `/user-profile/all-posts`;
+  const userPathA = location.pathname === `/user-profile/author-post`;
   const userPathE = location.pathname === "/user-profile/edit";
   const userPathSP = location.pathname === `/user-profile/${postId }`;
   return (

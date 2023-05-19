@@ -28,14 +28,15 @@ const createPost = async (req, res) => {
 };
 
 const getAllPost = async (req, res) => {
-  const posts = await Post.find()
-    .populate("author", ["name"])
-    .sort({ createdAt: -1 })
-    .limit(20);
-  return res.status(StatusCodes.OK).json({
-    posts,
-    totalPost: posts.length,
-  });
+  // const posts = await Post.find()
+  //   .populate("author", ["name"])
+  //   .sort({ createdAt: -1 })
+  //   .limit(20);
+  // return res.status(StatusCodes.OK).json({
+  //   posts,
+  //   totalPost: posts.length,
+  // });
+  return res.send('get all post')
 };
 
 const authorPosts = async (req, res) => {
@@ -55,8 +56,7 @@ const authorPosts = async (req, res) => {
     queryObject.category = category;
   }
   if (search) {
-    queryObject.title = { $regex: search, $options: "i" };
-    // queryObject.summary = { $regex: search, $option: "i" };
+    queryObject.title= { $regex: search, $options: "i" };
   }
   //$ no Await
   let result = Post.find(queryObject);
@@ -73,12 +73,11 @@ const authorPosts = async (req, res) => {
     result = result.sort("createdAt");
   }
 
-  const authorpost = await result;
+  const authorpost = await result
+    // .populate("author", ["name"])
+    // .sort({ createdAt: -1 })
+    // .limit(20)
 
-  // const authorpost = await Post.find({ author: req.user.userId })
-  //   .populate("author", ["name"])
-  //   .sort({ createdAt: -1 })
-  //   .limit(20)
   return res.status(StatusCodes.OK).json({
     authorpost,
     totalPost: authorpost.length,

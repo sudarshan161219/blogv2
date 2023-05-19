@@ -35,6 +35,7 @@ import {
   EDIT_POST_ERROR,
   CLEAR_VALUES,
   DELETE_POST_BEGIN,
+  CLEAR_FILTERS,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -195,6 +196,15 @@ const reducer = (state, action) => {
 
   if (action.type === HANDLE_SELECT_SORT_CHANGE) {
     return { ...state, sort: action.payload.value };
+  }
+
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      search: "",
+      category: "all",
+      sort: "",
+    };
   }
 
   if (action.type === CREATE_POST_BEGIN) {
