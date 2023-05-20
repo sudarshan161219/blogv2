@@ -54,8 +54,9 @@ const Wrapper = styled.div`
     transform: translateY(0);
   }
 
+
   
-  .btns  > button{
+  .pageBtn{
     width: 30px;
     height: 30px;
     margin: 0.1rem 0.1rem;
@@ -83,7 +84,7 @@ const Wrapper = styled.div`
     will-change: transform;
   }
 
-  .btns  > button:hover{
+  .pageBtn:hover{
     -webkit-tap-highlight-color: transparent;
     color: #fff;
     background-color: #1a1a1a;
@@ -91,9 +92,15 @@ const Wrapper = styled.div`
     transform: translateY(-2px);
   }
 
-  .btns  > button:active{
+  /* .pageBtn:active{
     box-shadow: none;
     transform: translateY(0);
+  } */
+
+ .active{
+    color: #fff;
+    background-color: #1a1a1a;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   }
 `;
 

@@ -38,6 +38,7 @@ import {
   DELETE_POST_BEGIN,
   CLEAR_VALUES,
   CLEAR_FILTERS,
+  CHANGE_PAGE,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -260,8 +261,8 @@ const ContextProvider = ({ children }) => {
   };
 
   const getAuthorPost = async () => {
-    const { search, SearchCategory, sort } = state;
-    let url = `/author-post?category=${SearchCategory}&search=${search}&sort=${sort}`;
+    const { search, SearchCategory, sort, page } = state;
+    let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
     if (search) {
       url = url + `search=${search}`;
     }
@@ -395,6 +396,10 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const changePage = (page) => {
+    dispatch({ type: CHANGE_PAGE, payload: { page } });
+  };
+
   return (
     <Context.Provider
       value={{
@@ -419,6 +424,7 @@ const ContextProvider = ({ children }) => {
         editPost,
         deletePost,
         clearFilters,
+        changePage,
       }}
     >
       {children}

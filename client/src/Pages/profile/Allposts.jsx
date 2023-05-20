@@ -17,13 +17,14 @@ const Allposts = () => {
     search,
     sort,
     SearchCategory,
+    page
   } = useAppContext();
   const [arr, setArr] = useState(authorpost);
 
   useEffect(() => {
     setArr(authorpost);
     getAuthorPost();
-  }, [arr, search, sort, SearchCategory]);
+  }, [arr, search, sort, SearchCategory, page]);
 
   return (
     <Wrapper>
@@ -38,9 +39,9 @@ const Allposts = () => {
               <AuthorPosts key={item._id} item={item} />
             ))}
           </div>
-          {numOfPages > 1 && <PageBtnContainer />}
         </>
       )}
+      {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
   );
 };

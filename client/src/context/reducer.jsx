@@ -36,6 +36,7 @@ import {
   CLEAR_VALUES,
   DELETE_POST_BEGIN,
   CLEAR_FILTERS,
+  CHANGE_PAGE
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -148,7 +149,7 @@ const reducer = (state, action) => {
     };
   }
 
-  // $
+
   if (action.type === UPDATE_USER_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -306,6 +307,13 @@ const reducer = (state, action) => {
       personalLink,
       userImg,
     };
+  }
+
+  if (action.type === CHANGE_PAGE) {
+    return{
+      ...state,
+      page: action.payload.page
+    }
   }
 
   throw new Error(`no such action : ${action.type}`);

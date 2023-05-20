@@ -46,3 +46,4 @@ export const EDIT_POST_ERROR = "EDIT_POST_ERROR";
 export const DELETE_POST_BEGIN = "DELETE_POST_BEGIN";
 export const SET_EDIT_USER = "SET_EDIT_USER";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
+export const CHANGE_PAGE = "CHANGE_PAGE"
