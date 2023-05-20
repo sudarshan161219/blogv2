@@ -71,13 +71,13 @@ const Createpost = () => {
 
     if (created) {
       setTimeout(() => {
-        navigate("/user-profile/all-posts");
+        navigate("/user-profile/author-post");
       }, 1100);
     }
 
     if (edited) {
       setTimeout(() => {
-        navigate("/user-profile/all-posts");
+        navigate("/user-profile/author-post");
       }, 1100);
     }
 
@@ -142,7 +142,6 @@ const Createpost = () => {
   const onKeyDown = (e) => {
     const { key } = e;
     const trimmedInput = input.trim();
-
     if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
       e.preventDefault();
       setTags((prevState) => [...prevState, "#" + trimmedInput]);
@@ -154,14 +153,6 @@ const Createpost = () => {
         setTags(uniqueChars);
         setInput("");
       }
-    }
-
-    if (key === "Backspace" && !input.length && tags.length) {
-      e.preventDefault();
-      const tagsCopy = [...tags];
-      const poppedTag = tagsCopy.pop();
-      setTags(tagsCopy);
-      setInput(poppedTag);
     }
   };
 

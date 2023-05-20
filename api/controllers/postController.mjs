@@ -40,7 +40,7 @@ const getAllPost = async (req, res) => {
 };
 
 const authorPosts = async (req, res) => {
-  const { search, sort, category } = req.query;
+  const { search, sort, category} = req.query;
 
   const queryObject = {
     author: req.user.userId,
@@ -53,16 +53,13 @@ const authorPosts = async (req, res) => {
 
   //$ add stuff based on condition
   if (category !== "all") {
-    queryObject.category = category;
+    queryObject.category =  category;
   }
   if (search) {
     queryObject.title= { $regex: search, $options: "i" };
   }
   //$ no Await
   let result = Post.find(queryObject);
-  // .populate("author", ["name"])
-  // .sort({ createdAt: -1 })
-  // .limit(20);
 
   //$chain sort condition
   if (sort === "latest") {
@@ -74,9 +71,6 @@ const authorPosts = async (req, res) => {
   }
 
   const authorpost = await result
-    // .populate("author", ["name"])
-    // .sort({ createdAt: -1 })
-    // .limit(20)
 
   return res.status(StatusCodes.OK).json({
     authorpost,

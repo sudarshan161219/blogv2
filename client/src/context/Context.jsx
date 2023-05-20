@@ -61,8 +61,8 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
+  category:"",
   postTags: [],
-  category: "",
   isEditing: false,
   edited: false,
   created: false,
@@ -72,7 +72,7 @@ const initialState = {
   authors_post: post_id ? [] : null,
 
   search: "",
-  category: "all",
+  SearchCategory: "all",
   sort: "",
 };
 const Context = createContext({});
@@ -258,8 +258,8 @@ const ContextProvider = ({ children }) => {
   };
 
   const getAuthorPost = async () => {
-    const { search, category, sort } = state;
-    let url = `/author-post?category=${category}&search=${search}&sort=${sort}`;
+    const { search, SearchCategory, sort } = state;
+    let url = `/author-post?category=${SearchCategory}&search=${search}&sort=${sort}`;
     if (search) {
       url = url + `search=${search}`;
     }
@@ -317,7 +317,7 @@ const ContextProvider = ({ children }) => {
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
     try {
-      const { title, summary, coverImg, content, postTags } = data;
+      const { title, summary, coverImg, content, postTags, category } = data;
       await authFetch.post("/createpost", {
         title,
         summary,
@@ -328,12 +328,13 @@ const ContextProvider = ({ children }) => {
       });
 
       dispatch({ type: CREATE_POST_SUCCESS });
-      // dispatch({ type: CLEAR_VALUES });
+      dispatch({ type: CLEAR_VALUES });
       toast.success("Post successfully created!");
     } catch (error) {
       if (error.response.status === 401) {
         return;
       }
+      console.log(error);
       toast.error(error.response.data.msg);
       dispatch({
         type: CREATE_POST_ERROR,

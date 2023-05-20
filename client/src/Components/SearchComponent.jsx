@@ -11,7 +11,7 @@ const SearchComponent = () => {
     handleSortSelectChange,
     search,
     sort,
-    category,
+    SearchCategory,
     isLoading,
   } = useAppContext();
 
@@ -48,8 +48,8 @@ const SearchComponent = () => {
       </div>
       <div className="select-container">
         <Select
-          defaultValue={category}
-          name="category"
+          defaultValue={SearchCategory}
+          name="SearchCategory"
           placeholder="category"
           onChange={selectChange}
           options={options}

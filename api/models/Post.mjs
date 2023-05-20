@@ -53,6 +53,10 @@ const PostSchema = new Schema(
       // ],
       // unique:false
     },
+
+    // SearchCategory:{
+    //   type: String,
+    // },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
 

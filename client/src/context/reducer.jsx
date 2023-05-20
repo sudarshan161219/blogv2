@@ -191,7 +191,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === HANDLE_SELECT_CHANGE) {
-    return { ...state, category: action.payload.value };
+    return { ...state, SearchCategory: action.payload.value };
   }
 
   if (action.type === HANDLE_SELECT_SORT_CHANGE) {
@@ -202,7 +202,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       search: "",
-      category: "all",
+      SearchCategory: "all",
       sort: "",
     };
   }

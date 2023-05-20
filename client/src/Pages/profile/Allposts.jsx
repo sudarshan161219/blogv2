@@ -4,14 +4,14 @@ import { AuthorPosts, Loading } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
 import SearchComponent from "../../Components/SearchComponent";
 const Allposts = () => {
-  const { getAuthorPost, authorpost, isLoading, search, sort, category } =
+  const { getAuthorPost, authorpost, isLoading, search, sort, SearchCategory } =
     useAppContext();
   const [arr, setArr] = useState(authorpost);
 
   useEffect(() => {
     setArr(authorpost);
     getAuthorPost();
-  }, [arr, search, sort, category]);
+  }, [arr, search, sort, SearchCategory]);
 
   // if () {
   //   return <Loading />;
