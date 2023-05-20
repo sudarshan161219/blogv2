@@ -1,56 +1,43 @@
 import React from "react";
 import Wrapper from "../assets/Wrappers/PageBtnContainer";
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
-
+import { useAppContext } from "../context/Context";
 const PageBtnContainer = () => {
+  const { numOfPages, page } = useAppContext();
+
+  const pages = Array.from({ length: numOfPages }, (_, index) => {
+    return index + 1;
+  });
+  const nextPage = () => {
+    console.log("next page");
+  };
+
+  const prevPage = () => {
+    console.log("prev page");
+  };
+
   return (
     <Wrapper>
-      {/* <button className="prev-btn">
-        <HiChevronDoubleLeft />
-        prev
-      </button> */}
       <div className="btns">
-      <div className="prev-btn">
-        <HiChevronDoubleLeft />
-        prev
+        <div className="prev-btn" onClick={prevPage}>
+          <HiChevronDoubleLeft />
+          prev
+        </div>
+        {pages.map((pageNum) => (
+          <button
+            type="button"
+            className={pageNum === page ? "pageBtn active" : "pageBtn"}
+            key={pageNum}
+            onClick={() => console.log("change page")}
+          >
+            {pageNum}
+          </button>
+        ))}
+        <div className="next-btn" onClick={nextPage}>
+          next
+          <HiChevronDoubleRight />
+        </div>
       </div>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <button>b</button>
-        <div className="next-btn">
-        <span>next</span>
-        <HiChevronDoubleRight />
-      </div>
-      </div>
-      {/* <button className="next-btn">
-        <span>next</span>
-        <HiChevronDoubleRight />
-      </button> */}
     </Wrapper>
   );
 };
