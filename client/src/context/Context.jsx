@@ -61,7 +61,7 @@ const initialState = {
   summary: "",
   coverImg: "",
   content: "",
-  category:"",
+  category: "",
   postTags: [],
   isEditing: false,
   edited: false,
@@ -70,7 +70,9 @@ const initialState = {
   editPostId: "",
   authorpost: [],
   authors_post: post_id ? [] : null,
-
+  numOfPages: 1,
+  totalPosts: 0,
+  page: 1,
   search: "",
   SearchCategory: "all",
   sort: "",
@@ -268,10 +270,10 @@ const ContextProvider = ({ children }) => {
       const { data } = await authFetch.get(url, {
         credentials: "omit",
       });
-      const { authorpost } = data;
+      const { authorpost, totalPosts, numOfPages } = data;
       dispatch({
         type: GET_AUTHOR_POST_SUCCESS,
-        payload: { authorpost },
+        payload: { authorpost, totalPosts, numOfPages },
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {

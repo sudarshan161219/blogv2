@@ -109,6 +109,8 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       authorpost: action.payload.authorpost,
+      totalPosts: action.payload.totalPosts,
+      numOfPages: action.payload.numOfPages,
     };
   }
 

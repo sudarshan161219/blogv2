@@ -15,6 +15,8 @@ import Dashboardnav from "./Dashboardnav";
 import TextEditor from "./TextEditor";
 import AuthorPosts from "./AuthorPosts";
 import CategoryBox from "./CategoryBox";
+import PageBtnContainer from "./PageBtnContainer"
+import SearchComponent from "./SearchComponent"
 export {
   AboutHeroS,
   AboutS,
@@ -32,5 +34,7 @@ export {
   Navlinks,
   Sidebar,
   TextEditor,
-  CategoryBox
+  CategoryBox,
+  SearchComponent,
+  PageBtnContainer
 };

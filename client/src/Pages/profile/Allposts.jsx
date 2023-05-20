@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../context/Context";
-import { AuthorPosts, Loading } from "../../Components/export";
+import {
+  AuthorPosts,
+  Loading,
+  PageBtnContainer,
+  SearchComponent,
+} from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
-import SearchComponent from "../../Components/SearchComponent";
+
 const Allposts = () => {
-  const { getAuthorPost, authorpost, isLoading, search, sort, SearchCategory } =
-    useAppContext();
+  const {
+    numOfPages,
+    getAuthorPost,
+    authorpost,
+    isLoading,
+    search,
+    sort,
+    SearchCategory,
+  } = useAppContext();
   const [arr, setArr] = useState(authorpost);
 
   useEffect(() => {
@@ -13,9 +25,6 @@ const Allposts = () => {
     getAuthorPost();
   }, [arr, search, sort, SearchCategory]);
 
-  // if () {
-  //   return <Loading />;
-  // }
   return (
     <Wrapper>
       <SearchComponent />
@@ -29,6 +38,7 @@ const Allposts = () => {
               <AuthorPosts key={item._id} item={item} />
             ))}
           </div>
+          {numOfPages > 1 && <PageBtnContainer />}
         </>
       )}
     </Wrapper>
