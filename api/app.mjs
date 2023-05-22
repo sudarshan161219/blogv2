@@ -31,7 +31,7 @@ app.use(express.static('profile'));
 
 
 //* HTTP GET Request
-app.get("/", (req, res) => {
+app.get("/",  (req, res) => {
     res.send("Home")
 })
 

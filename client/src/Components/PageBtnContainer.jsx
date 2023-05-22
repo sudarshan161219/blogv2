@@ -10,47 +10,42 @@ const PageBtnContainer = () => {
   });
 
   const prevPage = () => {
-    let newPage = page - 1 
-    if(newPage < 1){
-        newPage = 1
+    let newPage = page - 1;
+    if (newPage < 1) {
+      newPage = 1;
     }
-    changePage(newPage)
+    changePage(newPage);
   };
 
   const nextPage = () => {
-    let newPage = page + 1 
-    if(newPage > numOfPages){
-        newPage = numOfPages
+    let newPage = page + 1;
+    if (newPage > numOfPages) {
+      newPage = numOfPages;
     }
-    changePage(newPage)
+    changePage(newPage);
   };
-
-
-
-  console.log(page);
 
   return (
     <Wrapper>
-      <div className="btns">
-        <div className="prev-btn" onClick={prevPage}>
-          <HiChevronDoubleLeft />
-          prev
-        </div>
+
+<ul className="btns">
+      <div className="prev-btn" onClick={prevPage}>
+        <HiChevronDoubleLeft />
+      </div>
         {pages.map((pageNum) => (
-          <button
+          <li
             type="button"
             className={pageNum === page ? "pageBtn active" : "pageBtn"}
             key={pageNum}
-            onClick={() =>changePage(pageNum)}
+            onClick={() => changePage(pageNum)}
           >
             {pageNum}
-          </button>
+          </li>
         ))}
-        <div className="next-btn" onClick={nextPage}>
-          next
-          <HiChevronDoubleRight />
-        </div>
+      <div className="next-btn" onClick={nextPage}>
+        <HiChevronDoubleRight />
       </div>
+</ul>
     </Wrapper>
   );
 };

@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  /* height: 6rem; */
+width: 100%;
   margin-top: 2rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.3rem;
 
-  .btns {
+
+  .btns{
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.2rem;
+    flex-wrap:wrap;
   }
 
   .prev-btn,
   .next-btn {
-    padding: 0 0.5rem;
+    padding: 0.5rem 0.5rem;
     margin:0 0.5rem;
     display: flex;
     align-items: center;
@@ -59,12 +59,13 @@ const Wrapper = styled.div`
   .pageBtn{
     width: 30px;
     height: 30px;
-    margin: 0.1rem 0.1rem;
+    /* margin: 0.1rem 0.1rem; */
     cursor: pointer;
     appearance: none;
     background-color: transparent;
-    border: 1px solid #1c1c1c;
-    border-radius: 8px;
+    /* border: 1px solid #1c1c1c; */
+    border: none;
+    /* border-radius: 8px; */
     box-sizing: border-box;
     color: #1c1c1c;
     cursor: pointer;
@@ -102,6 +103,16 @@ const Wrapper = styled.div`
     background-color: #1a1a1a;
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   }
+
+  @media (min-width: 500px) {
+   justify-content:center ;
+  }
+
+
+  @media (min-width: 1024px) {
+   justify-content:end ;
+  }
+
 `;
 
 export default Wrapper;
