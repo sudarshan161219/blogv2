@@ -19,11 +19,11 @@ const AuthorPosts = ({ item }) => {
       <div className=" authorpost-container">
         <div className="image-containner">
           <img src={coverImg} alt="dummyImg" />
+          <strong className="strong">{Fdate}</strong>
         </div>
         <div className="content-container">
           <span>{category}</span>
-          <h2>{title}</h2>
-          <strong>{Fdate}</strong>
+          <h2>{title.length > 10 ? title.slice(0, 30) + "..." : null}</h2>
           {/* <p>{summary}</p> */}
           <div className="action-link-container">
             <div className="action-container">

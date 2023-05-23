@@ -491,6 +491,11 @@ h5 {
   } */
 }
 
+.ql-snow{
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
 
 .ql-editor strong{
   font-weight:bold;

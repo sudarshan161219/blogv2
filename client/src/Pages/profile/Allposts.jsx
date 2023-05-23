@@ -34,7 +34,7 @@ const Allposts = () => {
       ) : (
         <>
           <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
-          <div>
+          <div className="card">
             {authorpost.map((item) => (
               <AuthorPosts key={item._id} item={item} />
             ))}

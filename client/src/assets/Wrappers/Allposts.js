@@ -13,9 +13,25 @@ const Wrapper = styled.div`
     margin: 0 auto;
   }
 
-  /* @media (min-width: 1366px) {
+  @media (min-width: 768px) {
+    .card {
+      grid-template-columns: repeat(3, 1fr);
+      display: grid;
+      gap: 1rem;
+    }
+  }
 
-  } */
+  @media (min-width: 1024px) {
+    .card {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1366px) {
+    .card {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 `;
 
 export default Wrapper;
