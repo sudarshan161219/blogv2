@@ -17,6 +17,8 @@ import AuthorPosts from "./AuthorPosts";
 import CategoryBox from "./CategoryBox";
 import PageBtnContainer from "./PageBtnContainer"
 import SearchComponent from "./SearchComponent"
+import SkeletonLoding from "./SkeletonLoding";
+
 export {
   AboutHeroS,
   AboutS,
@@ -36,5 +38,6 @@ export {
   TextEditor,
   CategoryBox,
   SearchComponent,
-  PageBtnContainer
+  PageBtnContainer,
+  SkeletonLoding
 };

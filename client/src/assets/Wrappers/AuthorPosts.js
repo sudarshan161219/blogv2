@@ -4,7 +4,6 @@ const Wrapper = styled.div`
   .authorpost-container {
     display: grid;
     gap: 1rem;
-    /* justify-content: center; */
     border-radius: 8px;
     overflow: hidden;
     margin-top: 1rem;
@@ -21,36 +20,18 @@ const Wrapper = styled.div`
     position: relative;
   }
 
-  /* .image-containner:before {
-    content: " ";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-  } */
-
   .strong {
     position: absolute;
-    left: 0;
-    top: 0;
-    color: #fff;
-    font-size: 0.8rem;
     padding: 0.3rem;
-    background: #0F0E0E;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: black;
+    right: 0;
+    top: 0;
+    color: aliceblue;
+    border-radius: 8px;
   }
-
   .content-container {
     display: grid;
-    /* justify-content: center; */
+    justify-content: center;
     text-align: center;
     gap: 0.5rem;
     line-height: 1.1;
@@ -62,7 +43,9 @@ const Wrapper = styled.div`
     font-size: 1.2rem;
   }
 
-  span {
+  span,
+  strong {
+    font-size: 0.8rem;
     text-transform: uppercase;
     color: rgba(28, 28, 28, 0.486);
   }
@@ -103,7 +86,7 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     .authorpost-container {
-      width: 300px;
+      width: 320px;
       border-radius: 8px;
     }
 
@@ -116,8 +99,6 @@ const Wrapper = styled.div`
     .content-container {
       text-align: left;
       border-radius: 8px;
-      /* width: 70%; */
-      padding: 0 0.5rem;
     }
 
     .content-container > h2 {

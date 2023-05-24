@@ -3,6 +3,7 @@ import { useAppContext } from "../../context/Context";
 import {
   AuthorPosts,
   Loading,
+  SkeletonLoding,
   PageBtnContainer,
   SearchComponent,
 } from "../../Components/export";
@@ -17,7 +18,7 @@ const Allposts = () => {
     search,
     sort,
     SearchCategory,
-    page
+    page,
   } = useAppContext();
   const [arr, setArr] = useState(authorpost);
 
@@ -29,18 +30,18 @@ const Allposts = () => {
   return (
     <Wrapper>
       <SearchComponent />
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
-          <div className="card">
-            {authorpost.map((item) => (
+      <>
+        <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
+        <div className="card">
+          {authorpost.map((item) =>
+            isLoading ? (
+              <SkeletonLoding key={item._id} />
+            ) : (
               <AuthorPosts key={item._id} item={item} />
-            ))}
-          </div>
-        </>
-      )}
+            )
+          )}
+        </div>
+      </>
       {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
   );

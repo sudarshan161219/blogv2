@@ -10,9 +10,6 @@ const Wrapper = styled.div`
   gap: 1rem;
   /* padding-top: 5rem; */
   margin-bottom: 3rem;
-  .search-container {
-    width: 95%;
-  }
 
   .search-container-form {
     position: relative;

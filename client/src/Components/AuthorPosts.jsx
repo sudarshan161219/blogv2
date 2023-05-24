@@ -8,15 +8,15 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
 
 const AuthorPosts = ({ item }) => {
-  const { setEditPost, deletePost } = useAppContext();
-  const { _id, title, summary, coverImg, createdAt , category} = item;
+  const { setEditPost, deletePost, isLoading } = useAppContext();
+  const { _id, title, summary, coverImg, createdAt, category } = item;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
 
   return (
     <Wrapper>
-      <div className=" authorpost-container">
+      <div className= "authorpost-container">
         <div className="image-containner">
           <img src={coverImg} alt="dummyImg" />
           <strong className="strong">{Fdate}</strong>
@@ -24,7 +24,6 @@ const AuthorPosts = ({ item }) => {
         <div className="content-container">
           <span>{category}</span>
           <h2>{title.length > 10 ? title.slice(0, 30) + "..." : null}</h2>
-          {/* <p>{summary}</p> */}
           <div className="action-link-container">
             <div className="action-container">
               <Link
@@ -47,6 +46,7 @@ const AuthorPosts = ({ item }) => {
           </div>
         </div>
       </div>
+
     </Wrapper>
   );
 };
