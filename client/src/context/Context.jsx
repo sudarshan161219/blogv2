@@ -59,7 +59,6 @@ const initialState = {
   personalLink: "",
   userImg: "",
   title: "",
-  summary: "",
   coverImg: "",
   content: "",
   category: "",
@@ -320,10 +319,9 @@ const ContextProvider = ({ children }) => {
   const createPost = async (data) => {
     dispatch({ type: CREATE_POST_BEGIN });
     try {
-      const { title, summary, coverImg, content, postTags, category } = data;
+      const { title, coverImg, content, postTags, category } = data;
       await authFetch.post("/createpost", {
         title,
-        summary,
         coverImg,
         content,
         postTags,
@@ -331,7 +329,6 @@ const ContextProvider = ({ children }) => {
       });
 
       dispatch({ type: CREATE_POST_SUCCESS });
-      dispatch({ type: CLEAR_VALUES });
       toast.success("Post successfully created!");
     } catch (error) {
       if (error.response.status === 401) {
@@ -362,10 +359,9 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: EDIT_POST_BEGIN });
     const { editPostId } = state;
     try {
-      const { title, summary, coverImg, content, postTags, category } = data;
+      const { title,  coverImg, content, postTags, category } = data;
       await authFetch.patch(`/ud/${editPostId}`, {
         title,
-        summary,
         coverImg,
         content,
         postTags,

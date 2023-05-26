@@ -31,16 +31,18 @@ const Allposts = () => {
     <Wrapper>
       <SearchComponent />
       <>
-        <h1>{authorpost.length === 0 ? "no Post" : "your Posts"}</h1>
-        <div className="card">
-          {authorpost.map((item) =>
-            isLoading ? (
-              <SkeletonLoding key={item._id} />
-            ) : (
+        <h1>{authorpost.length === 0 ? "no Posts yet" : "your Posts"}</h1>
+        {isLoading ? (
+          <div>
+            <SkeletonLoding />
+          </div>
+        ) : (
+          <div className="card">
+            {authorpost.map((item) => (
               <AuthorPosts key={item._id} item={item} />
-            )
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </>
       {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>

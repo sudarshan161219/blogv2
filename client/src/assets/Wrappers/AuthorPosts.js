@@ -17,7 +17,9 @@ const Wrapper = styled.div`
 
   .image-containner {
     width: 100%;
+    height: 180px;
     position: relative;
+    overflow: hidden;
   }
 
   .strong {

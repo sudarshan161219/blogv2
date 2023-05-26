@@ -10,6 +10,23 @@ const SkeletonLoding = () => {
           <div className="description"></div>
         </div>
       </div>
+
+      <div className="post-card loader">
+        <div className="image"></div>
+        <div className="content">
+          <h4></h4>
+          <div className="description"></div>
+        </div>
+      </div>
+
+
+      <div className="post-card loader">
+        <div className="image"></div>
+        <div className="content">
+          <h4></h4>
+          <div className="description"></div>
+        </div>
+      </div>
     </Wrapper>
   );
 };

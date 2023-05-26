@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+      display: grid;
+      gap: 1rem;
   .post-card {
     display: grid;
     width: 100%;
@@ -70,11 +72,17 @@ const Wrapper = styled.div`
     animation-delay: 0.06s;
   }
 
+@media (min-width: 768px) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
   @media (min-width: 1024px) {
     .post-card {
       width: 320px;
     }
   }
+
+
 `;
 
 export default Wrapper;

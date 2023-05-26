@@ -9,8 +9,8 @@ import {
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const createPost = async (req, res) => {
-  const { title, summary, coverImg, content, postTags, category } = req.body;
-  if (!title || !summary || !coverImg || !content || !postTags || !category) {
+  const { title,  coverImg, content, postTags, category } = req.body;
+  if (!title || !coverImg || !content || !postTags || !category) {
     throw new BadRequestError("please provide all values");
   }
 
@@ -28,14 +28,6 @@ const createPost = async (req, res) => {
 };
 
 const getAllPost = async (req, res) => {
-  // const posts = await Post.find()
-  //   .populate("author", ["name"])
-  //   .sort({ createdAt: -1 })
-  //   .limit(20);
-  // return res.status(StatusCodes.OK).json({
-  //   posts,
-  //   totalPost: posts.length,
-  // });
   return res.send('get all post')
 };
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
-import dummyImg from "../../assets/imgs/dummy-cover.jpg";
+import dummyImg from "../../assets/imgs/dummy-cover.webp";
 import { useAppContext } from "../../context/Context";
 import { useQuill } from "react-quilljs";
 import imageCompression from "browser-image-compression";
@@ -22,7 +22,6 @@ import {
 
 const initialState = {
   title: "",
-  summary: "",
 };
 
 const Createpost = () => {
@@ -43,7 +42,7 @@ const Createpost = () => {
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
   const [vquill, setVQuill] = useState();
-  const { quill, quillRef, Quill } = useQuill({
+  const { quill, quillRef } = useQuill({
     modules,
     formats,
     placeholder,
@@ -51,7 +50,9 @@ const Createpost = () => {
   });
   const [input, setInput] = useState("");
   const [tags, setTags] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(isEditing ? category : null);
+  const [selectedOption, setSelectedOption] = useState(
+    isEditing ? category : null
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -80,9 +81,7 @@ const Createpost = () => {
         navigate("/user-profile/author-post");
       }, 1100);
     }
-
   }, [quill, edited, created, navigate]);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,7 +93,7 @@ const Createpost = () => {
     data.postTags = isEditing ? newTag : tags;
     data.category = selectedOption;
 
-    const { title, summary, coverImg, content, postTags, category } = data;
+    const { title, coverImg, content, postTags, category } = data;
 
     if (isEditing) {
       editPost(data);
@@ -102,7 +101,7 @@ const Createpost = () => {
       return;
     }
 
-    if (!title || !summary || !coverImg || !content || !postTags || !category) {
+    if (!title || !coverImg || !content || !postTags || !category) {
       toast.error("please provide all values");
     } else {
       createPost(data);
@@ -163,11 +162,9 @@ const Createpost = () => {
     }
   };
 
-  const handleSelectChange =  (e) => {
-    setSelectedOption(e.value)
- }
-
-
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.value);
+  };
 
   return (
     <>
@@ -191,26 +188,10 @@ const Createpost = () => {
                   />
                 </label>
 
-                <label className="title-input">
-                  Summary
-                  <input
-                    type="summary"
-                    name="summary"
-                    placeholder="summary"
-                    id="summary"
-                    defaultValue={summary}
-                    onChange={handleChange}
-                  />
-                </label>
-
                 <div className="cover-img-container">
                   <span>Cover image</span>
                   <label className="image-label" htmlFor="cover-image">
-                    <img
-                      className="cover-img"
-                      src={file || dummyImg}
-                      alt="loading"
-                    />
+                    <img className="cover-img" src={file || dummyImg} alt="loading" />
                   </label>
                   <input
                     type="file"
@@ -224,7 +205,7 @@ const Createpost = () => {
               <div className="tag-select">
                 <Select
                   defaultValue={selectedOption}
-                  onChange={handleSelectChange }
+                  onChange={handleSelectChange}
                   options={options}
                 />
 

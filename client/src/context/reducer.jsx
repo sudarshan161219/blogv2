@@ -270,7 +270,7 @@ const reducer = (state, action) => {
     const authorsPosts = state.authorpost.find(
       (post) => post._id === action.payload.id
     );
-    const { _id, title, summary, coverImg, content, postTags, category } =
+    const { _id, title, coverImg, content, postTags, category } =
       authorsPosts;
 
     return {
@@ -278,7 +278,6 @@ const reducer = (state, action) => {
       isEditing: true,
       editPostId: _id,
       title,
-      summary,
       coverImg,
       content,
       postTags,
