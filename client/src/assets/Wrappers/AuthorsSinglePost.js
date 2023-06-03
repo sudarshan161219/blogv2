@@ -49,13 +49,17 @@ const Wrapper = styled.div`
 
   .tags-container {
     display: flex;
+    flex-wrap:wrap;
     font-size:0.9rem;
     gap: 1rem;
     font-weight: 500;
   }
 
   .tags{
-    color: #7B8FA1;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: #121212;
+    color: #fff;
   }
 
   @media (min-width: 768px) {

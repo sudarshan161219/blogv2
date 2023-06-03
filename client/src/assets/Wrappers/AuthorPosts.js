@@ -32,7 +32,6 @@ const Wrapper = styled.div`
     border-radius: 8px;
   }
   .content-container {
-    display: grid;
     justify-content: center;
     text-align: center;
     gap: 0.5rem;
@@ -64,6 +63,8 @@ const Wrapper = styled.div`
   }
 
   .action-link-container {
+    margin-top: 2rem;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;

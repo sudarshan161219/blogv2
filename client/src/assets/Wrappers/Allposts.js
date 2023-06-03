@@ -27,7 +27,7 @@ const Wrapper = styled.div`
     }
   }
 
-  @media (min-width: 1366px) {
+  @media (min-width: 1360px) {
     .card {
       grid-template-columns: repeat(3, 1fr);
     }

@@ -69,7 +69,7 @@ const initialState = {
   postId: post_id ? post_id : null,
   editPostId: "",
   authorpost: [],
-  authors_post: post_id ? [] : null,
+  authors_post: [] ,
   numOfPages: 1,
   totalPosts: 0,
   page: 1,
@@ -295,7 +295,6 @@ const ContextProvider = ({ children }) => {
   const getSingleAuthorPost = async (id) => {
     dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
     try {
-      const { postId } = state;
       const { data } = await authFetch.get(`/single-post/${id}`, {
         credentials: "omit",
       });
