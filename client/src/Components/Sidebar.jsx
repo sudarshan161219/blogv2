@@ -6,14 +6,21 @@ import Logo2 from "./Logo2";
 import Navlinks from "./Navlinks";
 
 const Sidebar = () => {
+
+
   const { toggleSidebar, showSidebar } = useAppContext();
   useEffect(() => {
-    document.addEventListener("click", handleEvent, true)
+    if (showSidebar) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    document.addEventListener("click", handleEvent, true);
     return () => {
-      // console.log("component unmounted");
       document.removeEventListener("click", handleEvent, true);
     };
-  }, []);
+  }, [showSidebar]);
+
   const refOne = useRef(null);
 
   const handleEvent = (e) => {
@@ -23,6 +30,9 @@ const Sidebar = () => {
       !toggleSidebar()
     }
   }
+
+
+
 
   return (
     <Wrapper>

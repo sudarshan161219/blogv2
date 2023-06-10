@@ -16,9 +16,9 @@ const AuthorPosts = ({ item }) => {
 
   return (
     <Wrapper>
-      <div className= "authorpost-container">
+      <div className="authorpost-container">
         <div className="image-containner">
-          <img src={coverImg} alt="dummyImg" />
+          <img src={coverImg} alt="dummyImg" loading="lazy" />
           <strong className="strong">{Fdate}</strong>
         </div>
         <div className="content-container">
@@ -46,7 +46,6 @@ const AuthorPosts = ({ item }) => {
           </div>
         </div>
       </div>
-
     </Wrapper>
   );
 };
