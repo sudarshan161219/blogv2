@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar } from "./Components/export";
+import { Navbar, ScrolltoTopBtn } from "./Components/export";
 import {
   Register,
   Home,
@@ -45,6 +45,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/post/:id" element={<SinglePost />} />
       </Routes>
+      <ScrolltoTopBtn />
     </>
   );
 };

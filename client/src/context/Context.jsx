@@ -184,11 +184,11 @@ const ContextProvider = ({ children }) => {
   const loginFn = async (userData) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
-      const response = await authFetch.post(
+      const { data } = await axios.post(
         "http://localhost:3000/api/login",
         userData
       );
-      const { user, token } = response.data;
+      const { user, token } = data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: { user, token },

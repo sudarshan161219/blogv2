@@ -20,12 +20,10 @@ const Allposts = () => {
     SearchCategory,
     page,
   } = useAppContext();
-  const [arr, setArr] = useState(authorpost);
 
   useEffect(() => {
-    setArr(authorpost);
     getAuthorPost();
-  }, [arr, search, sort, SearchCategory, page]);
+  }, [ search, sort, SearchCategory, page]);
 
   return (
     <Wrapper>

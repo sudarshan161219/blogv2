@@ -18,7 +18,7 @@ import CategoryBox from "./CategoryBox";
 import PageBtnContainer from "./PageBtnContainer"
 import SearchComponent from "./SearchComponent"
 import SkeletonLoding from "./SkeletonLoding";
-
+import ScrolltoTopBtn from "./ScrolltoTopBtn"
 export {
   AboutHeroS,
   AboutS,
@@ -39,5 +39,6 @@ export {
   CategoryBox,
   SearchComponent,
   PageBtnContainer,
-  SkeletonLoding
+  SkeletonLoding,
+  ScrolltoTopBtn,
 };
