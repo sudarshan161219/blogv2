@@ -8,11 +8,11 @@ const PostSchema = new Schema(
       required: [true, "Please title name"],
       minlength: 10,
     },
-    summary: {
-      type: String,
-      required: [true, "Please provide Summary"],
-      minlength: 10,
-    },
+    // summary: {
+    //   type: String,
+    //   required: [true, "Please provide Summary"],
+    //   minlength: 10,
+    // },
     coverImg: {
       type: String,
     },

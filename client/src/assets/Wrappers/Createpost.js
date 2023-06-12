@@ -5,7 +5,6 @@ const Wrapper = styled.div`
   color: #2b2b2b;
   letter-spacing: 1px;
   padding: 1rem;
-  /* background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z' fill='%23000000' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"); */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   h3 {
@@ -63,13 +62,16 @@ const Wrapper = styled.div`
     z-index: 5;
   }
 
-  .tag-title-input {
+  .tags-container {
     margin: 1rem 0;
+    display: grid;
+    gap:0.5rem
   }
 
   .container {
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: space-between; */
     gap: 0.3rem;
     width: 100%;
     max-width: 100%;
@@ -77,6 +79,21 @@ const Wrapper = styled.div`
     color: black;
     border: 1px solid #cccccc;
     align-items: center;
+  }
+
+  .add-tag-btn {
+    width: 66px;
+    display: flex;
+    justify-self:end;
+    -webkit-tap-highlight-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #cccccc;
+    background-color: #2b2b2b;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.3rem;
   }
 
   .container input {
@@ -118,17 +135,17 @@ const Wrapper = styled.div`
     border-radius: 10px;
   }
 
-  .tags-container >  strong > span {
+  .tags-container > strong > span {
     font-weight: bold;
     font-size: 0.8rem;
     margin-left: 0.5rem;
   }
 
-  .tag-select{
+  .tag-select {
     display: grid;
     /* gap: 0.5rem; */
   }
-  .css-b62m3t-container{
+  .css-b62m3t-container {
     z-index: 10;
   }
 
@@ -145,21 +162,21 @@ const Wrapper = styled.div`
     .image-label {
       width: 500px;
     }
-    .tag-delete-icon:hover{
+    .tag-delete-icon:hover {
       cursor: pointer;
     }
 
-    .tag-select{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-direction: row-reverse;
-  }
+    .tag-select {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
 
-  .css-b62m3t-container,   .tags-container {
-    width: 50%;
-  }
-
+    .css-b62m3t-container,
+    .tags-container {
+      width: 50%;
+    }
   }
 `;
 

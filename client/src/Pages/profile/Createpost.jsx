@@ -24,7 +24,7 @@ import {
 import TipTapEditor from "../../Components/TipTapEditor";
 const initialState = {
   title: "",
-  content:""
+  content: "",
 };
 
 const Createpost = () => {
@@ -52,11 +52,6 @@ const Createpost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (quill) {
-    //   quill.on("text-change", function () {
-    //     setVQuill(quillRef.current.firstChild.innerHTML);
-    //   });
-    // }
     if (isEditing) {
       setVQuill(content);
       if (file === undefined) {
@@ -77,7 +72,7 @@ const Createpost = () => {
         navigate("/user-profile/author-post");
       }, 1100);
     }
-  }, [edited, created, navigate]);
+  }, [input, edited, created, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,7 +95,7 @@ const Createpost = () => {
       toast.error("please provide all values");
     } else {
       createPost(data);
-      // e.currentTarget.reset();
+      e.currentTarget.reset();
     }
   };
 
@@ -133,20 +128,42 @@ const Createpost = () => {
     setInput(value);
   };
 
-  const onKeyDown = (e) => {
-    const { key } = e;
-    const trimmedInput = input.trim();
-    if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
-      e.preventDefault();
-      setTags((prevState) => [...prevState, "#" + trimmedInput]);
-      setInput("");
-      if (isEditing) {
-        newTag.push("#" + trimmedInput);
-        const merge = [...tags, ...newTag];
-        let uniqueChars = [...new Set(merge)];
-        setTags(uniqueChars);
+
+
+  // const onKeyDown = (e) => {
+  //   const { key } = e;
+  //   const trimmedInput = input.trim();
+  //   if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
+  //     e.preventDefault();
+  //     setTags((prevState) => [...prevState, "#" + trimmedInput]);
+  //     setInput(" ");
+  //     if (isEditing) {
+  //       newTag.push("#" + trimmedInput);
+  //       const merge = [...tags, ...newTag];
+  //       let uniqueChars = [...new Set(merge)];
+  //       setTags(uniqueChars);
+  //       setInput("");
+  //     }
+  //   }
+  // };
+
+  const addTag = (e) => {
+    e.preventDefault();
+  
+
+    if(input === "") {return}
+    else{
+        const trimmedInput = input.trim();
+        setTags((prevState) => [...prevState, "#" + trimmedInput]);
         setInput("");
-      }
+
+        if (isEditing) {
+          newTag.push("#" + trimmedInput);
+          const merge = [...tags, ...newTag];
+          let uniqueChars = [...new Set(merge)];
+          setTags(uniqueChars);
+          setInput("");
+        }
     }
   };
 
@@ -230,22 +247,17 @@ const Createpost = () => {
                           </div>
                         ))}
                     <input
-                      defaultValue={input}
-                      // value={input}
-                      placeholder={`press " , " (comma) to add tag`}
-                      onKeyDown={onKeyDown}
+                      value={input}
+                      placeholder="add tag"
                       onChange={onChange}
                     />
                   </div>
+                  <button className="add-tag-btn" onClick={addTag}>
+                    add Tag
+                  </button>
                 </div>
               </div>
               <EdittorWrapper>
-                {/* <div
-                  ref={quillRef}
-                  formats={formats}
-                  modules={TOOLBAR_OPTIONS}
-                  dangerouslySetInnerHTML={{ __html: content }}
-                /> */}
                 <ReactQuill
                   modules={modulesTool}
                   formats={formats}

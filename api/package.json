@@ -2,9 +2,9 @@
   "name": "blogv2",
   "version": "1.0.0",
   "description": "backend for blogv2",
-  "main": "index.js",
   "type": "module",
   "scripts": {
+    "build-client": "cd ../client && npm run build",
     "start": "nodemon app.mjs"
   },
   "author": "Sudarshan",
