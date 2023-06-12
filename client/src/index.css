@@ -513,8 +513,9 @@ h5 {
     font-weight: 400;
   }
 
-  /* .ql-editor h1, h2, h3, h4, h5{
+  .ql-editor h1, h2, h3, h4, h5{
     font-family: "Open Sans", sans-serif;
     letter-spacing: 1px;
     font-weight: 500;
-  } */
+  }
+

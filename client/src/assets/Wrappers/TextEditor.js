@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   .ql-editor {
     min-height: 5in;
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 
   .ql-toolbar.ql-snow .ql-formats {

@@ -47,6 +47,34 @@ const TOOLBAR_OPTIONS = [
   ["undo"],
   ["redo"],
 ];
+ 
+//$ React-quill
+ const modulesTool = {
+   toolbar: {
+     container: [
+       [{ header: [1, 2, 3, 4, 5, 6, false] }],
+       [{ list: "ordered" }, { list: "bullet" }],
+       ["bold", "italic", "underline", "strike"],
+       [{ color: [] }, { background: [] }],
+       // [{ script: "sub" }, { script: "super" }],
+       [{ list: "ordered" }, { list: "bullet" }],
+       [{ direction: "rtl" }],
+       [{ indent: "-1" }, { indent: "+1" }],
+       [{ font: [] }],
+       [{ align: [] }],
+       ["image", "video", "link"],
+       ["code-block"],
+       ["clean"],
+       ["undo"],
+       ["redo"],
+     ],
+     handlers: {
+       undo: Undo,
+       redo: Redo,
+     },
+   },
+ };
+
 
 const formats = [
   "font",
@@ -103,14 +131,16 @@ const modules = {
     },
   },
 
+
+ 
   imageCompress: {
-    quality: 0.7, // default
-    maxWidth: 550, // default
-    maxHeight: 550, // default
+    quality: 0.7,
+    maxWidth: 550,
+    maxHeight: 550,
     // imageType: "image/jpeg",
-    debug: true, // default
-    suppressErrorLogging: false, // default
-    insertIntoEditor: undefined, // default
+    debug: true,
+    suppressErrorLogging: false,
+    insertIntoEditor: undefined,
   },
 };
 
@@ -123,4 +153,5 @@ export {
   Link,
   Undo,
   Redo,
+  modulesTool,
 };

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "react-quill/dist/quill.snow.css";
 import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.webp";
 import { useAppContext } from "../../context/Context";
-import { useQuill } from "react-quilljs";
+// import { useQuill } from "react-quilljs";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import imageCompression from "browser-image-compression";
 import { Toaster, toast } from "react-hot-toast";
 import { AiOutlineCloseCircle } from "react-icons/ai";
@@ -18,16 +19,17 @@ import {
   theme,
   placeholder,
   modules,
+  modulesTool,
 } from "../../utils/tools";
-
+import TipTapEditor from "../../Components/TipTapEditor";
 const initialState = {
   title: "",
+  content:""
 };
 
 const Createpost = () => {
   const {
     title,
-    summary,
     coverImg,
     content,
     postTags: newTag,
@@ -41,13 +43,7 @@ const Createpost = () => {
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
-  const [vquill, setVQuill] = useState();
-  const { quill, quillRef } = useQuill({
-    modules,
-    formats,
-    placeholder,
-    theme,
-  });
+  const [vquill, setVQuill] = useState("");
   const [input, setInput] = useState("");
   const [tags, setTags] = useState([]);
   const [selectedOption, setSelectedOption] = useState(
@@ -56,11 +52,11 @@ const Createpost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (quill) {
-      quill.on("text-change", function (delta, oldDelta, source, editor) {
-        setVQuill(quillRef.current.firstChild.innerHTML);
-      });
-    }
+    // if (quill) {
+    //   quill.on("text-change", function () {
+    //     setVQuill(quillRef.current.firstChild.innerHTML);
+    //   });
+    // }
     if (isEditing) {
       setVQuill(content);
       if (file === undefined) {
@@ -81,11 +77,10 @@ const Createpost = () => {
         navigate("/user-profile/author-post");
       }, 1100);
     }
-  }, [quill, edited, created, navigate]);
+  }, [edited, created, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
     data.coverImg = file;
@@ -105,7 +100,7 @@ const Createpost = () => {
       toast.error("please provide all values");
     } else {
       createPost(data);
-      e.currentTarget.reset();
+      // e.currentTarget.reset();
     }
   };
 
@@ -191,7 +186,11 @@ const Createpost = () => {
                 <div className="cover-img-container">
                   <span>Cover image</span>
                   <label className="image-label" htmlFor="cover-image">
-                    <img className="cover-img" src={file || dummyImg} alt="loading" />
+                    <img
+                      className="cover-img"
+                      src={file || dummyImg}
+                      alt="loading"
+                    />
                   </label>
                   <input
                     type="file"
@@ -241,12 +240,19 @@ const Createpost = () => {
                 </div>
               </div>
               <EdittorWrapper>
-                <div
+                {/* <div
                   ref={quillRef}
                   formats={formats}
                   modules={TOOLBAR_OPTIONS}
                   dangerouslySetInnerHTML={{ __html: content }}
-                  // value={quill}
+                /> */}
+                <ReactQuill
+                  modules={modulesTool}
+                  formats={formats}
+                  theme="snow"
+                  value={vquill}
+                  placeholder={placeholder}
+                  onChange={setVQuill}
                 />
               </EdittorWrapper>
 
