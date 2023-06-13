@@ -42,9 +42,6 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-
-    // const values = [...formData.values()];
-
     const data = Object.fromEntries(formData);
     if (isMember) {
       loginFn(data);
@@ -79,8 +76,6 @@ const Register = () => {
       <div className="form-container">
         <div className="heading-para">
           <Logo />
-          {/* <h1 className="form-heading">Welcome to RBlog!</h1>
-          <p className="form-para">Sign up to get the most out of RBlog.</p> */}
           <h3 className="form-heading">
             {values.isMember ? "Welcome back!" : "Welcome to RBlog!"}
           </h3>
@@ -152,7 +147,12 @@ const Register = () => {
               ))}
           </div>
 
-          <button type="submit" className="button-28" disabled={isLoading}>
+          <button
+            type="submit"
+            className="button-28"
+            isLoading={isLoading}
+            disabled={isLoading}
+          >
             {isLoading ? (
               <img className="gif" src={gif} alt="gif" />
             ) : !values.isMember ? (

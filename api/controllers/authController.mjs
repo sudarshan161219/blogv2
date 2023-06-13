@@ -53,16 +53,6 @@ const login = async (req, res) => {
 
 //* PATCH req
 const updateUser = async (req, res) => {
-  // const {
-  //   name,
-  //   userProfile,
-  //   userInfo,
-  //   personalLink,
-  //   twitter,
-  //   instagram,
-  //   linkden,
-  // } = req.body;
-
   const user = await User.findByIdAndUpdate({_id: req.user.userId}, req.body, {
     new: true,
     runValidators: true,

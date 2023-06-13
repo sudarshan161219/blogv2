@@ -9,7 +9,7 @@ import {
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const createPost = async (req, res) => {
-  const { title,  coverImg, content, postTags, category } = req.body;
+  const { title, coverImg, content, postTags, category } = req.body;
   if (!title || !coverImg || !content || !postTags || !category) {
     throw new BadRequestError("please provide all values");
   }
@@ -28,28 +28,37 @@ const createPost = async (req, res) => {
 };
 
 const getAllPost = async (req, res) => {
-  return res.send('get all post')
+  return res.send("get all post");
 };
 
 const authorPosts = async (req, res) => {
-  const { search, sort, category} = req.query;
+  const { search, sort, category, tag } = req.query;
 
   const queryObject = {
     author: req.user.userId,
   };
 
   const user = await User.findById({ _id: req.user.userId });
+
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
   //$ add stuff based on condition
   if (category !== "all") {
-    queryObject.category =  category;
+    queryObject.category = category;
   }
+
   if (search) {
-    queryObject.title= { $regex: search, $options: "i" };
+    queryObject.title = { $regex: search, $options: "i" };
   }
+
+  //$  in progress
+  if (tag) {
+  queryObject.postTags = tag;
+  }
+
+
   //$ no Await
   let result = Post.find(queryObject);
 
@@ -62,25 +71,22 @@ const authorPosts = async (req, res) => {
     result = result.sort("createdAt");
   }
 
-  const page = Number(req.query.page) || 1
-  const limit = Number(req.query.limit) ||10
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
 
+  const skip = (page - 1) * limit;
 
+  result = result.skip(skip).limit(limit);
 
-  const skip = (page - 1) * limit
+  const authorpost = await result;
 
-  result = result.skip(skip).limit(limit)
-
-
-  const authorpost = await result
-
-  const totalPosts = await Post.countDocuments(queryObject)
-  const numOfPages = Math.ceil (totalPosts / limit)
+  const totalPosts = await Post.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalPosts / limit);
 
   return res.status(StatusCodes.OK).json({
     authorpost,
     totalPosts,
-    numOfPages
+    numOfPages,
   });
 };
 
