@@ -38,7 +38,7 @@ app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 //* api routes
 app.use("/api", authRoute)
-app.use("/api",  auth, postRoute)
+app.use("/api",   postRoute)
 
 
 //* HTTP GET Request
