@@ -41,7 +41,7 @@ const tagsSearch = async (req, res) => {
   };
 
   // //$ add stuff based on condition
-  if (category !== "all") {
+  if (category) {
     queryObject.category = { $regex: category, $options: "i" };
   }
 
@@ -53,7 +53,6 @@ const tagsSearch = async (req, res) => {
   if (tag) {
     queryObject.postTags = tag;
   }
-
 
   //$ no Await
   let result = Post.find(queryObject);
@@ -73,7 +72,6 @@ const tagsSearch = async (req, res) => {
   const skip = (page - 1) * limit;
 
   result = result.skip(skip).limit(limit);
-  // const posts = await Post.find();
   const post = await result;
 
   const totalPosts = await Post.countDocuments(queryObject);

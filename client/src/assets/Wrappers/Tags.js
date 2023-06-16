@@ -9,16 +9,16 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 2.5rem;
   padding-top: 5rem;
-  .search-container {
+  /* .search-container {
     width: 95%;
-  }
+  } */
 
   .search-container-form {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
     /* width: 70%; */
   }
   .search-container-input {

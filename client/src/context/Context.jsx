@@ -39,6 +39,9 @@ import {
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_PAGE,
+  GET_TAGS_SEARCH_POST_BEGIN,
+  GET_TAGS_SEARCH_POST_SUCCESS,
+  GET_TAGS_SEARCH_POST_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -277,7 +280,6 @@ const ContextProvider = ({ children }) => {
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
-      console.log(error);
       if (error.response.status === 401) {
         logoutUser();
       }
@@ -286,6 +288,34 @@ const ContextProvider = ({ children }) => {
       });
     }
   };
+
+
+    const getTagSearchPost = async () => {
+      const { search, SearchCategory, sort, page } = state;
+      let url = `/tags?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
+      if (search) {
+        url = url + `search=${search}`;
+      }
+      dispatch({ type: GET_TAGS_SEARCH_POST_BEGIN });
+      try {
+        const { data } = await authFetch.get(url, {
+          credentials: "omit",
+        });
+        const { authorpost, totalPosts, numOfPages } = data;
+        dispatch({
+          type: GET_TAGS_SEARCH_POST_SUCCESS,
+          payload: { authorpost, totalPosts, numOfPages },
+        });
+        dispatch({ type: CLEAR_VALUES });
+      } catch (error) {
+        if (error.response.status === 401) {
+          logoutUser();
+        }
+        dispatch({
+          type: GET_TAGS_SEARCH_POST_ERROR,
+        });
+      }
+    };
 
   const setPostId = (postId) => {
     dispatch({ type: POST_ID, payload: { postId } });
@@ -420,6 +450,7 @@ const ContextProvider = ({ children }) => {
         deletePost,
         clearFilters,
         changePage,
+        getTagSearchPost,
       }}
     >
       {children}

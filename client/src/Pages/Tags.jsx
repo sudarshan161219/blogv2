@@ -1,51 +1,21 @@
 import React from "react";
 import Wrapper from "../assets/Wrappers/Tags";
 import { BsSearch } from "react-icons/bs";
+import tagArr from "../utils/tagArr";
+import { SearchComponent } from "../Components/export";
 
 const Tags = () => {
-  const tagArr = [
-    "#Food",
-    "#Travel",
-    "#Lifestyle ",
-    "#Fashion&beauty ",
-    "#Photography",
-    "#Personal",
-    "#DIY craft",
-    "#Parenting",
-    "#Music",
-    "#Business",
-    "#Art&design",
-    "#Book&writing",
-    "#Personal finance",
-    "#Interior design",
-    "#Sports",
-    "#News",
-    "#Movie",
-    "#Religion",
-    "#Political",
-    "#technology",
-    "#Minimalism",
-    "#Other",
-  ];
-
   return (
     <Wrapper>
       <div className="search-container">
-        <form className="search-container-form">
-          <input
-            className="search-container-input"
-            type="text"
-            placeholder="Find the topics you care about..."
-          />
-          <div className="icon-container">
-            <BsSearch className="search-container-searchIcon" />
-          </div>
-        </form>
+        <SearchComponent />
       </div>
 
       <div className="btn-container">
         {tagArr.map((item, idx) => (
-          <button className="btn-tag" key={idx}>{item}</button>
+          <button className="btn-tag" key={idx}>
+            {item}
+          </button>
         ))}
       </div>
     </Wrapper>

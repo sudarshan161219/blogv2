@@ -36,7 +36,10 @@ import {
   CLEAR_VALUES,
   DELETE_POST_BEGIN,
   CLEAR_FILTERS,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  GET_TAGS_SEARCH_POST_BEGIN,
+  GET_TAGS_SEARCH_POST_SUCCESS,
+  GET_TAGS_SEARCH_POST_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -121,6 +124,28 @@ const reducer = (state, action) => {
       isLoading: false,
     };
   }
+
+  if (action.type === GET_TAGS_SEARCH_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_TAGS_SEARCH_POST_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      authorpost: action.payload.authorpost,
+      totalPosts: action.payload.totalPosts,
+      numOfPages: action.payload.numOfPages,
+    };
+  }
+
+  if (action.type === GET_TAGS_SEARCH_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
+
 
   if (action.type === GET_AUTHOR_SINGLE_POST_BEGIN) {
     return { ...state, isLoading: true };
