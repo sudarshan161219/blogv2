@@ -9,8 +9,8 @@ import { fileURLToPath } from "url";
 import path from "path";
 import connectDB from "./Db/connectDb.mjs";
 import authRoute from "./route/authRoute.mjs";
-import postRoute from "./route/postRoute.mjs";
-
+import authPostRoute from "./route/authPostRoute.mjs";
+import postRoute from "./route/postRoute.mjs"
 //* middleware imports
 import notFoundMiddleware from "./middlewares/not-found.mjs";
 import errorHandlerMiddleware from "./middlewares/error-handler.mjs";
@@ -38,7 +38,8 @@ app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 //* api routes
 app.use("/api", authRoute)
-app.use("/api",   postRoute)
+app.use("/api",  postRoute);
+app.use("/api",  auth ,  authPostRoute)
 
 
 //* HTTP GET Request
