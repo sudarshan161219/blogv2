@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   gap: 2.5rem;
   padding-top: 5rem;
   /* .search-container {
