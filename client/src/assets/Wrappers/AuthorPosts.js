@@ -77,6 +77,16 @@ const Wrapper = styled.div`
     background-color: #afd3e2;
   }
 
+  .read {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: FontSemiBold;
+    color: #475467;
+    line-height: 130%;
+  }
+
   @media (min-width: 700px) {
     h1 {
       text-align: left;

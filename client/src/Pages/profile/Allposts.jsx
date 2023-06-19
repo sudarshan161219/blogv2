@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useAppContext } from "../../context/Context";
 import {
   AuthorPosts,
-  Loading,
   SkeletonLoding,
   PageBtnContainer,
   SearchComponent,
@@ -24,7 +23,6 @@ const Allposts = () => {
 
   useEffect(() => {
     getAuthorPost();
-    //  getTagSearchPost()
   }, [ search, sort, SearchCategory, page]);
 
   return (

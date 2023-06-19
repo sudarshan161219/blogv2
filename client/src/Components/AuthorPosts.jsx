@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/AuthorPosts";
 import moment from "moment";
 import { CgReadme } from "react-icons/cg";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi ";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
@@ -43,11 +44,8 @@ const AuthorPosts = ({ item }) => {
                 <AiOutlineDelete className="delete-icon " />
               </Link>
             </div>
-            <Link
-              className="Link read-btn button-28"
-              to={`/user-profile/${_id}`}
-            >
-              Read <CgReadme className="read-icon" />
+            <Link className="Link read" to={`/user-profile/${_id}`}>
+              Read <HiOutlineArrowNarrowRight className="read-icon" />
             </Link>
           </div>
         </div>

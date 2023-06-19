@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-      display: grid;
-      gap: 1rem;
+  display: grid;
+  gap: 1rem;
   .post-card {
     display: grid;
     width: 100%;
@@ -72,17 +72,29 @@ const Wrapper = styled.div`
     animation-delay: 0.06s;
   }
 
-@media (min-width: 768px) {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .post-card {
-      width: 320px;
+      width: 700px;
+      display: flex;
+      padding: 1.2rem;
+      gap: 1rem;
+      align-items: center;
+    }
+    .image {
+      width: 40%;
+    }
+
+    .content {
+      padding: 0;
+      order: -1;
+      width: 60%;
     }
   }
 
-
+  @media (min-width: 1020px) {
+    width: 800px;
+    margin: auto;
+  }
 `;
 
 export default Wrapper;

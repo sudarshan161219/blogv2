@@ -57,7 +57,7 @@ const SearchComponent = () => {
         <Select
           defaultValue={sort}
           name="sort"
-          placeholder="latest - oldest"
+          placeholder="sort"
           onChange={selectSortChange}
           options={sortOptions}
         />

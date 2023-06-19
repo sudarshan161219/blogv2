@@ -158,7 +158,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 body {
-  font-family: myFirstFont;
   line-height: 1;
   /* height: 100vh; */
   background-color: #fff;
