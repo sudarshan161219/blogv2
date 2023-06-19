@@ -31,7 +31,7 @@ const Allposts = () => {
     <Wrapper>
       <SearchComponent />
       <>
-        <h1>{authorpost.length === 0 ? "no Posts yet" : "your Posts"}</h1>
+        <h1 className="allPost-heading">{authorpost.length === 0 ? "no Posts yet" : "your Posts"}</h1>
         {isLoading ? (
           <div>
             <SkeletonLoding />

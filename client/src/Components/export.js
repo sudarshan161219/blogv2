@@ -15,10 +15,12 @@ import Dashboardnav from "./Dashboardnav";
 import TextEditor from "./TextEditor";
 import AuthorPosts from "./AuthorPosts";
 import CategoryBox from "./CategoryBox";
-import PageBtnContainer from "./PageBtnContainer"
-import SearchComponent from "./SearchComponent"
+import PageBtnContainer from "./PageBtnContainer";
+import SearchComponent from "./SearchComponent";
 import SkeletonLoding from "./SkeletonLoding";
-import ScrolltoTopBtn from "./ScrolltoTopBtn"
+import ScrolltoTopBtn from "./ScrolltoTopBtn";
+import HomePage from "./HomePage";
+
 export {
   AboutHeroS,
   AboutS,
@@ -41,4 +43,5 @@ export {
   PageBtnContainer,
   SkeletonLoding,
   ScrolltoTopBtn,
+  HomePage,
 };

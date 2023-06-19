@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   letter-spacing: 1px;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
+  /* margin: 1.5rem 1rem; */
   h3 {
     margin-bottom: 1rem;
   }
@@ -65,7 +65,7 @@ const Wrapper = styled.div`
   .tags-container {
     margin: 1rem 0;
     display: grid;
-    gap:0.5rem
+    gap: 0.5rem;
   }
 
   .container {
@@ -84,7 +84,7 @@ const Wrapper = styled.div`
   .add-tag-btn {
     width: 66px;
     display: flex;
-    justify-self:end;
+    justify-self: end;
     -webkit-tap-highlight-color: transparent;
     border: none;
     outline: none;

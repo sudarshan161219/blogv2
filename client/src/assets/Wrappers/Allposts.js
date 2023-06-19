@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   @media (min-width: 1024px) {
-    h1 {
+    .allPost-heading {
       text-align: center;
     }
     -webkit-box-pack: center;
@@ -14,14 +14,17 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 768px) {
-    .card {
+    /* .card {
       grid-template-columns: repeat(3, 1fr);
       display: grid;
       gap: 1rem;
+    } */
+    .allPost-heading {
+      text-align: left;
     }
   }
 
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     .card {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -31,7 +34,7 @@ const Wrapper = styled.div`
     .card {
       grid-template-columns: repeat(3, 1fr);
     }
-  }
+  } */
 `;
 
 export default Wrapper;

@@ -4,11 +4,11 @@ const Wrapper = styled.div`
   .authorpost-container {
     display: grid;
     gap: 1rem;
-    border-radius: 8px;
     overflow: hidden;
     margin-top: 1rem;
-    overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
   .image-containner > img {
@@ -18,19 +18,20 @@ const Wrapper = styled.div`
   .image-containner {
     width: 100%;
     height: 180px;
-    position: relative;
     overflow: hidden;
   }
 
-  .strong {
-    position: absolute;
-    padding: 0.3rem;
-    background-color: black;
-    right: 0;
-    top: 0;
-    color: aliceblue;
-    border-radius: 8px;
+  .authorpost-author-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
   }
+
+  .authorpost-text-info-container {
+    text-align: left;
+  }
+
   .content-container {
     justify-content: center;
     text-align: center;
@@ -38,17 +39,6 @@ const Wrapper = styled.div`
     line-height: 1.1;
     letter-spacing: 1px;
     padding: 1rem;
-  }
-
-  .content-container > h2 {
-    font-size: 1.2rem;
-  }
-
-  span,
-  strong {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    color: rgba(28, 28, 28, 0.486);
   }
 
   .read-btn {
@@ -63,7 +53,7 @@ const Wrapper = styled.div`
   }
 
   .action-link-container {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -87,12 +77,45 @@ const Wrapper = styled.div`
     background-color: #afd3e2;
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 700px) {
+    h1 {
+      text-align: left;
+    }
     .authorpost-container {
-      width: 320px;
-      border-radius: 8px;
+      padding: 1.2rem;
+      display: flex;
+      gap: 1rem;
     }
 
+    .content-container {
+      padding: 0;
+      order: -1;
+      width: 60%;
+    }
+
+    .image-containner {
+      border-radius: 15px;
+      overflow: hidden;
+      width: 40%;
+      display: grid;
+      align-items: center;
+    }
+
+    .image-containner > img {
+      border-radius: 15px;
+    }
+
+    .authorpost-author-info-container {
+      justify-content: initial;
+    }
+
+    .authorpost-author-info-container > span:nth-child(2):before {
+      content: "/";
+      margin-left: 0.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .authorpost-container:hover {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -123,10 +146,6 @@ const Wrapper = styled.div`
       background-color: #afd3e2;
     }
   }
-
-  /* @media (min-width: 1366px) {
-
-  } */
 `;
 
 export default Wrapper;

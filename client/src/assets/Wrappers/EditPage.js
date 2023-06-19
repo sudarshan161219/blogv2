@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  /* margin: 1.5rem 1rem; */
   .profile-form {
     width: 100%;
     margin-top: 2rem;

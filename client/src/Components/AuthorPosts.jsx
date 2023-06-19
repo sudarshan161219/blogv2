@@ -19,11 +19,17 @@ const AuthorPosts = ({ item }) => {
       <div className="authorpost-container">
         <div className="image-containner">
           <img src={coverImg} alt="dummyImg" loading="lazy" />
-          <strong className="strong">{Fdate}</strong>
         </div>
         <div className="content-container">
-          <span>{category}</span>
-          <h2>{title.length > 10 ? title.slice(0, 30) + "..." : null}</h2>
+          <div className="authorpost-author-info-container">
+            <span>{Fdate}</span>
+            <span>{category}</span>
+          </div>
+
+          <div className="authorpost-text-info-container">
+            <h1>{title}</h1>
+          </div>
+
           <div className="action-link-container">
             <div className="action-container">
               <Link

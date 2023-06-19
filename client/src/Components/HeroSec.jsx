@@ -1,7 +1,6 @@
 import React from "react";
 import articalimg from "../assets/Article-Image.png";
 import {BsPersonCircle} from "react-icons/bs"
-// import "./HeroSec.css";
 import Wrapper from "../assets/Wrappers/contentContainer";
 
 const HeroSec = () => {
@@ -20,8 +19,6 @@ const HeroSec = () => {
           Proident aliquip velit qui commodo officia qui consectetur dolor
           ullamco aliquip elit incididunt. Ea minim ex consectetur excepteur. Ex
           laborum nostrud mollit sint consectetur Lorem amet aliqua do enim.
-          Commodo duis dolor anim excepteur. In aliquip mollit nulla consequat
-          velit magna.
         </p>
       </div>
     </Wrapper>

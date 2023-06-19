@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Main} from "../sections/export";
+import React from "react";
+import {HomePage} from "../Components/export"
 import Wrapper from "../assets/Wrappers/Home";
 
 const Home = () => {
   return (
     <Wrapper>
-      <Main />
+      <HomePage />
     </Wrapper>
   );
 };

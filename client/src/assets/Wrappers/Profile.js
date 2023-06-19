@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  /* margin: 1.5rem 1rem; */
   .img-container {
     margin: 0 auto;
     display: flex;
@@ -64,8 +65,8 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
   }
 
-  .atag{
-    pointer-events: none
+  .atag {
+    pointer-events: none;
   }
 
   @media (min-width: 768px) {
