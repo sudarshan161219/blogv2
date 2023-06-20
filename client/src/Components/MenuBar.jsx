@@ -4,8 +4,7 @@ import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Wrapper from "../assets/Wrappers/Button";
-import EWrapper from "../assets/Wrappers/EditorContent-Menubar";
+
 import {
   AiOutlineBold,
   AiOutlineItalic,
@@ -152,14 +151,6 @@ const MenuBar = ({ editor }) => {
       >
         <AiOutlineRedo />
       </button>
-      {/* <button
-        onClick={() => editor.chain().focus().setColor("#958DF1").run()}
-        className={
-          editor.isActive("textStyle", { color: "#958DF1" }) ? "is-active" : ""
-        }
-      >
-        purple
-      </button> */}
     </Wrapper>
   );
 };
