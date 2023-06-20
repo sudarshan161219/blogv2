@@ -12,7 +12,7 @@ import AboutS from "./AboutS";
 import AboutContactS from "./AboutContactS";
 import AboutConS from "./AboutConS";
 import Dashboardnav from "./Dashboardnav";
-import TextEditor from "./TextEditor";
+// import TextEditor from "./TextEditor";
 import AuthorPosts from "./AuthorPosts";
 import CategoryBox from "./CategoryBox";
 import PageBtnContainer from "./PageBtnContainer";
@@ -37,7 +37,7 @@ export {
   NavItems,
   Navlinks,
   Sidebar,
-  TextEditor,
+  // TextEditor,
   CategoryBox,
   SearchComponent,
   PageBtnContainer,

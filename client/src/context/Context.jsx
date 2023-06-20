@@ -39,6 +39,9 @@ import {
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_PAGE,
+  GET_ALL_POST_BEGIN,
+  GET_ALL_POST_SUCCESS,
+  GET_ALL_POST_ERROR,
   GET_TAGS_SEARCH_POST_BEGIN,
   GET_TAGS_SEARCH_POST_SUCCESS,
   GET_TAGS_SEARCH_POST_ERROR,
@@ -72,13 +75,14 @@ const initialState = {
   postId: post_id ? post_id : null,
   editPostId: "",
   authorpost: [],
-  authors_post: [] ,
+  authors_post: [],
   numOfPages: 1,
   totalPosts: 0,
   page: 1,
   search: "",
   SearchCategory: "all",
   sort: "",
+  allPosts:[]
 };
 const Context = createContext({});
 
@@ -289,33 +293,32 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
-    const getTagSearchPost = async () => {
-      const { search, SearchCategory, sort, page } = state;
-      let url = `/tags?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
-      if (search) {
-        url = url + `search=${search}`;
+  const getTagSearchPost = async () => {
+    const { search, SearchCategory, sort, page } = state;
+    let url = `/tags?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
+    if (search) {
+      url = url + `search=${search}`;
+    }
+    dispatch({ type: GET_TAGS_SEARCH_POST_BEGIN });
+    try {
+      const { data } = await authFetch.get(url, {
+        credentials: "omit",
+      });
+      const { authorpost, totalPosts, numOfPages } = data;
+      dispatch({
+        type: GET_TAGS_SEARCH_POST_SUCCESS,
+        payload: { authorpost, totalPosts, numOfPages },
+      });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (error) {
+      if (error.response.status === 401) {
+        logoutUser();
       }
-      dispatch({ type: GET_TAGS_SEARCH_POST_BEGIN });
-      try {
-        const { data } = await authFetch.get(url, {
-          credentials: "omit",
-        });
-        const { authorpost, totalPosts, numOfPages } = data;
-        dispatch({
-          type: GET_TAGS_SEARCH_POST_SUCCESS,
-          payload: { authorpost, totalPosts, numOfPages },
-        });
-        dispatch({ type: CLEAR_VALUES });
-      } catch (error) {
-        if (error.response.status === 401) {
-          logoutUser();
-        }
-        dispatch({
-          type: GET_TAGS_SEARCH_POST_ERROR,
-        });
-      }
-    };
+      dispatch({
+        type: GET_TAGS_SEARCH_POST_ERROR,
+      });
+    }
+  };
 
   const setPostId = (postId) => {
     dispatch({ type: POST_ID, payload: { postId } });
@@ -388,7 +391,7 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: EDIT_POST_BEGIN });
     const { editPostId } = state;
     try {
-      const { title,  coverImg, content, postTags, category } = data;
+      const { title, coverImg, content, postTags, category } = data;
       await authFetch.patch(`/ud/${editPostId}`, {
         title,
         coverImg,
@@ -425,6 +428,32 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: CHANGE_PAGE, payload: { page } });
   };
 
+
+    const getALLPost = async () => {
+      // const { search, SearchCategory, sort, page } = state;
+      // let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
+      // if (search) {
+      //   url = url + `search=${search}`;
+      // }
+      // let url = 
+      dispatch({ type: GET_ALL_POST_BEGIN });
+      try {
+        const { data } = await authFetch.get("/", {
+          credentials: "omit",
+        });
+        const { allPosts } = data;
+        dispatch({
+          type: GET_ALL_POST_SUCCESS,
+          payload: { allPosts },
+        });
+        dispatch({ type: CLEAR_VALUES });
+      } catch (error) {
+        dispatch({
+          type: GET_ALL_POST_ERROR,
+        });
+      }
+    };
+
   return (
     <Context.Provider
       value={{
@@ -451,6 +480,7 @@ const ContextProvider = ({ children }) => {
         clearFilters,
         changePage,
         getTagSearchPost,
+        getALLPost,
       }}
     >
       {children}

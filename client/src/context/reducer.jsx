@@ -40,6 +40,9 @@ import {
   GET_TAGS_SEARCH_POST_BEGIN,
   GET_TAGS_SEARCH_POST_SUCCESS,
   GET_TAGS_SEARCH_POST_ERROR,
+  GET_ALL_POST_BEGIN,
+  GET_ALL_POST_SUCCESS,
+  GET_ALL_POST_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -119,6 +122,28 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_AUTHOR_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
+
+
+  if (action.type === GET_ALL_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_ALL_POST_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      allPosts: action.payload.allPosts,
+      // totalPosts: action.payload.totalPosts,
+      // numOfPages: action.payload.numOfPages,
+    };
+  }
+
+  if (action.type === GET_ALL_POST_ERROR) {
     return {
       ...state,
       isLoading: false,

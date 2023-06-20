@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Dashboardnav } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/SharedLayout";
-import { motion } from "framer-motion";
+
 const SharedLayout = () => {
   return (
     <Wrapper>

@@ -21,7 +21,7 @@ import {
   modules,
   modulesTool,
 } from "../../utils/tools";
-import TipTapEditor from "../../Components/TipTapEditor";
+
 const initialState = {
   title: "",
   content: "",
