@@ -30,7 +30,6 @@ const Wrapper = styled.div`
 
   p {
     margin-top: 1rem;
-    font-family: "Open Sans", sans-serif;
     line-height: 1.5rem;
     font-weight: 500;
   }
@@ -69,6 +68,12 @@ const Wrapper = styled.div`
     pointer-events: none;
   }
 
+  .profile-info > span {
+    font-family: FontMedium;
+    font-size: 15px;
+    color: #667085;
+    letter-spacing: 1px;
+  }
   @media (min-width: 768px) {
     .profile-container {
       width: 500px;

@@ -88,6 +88,10 @@ const Wrapper = styled.aside`
     /* display: none; */
   }
 
+  .dash-nav-text {
+    font-family: FontMedium;
+  }
+
   @media (min-width: 500px) {
     .dashboard-nav > ul {
       gap: 1rem;

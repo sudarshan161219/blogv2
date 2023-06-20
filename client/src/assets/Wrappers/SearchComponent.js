@@ -119,7 +119,7 @@ const Wrapper = styled.div`
   }
 
 
-  @media (min-width: 1024px) {
+  @media (min-width: 700px) {
     /* width: 800px; */
     display: grid;
     margin: 0 auto;

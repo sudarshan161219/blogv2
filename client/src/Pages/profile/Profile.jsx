@@ -46,7 +46,7 @@ const Profile = () => {
 
         <div className="profile-info">
           <h1>{name}</h1>
-          <strong>@test123</strong>
+          <span>@test123</span>
 
           <p>{userInfo}</p>
           <div className="profile-social-container">

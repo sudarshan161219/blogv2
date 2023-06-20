@@ -4,14 +4,9 @@ const Wrapper = styled.div`
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
-  width: 100%;
   flex-direction: column;
-  /* align-items: center; */
-  gap: 2.5rem;
   padding-top: 5rem;
-  /* .search-container {
-    width: 95%;
-  } */
+  margin: 0 1rem;
 
   .search-container-form {
     position: relative;
@@ -105,9 +100,14 @@ const Wrapper = styled.div`
     transform: translateY(0);
   }
 
-  @media (min-width: 1024px) {
-    width: 800px;
+  @media (min-width: 700px) {
+    width: 600px;
     margin: 0 auto;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1100px) {
+    width: 800px;
   }
 `;
 
