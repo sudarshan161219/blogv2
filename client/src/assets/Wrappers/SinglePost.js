@@ -47,8 +47,37 @@ const Wrapper = styled.div`
   .post-content-container {
     padding: 1rem;
   }
+
+  .post-author {
+    color: #1d2939;
+    display: flex;
+    gap: 0.3rem;
+    text-transform: uppercase;
+    font-family: FontSemiBold;
+    font-size: 13px;
+    line-height: 120%;
+  }
+
   @media (min-width: 700px) {
     padding: 0 2rem;
+    .post-heading-container > h1 {
+      font-size: 46px;
+      letter-spacing: -3%;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .post-img-container {
+      display: flex;
+      justify-content: center;
+    }
+    .post-img-container > img {
+      width: 650px;
+    }
+
+    .post-heading-container > h1 {
+      font-size: 65px;
+    }
   }
 
   @media (min-width: 1200px) {

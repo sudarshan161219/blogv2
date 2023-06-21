@@ -150,7 +150,6 @@ const Register = () => {
           <button
             type="submit"
             className="button-28"
-            isLoading={isLoading}
             disabled={isLoading}
           >
             {isLoading ? (

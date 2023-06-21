@@ -4,7 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/SinglePost";
 import moment from "moment";
 import { Loading } from "../Components/export";
-import { BsDot } from "react-icons/bs";
+import { BsDot, BsPersonCircle} from "react-icons/bs";
+
+
 const SinglePost = () => {
   const { getSinglePost, post, isLoading } = useAppContext();
   const { id } = useParams();
@@ -29,7 +31,10 @@ const SinglePost = () => {
         <div className="post-date-author-info-container">
           <span>{Fdate}</span>
           <BsDot />
-          <span>{author ? author.name : null}</span>
+          <Link to={`/author/${author ? author._id : ""}`} className="Link post-author">
+            <BsPersonCircle />
+            {author ? author.name : null}
+          </Link>
         </div>
       </div>
 

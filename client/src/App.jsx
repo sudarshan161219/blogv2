@@ -8,6 +8,7 @@ import {
   About,
   SinglePost,
   ProtectedRoutes,
+  AuthorPage,
   // AuthorsSinglePost,
 } from "./Pages/export";
 import {
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/tags" element={<Tags />} />
         <Route path="/about" element={<About />} />
         <Route path="/post/:id" element={<SinglePost />} />
+        <Route path="/author/:id" element={<AuthorPage />} />
       </Routes>
       <ScrolltoTopBtn />
     </>

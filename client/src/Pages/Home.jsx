@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     getALLPost();
-  }, []);
+  }, [allPosts]);
 
   const suffule =  allPosts.sort( () => Math.random() - 0.5)
 

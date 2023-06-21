@@ -48,6 +48,13 @@ const Wrapper = styled.main`
     justify-content: end;
   }
 
+  .ptag > h1,
+  h2, u {
+    text-decoration: auto;
+    font-size: 16px;
+    font-family: FontRegular;
+  }
+
   @media (min-width: 700px) {
     .card {
       padding: 1.2rem;

@@ -439,43 +439,44 @@ const ContextProvider = ({ children }) => {
     //   url = url + `search=${search}`;
     // }
     // let url =
-    dispatch({ type: GET_ALL_POST_BEGIN });
+    const { allPosts } = state;
+    if (allPosts.length === 0) {
+            dispatch({ type: GET_ALL_POST_BEGIN });
+            try {
+              const { data } = await authFetch.get("/", {
+                credentials: "omit",
+              });
+              const { allPosts } = data;
+              dispatch({
+                type: GET_ALL_POST_SUCCESS,
+                payload: { allPosts },
+              });
+            } catch (error) {
+              dispatch({
+                type: GET_ALL_POST_ERROR,
+              });
+            }
+    } 
+  };
+
+  const getSinglePost = async (id) => {
+    dispatch({ type: GET_SINGLE_POST_BEGIN });
     try {
-      const { data } = await authFetch.get("/", {
+      const { data } = await authFetch.get(`/post/${id}`, {
         credentials: "omit",
       });
-      const { allPosts } = data;
+      const { singlepost } = data;
       dispatch({
-        type: GET_ALL_POST_SUCCESS,
-        payload: { allPosts },
+        type: GET_SINGLE_POST_SUCCESS,
+        payload: { singlepost },
       });
-      dispatch({ type: CLEAR_VALUES });
     } catch (error) {
+      console.log(error);
       dispatch({
-        type: GET_ALL_POST_ERROR,
+        type: GET_SINGLE_POST_ERROR,
       });
     }
   };
-
-    const getSinglePost = async (id) => {
-      dispatch({ type: GET_SINGLE_POST_BEGIN });
-      try {
-        const { data } = await authFetch.get(`/post/${id}`, {
-          credentials: "omit",
-        });
-        const { singlepost } = data;
-        dispatch({
-          type: GET_SINGLE_POST_SUCCESS,
-          payload: { singlepost },
-        });
-        dispatch({ type: CLEAR_VALUES });
-      } catch (error) {
-        console.log(error);
-        dispatch({
-          type: GET_SINGLE_POST_ERROR,
-        });
-      }
-    };
 
   return (
     <Context.Provider
