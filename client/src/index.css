@@ -179,10 +179,10 @@ h5 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.050rem;
   font-family: FontRegular;
   color: #475467;
-  line-height: 130%;
+  line-height: 150%;
 }
 
 h1 {
@@ -213,7 +213,7 @@ h5 {
   letter-spacing: 1px;
 }
 
-.Link {
+.Link, .homepage-link  {
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
@@ -524,6 +524,7 @@ h5 {
 
 .ql-editor p {
   font-family: "Poppins", sans-serif;
+    /* font-family: FontRegular; */
   line-height: 1.5rem;
   letter-spacing: 1px;
   font-weight: 400;
@@ -534,9 +535,9 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Open Sans", sans-serif;
+  font-family: FontSemiBold;
   letter-spacing: 1px;
-  font-weight: 500;
+  /* font-weight: 500; */
 }
 
 .dashboard-page {

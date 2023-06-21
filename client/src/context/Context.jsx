@@ -42,6 +42,9 @@ import {
   GET_ALL_POST_BEGIN,
   GET_ALL_POST_SUCCESS,
   GET_ALL_POST_ERROR,
+  GET_SINGLE_POST_BEGIN,
+  GET_SINGLE_POST_SUCCESS,
+  GET_SINGLE_POST_ERROR,
   GET_TAGS_SEARCH_POST_BEGIN,
   GET_TAGS_SEARCH_POST_SUCCESS,
   GET_TAGS_SEARCH_POST_ERROR,
@@ -82,7 +85,8 @@ const initialState = {
   search: "",
   SearchCategory: "all",
   sort: "",
-  allPosts:[]
+  allPosts: [],
+  post: [],
 };
 const Context = createContext({});
 
@@ -428,28 +432,47 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: CHANGE_PAGE, payload: { page } });
   };
 
+  const getALLPost = async () => {
+    // const { search, SearchCategory, sort, page } = state;
+    // let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
+    // if (search) {
+    //   url = url + `search=${search}`;
+    // }
+    // let url =
+    dispatch({ type: GET_ALL_POST_BEGIN });
+    try {
+      const { data } = await authFetch.get("/", {
+        credentials: "omit",
+      });
+      const { allPosts } = data;
+      dispatch({
+        type: GET_ALL_POST_SUCCESS,
+        payload: { allPosts },
+      });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_POST_ERROR,
+      });
+    }
+  };
 
-    const getALLPost = async () => {
-      // const { search, SearchCategory, sort, page } = state;
-      // let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
-      // if (search) {
-      //   url = url + `search=${search}`;
-      // }
-      // let url = 
-      dispatch({ type: GET_ALL_POST_BEGIN });
+    const getSinglePost = async (id) => {
+      dispatch({ type: GET_SINGLE_POST_BEGIN });
       try {
-        const { data } = await authFetch.get("/", {
+        const { data } = await authFetch.get(`/post/${id}`, {
           credentials: "omit",
         });
-        const { allPosts } = data;
+        const { singlepost } = data;
         dispatch({
-          type: GET_ALL_POST_SUCCESS,
-          payload: { allPosts },
+          type: GET_SINGLE_POST_SUCCESS,
+          payload: { singlepost },
         });
         dispatch({ type: CLEAR_VALUES });
       } catch (error) {
+        console.log(error);
         dispatch({
-          type: GET_ALL_POST_ERROR,
+          type: GET_SINGLE_POST_ERROR,
         });
       }
     };
@@ -481,6 +504,7 @@ const ContextProvider = ({ children }) => {
         changePage,
         getTagSearchPost,
         getALLPost,
+        getSinglePost,
       }}
     >
       {children}

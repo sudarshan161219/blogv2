@@ -9,7 +9,28 @@ import {
 import checkPermissions from "../utils/checkPermissions.mjs";
 
 const getAllPost = async (req, res) => {
-  return res.send("get all post");
+  const allPosts = await Post.find()
+    .populate("author", ["name"])
+    .sort({ createdAt: -1 });
+  //  .limit(20);
+  const totalPosts = await Post.countDocuments(allPosts);
+  return res.status(StatusCodes.OK).json({
+    allPosts,
+    totalPosts,
+  });
+};
+
+const getPost = async (req, res) => {
+  const { id: postId } = req.params;
+  const singlepost = await Post.findById({ _id: postId }).populate("author", [
+    "name",
+  ]);
+
+  if (!singlepost) {
+    throw new NotFoundError(`No post with id : ${postId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ singlepost });
 };
 
 const tagsSearch = async (req, res) => {
@@ -65,5 +86,4 @@ const tagsSearch = async (req, res) => {
   });
 };
 
-
-export { getAllPost, tagsSearch };
+export { getAllPost, tagsSearch, getPost };

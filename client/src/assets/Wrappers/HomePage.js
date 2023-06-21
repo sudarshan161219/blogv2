@@ -41,6 +41,13 @@ const Wrapper = styled.main`
     gap: 0.8rem;
   }
 
+  .homepage-link {
+    color: #475467;
+    font-family: FontSemiBold;
+    display: flex;
+    justify-content: end;
+  }
+
   @media (min-width: 700px) {
     .card {
       padding: 1.2rem;
@@ -73,11 +80,23 @@ const Wrapper = styled.main`
       content: "/";
       margin-left: 0.5rem;
     }
+
+    .homepage-link {
+      color: #475467;
+      font-family: FontSemiBold;
+      width: 100px;
+      display: block;
+      /* justify-content: end; */
+    }
   }
 
   @media (min-width: 1020px) {
     width: 800px;
     margin: auto;
+    .homepage-link:hover {
+      opacity: 0.5;
+      transition: all 0.3s;
+    }
   }
 `;
 

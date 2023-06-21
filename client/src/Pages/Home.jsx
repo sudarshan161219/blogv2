@@ -12,13 +12,15 @@ const Home = () => {
     getALLPost();
   }, []);
 
+  const suffule =  allPosts.sort( () => Math.random() - 0.5)
+
   return (
     <Wrapper>
       {isLoading ? (
         <SkeletonLoding />
       ) : (
         <>
-          {allPosts.map((item) => (
+          {suffule.map((item) => (
             <HomePage item={item} key={item._id} />
           ))}
         </>

@@ -43,6 +43,9 @@ import {
   GET_ALL_POST_BEGIN,
   GET_ALL_POST_SUCCESS,
   GET_ALL_POST_ERROR,
+  GET_SINGLE_POST_BEGIN,
+  GET_SINGLE_POST_SUCCESS,
+  GET_SINGLE_POST_ERROR,
 } from "./action";
 import { initialState } from "./Context";
 const reducer = (state, action) => {
@@ -149,6 +152,26 @@ const reducer = (state, action) => {
       isLoading: false,
     };
   }
+
+
+   if (action.type === GET_SINGLE_POST_BEGIN) {
+     return { ...state, isLoading: true };
+   }
+
+   if (action.type === GET_SINGLE_POST_SUCCESS) {
+     return {
+       ...state,
+       isLoading: false,
+       post: action.payload.singlepost,
+     };
+   }
+
+   if (action.type === GET_SINGLE_POST_ERROR) {
+     return {
+       ...state,
+       isLoading: false,
+     };
+   }
 
   if (action.type === GET_TAGS_SEARCH_POST_BEGIN) {
     return { ...state, isLoading: true };
