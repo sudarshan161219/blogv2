@@ -141,6 +141,12 @@ body::-webkit-scrollbar-track {
   src: url("./assets/Graphik-Font-Family/GraphikSemibold.otf");
 }
 
+
+@font-face {
+  font-family: FontBold;
+  src: url("./assets/Graphik-Font-Family/GraphikBold.otf");
+}
+
 @font-face {
   font-family: FontRegular;
   src: url("./assets/Graphik-Font-Family/GraphikRegular.otf");
@@ -159,7 +165,6 @@ body::-webkit-scrollbar-thumb {
 
 body {
   line-height: 1;
-  /* height: 100vh; */
   background-color: #fff;
   /* margin: 1.5rem 1rem 0 1rem; */
   position: relative;
@@ -542,4 +547,19 @@ h5 {
 
 .dashboard-page {
   margin: 1.5rem 1rem;
+}
+
+
+.ql-snow .ql-editor pre.ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+    width: 100%;
+    overflow: auto;
+}
+
+.ql-snow .ql-editor pre {
+    white-space: pre;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px 10px;
 }
