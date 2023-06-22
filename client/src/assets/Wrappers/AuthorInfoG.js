@@ -15,6 +15,7 @@ const Wrapper = styled.div`
     gap: 1rem;
     justify-content: center;
     text-align: center;
+    align-content: center;
   }
   .author_info_links_container {
     display: flex;
@@ -64,7 +65,6 @@ const Wrapper = styled.div`
     .author_info_img_conyainer > img {
       width: 200px;
     }
-
   }
 `;
 

@@ -18,6 +18,8 @@ import SkeletonLoding from "./SkeletonLoding";
 import ScrolltoTopBtn from "./ScrolltoTopBtn";
 import HomePage from "./HomePage";
 import AuthorInfoG from "./AuthorInfoG";
+import AuthorPostsG from  "./AuthorPostsG";
+
 export {
   AboutHeroS,
   AboutS,
@@ -39,4 +41,5 @@ export {
   ScrolltoTopBtn,
   HomePage,
   AuthorInfoG,
+  AuthorPostsG,
 };

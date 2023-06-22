@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
-import {AuthorInfoG} from "../Components/export"
-
+import { AuthorInfoG, AuthorPostsG } from "../Components/export";
 
 const AuthorPage = () => {
   const { getAuthorPage, GauthorPosts, GauthorInfo } = useAppContext();
@@ -15,6 +14,9 @@ const AuthorPage = () => {
   return (
     <Wrapper>
       <AuthorInfoG authorInfo={GauthorInfo} />
+      {GauthorPosts.map((post) => (
+        <AuthorPostsG key={post._id} post={post} />
+      ))}
     </Wrapper>
   );
 };
