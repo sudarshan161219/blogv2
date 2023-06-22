@@ -11,7 +11,7 @@ const SinglePost = () => {
   const { getSinglePost, post, isLoading } = useAppContext();
   const { id } = useParams();
 
-  const { _id, title, coverImg, content, createdAt, author } = post;
+  const { title, coverImg, content, createdAt, author } = post;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");

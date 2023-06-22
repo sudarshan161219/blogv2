@@ -2,16 +2,19 @@ import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
+import {AuthorInfoG} from "../Components/export"
+
+
 const AuthorPage = () => {
-  const { getAuthorPage, authorPage } = useAppContext();
+  const { getAuthorPage, GauthorPosts, GauthorInfo } = useAppContext();
   const { id } = useParams();
   useEffect(() => {
     getAuthorPage(id);
-  }, [authorPage]);
+  }, [GauthorPosts]);
 
   return (
     <Wrapper>
-      <h1>AuthorPage</h1>
+      <AuthorInfoG authorInfo={GauthorInfo} />
     </Wrapper>
   );
 };

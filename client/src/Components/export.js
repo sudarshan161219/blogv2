@@ -17,7 +17,7 @@ import SearchComponent from "./SearchComponent";
 import SkeletonLoding from "./SkeletonLoding";
 import ScrolltoTopBtn from "./ScrolltoTopBtn";
 import HomePage from "./HomePage";
-
+import AuthorInfoG from "./AuthorInfoG";
 export {
   AboutHeroS,
   AboutS,
@@ -32,11 +32,11 @@ export {
   NavItems,
   Navlinks,
   Sidebar,
-  // TextEditor,
   CategoryBox,
   SearchComponent,
   PageBtnContainer,
   SkeletonLoding,
   ScrolltoTopBtn,
   HomePage,
+  AuthorInfoG,
 };
