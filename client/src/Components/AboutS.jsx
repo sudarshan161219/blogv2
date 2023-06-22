@@ -1,11 +1,11 @@
 import React from "react";
 import Wrapper from "../assets/Wrappers/AboutS";
 
-import pic1 from "../assets/imgs/Picture-1.png";
-import pic2 from "../assets/imgs/Picture-2.png";
-import pic3 from "../assets/imgs/Picture-3.png";
-import pic4 from "../assets/imgs/Picture-4.png";
-import pic5 from "../assets/imgs/Picture-5.png";
+import pic1 from "../assets/imgs/Picture-1.webp";
+import pic2 from "../assets/imgs/Picture-2.webp";
+import pic3 from "../assets/imgs/Picture-3.webp";
+import pic4 from "../assets/imgs/Picture-4.webp";
+import pic5 from "../assets/imgs/Picture-5.webp";
 
 const AboutS = () => {
   return (
