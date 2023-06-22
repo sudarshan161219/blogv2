@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  padding: 1rem;
   .author_info_img_conyainer {
     display: flex;
     justify-content: center;

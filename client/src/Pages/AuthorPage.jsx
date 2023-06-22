@@ -14,9 +14,11 @@ const AuthorPage = () => {
   return (
     <Wrapper>
       <AuthorInfoG authorInfo={GauthorInfo} />
-      {GauthorPosts.map((post) => (
-        <AuthorPostsG key={post._id} post={post} />
-      ))}
+      <div className="postG">
+        {GauthorPosts.map((post) => (
+          <AuthorPostsG key={post._id} post={post} />
+        ))}
+      </div>
     </Wrapper>
   );
 };
