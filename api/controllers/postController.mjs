@@ -33,6 +33,16 @@ const getPost = async (req, res) => {
   res.status(StatusCodes.OK).json({ singlepost });
 };
 
+const getAuthorPage = async (req, res) => {
+  const { id: authorId } = req.params;
+  const queryObject = {
+    author: authorId,
+  };
+  const authorInfo = await User.findById({ _id: authorId });
+  const authorPosts = await Post.find(queryObject).sort({ createdAt: -1 });
+  res.status(StatusCodes.OK).json({ authorPosts, authorInfo });
+};
+
 const tagsSearch = async (req, res) => {
   const { search, sort, category, tag, author } = req.query;
 
@@ -86,4 +96,4 @@ const tagsSearch = async (req, res) => {
   });
 };
 
-export { getAllPost, tagsSearch, getPost };
+export { getAllPost, tagsSearch, getPost, getAuthorPage };

@@ -45,6 +45,9 @@ import {
   GET_SINGLE_POST_BEGIN,
   GET_SINGLE_POST_SUCCESS,
   GET_SINGLE_POST_ERROR,
+  GET_AUTHOR_PAGE_BEGIN,
+  GET_AUTHOR_PAGE_SUCCESS,
+  GET_AUTHOR_PAGE_ERROR,
   GET_TAGS_SEARCH_POST_BEGIN,
   GET_TAGS_SEARCH_POST_SUCCESS,
   GET_TAGS_SEARCH_POST_ERROR,
@@ -87,6 +90,8 @@ const initialState = {
   sort: "",
   allPosts: [],
   post: [],
+  GauthorPosts: [],
+  GauthorInfo: [],
 };
 const Context = createContext({});
 
@@ -441,22 +446,22 @@ const ContextProvider = ({ children }) => {
     // let url =
     const { allPosts } = state;
     if (allPosts.length === 0) {
-            dispatch({ type: GET_ALL_POST_BEGIN });
-            try {
-              const { data } = await authFetch.get("/", {
-                credentials: "omit",
-              });
-              const { allPosts } = data;
-              dispatch({
-                type: GET_ALL_POST_SUCCESS,
-                payload: { allPosts },
-              });
-            } catch (error) {
-              dispatch({
-                type: GET_ALL_POST_ERROR,
-              });
-            }
-    } 
+      dispatch({ type: GET_ALL_POST_BEGIN });
+      try {
+        const { data } = await authFetch.get("/", {
+          credentials: "omit",
+        });
+        const { allPosts } = data;
+        dispatch({
+          type: GET_ALL_POST_SUCCESS,
+          payload: { allPosts },
+        });
+      } catch (error) {
+        dispatch({
+          type: GET_ALL_POST_ERROR,
+        });
+      }
+    }
   };
 
   const getSinglePost = async (id) => {
@@ -474,6 +479,25 @@ const ContextProvider = ({ children }) => {
       console.log(error);
       dispatch({
         type: GET_SINGLE_POST_ERROR,
+      });
+    }
+  };
+
+  const getAuthorPage = async (id) => {
+    dispatch({ type: GET_AUTHOR_PAGE_BEGIN });
+    try {
+      const { data } = await authFetch.get(`/author/${id}`, {
+        credentials: "omit",
+      });
+      const { authorPosts, authorInfo } = data;
+      dispatch({
+        type: GET_AUTHOR_PAGE_SUCCESS,
+        payload: { authorPosts, authorInfo },
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: GET_AUTHOR_PAGE_ERROR,
       });
     }
   };
@@ -506,6 +530,7 @@ const ContextProvider = ({ children }) => {
         getTagSearchPost,
         getALLPost,
         getSinglePost,
+        getAuthorPage,
       }}
     >
       {children}

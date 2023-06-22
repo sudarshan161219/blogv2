@@ -43,11 +43,16 @@ import {
   GET_ALL_POST_BEGIN,
   GET_ALL_POST_SUCCESS,
   GET_ALL_POST_ERROR,
+  GET_AUTHOR_PAGE_BEGIN,
+  GET_AUTHOR_PAGE_SUCCESS,
+  GET_AUTHOR_PAGE_ERROR,
   GET_SINGLE_POST_BEGIN,
   GET_SINGLE_POST_SUCCESS,
   GET_SINGLE_POST_ERROR,
 } from "./action";
+
 import { initialState } from "./Context";
+
 const reducer = (state, action) => {
   if (action.type === TOGGLE_SIDEBAR) {
     return { ...state, showSidebar: !state.showSidebar };
@@ -131,7 +136,6 @@ const reducer = (state, action) => {
     };
   }
 
-
   if (action.type === GET_ALL_POST_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -153,25 +157,46 @@ const reducer = (state, action) => {
     };
   }
 
+    if (action.type === GET_AUTHOR_PAGE_BEGIN) {
+      return { ...state, isLoading: true };
+    }
 
-   if (action.type === GET_SINGLE_POST_BEGIN) {
-     return { ...state, isLoading: true };
-   }
+    if (action.type === GET_AUTHOR_PAGE_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        GauthorPosts: action.payload.authorPosts,
+        GauthorInfo: action.payload.authorInfo,
+        // totalPosts: action.payload.totalPosts,
+        // numOfPages: action.payload.numOfPages,
+      };
+    }
 
-   if (action.type === GET_SINGLE_POST_SUCCESS) {
-     return {
-       ...state,
-       isLoading: false,
-       post: action.payload.singlepost,
-     };
-   }
+    if (action.type === GET_AUTHOR_PAGE_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
 
-   if (action.type === GET_SINGLE_POST_ERROR) {
-     return {
-       ...state,
-       isLoading: false,
-     };
-   }
+  if (action.type === GET_SINGLE_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_SINGLE_POST_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      post: action.payload.singlepost,
+    };
+  }
+
+  if (action.type === GET_SINGLE_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
 
   if (action.type === GET_TAGS_SEARCH_POST_BEGIN) {
     return { ...state, isLoading: true };
@@ -193,7 +218,6 @@ const reducer = (state, action) => {
       isLoading: false,
     };
   }
-
 
   if (action.type === GET_AUTHOR_SINGLE_POST_BEGIN) {
     return { ...state, isLoading: true };
@@ -221,7 +245,6 @@ const reducer = (state, action) => {
       authors_post: [],
     };
   }
-
 
   if (action.type === UPDATE_USER_BEGIN) {
     return { ...state, isLoading: true };
@@ -343,8 +366,7 @@ const reducer = (state, action) => {
     const authorsPosts = state.authorpost.find(
       (post) => post._id === action.payload.id
     );
-    const { _id, title, coverImg, content, postTags, category } =
-      authorsPosts;
+    const { _id, title, coverImg, content, postTags, category } = authorsPosts;
 
     return {
       ...state,
@@ -382,10 +404,10 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CHANGE_PAGE) {
-    return{
+    return {
       ...state,
-      page: action.payload.page
-    }
+      page: action.payload.page,
+    };
   }
 
   throw new Error(`no such action : ${action.type}`);
