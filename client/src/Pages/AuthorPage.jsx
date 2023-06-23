@@ -3,25 +3,29 @@ import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
 import { AuthorInfoG, AuthorPostsG } from "../Components/export";
-import { Loading } from "../Components/export";
+import { Loading, SkeletonLoding } from "../Components/export";
 const AuthorPage = () => {
   const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading } =
     useAppContext();
   const { id } = useParams();
   useEffect(() => {
     getAuthorPage(id);
-  }, [GauthorPosts]);
+  }, []);
 
   // if (isLoading) return <Loading />;
 
   return (
     <Wrapper>
-      <AuthorInfoG authorInfo={GauthorInfo} />
-      <div className="postG">
-        {GauthorPosts.map((post) => (
-          <AuthorPostsG key={post._id} post={post} />
-        ))}
-      </div>
+      {isLoading ? <Loading /> : <AuthorInfoG authorInfo={GauthorInfo} />}
+      {isLoading ? (
+        <SkeletonLoding />
+      ) : (
+        <div className="postG">
+          {GauthorPosts.map((post) => (
+            <AuthorPostsG key={post._id} post={post} />
+          ))}
+        </div>
+      )}
     </Wrapper>
   );
 };

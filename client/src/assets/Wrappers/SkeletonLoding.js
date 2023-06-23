@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   gap: 1.2rem;
+  padding: 1rem;
   .post-card {
     display: grid;
     width: 100%;
