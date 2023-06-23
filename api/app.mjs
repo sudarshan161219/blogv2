@@ -4,9 +4,9 @@ import dotenv from "dotenv"
 dotenv.config()
 import 'express-async-errors';
 import cors from "cors"
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import path from "path";
+// import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// import path from "path";
 import connectDB from "./Db/connectDb.mjs";
 import authRoute from "./route/authRoute.mjs";
 import authPostRoute from "./route/authPostRoute.mjs";
@@ -26,12 +26,12 @@ const corsOptions = {
     optionSuccessStatus: 200,
 }
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: false, limit: '50mb'}));
 app.use(cors(corsOptions))
-app.use(express.static(path.resolve(__dirname, "../client/dist")));
+// app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 
 
@@ -39,7 +39,7 @@ app.use(express.static(path.resolve(__dirname, "../client/dist")));
 //* api routes
 app.use("/api", authRoute)
 app.use("/api",  postRoute);
-app.use("/api",  auth ,  authPostRoute)
+app.use("/api",  auth,  authPostRoute)
 
 
 //* HTTP GET Request

@@ -141,7 +141,6 @@ body::-webkit-scrollbar-track {
   src: url("./assets/Graphik-Font-Family/GraphikSemibold.otf");
 }
 
-
 @font-face {
   font-family: FontBold;
   src: url("./assets/Graphik-Font-Family/GraphikBold.otf");
@@ -184,7 +183,7 @@ h5 {
 }
 
 p {
-  font-size: 1.050rem;
+  font-size: 1.05rem;
   font-family: FontRegular;
   color: #475467;
   line-height: 150%;
@@ -218,7 +217,8 @@ h5 {
   letter-spacing: 1px;
 }
 
-.Link, .homepage-link  {
+.Link,
+.homepage-link {
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
 }
@@ -284,6 +284,11 @@ h5 {
   touch-action: manipulation;
   width: 100%;
   will-change: transform;
+  overflow: hidden;
+  height: 45px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .button-28:disabled,
@@ -489,6 +494,10 @@ h5 {
 }
 
 .loader {
+  width: 70px;
+}
+
+.gif {
   width: 65px;
 }
 
@@ -505,11 +514,15 @@ h5 {
 
 @media (min-width: 1024px) {
   .logo {
-    width: 105px;
+    width: 95px;
   }
 
   .register-main {
     padding: 2rem 0 0 0;
+  }
+
+  .loader {
+    width: 125px;
   }
 }
 
@@ -529,7 +542,7 @@ h5 {
 
 .ql-editor p {
   font-family: "Poppins", sans-serif;
-    /* font-family: FontRegular; */
+  /* font-family: FontRegular; */
   line-height: 1.5rem;
   letter-spacing: 1px;
   font-weight: 400;
@@ -545,22 +558,25 @@ h5 {
   /* font-weight: 500; */
 }
 
+.ql-snow .ql-editor h1 {
+  font-size: 1.5em;
+}
+
 .dashboard-page {
   margin: 1.5rem 1rem;
 }
 
-
 .ql-snow .ql-editor pre.ql-syntax {
   font-size: 13px;
-    background-color: #23241f;
-    color: #f8f8f2;
-    width: 100%;
-    overflow: auto;
+  background-color: #23241f;
+  color: #f8f8f2;
+  width: 100%;
+  overflow: auto;
 }
 
 .ql-snow .ql-editor pre {
-    white-space: pre;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    padding: 5px 10px;
+  white-space: pre;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
 }

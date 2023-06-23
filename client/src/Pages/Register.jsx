@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Logo } from "../Components/export";
 import { useAppContext } from "../context/Context";
 import { Toaster } from "react-hot-toast";
-import gif from "../assets/Rolling-1s-31px.svg";
+import gif from "../assets/Rolling-0.7s-157px.svg";
 
 const initialState = {
   name: "",
@@ -147,11 +147,7 @@ const Register = () => {
               ))}
           </div>
 
-          <button
-            type="submit"
-            className="button-28"
-            disabled={isLoading}
-          >
+          <button type="submit" className="button-28" disabled={isLoading}>
             {isLoading ? (
               <img className="gif" src={gif} alt="gif" />
             ) : !values.isMember ? (

@@ -29,6 +29,7 @@ const Wrapper = styled.div`
 
   .back-btn {
     width: 100px;
+    height: 35px;
     margin-bottom: 2rem;
   }
 

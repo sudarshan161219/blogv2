@@ -1,5 +1,5 @@
 import React from 'react'
-import load from "../assets/Rolling-1s-31px.svg"
+import load from "../assets/Rolling-0.7s-157px.svg"
 
 const Loading = () => {
   return (

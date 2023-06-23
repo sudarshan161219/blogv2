@@ -3,13 +3,16 @@ import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
 import { AuthorInfoG, AuthorPostsG } from "../Components/export";
-
+import { Loading } from "../Components/export";
 const AuthorPage = () => {
-  const { getAuthorPage, GauthorPosts, GauthorInfo } = useAppContext();
+  const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading } =
+    useAppContext();
   const { id } = useParams();
   useEffect(() => {
     getAuthorPage(id);
   }, [GauthorPosts]);
+
+  // if (isLoading) return <Loading />;
 
   return (
     <Wrapper>
