@@ -74,14 +74,16 @@ const Wrapper = styled.aside`
   .navlinks-container > ul {
     display: grid;
     gap: 2rem;
-    font-size: 1.5rem;
     text-align: center;
     color: blanchedalmond;
   }
 
   .navlinks-container > ul > li > .Link {
-    /* color: black; */
     color: #b3b3b3;
+    font-family: 'FontMedium';
+    font-size: 1.2rem;
+    letter-spacing:1.1px;
+    line-height: 100%;
   }
 `;
 
