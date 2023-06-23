@@ -37,8 +37,29 @@ const Wrapper = styled.div`
   }
 
   .post-img-container {
-    position: relative;
+    padding-bottom: 3rem;
+    display: grid;
+    gap: 1rem;
   }
+
+  .ldc-icons {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .like-dislike-comment-save {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem;
+    justify-content: space-between;
+  }
+
+
+  .like-dislike-comment {
+    display: flex;
+    gap: 1rem;
+  }
+
 
   .post-img-container > img {
     width: 100%;
@@ -58,17 +79,23 @@ const Wrapper = styled.div`
     line-height: 120%;
   }
 
+
+
   @media (min-width: 700px) {
     padding: 0 2rem;
     .post-heading-container > h1 {
       font-size: 46px;
       letter-spacing: -3%;
     }
+
+    .like-dislike-comment-save {
+    padding: 0;
+  }
   }
 
   @media (min-width: 1000px) {
     .post-img-container {
-      display: flex;
+      /* display: flex; */
       justify-content: center;
     }
     .post-img-container > img {
@@ -78,6 +105,7 @@ const Wrapper = styled.div`
     .post-heading-container > h1 {
       font-size: 65px;
     }
+
   }
 
   @media (min-width: 1200px) {
