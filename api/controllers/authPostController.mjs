@@ -27,7 +27,6 @@ const createPost = async (req, res) => {
   });
 };
 
-
 const authorPosts = async (req, res) => {
   const { search, sort, category, tag } = req.query;
 
@@ -119,10 +118,33 @@ const deletePost = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Success Post removed" });
 };
 
+const likePost = async (req, res) => {
+  const { postId } = req.body;
+
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const likedPost = await Post.findByIdAndUpdate(
+    { _id: postId },
+    {
+      $push: { likes: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({ likedPost });
+};
+
 export {
   createPost,
   authorPosts,
   getSinglePost,
   editPost,
   deletePost,
+  likePost,
 };

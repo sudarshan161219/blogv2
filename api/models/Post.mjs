@@ -8,7 +8,7 @@ const PostSchema = new Schema(
       required: [true, "Please title name"],
       minlength: 10,
     },
-  
+
     coverImg: {
       type: String,
     },
@@ -21,6 +21,13 @@ const PostSchema = new Schema(
     postTags: {
       type: Array,
     },
+
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
 
     category: {
       type: String,

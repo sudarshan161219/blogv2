@@ -96,4 +96,28 @@ const tagsSearch = async (req, res) => {
   });
 };
 
-export { getAllPost, tagsSearch, getPost, getAuthorPage };
+
+// const likePost = async (req, res) => {
+//   const { postId, userId } = req.body;
+
+//   const user = await User.findOne({ _id: userId });
+
+//   if (!user) {
+//     throw new UnauthenticatedError(
+//       "Login or Sign Up for like, comment the post"
+//     );
+//   }
+
+//   const likedPost = Post.findByIdAndUpdate(
+//     postId,
+//     {
+//       $push: { likes: userId },
+//     },
+//     { new: true }
+//   );
+
+//   res.status(StatusCodes.OK).json(likedPost);
+// };
+
+
+export { getAllPost, tagsSearch, getPost, getAuthorPage,   };
