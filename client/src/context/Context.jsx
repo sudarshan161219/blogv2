@@ -517,6 +517,20 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+
+  const unLikePost = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/unlike/${id}`);
+      const { likedPost } = data;
+      dispatch({
+        type: POST_LIKES,
+        payload: { likedPost },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -547,6 +561,7 @@ const ContextProvider = ({ children }) => {
         getSinglePost,
         getAuthorPage,
         likePost,
+        unLikePost
       }}
     >
       {children}

@@ -14,10 +14,10 @@ import { BiLike, BiDislike, BiComment } from "react-icons/bi";
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 
 const SinglePost = () => {
-  const { allPosts, getSinglePost, post, isLoading, likePost, user } =
+  const { getSinglePost, post, isLoading, likePost, unLikePost, user } =
     useAppContext();
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
+  const [like, setLike] = useState(true);
+  const [dislike, setDislike] = useState(true);
   const [save, setSave] = useState(false);
 
   const { id } = useParams();
@@ -34,18 +34,21 @@ const SinglePost = () => {
   const handleLike = () => {
     setLike(!like);
     if (like) {
-      likePost(id);
+       likePost(id);
+    } else {
+       unLikePost(id);
     }
-    if (dislike) {
-      setDislike(false);
-    }
+
+    // if (dislike) {
+    //   setDislike(false);
+    // }
   };
 
   const handleDislike = () => {
-    setDislike(!dislike);
-    if (like) {
-      setLike(false);
-    }
+    // setDislike(!dislike);
+    // if (like) {
+    //   setLike(false);
+    // }
   };
 
   const handleSave = () => {
@@ -79,15 +82,15 @@ const SinglePost = () => {
           <div className="like-dislike-comment-save">
             <div className="like-dislike-comment">
               {like ? (
-                <BiSolidLike className="ldc-icons" onClick={handleLike} />
-              ) : (
                 <BiLike className="ldc-icons" onClick={handleLike} />
+              ) : (
+                <BiSolidLike className="ldc-icons" onClick={handleLike} />
               )}
 
               {dislike ? (
-                <BiSolidDislike className="ldc-icons" onClick={handleDislike} />
-              ) : (
                 <BiDislike className="ldc-icons" onClick={handleDislike} />
+              ) : (
+                <BiSolidDislike className="ldc-icons" onClick={handleDislike} />
               )}
               <BiComment className="ldc-icons" />
             </div>
@@ -103,9 +106,18 @@ const SinglePost = () => {
             </div>
           </div>
         ) : (
-        <div className="ldc-disable-msg">
-            <strong><Link className="strong-link" to="/register">login</Link> or <Link className="strong-link" to="/register">sign up</Link>  to like and comment on post</strong>
-        </div>
+          <div className="ldc-disable-msg">
+            <strong>
+              <Link className="strong-link" to="/register">
+                login
+              </Link>
+              or
+              <Link className="strong-link" to="/register">
+                sign up
+              </Link>
+              to like and comment on post
+            </strong>
+          </div>
         )}
       </div>
 

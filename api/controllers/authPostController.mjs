@@ -139,6 +139,28 @@ const likePost = async (req, res) => {
   res.status(StatusCodes.OK).json({ likedPost });
 };
 
+
+const unLikePost = async (req, res) => {
+  const { id: postId } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const likedPost = await Post.findByIdAndUpdate(
+    { _id: postId },
+    {
+      $pull: { likes: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({ likedPost });
+};
+
 export {
   createPost,
   authorPosts,
@@ -146,4 +168,5 @@ export {
   editPost,
   deletePost,
   likePost,
+  unLikePost
 };

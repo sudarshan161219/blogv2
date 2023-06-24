@@ -8,7 +8,8 @@ import {
   getSinglePost,
   editPost,
   deletePost,
-  likePost
+  likePost,
+  unLikePost
 } from "../controllers/authPostController.mjs";
 
 //* POST , PATCH &  DELETE
@@ -17,5 +18,6 @@ router.route("/createpost").post(createPost);
 router.route("/author-post").get(authorPosts);
 router.route("/single-post/:id").get(getSinglePost);
 router.route("/ud/:id").delete(deletePost).patch(editPost);
-router.route("/like/:id").put(likePost);
+router.route("/like/:id").put(likePost)
+router.route("/unlike/:id").put(unLikePost)
 export default router;
