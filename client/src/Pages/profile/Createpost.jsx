@@ -181,7 +181,7 @@ const Createpost = () => {
   return (
     <>
       <Wrapper className="container">
-        <Toaster position="top-center" reverseOrder={false}></Toaster>
+        {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
         <div className="row">
           <form onSubmit={handleSubmit} className="quill-form">
             <h3> {isEditing ? "Edit Post" : "Create Post"} </h3>

@@ -49,6 +49,7 @@ import {
   GET_SINGLE_POST_BEGIN,
   GET_SINGLE_POST_SUCCESS,
   GET_SINGLE_POST_ERROR,
+  POST_LIKES
 } from "./action";
 
 import { initialState } from "./Context";
@@ -409,6 +410,15 @@ const reducer = (state, action) => {
       page: action.payload.page,
     };
   }
+
+
+  if (action.type ===  POST_LIKES) {
+    return {
+      ...state,
+      postLikes: action.payload.likedPost,
+    };
+  }
+
 
   throw new Error(`no such action : ${action.type}`);
 };

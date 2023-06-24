@@ -45,6 +45,7 @@ const Wrapper = styled.div`
   .ldc-icons {
     font-size: 1.5rem;
     cursor: pointer;
+    color: #1d2939;
   }
 
   .like-dislike-comment-save {
@@ -54,12 +55,10 @@ const Wrapper = styled.div`
     justify-content: space-between;
   }
 
-
   .like-dislike-comment {
     display: flex;
     gap: 1rem;
   }
-
 
   .post-img-container > img {
     width: 100%;
@@ -79,7 +78,23 @@ const Wrapper = styled.div`
     line-height: 120%;
   }
 
+  .ldc-disable-msg {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #dde6ed;
+  }
 
+  .ldc-disable-msg > strong {
+    font-size: 1rem;
+    font-family: FontSemiBold;
+    color: #e76161;
+  }
+
+  .ldc-disable-msg > strong > .strong-link {
+    text-decoration: none;
+    color: #0079FF;
+  }
 
   @media (min-width: 700px) {
     padding: 0 2rem;
@@ -89,8 +104,8 @@ const Wrapper = styled.div`
     }
 
     .like-dislike-comment-save {
-    padding: 0;
-  }
+      padding: 0;
+    }
   }
 
   @media (min-width: 1000px) {
@@ -105,7 +120,6 @@ const Wrapper = styled.div`
     .post-heading-container > h1 {
       font-size: 65px;
     }
-
   }
 
   @media (min-width: 1200px) {

@@ -119,8 +119,7 @@ const deletePost = async (req, res) => {
 };
 
 const likePost = async (req, res) => {
-  const { postId } = req.body;
-
+  const { id: postId } = req.params;
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {

@@ -51,6 +51,7 @@ import {
   GET_TAGS_SEARCH_POST_BEGIN,
   GET_TAGS_SEARCH_POST_SUCCESS,
   GET_TAGS_SEARCH_POST_ERROR,
+  POST_LIKES,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -92,6 +93,7 @@ const initialState = {
   post: [],
   GauthorPosts: [],
   GauthorInfo: [],
+  postLikes: [],
 };
 const Context = createContext({});
 
@@ -502,6 +504,19 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const likePost = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/like/${id}`);
+      const { likedPost } = data;
+      dispatch({
+        type: POST_LIKES,
+        payload: { likedPost },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -531,6 +546,7 @@ const ContextProvider = ({ children }) => {
         getALLPost,
         getSinglePost,
         getAuthorPage,
+        likePost,
       }}
     >
       {children}

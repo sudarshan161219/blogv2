@@ -20,10 +20,12 @@ import {
   SharedLayout,
   AuthorsSinglePost
 } from "./Pages/profile/export";
-
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <>
+        <Toaster position="top-center" reverseOrder={false}></Toaster>
+
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -72,7 +72,7 @@ const Register = () => {
 
   return (
     <main className="register-main">
-      <Toaster position="top-center" reverseOrder={false}></Toaster>
+      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <div className="form-container">
         <div className="heading-para">
           <Logo />
