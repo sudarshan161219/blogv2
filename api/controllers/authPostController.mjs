@@ -128,7 +128,7 @@ const likePost = async (req, res) => {
     );
   }
 
-  const likedPost = await Post.findByIdAndUpdate(
+  const  like_dislike_Post  = await Post.findByIdAndUpdate(
     { _id: postId },
     {
       $push: { likes: req.user.userId },
@@ -136,9 +136,8 @@ const likePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({ likedPost });
+  res.status(StatusCodes.OK).json({  like_dislike_Post  });
 };
-
 
 const unLikePost = async (req, res) => {
   const { id: postId } = req.params;
@@ -150,7 +149,7 @@ const unLikePost = async (req, res) => {
     );
   }
 
-  const likedPost = await Post.findByIdAndUpdate(
+  const like_dislike_Post = await Post.findByIdAndUpdate(
     { _id: postId },
     {
       $pull: { likes: req.user.userId },
@@ -158,7 +157,49 @@ const unLikePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({ likedPost });
+  res.status(StatusCodes.OK).json({  like_dislike_Post  });
+};
+
+const disLikePost = async (req, res) => {
+  const { id: postId } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const like_dislike_Post = await Post.findByIdAndUpdate(
+    { _id: postId },
+    {
+      $push: { dislikes: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({  like_dislike_Post  });
+};
+
+const disUnLikePost = async (req, res) => {
+  const { id: postId } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const  like_dislike_Post  = await Post.findByIdAndUpdate(
+    { _id: postId },
+    {
+      $pull: { dislikes: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({ like_dislike_Post  });
 };
 
 export {
@@ -168,5 +209,7 @@ export {
   editPost,
   deletePost,
   likePost,
-  unLikePost
+  unLikePost,
+  disLikePost,
+  disUnLikePost,
 };

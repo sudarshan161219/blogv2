@@ -49,7 +49,8 @@ import {
   GET_SINGLE_POST_BEGIN,
   GET_SINGLE_POST_SUCCESS,
   GET_SINGLE_POST_ERROR,
-  POST_LIKES
+  POST_LIKES,
+  POST_DISLIKES,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -158,27 +159,27 @@ const reducer = (state, action) => {
     };
   }
 
-    if (action.type === GET_AUTHOR_PAGE_BEGIN) {
-      return { ...state, isLoading: true };
-    }
+  if (action.type === GET_AUTHOR_PAGE_BEGIN) {
+    return { ...state, isLoading: true };
+  }
 
-    if (action.type === GET_AUTHOR_PAGE_SUCCESS) {
-      return {
-        ...state,
-        isLoading: false,
-        GauthorPosts: action.payload.authorPosts,
-        GauthorInfo: action.payload.authorInfo,
-        // totalPosts: action.payload.totalPosts,
-        // numOfPages: action.payload.numOfPages,
-      };
-    }
+  if (action.type === GET_AUTHOR_PAGE_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      GauthorPosts: action.payload.authorPosts,
+      GauthorInfo: action.payload.authorInfo,
+      // totalPosts: action.payload.totalPosts,
+      // numOfPages: action.payload.numOfPages,
+    };
+  }
 
-    if (action.type === GET_AUTHOR_PAGE_ERROR) {
-      return {
-        ...state,
-        isLoading: false,
-      };
-    }
+  if (action.type === GET_AUTHOR_PAGE_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
 
   if (action.type === GET_SINGLE_POST_BEGIN) {
     return { ...state, isLoading: true };
@@ -411,14 +412,19 @@ const reducer = (state, action) => {
     };
   }
 
-
-  if (action.type ===  POST_LIKES) {
+  if (action.type === POST_LIKES) {
     return {
       ...state,
-      postLikes: action.payload.likedPost,
+      postLikes: action.payload.like_dislike_Post.likes,
     };
   }
 
+  if (action.type === POST_DISLIKES) {
+    return {
+      ...state,
+      postDisLikes: action.payload.like_dislike_Post.dislikes,
+    };
+  }
 
   throw new Error(`no such action : ${action.type}`);
 };

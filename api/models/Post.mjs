@@ -29,6 +29,13 @@ const PostSchema = new Schema(
       },
     ],
 
+    dislikes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+
     category: {
       type: String,
     },
