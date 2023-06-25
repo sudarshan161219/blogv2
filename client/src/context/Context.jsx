@@ -53,6 +53,8 @@ import {
   GET_TAGS_SEARCH_POST_ERROR,
   POST_LIKES,
   POST_DISLIKES,
+  TOGGLE_LIKE_BTN,
+  TOGGLE_DISLIKE_BTN,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -63,6 +65,8 @@ const initialState = {
   isLoading: false,
   showSidebar: false,
   dashNav: false,
+  like: false,
+  dislike: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
   name: "",
@@ -479,6 +483,12 @@ const ContextProvider = ({ children }) => {
         type: GET_SINGLE_POST_SUCCESS,
         payload: { singlepost },
       });
+      // if (singlepost.likes.length > 0) {
+      //   !toggleLikeBtn();
+      // }
+      // if (singlepost.dislikes.length > 0) {
+      //   !toggleDisLikeBtn();
+      // }
     } catch (error) {
       console.log(error);
       dispatch({
@@ -558,6 +568,14 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const toggleLikeBtn = () => {
+    dispatch({ type: TOGGLE_LIKE_BTN });
+  };
+
+  const toggleDisLikeBtn = () => {
+    dispatch({ type: TOGGLE_DISLIKE_BTN });
+  };
+
   return (
     <Context.Provider
       value={{
@@ -591,6 +609,8 @@ const ContextProvider = ({ children }) => {
         unLikePost,
         dislikePost,
         disunLikePost,
+        toggleLikeBtn,
+        toggleDisLikeBtn,
       }}
     >
       {children}

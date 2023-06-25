@@ -51,6 +51,8 @@ import {
   GET_SINGLE_POST_ERROR,
   POST_LIKES,
   POST_DISLIKES,
+  TOGGLE_LIKE_BTN,
+  TOGGLE_DISLIKE_BTN,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -186,10 +188,13 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_POST_SUCCESS) {
+    const { post } = state;
     return {
       ...state,
       isLoading: false,
       post: action.payload.singlepost,
+      like: post.likes && post.likes.length > 0 ? true : false,
+      dislike: post.dislikes && post.dislikes.length > 0 ? true : false,
     };
   }
 
@@ -424,6 +429,17 @@ const reducer = (state, action) => {
       ...state,
       postDisLikes: action.payload.like_dislike_Post.dislikes,
     };
+  }
+
+  if (action.type === TOGGLE_LIKE_BTN) {
+    return {
+      ...state,
+      like: !state.like,
+    };
+  }
+
+  if (action.type === TOGGLE_DISLIKE_BTN) {
+    return { ...state, dislike: !state.dislike };
   }
 
   throw new Error(`no such action : ${action.type}`);

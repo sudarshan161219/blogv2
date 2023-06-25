@@ -23,10 +23,14 @@ const SinglePost = () => {
     dislikePost,
     disunLikePost,
     user,
-    postLikes
+    postLikes,
+    toggleLikeBtn,
+    toggleDisLikeBtn,
+    like,
+    dislike,
   } = useAppContext();
-  const [like, setLike] = useState(true);
-  const [dislike, setDislike] = useState(true);
+  // const [like, setLike] = useState(true);
+  // const [dislike, setDislike] = useState(true);
   const [save, setSave] = useState(false);
 
   const { id } = useParams();
@@ -38,51 +42,37 @@ const SinglePost = () => {
 
   useEffect(() => {
     getSinglePost(id);
-    checkLikeandDislikes()
   }, [id, user]);
 
   const handleLike = () => {
-    setLike(!like);
-    if (like) {
+    toggleLikeBtn();
+    if (!like) {
       likePost(id);
       disunLikePost(id);
     } else {
       unLikePost(id);
     }
-    if (!dislike) {
-      setDislike(true);
+    if (dislike) {
+      !toggleDisLikeBtn();
     }
   };
 
   const handleDislike = () => {
-    setDislike(!dislike);
-    if (dislike) {
+    toggleDisLikeBtn();
+    if (!dislike) {
       dislikePost(id);
       unLikePost(id);
     } else {
       disunLikePost(id);
     }
-    if (!like) {
-      setLike(true);
+    if (like) {
+      !toggleLikeBtn();
     }
   };
 
   const handleSave = () => {
     setSave(!save);
   };
-
-  function checkLikeandDislikes() {
-    if (likes) {
-      if (likes.length > 0) {
-        setLike(false);
-      }
-      if (likes.length === 0) {
-        setLike(true);
-      }
-    }
-  }
-
-  
 
   if (isLoading) {
     return <Loading />;
@@ -110,17 +100,25 @@ const SinglePost = () => {
         {user ? (
           <div className="like-dislike-comment-save">
             <div className="like-dislike-comment">
-              {like ? (
-                <BiLike className="ldc-icons" onClick={handleLike} />
-              ) : (
-                <BiSolidLike className="ldc-icons" onClick={handleLike} />
-              )}
-
-              {dislike ? (
-                <BiDislike className="ldc-icons" onClick={handleDislike} />
-              ) : (
-                <BiSolidDislike className="ldc-icons" onClick={handleDislike} />
-              )}
+              <div className="like-container">
+                {like ? (
+                  <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                ) : (
+                  <BiLike className="ldc-icons" onClick={handleLike} />
+                )}
+                {likes && <strong>{likes.length}</strong>}
+              </div>
+              <div className="dislike-container">
+                {dislike ? (
+                  <BiSolidDislike
+                    className="ldc-icons"
+                    onClick={handleDislike}
+                  />
+                ) : (
+                  <BiDislike className="ldc-icons" onClick={handleDislike} />
+                )}
+                 {dislikes && <strong>{dislikes.length}</strong>}
+              </div>
               <BiComment className="ldc-icons" />
             </div>
             <div>
@@ -133,20 +131,20 @@ const SinglePost = () => {
                 <BsBookmark className="ldc-icons" onClick={handleSave} />
               )}
             </div>
-            {likes && <h1>{likes.length}like</h1>}
-            {dislikes && <h1>{dislikes.length}dislike </h1>}
           </div>
         ) : (
           <div className="ldc-disable-msg">
             <strong>
               <Link className="strong-link" to="/register">
-                login
+                login 
               </Link>
+              &nbsp; 
               or
+              &nbsp; 
               <Link className="strong-link" to="/register">
                 sign up
               </Link>
-              to like and comment on post
+              &nbsp;  to like and comment on post
             </strong>
           </div>
         )}

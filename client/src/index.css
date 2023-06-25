@@ -147,7 +147,7 @@ body::-webkit-scrollbar-track {
 }
 
 @font-face {
-  font-family: FontRegular;
+  font-family: c;
   src: url("./assets/Graphik-Font-Family/GraphikRegular.otf");
 }
 

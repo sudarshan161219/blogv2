@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 
   .like-dislike-comment {
     display: flex;
-    gap: 1rem;
+    gap: 2.5rem;
   }
 
   .post-img-container > img {
@@ -93,7 +93,22 @@ const Wrapper = styled.div`
 
   .ldc-disable-msg > strong > .strong-link {
     text-decoration: none;
-    color: #0079FF;
+    color: #0079ff;
+  }
+
+  .like-container,
+  .dislike-container {
+    display: grid;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .like-container > strong,
+  .dislike-container > strong {
+    text-align: center;
+    font-size: 1rem;
+    font-family: FontSemiBold;
+    color: #475467;
   }
 
   @media (min-width: 700px) {
