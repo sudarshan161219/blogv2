@@ -24,18 +24,18 @@ const SinglePost = () => {
     disunLikePost,
     user,
     postLikes,
+    postDisLikes,
     toggleLikeBtn,
     toggleDisLikeBtn,
     like,
     dislike,
   } = useAppContext();
-  // const [like, setLike] = useState(true);
-  // const [dislike, setDislike] = useState(true);
+
   const [save, setSave] = useState(false);
 
   const { id } = useParams();
 
-  const { title, coverImg, content, createdAt, author, likes, dislikes } = post;
+  const { title, coverImg, content, createdAt, author, } = post;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -50,6 +50,7 @@ const SinglePost = () => {
       likePost(id);
       disunLikePost(id);
     } else {
+      setLikeArr(likearr.filter((item) => item !== item));
       unLikePost(id);
     }
     if (dislike) {
@@ -63,6 +64,7 @@ const SinglePost = () => {
       dislikePost(id);
       unLikePost(id);
     } else {
+      setDislikeArr(likearr.filter((item) => item !== item));
       disunLikePost(id);
     }
     if (like) {
@@ -106,7 +108,7 @@ const SinglePost = () => {
                 ) : (
                   <BiLike className="ldc-icons" onClick={handleLike} />
                 )}
-                {likes && <strong>{likes.length}</strong>}
+                <strong>{postLikes}</strong>
               </div>
               <div className="dislike-container">
                 {dislike ? (
@@ -117,7 +119,7 @@ const SinglePost = () => {
                 ) : (
                   <BiDislike className="ldc-icons" onClick={handleDislike} />
                 )}
-                 {dislikes && <strong>{dislikes.length}</strong>}
+                <strong>{postDisLikes}</strong>
               </div>
               <BiComment className="ldc-icons" />
             </div>
@@ -136,15 +138,13 @@ const SinglePost = () => {
           <div className="ldc-disable-msg">
             <strong>
               <Link className="strong-link" to="/register">
-                login 
+                login
               </Link>
-              &nbsp; 
-              or
-              &nbsp; 
+              &nbsp; or &nbsp;
               <Link className="strong-link" to="/register">
                 sign up
               </Link>
-              &nbsp;  to like and comment on post
+              &nbsp; to like and comment on post
             </strong>
           </div>
         )}

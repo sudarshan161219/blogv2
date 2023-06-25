@@ -195,6 +195,8 @@ const reducer = (state, action) => {
       post: action.payload.singlepost,
       like: post.likes && post.likes.length > 0 ? true : false,
       dislike: post.dislikes && post.dislikes.length > 0 ? true : false,
+      postLikes: post.likes && post.likes.length,
+      postDisLikes: post.dislikes && post.dislikes.length,
     };
   }
 
@@ -420,14 +422,14 @@ const reducer = (state, action) => {
   if (action.type === POST_LIKES) {
     return {
       ...state,
-      postLikes: action.payload.like_dislike_Post.likes,
+      postLikes: action.payload.like_dislike_Post.likes.length,
     };
   }
 
   if (action.type === POST_DISLIKES) {
     return {
       ...state,
-      postDisLikes: action.payload.like_dislike_Post.dislikes,
+      postDisLikes: action.payload.like_dislike_Post.dislikes.length,
     };
   }
 
@@ -439,7 +441,10 @@ const reducer = (state, action) => {
   }
 
   if (action.type === TOGGLE_DISLIKE_BTN) {
-    return { ...state, dislike: !state.dislike };
+    return {
+      ...state,
+      dislike: !state.dislike,
+    };
   }
 
   throw new Error(`no such action : ${action.type}`);
