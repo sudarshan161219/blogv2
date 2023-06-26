@@ -128,7 +128,7 @@ const likePost = async (req, res) => {
     );
   }
 
-  const  like_dislike_Post  = await Post.findByIdAndUpdate(
+  const like_dislike_Post = await Post.findByIdAndUpdate(
     { _id: postId },
     {
       $push: { likes: req.user.userId },
@@ -136,7 +136,7 @@ const likePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({  like_dislike_Post  });
+  res.status(StatusCodes.OK).json({ like_dislike_Post });
 };
 
 const unLikePost = async (req, res) => {
@@ -157,7 +157,7 @@ const unLikePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({  like_dislike_Post  });
+  res.status(StatusCodes.OK).json({ like_dislike_Post });
 };
 
 const disLikePost = async (req, res) => {
@@ -178,7 +178,7 @@ const disLikePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({  like_dislike_Post  });
+  res.status(StatusCodes.OK).json({ like_dislike_Post });
 };
 
 const disUnLikePost = async (req, res) => {
@@ -191,7 +191,7 @@ const disUnLikePost = async (req, res) => {
     );
   }
 
-  const  like_dislike_Post  = await Post.findByIdAndUpdate(
+  const like_dislike_Post = await Post.findByIdAndUpdate(
     { _id: postId },
     {
       $pull: { dislikes: req.user.userId },
@@ -199,7 +199,84 @@ const disUnLikePost = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({ like_dislike_Post  });
+  res.status(StatusCodes.OK).json({ like_dislike_Post });
+};
+
+//$ get save post
+const likedPosts = async (req, res) => {
+  const queryObject = {
+    likes: req.user.userId,
+  };
+
+  const user = await User.findById({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+
+  //$ no Await
+  let result = await Post.find(queryObject);
+  res.status(StatusCodes.OK).json({ result });
+};
+
+//$ put save post
+const savepost = async (req, res) => {
+  const { id: postId } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const save_Post = await Post.findByIdAndUpdate(
+    { _id: postId },
+    {
+      $push: { savepost: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({ save_Post });
+};
+
+//$ put unsave post
+const unsavepost = async (req, res) => {
+  const { id: postId } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const save_Post = await Post.findByIdAndUpdate(
+    { _id: postId },
+    {
+      $pull: { savepost: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({ save_Post });
+};
+
+//$ get saved post
+const getSavedPosts = async (req, res) => {
+  const queryObject = {
+    savepost: req.user.userId,
+  };
+
+  const user = await User.findById({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+
+  let result = await Post.find(queryObject);
+  res.status(StatusCodes.OK).json({ result });
 };
 
 export {
@@ -212,4 +289,8 @@ export {
   unLikePost,
   disLikePost,
   disUnLikePost,
+  likedPosts,
+  savepost,
+  unsavepost,
+  getSavedPosts,
 };

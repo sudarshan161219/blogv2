@@ -36,6 +36,13 @@ const PostSchema = new Schema(
       },
     ],
 
+   savepost: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+
     category: {
       type: String,
     },

@@ -51,8 +51,11 @@ import {
   GET_SINGLE_POST_ERROR,
   POST_LIKES,
   POST_DISLIKES,
+  SAVE_POST,
+  UNSAVE_POST,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
+  TOGGLE_SAVE_BTN,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -195,6 +198,7 @@ const reducer = (state, action) => {
       post: action.payload.singlepost,
       like: post.likes && post.likes.length > 0 ? true : false,
       dislike: post.dislikes && post.dislikes.length > 0 ? true : false,
+      save: post.savepost && post.savepost.length > 0 ? true : false,
       postLikes: post.likes && post.likes.length,
       postDisLikes: post.dislikes && post.dislikes.length,
     };
@@ -444,6 +448,13 @@ const reducer = (state, action) => {
     return {
       ...state,
       dislike: !state.dislike,
+    };
+  }
+
+  if (action.type === TOGGLE_SAVE_BTN) {
+    return {
+      ...state,
+      save: !state.save,
     };
   }
 

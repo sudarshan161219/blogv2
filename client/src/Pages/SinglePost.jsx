@@ -27,15 +27,17 @@ const SinglePost = () => {
     postDisLikes,
     toggleLikeBtn,
     toggleDisLikeBtn,
+    toggleSaveBtn,
     like,
     dislike,
+    save,
+    savePost,
+    unsavePost,
   } = useAppContext();
-
-  const [save, setSave] = useState(false);
 
   const { id } = useParams();
 
-  const { title, coverImg, content, createdAt, author, } = post;
+  const { title, coverImg, content, createdAt, author } = post;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -50,7 +52,6 @@ const SinglePost = () => {
       likePost(id);
       disunLikePost(id);
     } else {
-      setLikeArr(likearr.filter((item) => item !== item));
       unLikePost(id);
     }
     if (dislike) {
@@ -64,7 +65,6 @@ const SinglePost = () => {
       dislikePost(id);
       unLikePost(id);
     } else {
-      setDislikeArr(likearr.filter((item) => item !== item));
       disunLikePost(id);
     }
     if (like) {
@@ -73,7 +73,12 @@ const SinglePost = () => {
   };
 
   const handleSave = () => {
-    setSave(!save);
+    toggleSaveBtn();
+    if (!save) {
+      savePost(id);
+    } else {
+      unsavePost(id);
+    }
   };
 
   if (isLoading) {

@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 
   .like-dislike-comment {
     display: flex;
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
 
   .post-img-container > img {
@@ -99,7 +99,7 @@ const Wrapper = styled.div`
   .like-container,
   .dislike-container {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.33rem;
     align-items: center;
   }
 

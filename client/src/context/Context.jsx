@@ -55,6 +55,7 @@ import {
   POST_DISLIKES,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
+  TOGGLE_SAVE_BTN
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -67,6 +68,7 @@ const initialState = {
   dashNav: false,
   like: false,
   dislike: false,
+  save:false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
   name: "",
@@ -483,12 +485,6 @@ const ContextProvider = ({ children }) => {
         type: GET_SINGLE_POST_SUCCESS,
         payload: { singlepost },
       });
-      // if (singlepost.likes.length > 0) {
-      //   !toggleLikeBtn();
-      // }
-      // if (singlepost.dislikes.length > 0) {
-      //   !toggleDisLikeBtn();
-      // }
     } catch (error) {
       console.log(error);
       dispatch({
@@ -576,6 +572,38 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: TOGGLE_DISLIKE_BTN });
   };
 
+  const toggleSaveBtn = () => {
+    dispatch({ type: TOGGLE_SAVE_BTN });
+  };
+
+
+  const savePost = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/savepost/${id}`);
+      const { save_Post } = data;
+      // dispatch({
+      //   type: SAVE_POST,
+      //   payload: { save_Post },
+      // });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unsavePost = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/unsavepost/${id}`);
+      const { save_Post } = data;
+      // dispatch({
+      //   type: UNSAVE_POST,
+      //   payload: { save_Post },
+      // });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   return (
     <Context.Provider
       value={{
@@ -611,6 +639,9 @@ const ContextProvider = ({ children }) => {
         disunLikePost,
         toggleLikeBtn,
         toggleDisLikeBtn,
+        toggleSaveBtn,
+        savePost,
+        unsavePost
       }}
     >
       {children}
