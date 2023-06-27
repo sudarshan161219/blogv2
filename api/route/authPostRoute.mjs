@@ -15,11 +15,15 @@ import {
   likedPosts,
   savepost,
   unsavepost,
-  getSavedPosts
+  getSavedPosts,
+  createComment,
+  createReplyComment
 } from "../controllers/authPostController.mjs";
 
 //* POST , PATCH &  DELETE
 router.route("/createpost").post(createPost);
+router.route("/createcomment/:id").post(createComment);
+router.route("/replycomment").put( createReplyComment);
 //* GET
 router.route("/author-post").get(authorPosts);
 router.route("/single-post/:id").get(getSinglePost);

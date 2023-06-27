@@ -1,5 +1,6 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
+import Comment from "../models/Comments.mjs";
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
@@ -279,6 +280,58 @@ const getSavedPosts = async (req, res) => {
   res.status(StatusCodes.OK).json({ result });
 };
 
+//?  Create Comment
+const createComment = async (req, res) => {
+  const { id } = req.body;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+
+  req.body.author = req.user.userId;
+  req.body.postComment = id;
+
+  const comment = await Comment.create(req.body);
+
+  const save_post_comment = await Post.findByIdAndUpdate(
+    { _id: id },
+    {
+      $push: { comments: comment },
+    },
+    { new: true }
+  );
+
+  return res.status(StatusCodes.CREATED).json({
+    comment,
+    save_post_comment,
+  });
+};
+
+//?  Create Reply Comment
+const createReplyComment = async (req, res) => {
+  const { id, content } = req.body;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+
+  const aurthorID = req.user.userId;
+
+  const comment_relpy = await Comment.findByIdAndUpdate(
+    { _id: id },
+    {
+      $push: { repiles: { repileauthor: aurthorID, repileComment: content } },
+    },
+    { new: true }
+  );
+
+  return res.status(StatusCodes.CREATED).json({
+    comment_relpy,
+  });
+};
+
 export {
   createPost,
   authorPosts,
@@ -293,4 +346,6 @@ export {
   savepost,
   unsavepost,
   getSavedPosts,
+  createComment,
+  createReplyComment,
 };

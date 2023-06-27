@@ -112,7 +112,10 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 700px) {
-    padding: 0 2rem;
+    .post-container{
+      padding: 0 2rem;
+    }
+    
     .post-heading-container > h1 {
       font-size: 46px;
       letter-spacing: -3%;
@@ -138,11 +141,17 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1200px) {
-    padding: 1rem 5rem;
+    .post-container{
+       padding: 1rem 5rem;
+    }
+   
   }
 
   @media (min-width: 1200px) {
-    padding: 3rem 8rem;
+    .post-container{
+      padding: 3rem 8rem;
+    }
+    
   }
 `;
 

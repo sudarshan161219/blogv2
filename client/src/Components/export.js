@@ -19,7 +19,8 @@ import ScrolltoTopBtn from "./ScrolltoTopBtn";
 import HomePage from "./HomePage";
 import AuthorInfoG from "./AuthorInfoG";
 import AuthorPostsG from  "./AuthorPostsG";
-
+import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 export {
   AboutHeroS,
   AboutS,
@@ -42,4 +43,6 @@ export {
   HomePage,
   AuthorInfoG,
   AuthorPostsG,
+  Comments,
+  CommentForm
 };

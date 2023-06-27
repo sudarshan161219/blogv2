@@ -3,7 +3,7 @@ import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/SinglePost";
 import moment from "moment";
-import { Loading } from "../Components/export";
+import { Loading, Comments, CommentForm } from "../Components/export";
 import {
   BsDot,
   BsPersonCircle,
@@ -87,79 +87,85 @@ const SinglePost = () => {
 
   return (
     <Wrapper>
-      <div className="post-heading-container">
-        <h1>{title}</h1>
-        <div className="post-date-author-info-container">
-          <span>{Fdate}</span>
-          <BsDot />
-          <Link
-            to={`/author/${author ? author._id : ""}`}
-            className="Link post-author"
-          >
-            <BsPersonCircle />
-            {author ? author.name : null}
-          </Link>
+      <div className="post-container">
+        <div className="post-heading-container">
+          <h1>{title}</h1>
+          <div className="post-date-author-info-container">
+            <span>{Fdate}</span>
+            <BsDot />
+            <Link
+              to={`/author/${author ? author._id : ""}`}
+              className="Link post-author"
+            >
+              <BsPersonCircle />
+              {author ? author.name : null}
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div className="post-img-container noSelect">
-        <img src={coverImg} alt={title} />
-        {user ? (
-          <div className="like-dislike-comment-save">
-            <div className="like-dislike-comment">
-              <div className="like-container">
-                {like ? (
-                  <BiSolidLike className="ldc-icons" onClick={handleLike} />
-                ) : (
-                  <BiLike className="ldc-icons" onClick={handleLike} />
-                )}
-                <strong>{postLikes}</strong>
+        <div className="post-img-container noSelect">
+          <img src={coverImg} alt={title} />
+          {user ? (
+            <div className="like-dislike-comment-save">
+              <div className="like-dislike-comment">
+                <div className="like-container">
+                  {like ? (
+                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                  ) : (
+                    <BiLike className="ldc-icons" onClick={handleLike} />
+                  )}
+                  <strong>{postLikes}</strong>
+                </div>
+                <div className="dislike-container">
+                  {dislike ? (
+                    <BiSolidDislike
+                      className="ldc-icons"
+                      onClick={handleDislike}
+                    />
+                  ) : (
+                    <BiDislike className="ldc-icons" onClick={handleDislike} />
+                  )}
+                  <strong>{postDisLikes}</strong>
+                </div>
+                <BiComment className="ldc-icons" />
               </div>
-              <div className="dislike-container">
-                {dislike ? (
-                  <BiSolidDislike
+              <div>
+                {save ? (
+                  <BsFillBookmarkCheckFill
                     className="ldc-icons"
-                    onClick={handleDislike}
+                    onClick={handleSave}
                   />
                 ) : (
-                  <BiDislike className="ldc-icons" onClick={handleDislike} />
+                  <BsBookmark className="ldc-icons" onClick={handleSave} />
                 )}
-                <strong>{postDisLikes}</strong>
               </div>
-              <BiComment className="ldc-icons" />
             </div>
-            <div>
-              {save ? (
-                <BsFillBookmarkCheckFill
-                  className="ldc-icons"
-                  onClick={handleSave}
-                />
-              ) : (
-                <BsBookmark className="ldc-icons" onClick={handleSave} />
-              )}
+          ) : (
+            <div className="ldc-disable-msg">
+              <strong>
+                <Link className="strong-link" to="/register">
+                  login
+                </Link>
+                &nbsp; or &nbsp;
+                <Link className="strong-link" to="/register">
+                  sign up
+                </Link>
+                &nbsp; to like and comment on post
+              </strong>
             </div>
-          </div>
-        ) : (
-          <div className="ldc-disable-msg">
-            <strong>
-              <Link className="strong-link" to="/register">
-                login
-              </Link>
-              &nbsp; or &nbsp;
-              <Link className="strong-link" to="/register">
-                sign up
-              </Link>
-              &nbsp; to like and comment on post
-            </strong>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      <div className="ql-snow post-content-container">
+        {/* <div className="ql-snow post-content-container">
         <div
           className="ql-editor"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
+      </div> */}
+      </div>
+      <div className="comment-container-div">
+        <CommentForm />
+        <Comments />
       </div>
     </Wrapper>
   );

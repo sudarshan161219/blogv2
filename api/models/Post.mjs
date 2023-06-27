@@ -36,7 +36,7 @@ const PostSchema = new Schema(
       },
     ],
 
-   savepost: [
+    savepost: [
       {
         type: Schema.Types.ObjectId,
         ref: "User",
@@ -46,6 +46,13 @@ const PostSchema = new Schema(
     category: {
       type: String,
     },
+
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment ",
+      },
+    ],
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
 
