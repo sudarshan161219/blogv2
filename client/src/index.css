@@ -157,16 +157,16 @@ body::-webkit-scrollbar-track {
 }
 
 .noSelect {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .noSelect:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -594,7 +594,9 @@ h5 {
   padding: 5px 10px;
 }
 
-.comment-container-div{
+.comment-container-div {
+  display: grid;
+  gap: 2rem;
   background-color: rgb(242, 244, 247);
-
+  padding: 1rem;
 }

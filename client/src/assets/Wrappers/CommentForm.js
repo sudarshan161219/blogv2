@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding: 1rem;
+  /* padding: 1rem; */
   /* background-color: rgb(242, 244, 247); */
 
   form {
@@ -11,6 +11,7 @@ const Wrapper = styled.div`
     padding: 1rem;
     border-radius: 10px;
   }
+  
   .comment-form {
     height: 120px;
     width: 100%;
