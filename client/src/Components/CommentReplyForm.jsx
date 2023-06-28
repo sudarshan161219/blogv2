@@ -1,13 +1,15 @@
-import React from "react";
-import Wrapper from "../assets/Wrappers/CommentForm";
+import React from 'react'
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
+import Wrapper from '../assets/Wrappers/CommentReplyForm';
 
-const CommentForm = () => {
-  const { user } = useAppContext();
-  if (!user) {
-    return <Navigate to="/" />;
-  }
+const CommentReplyForm = () => {
+    const { user } = useAppContext();
+
+    if (!user) {
+      return <Navigate to="/" />;
+    }
+
   return (
     <Wrapper>
       <form>
@@ -33,11 +35,11 @@ const CommentForm = () => {
             src={user.userImg}
             alt={user.name}
           />
-          <button className="button-28 comment-btn">submit</button>
+          <button className="button-28 comment-btn">reply</button>
         </div>
       </form>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default CommentForm;
+export default CommentReplyForm

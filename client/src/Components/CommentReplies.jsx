@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import Wrapper from "../assets/Wrappers/Comments";
+import Wrapper from '../assets/Wrappers/CommentReplies'
 import { BsReplyFill } from "react-icons/bs";
 import { BiLike, BiDislike, BiComment } from "react-icons/bi";
-import CommentReplyForm from "./CommentReplyForm";
-import CommentReplies from "./CommentReplies";
+// import CommentRepliess from "./CommentReplies"
+import  CommentReplyForm from "./CommentReplyForm"
 
-const Comments = () => {
-  const [reply, setReply] = useState(false);
+const CommentReplies = () => {
+    const [reply, setReply] = useState(false);
 
-  const handleReply = () => {
-    setReply(!reply);
-  };
-
+    const handleReply = () => {
+      setReply(!reply);
+    };
+  
   return (
     <Wrapper>
-      <div className="comment-container">
+      <div className="comment-reply-container">
         <div className="comment-info-container">
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
@@ -63,14 +63,10 @@ const Comments = () => {
         </div>
 
         {/* //$conditional rendring */}
-        {reply && <CommentReplyForm />}
-        <div className="comment-replies">
-          <CommentReplies />
-          <CommentReplies />
-        </div>
+        {reply && < CommentReplyForm />  }
       </div>
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Comments;
+export default CommentReplies

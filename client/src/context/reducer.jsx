@@ -191,14 +191,41 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_POST_SUCCESS) {
-    const { post } = state;
+    const { post, user } = state;
+    const { likes, dislikes, savepost } = post;
+
+    let postLike;
+    let postDislike;
+    let postSave;
+
+    if (likes) {
+      for (var i = 0; i < likes.length; i++) {
+        var element = likes[i];
+        postLike = element;
+      }
+    }
+
+    if (dislikes) {
+      for (var i = 0; i <  dislikes.length; i++) {
+        var element = dislikes[i];
+        postDislike = element;
+      }
+    }
+
+    if (savepost) {
+      for (var i = 0; i < savepost.length; i++) {
+        var element = savepost[i];
+        postSave = element;
+      }
+    }
+
     return {
       ...state,
       isLoading: false,
       post: action.payload.singlepost,
-      like: post.likes && post.likes.length > 0 ? true : false,
-      dislike: post.dislikes && post.dislikes.length > 0 ? true : false,
-      save: post.savepost && post.savepost.length > 0 ? true : false,
+      like: post.likes && postLike === user._id ? true : false,
+      dislike: post.dislikes && postDislike === user._id ? true : false,
+      save: post.savepost && postSave === user._id ? true : false,
       postLikes: post.likes && post.likes.length,
       postDisLikes: post.dislikes && post.dislikes.length,
     };

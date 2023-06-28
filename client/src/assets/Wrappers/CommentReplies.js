@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  .comment-container {
+  display: flex;
+  justify-content: end;
+  border-left: 1px solid gray;
+  margin-left: 0.5rem;
+
+
+  .comment-reply-container {
+    width: 95%;
     display: grid;
     gap: 1rem;
   }
@@ -69,16 +76,9 @@ const Wrapper = styled.div`
     font-size: 1.2rem;
   }
 
-  .comment-replies{
-    display: grid;
-    gap: 1rem;
-    border-left: 1px solid gray;
-  }
-
   @media (min-width: 700px) {
-    .comment-container {
-      width: 690px;
-      margin: 0 auto;
+    .comment-reply-container {
+      width: 650px;
     }
     .comment-content > p {
       font-size: 0.99rem;
