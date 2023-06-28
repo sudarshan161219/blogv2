@@ -56,6 +56,9 @@ import {
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
   TOGGLE_SAVE_BTN,
+  CREATE_COMMENT_BEGIN,
+  CREATE_COMMENT_SUCCESS,
+  CREATE_COMMENT_ERROR,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -206,7 +209,7 @@ const reducer = (state, action) => {
     }
 
     if (dislikes) {
-      for (var i = 0; i <  dislikes.length; i++) {
+      for (var i = 0; i < dislikes.length; i++) {
         var element = dislikes[i];
         postDislike = element;
       }
@@ -483,6 +486,18 @@ const reducer = (state, action) => {
       ...state,
       save: !state.save,
     };
+  }
+
+  if (action.type === CREATE_COMMENT_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === CREATE_COMMENT_SUCCESS) {
+    return { ...state, isLoading: false, };
+  }
+
+  if (action.type === CREATE_COMMENT_ERROR) {
+    return { ...state, isLoading: false};
   }
 
   throw new Error(`no such action : ${action.type}`);

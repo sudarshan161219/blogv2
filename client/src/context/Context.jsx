@@ -55,7 +55,10 @@ import {
   POST_DISLIKES,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
-  TOGGLE_SAVE_BTN
+  TOGGLE_SAVE_BTN,
+  CREATE_COMMENT_BEGIN,
+  CREATE_COMMENT_SUCCESS,
+  CREATE_COMMENT_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -508,6 +511,31 @@ const ContextProvider = ({ children }) => {
       console.log(error);
       dispatch({
         type: GET_AUTHOR_PAGE_ERROR,
+      });
+    }
+  };
+
+  const createComment = async (data) => {
+    dispatch({ type: CREATE_COMMENT_BEGIN });
+    try {
+      const { title, coverImg, content, postTags, category } = data;
+      await authFetch.post("/createcomment", {
+        title,
+        coverImg,
+        content,
+        postTags,
+        category,
+      });
+
+      dispatch({ type: CREATE_COMMENT_SUCCESS });
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      console.log(error);
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: CREATE_COMMENT_ERROR,
       });
     }
   };

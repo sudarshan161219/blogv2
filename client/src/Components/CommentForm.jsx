@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import Wrapper from "../assets/Wrappers/CommentForm";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
-
+import { Link, useParams } from "react-router-dom";
 const CommentForm = () => {
+  const [text, setText] = useState("");
   const { user } = useAppContext();
+
+  const { id } = useParams();
+
   if (!user) {
     return <Navigate to="/" />;
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    data.userId = user._id;
+    data.postId = id;
+   console.log(data);
+  };
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
   return (
     <Wrapper>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="text-img-container">
           <img
             className="desktop-comment-img"
@@ -19,9 +37,11 @@ const CommentForm = () => {
           />
 
           <textarea
+            value={text}
+            onChange={handleChange}
             placeholder="post your comment"
-            name=""
-            id=""
+            name="content"
+            id="content"
             className="comment-form"
             cols="30"
             rows="10"

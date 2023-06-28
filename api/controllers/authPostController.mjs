@@ -282,7 +282,10 @@ const getSavedPosts = async (req, res) => {
 
 //?  Create Comment
 const createComment = async (req, res) => {
-  const { id } = req.body;
+  const { userId, postId, content } = req.body;
+  if (!postId || !content) {
+    throw new BadRequestError("please provide all values");
+  }
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
@@ -290,12 +293,12 @@ const createComment = async (req, res) => {
   }
 
   req.body.author = req.user.userId;
-  req.body.postComment = id;
+  req.body.postComment = postId;
 
   const comment = await Comment.create(req.body);
 
   const save_post_comment = await Post.findByIdAndUpdate(
-    { _id: id },
+    { _id: postId },
     {
       $push: { comments: comment },
     },
@@ -332,6 +335,17 @@ const createReplyComment = async (req, res) => {
   });
 };
 
+//?get comments
+const getComments = async (req, res) => {
+  const { id } = req.params;
+
+  const queryObject = {
+    postComment: id,
+  };
+  let result = await Comment.find(queryObject);
+  res.status(StatusCodes.OK).json(result);
+};
+
 export {
   createPost,
   authorPosts,
@@ -348,4 +362,5 @@ export {
   getSavedPosts,
   createComment,
   createReplyComment,
+  getComments,
 };

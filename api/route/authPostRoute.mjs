@@ -17,16 +17,18 @@ import {
   unsavepost,
   getSavedPosts,
   createComment,
-  createReplyComment
+  createReplyComment,
+  getComments,
 } from "../controllers/authPostController.mjs";
 
 //* POST , PATCH &  DELETE
 router.route("/createpost").post(createPost);
-router.route("/createcomment/:id").post(createComment);
-router.route("/replycomment").put( createReplyComment);
+router.route("/createcomment").post(createComment);
+router.route("/replycomment").put(createReplyComment);
 //* GET
 router.route("/author-post").get(authorPosts);
 router.route("/single-post/:id").get(getSinglePost);
+router.route("/getcomments/:id").get(getComments);
 router.route("/likedposts").get(likedPosts);
 router.route("/savedposts").get(getSavedPosts);
 router.route("/ud/:id").delete(deletePost).patch(editPost);

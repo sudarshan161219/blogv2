@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   justify-content: end;
-  border-left: 1px solid gray;
+  /* border-left: 1px solid gray; */
   margin-left: 0.5rem;
 
 
