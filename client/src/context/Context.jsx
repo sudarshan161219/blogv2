@@ -71,7 +71,7 @@ const initialState = {
   dashNav: false,
   like: false,
   dislike: false,
-  save:false,
+  save: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
   name: "",
@@ -518,13 +518,11 @@ const ContextProvider = ({ children }) => {
   const createComment = async (data) => {
     dispatch({ type: CREATE_COMMENT_BEGIN });
     try {
-      const { title, coverImg, content, postTags, category } = data;
+      const { userId, postId, content } = data;
       await authFetch.post("/createcomment", {
-        title,
-        coverImg,
+        userId,
+        postId,
         content,
-        postTags,
-        category,
       });
 
       dispatch({ type: CREATE_COMMENT_SUCCESS });
@@ -604,7 +602,6 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: TOGGLE_SAVE_BTN });
   };
 
-
   const savePost = async (id) => {
     try {
       const { data } = await authFetch.put(`/savepost/${id}`);
@@ -630,7 +627,6 @@ const ContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
 
   return (
     <Context.Provider
@@ -669,7 +665,8 @@ const ContextProvider = ({ children }) => {
         toggleDisLikeBtn,
         toggleSaveBtn,
         savePost,
-        unsavePost
+        unsavePost,
+        createComment,
       }}
     >
       {children}
