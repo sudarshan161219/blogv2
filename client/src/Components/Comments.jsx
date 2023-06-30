@@ -5,8 +5,10 @@ import { BiLike, BiDislike, BiComment } from "react-icons/bi";
 import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
 
-const Comments = () => {
+const Comments = ({ comment }) => {
   const [reply, setReply] = useState(false);
+  const { content, author, repiles, createdAt } = comment;
+  const { name, userImg } = author;
 
   const handleReply = () => {
     setReply(!reply);
@@ -18,12 +20,8 @@ const Comments = () => {
         <div className="comment-info-container">
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
-              <img
-                className="mobile-comment-img"
-                src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cali"
-                alt="avatar"
-              />
-              <strong>User</strong>
+              <img className="mobile-comment-img" src={userImg} alt={name} />
+              <strong>{name}</strong>
             </div>
             <div onClick={handleReply} className="icon-container">
               <BsReplyFill className="reply-icon" />
@@ -31,10 +29,7 @@ const Comments = () => {
             </div>
           </div>
           <div className="comment-content">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
+            <p>{content}</p>
           </div>
 
           <div className="comment-like-dislike-container">
@@ -65,8 +60,7 @@ const Comments = () => {
         {/* //$conditional rendring */}
         {reply && <CommentReplyForm />}
         <div className="comment-replies">
-          <CommentReplies />
-          <CommentReplies />
+          {repiles.length > 0 && <CommentReplies />}
         </div>
       </div>
     </Wrapper>

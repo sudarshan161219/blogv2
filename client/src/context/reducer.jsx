@@ -59,6 +59,9 @@ import {
   CREATE_COMMENT_BEGIN,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_ERROR,
+  GET_COMMENT_BEGIN,
+  GET_COMMENT_SUCCESS,
+  GET_COMMENT_ERROR,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -235,6 +238,25 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+    };
+  }
+
+  if (action.type === GET_COMMENT_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_COMMENT_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      comments: action.payload.comments,
+    };
+  }
+
+  if (action.type === GET_COMMENT_ERROR) {
     return {
       ...state,
       isLoading: false,
@@ -493,11 +515,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_COMMENT_SUCCESS) {
-    return { ...state, formLoading: false, };
+    return { ...state, formLoading: false };
   }
 
   if (action.type === CREATE_COMMENT_ERROR) {
-    return { ...state, formLoading: false};
+    return { ...state, formLoading: false };
   }
 
   throw new Error(`no such action : ${action.type}`);

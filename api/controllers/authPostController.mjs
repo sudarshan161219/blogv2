@@ -342,8 +342,8 @@ const getComments = async (req, res) => {
   const queryObject = {
     postComment: id,
   };
-  let result = await Comment.find(queryObject);
-  res.status(StatusCodes.OK).json(result);
+  let comments = await Comment.find(queryObject).populate("author", ["name", "userImg"])
+  res.status(StatusCodes.OK).json({comments});
 };
 
 export {

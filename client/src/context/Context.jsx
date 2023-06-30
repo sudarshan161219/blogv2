@@ -59,6 +59,9 @@ import {
   CREATE_COMMENT_BEGIN,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_ERROR,
+  GET_COMMENT_BEGIN,
+  GET_COMMENT_SUCCESS,
+  GET_COMMENT_ERROR,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -67,7 +70,7 @@ const post_id = localStorage.getItem("post_id");
 
 const initialState = {
   isLoading: false,
-  formLoading:false,
+  formLoading: false,
   showSidebar: false,
   dashNav: false,
   like: false,
@@ -106,6 +109,7 @@ const initialState = {
   GauthorInfo: [],
   postLikes: [],
   postDisLikes: [],
+  comments: [],
 };
 const Context = createContext({});
 
@@ -629,6 +633,23 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const getComments = async (id) => {
+    dispatch({ type: GET_COMMENT_BEGIN });
+    try {
+      const { data } = await authFetch.get(`/getcomments/${id}`);
+      const { comments } = data;
+      dispatch({
+        type: GET_COMMENT_SUCCESS,
+        payload: { comments },
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: GET_COMMENT_ERROR,
+      });
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -668,6 +689,7 @@ const ContextProvider = ({ children }) => {
         savePost,
         unsavePost,
         createComment,
+        getComments,
       }}
     >
       {children}

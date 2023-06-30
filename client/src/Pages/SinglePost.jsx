@@ -33,6 +33,8 @@ const SinglePost = () => {
     save,
     savePost,
     unsavePost,
+    getComments,
+    comments,
   } = useAppContext();
 
   const { id } = useParams();
@@ -44,6 +46,7 @@ const SinglePost = () => {
 
   useEffect(() => {
     getSinglePost(id);
+    getComments(id);
   }, [id, user]);
 
   const handleLike = () => {
@@ -165,7 +168,9 @@ const SinglePost = () => {
       </div>
       <div className="comment-container-div">
         <CommentForm />
-        <Comments />
+        {comments.map((item) => (
+          <Comments comment={item} key={item._id} />
+        ))}
       </div>
     </Wrapper>
   );
