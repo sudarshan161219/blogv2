@@ -489,15 +489,15 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_COMMENT_BEGIN) {
-    return { ...state, isLoading: true };
+    return { ...state, formLoading: true };
   }
 
   if (action.type === CREATE_COMMENT_SUCCESS) {
-    return { ...state, isLoading: false, };
+    return { ...state, formLoading: false, };
   }
 
   if (action.type === CREATE_COMMENT_ERROR) {
-    return { ...state, isLoading: false};
+    return { ...state, formLoading: false};
   }
 
   throw new Error(`no such action : ${action.type}`);

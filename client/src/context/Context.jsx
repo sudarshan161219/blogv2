@@ -67,6 +67,7 @@ const post_id = localStorage.getItem("post_id");
 
 const initialState = {
   isLoading: false,
+  formLoading:false,
   showSidebar: false,
   dashNav: false,
   like: false,

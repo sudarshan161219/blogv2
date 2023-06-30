@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     padding: 1rem;
     border-radius: 10px;
   }
-  
+
   .comment-form {
     height: 120px;
     width: 100%;
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     margin-bottom: 1rem;
     padding: 0.2rem;
   }
-  .comment-form:focus{
+  .comment-form:focus {
     outline: gray solid 1px;
   }
 
@@ -49,10 +49,17 @@ const Wrapper = styled.div`
     width: 100px;
     display: flex;
     justify-self: end;
+    position: relative;
   }
 
   .desktop-comment-img {
     display: none;
+  }
+
+  .giff {
+    width: 50px;
+    position: absolute;
+    top: -10px;
   }
 
   @media (min-width: 700px) {
@@ -61,8 +68,8 @@ const Wrapper = styled.div`
     }
 
     .img-btn {
-    justify-content:end;
-  }
+      justify-content: end;
+    }
 
     .desktop-comment-img {
       display: block;
@@ -77,10 +84,10 @@ const Wrapper = styled.div`
       gap: 1rem;
     }
 
-form {
-    width: 650px;
-    margin: 0 auto;
-}
+    form {
+      width: 650px;
+      margin: 0 auto;
+    }
   }
 `;
 

@@ -3,9 +3,10 @@ import Wrapper from "../assets/Wrappers/CommentForm";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
+import Loading from "../assets/Rolling-0.7s-157px.svg"
 const CommentForm = () => {
   const [text, setText] = useState("");
-  const { user } = useAppContext();
+  const { user, createComment, formLoading } = useAppContext();
 
   const { id } = useParams();
 
@@ -19,7 +20,13 @@ const CommentForm = () => {
     const data = Object.fromEntries(formData);
     data.userId = user._id;
     data.postId = id;
-   console.log(data);
+    if (!data) {
+      toast.error("please provide all values");
+    } else {
+      createComment(data);
+      e.currentTarget.reset();
+      setText("")
+    }
   };
 
   const handleChange = (e) => {
@@ -52,8 +59,11 @@ const CommentForm = () => {
             className="mobile-comment-img"
             src={user.userImg}
             alt={user.name}
+            disabled={formLoading}
           />
-          <button className="button-28 comment-btn">submit</button>
+          <button className="button-28 comment-btn">
+            {formLoading ? <img  className="giff" src={Loading} alt="" /> : "submit"}
+          </button>
         </div>
       </form>
     </Wrapper>
