@@ -18,9 +18,12 @@ import SkeletonLoding from "./SkeletonLoding";
 import ScrolltoTopBtn from "./ScrolltoTopBtn";
 import HomePage from "./HomePage";
 import AuthorInfoG from "./AuthorInfoG";
-import AuthorPostsG from  "./AuthorPostsG";
+import AuthorPostsG from "./AuthorPostsG";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
+import CommentsContainer from "./CommentsContainer";
+import Post from "./Post"
+
 export {
   AboutHeroS,
   AboutS,
@@ -44,5 +47,7 @@ export {
   AuthorInfoG,
   AuthorPostsG,
   Comments,
-  CommentForm
+  CommentForm,
+  CommentsContainer,
+  Post
 };

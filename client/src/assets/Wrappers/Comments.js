@@ -60,13 +60,13 @@ const Wrapper = styled.div`
     text-align: center;
   }
 
-  .comment-like-container,
-  .comment-dislike-container {
-    font-size: 0.88rem;
+  .comment-like-container > strong,
+  .comment-dislike-container > strong {
+    font-size: 0.8rem;
   }
 
   .comment-icons {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .comment-replies{

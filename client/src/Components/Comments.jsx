@@ -4,8 +4,10 @@ import { BsReplyFill } from "react-icons/bs";
 import { BiLike, BiDislike, BiComment } from "react-icons/bi";
 import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
+import { useAppContext } from "../context/Context";
 
 const Comments = ({ comment }) => {
+  const {isLoading} = useAppContext
   const [reply, setReply] = useState(false);
   const { content, author, repiles, createdAt } = comment;
   const { name, userImg } = author;

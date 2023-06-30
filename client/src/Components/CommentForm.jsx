@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../assets/Wrappers/CommentForm";
 import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
@@ -6,13 +6,15 @@ import { Link, useParams } from "react-router-dom";
 import Loading from "../assets/Rolling-0.7s-157px.svg"
 const CommentForm = () => {
   const [text, setText] = useState("");
-  const { user, createComment, formLoading } = useAppContext();
+  const { user, createComment, formLoading, getComments } = useAppContext();
 
   const { id } = useParams();
 
   if (!user) {
     return <Navigate to="/" />;
   }
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

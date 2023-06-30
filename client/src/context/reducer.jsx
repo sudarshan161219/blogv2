@@ -245,21 +245,23 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_COMMENT_BEGIN) {
-    return { ...state, isLoading: true };
+    return { ...state, commentsLoading: true };
   }
 
   if (action.type === GET_COMMENT_SUCCESS) {
+    const { comments } = state;
     return {
       ...state,
-      isLoading: false,
+      commentsLoading: false,
       comments: action.payload.comments,
+      postComments: comments && comments.length,
     };
   }
 
   if (action.type === GET_COMMENT_ERROR) {
     return {
       ...state,
-      isLoading: false,
+      commentsLoading: false,
     };
   }
 

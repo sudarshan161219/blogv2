@@ -71,6 +71,7 @@ const post_id = localStorage.getItem("post_id");
 const initialState = {
   isLoading: false,
   formLoading: false,
+  commentsLoading:false,
   showSidebar: false,
   dashNav: false,
   like: false,
@@ -110,6 +111,7 @@ const initialState = {
   postLikes: [],
   postDisLikes: [],
   comments: [],
+  postComments:[]
 };
 const Context = createContext({});
 
