@@ -54,6 +54,7 @@ import {
   POST_LIKES,
   POST_DISLIKES,
   COMMENT_LIKES,
+  COMMENT_DISLIKES,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
   TOGGLE_COMMENT_LIKE_BTN,
@@ -116,7 +117,7 @@ const initialState = {
   postLikes: [],
   postDisLikes: [],
   comments: [],
-  commentId:[],
+  commentId: [],
   postComments: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
@@ -671,10 +672,10 @@ const ContextProvider = ({ children }) => {
   const likeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/likecomment/${id}`);
-      const {  like_dislike_comment } = data;
+      const { like_dislike_comment } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: {  like_dislike_comment },
+        payload: { like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
@@ -684,10 +685,36 @@ const ContextProvider = ({ children }) => {
   const unLikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/unlikecomment/${id}`);
-      const {  like_dislike_comment } = data;
+      const { like_dislike_comment } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: {  like_dislike_comment },
+        payload: { like_dislike_comment },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const dislikeComment = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/dislikecomment/${id}`);
+      const { like_dislike_comment } = data;
+      dispatch({
+        type: COMMENT_DISLIKES,
+        payload: { like_dislike_comment },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unDislikeComment = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/undislikecomment/${id}`);
+      const { like_dislike_comment } = data;
+      dispatch({
+        type: COMMENT_DISLIKES,
+        payload: { like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
@@ -738,6 +765,8 @@ const ContextProvider = ({ children }) => {
         unLikeComment,
         toggleCommentLikeBtn,
         toggleCommentDisLikeBtn,
+        dislikeComment,
+        unDislikeComment,
       }}
     >
       {children}

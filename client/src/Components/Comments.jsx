@@ -12,6 +12,8 @@ const Comments = ({ comment }) => {
     isLoading,
     likeComment,
     unLikeComment,
+    dislikeComment,
+    unDislikeComment,
     commentLike,
     commentDislike,
     toggleCommentLikeBtn,
@@ -19,6 +21,8 @@ const Comments = ({ comment }) => {
     post,
   } = useAppContext();
   const [reply, setReply] = useState(false);
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
   const { _id, content, author, repiles, createdAt } = comment;
   const { comments } = post;
   const { name, userImg } = author;
@@ -27,39 +31,32 @@ const Comments = ({ comment }) => {
   };
 
   const handleLike = () => {
-    // comments.map((item) => {
-    //   if (item._id === _id) {
-    //     toggleCommentLikeBtn();
-    //   } 
-    // });
-    toggleCommentLikeBtn();
-    likeComment(_id)
-
-    // console.log(_id ===);
-    // if (!commentLike) {
-    //   likeComment(_id);
-    //   // disunLikePost(id);
-    // } else {
-    //   unLikeComment(_id);
-    // }
-    // if (commentDislike) {
-    //   !toggleDisLikeBtn();
-    // }
+    setLike(!like)
+    if (!like) {
+      likeComment(_id);
+      unDislikeComment(_id);
+    } else {
+      unLikeComment(_id);
+    }
+    if (dislike) {
+      setDislike(!dislike)
+    }
   };
 
   const handleDislike = () => {
-    toggleCommentDisLikeBtn()
-    // toggleCommentDisLikeBtn();
-    // if (!commentDislike) {
-    //   dislikePost(id);
-    //   unLikePost(id);
-    // } else {
-    //   disunLikePost(id);
-    // }
-    // if (commentLike) {
-    //   !toggleLikeBtn();
-    // }
+    setDislike(!dislike)
+    if (!dislike) {
+        dislikeComment(_id);
+      unLikeComment(_id);
+    } else {
+      unDislikeComment(_id);
+    }
+    if (like) {
+      setLike(!like)
+    }
   };
+
+  
   return (
     <Wrapper>
       <div className="comment-container">
@@ -80,7 +77,7 @@ const Comments = ({ comment }) => {
 
           <div className="comment-like-dislike-container">
             <div className="comment-like-container">
-              {commentLike ? (
+              {like ? (
                 <BiSolidLike className="ldc-icons" onClick={handleLike} />
               ) : (
                 <BiLike className="ldc-icons" onClick={handleLike} />
@@ -88,7 +85,7 @@ const Comments = ({ comment }) => {
               <strong>25</strong>
             </div>
             <div className="comment-dislike-container">
-              {commentDislike ? (
+              {dislike ? (
                 <BiSolidDislike className="ldc-icons" onClick={handleDislike} />
               ) : (
                 <BiDislike className="ldc-icons" onClick={handleDislike} />

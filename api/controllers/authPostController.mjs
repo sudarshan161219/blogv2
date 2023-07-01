@@ -370,7 +370,7 @@ const likeComment = async (req, res) => {
 
 //? unlike Comment
 const unLikeComment = async (req, res) => {
-  const { commentId } = req.params;
+  const { id: commentId  } = req.params;
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
@@ -383,6 +383,50 @@ const unLikeComment = async (req, res) => {
     { _id: commentId },
     {
       $pull: { likes: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({ like_dislike_comment});
+};
+
+
+const dislikeComment = async (req, res) => {
+  const { id: commentId } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const like_dislike_comment = await Comment.findByIdAndUpdate(
+    { _id: commentId },
+    {
+      $push: { dislikes: req.user.userId },
+    },
+    { new: true }
+  );
+
+  res.status(StatusCodes.OK).json({  like_dislike_comment });
+};
+
+//? undislike Comment
+const unDislikeComment = async (req, res) => {
+  const { id: commentId  } = req.params;
+  const user = await User.findOne({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError(
+      "Login or Sign Up for like, comment the post"
+    );
+  }
+
+  const like_dislike_comment = await Comment.findByIdAndUpdate(
+    { _id: commentId },
+    {
+      $pull: { dislikes: req.user.userId },
     },
     { new: true }
   );
@@ -409,5 +453,7 @@ export {
   createReplyComment,
   getComments,
   likeComment,
-  unLikeComment
+  unLikeComment,
+  dislikeComment,
+  unDislikeComment
 };

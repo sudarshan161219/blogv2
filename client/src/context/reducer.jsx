@@ -481,7 +481,7 @@ const reducer = (state, action) => {
   if (action.type === COMMENT_DISLIKES) {
     return {
       ...state,
-      postCommentsDisLikes: action.payload. like_dislike_comment.dislikes.length,
+      postCommentsDisLikes: action.payload.like_dislike_comment.dislikes.length,
     };
   }
 
