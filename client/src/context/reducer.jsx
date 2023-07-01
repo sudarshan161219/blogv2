@@ -55,6 +55,8 @@ import {
   UNSAVE_POST,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
+  TOGGLE_COMMENT_LIKE_BTN,
+  TOGGLE_COMMENT_DISLIKE_BTN,
   TOGGLE_SAVE_BTN,
   CREATE_COMMENT_BEGIN,
   CREATE_COMMENT_SUCCESS,
@@ -197,7 +199,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_SINGLE_POST_SUCCESS) {
-    const { post, user } = state;
+    const { post, user, comments } = state;
     const { likes, dislikes, savepost, author } = post;
 
     return {
@@ -207,8 +209,9 @@ const reducer = (state, action) => {
       like: likes && likes.includes(user && user._id) ? true : false,
       dislike: dislikes && dislikes.includes(user && user._id) ? true : false,
       save: savepost && savepost.includes(user && user._id) ? true : false,
-      postLikes: post.likes && post.likes.length,
-      postDisLikes: post.dislikes && post.dislikes.length,
+      postLikes: likes && post.likes.length,
+      postDisLikes: dislikes && post.dislikes.length,
+      postComments: comments.length,
     };
   }
 
@@ -477,6 +480,20 @@ const reducer = (state, action) => {
     return {
       ...state,
       dislike: !state.dislike,
+    };
+  }
+
+  if (action.type === TOGGLE_COMMENT_LIKE_BTN) {
+    return {
+      ...state,
+      commentLike: !state.commentLike,
+    };
+  }
+
+  if (action.type === TOGGLE_COMMENT_DISLIKE_BTN) {
+    return {
+      ...state,
+      commentDislike: !state.commentDislike,
     };
   }
 

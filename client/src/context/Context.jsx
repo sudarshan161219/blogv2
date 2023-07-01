@@ -55,6 +55,8 @@ import {
   POST_DISLIKES,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
+  TOGGLE_COMMENT_LIKE_BTN,
+  TOGGLE_COMMENT_DISLIKE_BTN,
   TOGGLE_SAVE_BTN,
   CREATE_COMMENT_BEGIN,
   CREATE_COMMENT_SUCCESS,
@@ -71,11 +73,13 @@ const post_id = localStorage.getItem("post_id");
 const initialState = {
   isLoading: false,
   formLoading: false,
-  commentsLoading:false,
+  commentsLoading: false,
   showSidebar: false,
   dashNav: false,
   like: false,
   dislike: false,
+  commentLike: false,
+  commentDislike: false,
   save: false,
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
@@ -111,7 +115,9 @@ const initialState = {
   postLikes: [],
   postDisLikes: [],
   comments: [],
-  postComments:[]
+  postComments: [],
+  postCommentsLikes: [],
+  postCommentsDisLikes: [],
 };
 const Context = createContext({});
 
@@ -605,6 +611,14 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: TOGGLE_DISLIKE_BTN });
   };
 
+  const toggleCommentLikeBtn = () => {
+    dispatch({ type: TOGGLE_COMMENT_LIKE_BTN });
+  };
+
+  const toggleCommentDisLikeBtn = () => {
+    dispatch({ type: TOGGLE_COMMENT_DISLIKE_BTN });
+  };
+
   const toggleSaveBtn = () => {
     dispatch({ type: TOGGLE_SAVE_BTN });
   };
@@ -652,6 +666,32 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const likeComment = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/like/${id}`);
+      const { like_dislike_Post } = data;
+      dispatch({
+        type: POST_LIKES,
+        payload: { like_dislike_Post },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unLikeComment = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/unlike/${id}`);
+      const { like_dislike_Post } = data;
+      dispatch({
+        type: POST_LIKES,
+        payload: { like_dislike_Post },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -692,6 +732,10 @@ const ContextProvider = ({ children }) => {
         unsavePost,
         createComment,
         getComments,
+        likeComment,
+        unLikeComment,
+        toggleCommentLikeBtn,
+        toggleCommentDisLikeBtn,
       }}
     >
       {children}

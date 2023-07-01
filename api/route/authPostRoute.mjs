@@ -19,6 +19,8 @@ import {
   createComment,
   createReplyComment,
   getComments,
+  likeComment,
+  unLikeComment,
 } from "../controllers/authPostController.mjs";
 
 //* POST , PATCH &  DELETE
@@ -38,5 +40,6 @@ router.route("/dislike/:id").put(disLikePost);
 router.route("/disunlike/:id").put(disUnLikePost);
 router.route("/savepost/:id").put(savepost);
 router.route("/unsavepost/:id").put(unsavepost);
-
+router.route("/likecomment").put(likeComment);
+router.route("/unlikecomment").put(unLikeComment);
 export default router;

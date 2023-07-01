@@ -9,7 +9,19 @@ const CommentsSchema = new Schema(
       { repileauthor: { type: Schema.Types.ObjectId, ref: "User" } },
       { timestamps: true },
     ],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
 
+    dislikes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     postComment: { type: Schema.Types.ObjectId, ref: "Post" },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },

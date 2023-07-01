@@ -12,8 +12,8 @@ const CommentsContainer = () => {
   
   return (
     <>
-      {comments.map((item) => (
-        <Comments comment={item} key={item._id} />
+      {comments.map((item, idx) => (
+        <Comments idx={idx} comment={item} key={item._id} />
       ))}
     </>
   );
