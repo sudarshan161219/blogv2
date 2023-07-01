@@ -7,7 +7,7 @@ import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
 
-const Comments = ({ comment, idx }) => {
+const Comments = ({ comment }) => {
   const {
     isLoading,
     likeComment,
@@ -22,32 +22,18 @@ const Comments = ({ comment, idx }) => {
   const { _id, content, author, repiles, createdAt } = comment;
   const { comments } = post;
   const { name, userImg } = author;
-
-  let arr;
-
-
-
   const handleReply = () => {
     setReply(!reply);
   };
 
-  const handleLike = (e) => {
-    if (comments) {
-      for (let index = 0; index < comments.length; index++) {
-        const element = comments[idx];
-        arr = element;
-      }
-    }
-
-    if(arr._id.includes(_id)){
-      // toggleCommentLikeBtn();
-      console.log(_id);
-    }else{
-      // !toggleCommentLikeBtn();
-      console.log(_id);
-    }
-
-
+  const handleLike = () => {
+    // comments.map((item) => {
+    //   if (item._id === _id) {
+    //     toggleCommentLikeBtn();
+    //   } 
+    // });
+    toggleCommentLikeBtn();
+    likeComment(_id)
 
     // console.log(_id ===);
     // if (!commentLike) {
@@ -62,6 +48,7 @@ const Comments = ({ comment, idx }) => {
   };
 
   const handleDislike = () => {
+    toggleCommentDisLikeBtn()
     // toggleCommentDisLikeBtn();
     // if (!commentDislike) {
     //   dislikePost(id);

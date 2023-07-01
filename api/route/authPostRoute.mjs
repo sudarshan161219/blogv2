@@ -40,6 +40,6 @@ router.route("/dislike/:id").put(disLikePost);
 router.route("/disunlike/:id").put(disUnLikePost);
 router.route("/savepost/:id").put(savepost);
 router.route("/unsavepost/:id").put(unsavepost);
-router.route("/likecomment").put(likeComment);
-router.route("/unlikecomment").put(unLikeComment);
+router.route("/likecomment/:id").put(likeComment);
+router.route("/unlikecomment/:id").put(unLikeComment);
 export default router;

@@ -51,6 +51,8 @@ import {
   GET_SINGLE_POST_ERROR,
   POST_LIKES,
   POST_DISLIKES,
+  COMMENT_LIKES,
+  COMMENT_DISLIKES,
   SAVE_POST,
   UNSAVE_POST,
   TOGGLE_LIKE_BTN,
@@ -466,6 +468,20 @@ const reducer = (state, action) => {
     return {
       ...state,
       postDisLikes: action.payload.like_dislike_Post.dislikes.length,
+    };
+  }
+
+  if (action.type === COMMENT_LIKES) {
+    return {
+      ...state,
+      postCommentsLikes: action.payload. like_dislike_comment.likes.length,
+    };
+  }
+
+  if (action.type === COMMENT_DISLIKES) {
+    return {
+      ...state,
+      postCommentsDisLikes: action.payload. like_dislike_comment.dislikes.length,
     };
   }
 

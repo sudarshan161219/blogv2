@@ -53,6 +53,7 @@ import {
   GET_TAGS_SEARCH_POST_ERROR,
   POST_LIKES,
   POST_DISLIKES,
+  COMMENT_LIKES,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
   TOGGLE_COMMENT_LIKE_BTN,
@@ -115,6 +116,7 @@ const initialState = {
   postLikes: [],
   postDisLikes: [],
   comments: [],
+  commentId:[],
   postComments: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
@@ -668,11 +670,11 @@ const ContextProvider = ({ children }) => {
 
   const likeComment = async (id) => {
     try {
-      const { data } = await authFetch.put(`/like/${id}`);
-      const { like_dislike_Post } = data;
+      const { data } = await authFetch.put(`/likecomment/${id}`);
+      const {  like_dislike_comment } = data;
       dispatch({
-        type: POST_LIKES,
-        payload: { like_dislike_Post },
+        type: COMMENT_LIKES,
+        payload: {  like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
@@ -681,11 +683,11 @@ const ContextProvider = ({ children }) => {
 
   const unLikeComment = async (id) => {
     try {
-      const { data } = await authFetch.put(`/unlike/${id}`);
-      const { like_dislike_Post } = data;
+      const { data } = await authFetch.put(`/unlikecomment/${id}`);
+      const {  like_dislike_comment } = data;
       dispatch({
-        type: POST_LIKES,
-        payload: { like_dislike_Post },
+        type: COMMENT_LIKES,
+        payload: {  like_dislike_comment },
       });
     } catch (error) {
       console.log(error);

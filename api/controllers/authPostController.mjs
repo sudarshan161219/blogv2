@@ -348,7 +348,7 @@ const getComments = async (req, res) => {
 
 //? like Comment
 const likeComment = async (req, res) => {
-  const { commentId } = req.body;
+  const { id: commentId } = req.params;
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
@@ -370,7 +370,7 @@ const likeComment = async (req, res) => {
 
 //? unlike Comment
 const unLikeComment = async (req, res) => {
-  const { commentId } = req.body;
+  const { commentId } = req.params;
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
