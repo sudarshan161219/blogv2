@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "../assets/Wrappers/Comments";
 import { BsReplyFill } from "react-icons/bs";
 import { BiLike, BiDislike } from "react-icons/bi";
@@ -20,18 +20,28 @@ const Comments = ({ comment }) => {
     toggleCommentDisLikeBtn,
     post,
   } = useAppContext();
+  const { _id, content, author, repiles, createdAt, user, likes, dislikes } =
+    comment;
   const [reply, setReply] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-  const { _id, content, author, repiles, createdAt } = comment;
-  const { comments } = post;
+  const [postCommentsLikes, setPostCommentsLikes] = useState([]);
+  const [postCommentsDisLikes, setPostCommentsDisLikes] = useState([]);
   const { name, userImg } = author;
+
   const handleReply = () => {
     setReply(!reply);
   };
 
+  useEffect(() => {
+    setPostCommentsLikes(likes);
+    setPostCommentsDisLikes(dislikes);
+    likes.includes(author._id) ? setLike(true) : setLike(false);
+    dislikes.includes(author._id) ? setDislike(true) : setDislike(false);
+  }, [likes, dislikes]);
+
   const handleLike = () => {
-    setLike(!like)
+    setLike(!like);
     if (!like) {
       likeComment(_id);
       unDislikeComment(_id);
@@ -39,24 +49,23 @@ const Comments = ({ comment }) => {
       unLikeComment(_id);
     }
     if (dislike) {
-      setDislike(!dislike)
+      setDislike(!dislike);
     }
   };
 
   const handleDislike = () => {
-    setDislike(!dislike)
+    setDislike(!dislike);
     if (!dislike) {
-        dislikeComment(_id);
+      dislikeComment(_id);
       unLikeComment(_id);
     } else {
       unDislikeComment(_id);
     }
     if (like) {
-      setLike(!like)
+      setLike(!like);
     }
   };
 
-  
   return (
     <Wrapper>
       <div className="comment-container">
@@ -82,7 +91,7 @@ const Comments = ({ comment }) => {
               ) : (
                 <BiLike className="ldc-icons" onClick={handleLike} />
               )}
-              <strong>25</strong>
+              <strong>{postCommentsLikes.length}</strong>
             </div>
             <div className="comment-dislike-container">
               {dislike ? (
@@ -90,7 +99,7 @@ const Comments = ({ comment }) => {
               ) : (
                 <BiDislike className="ldc-icons" onClick={handleDislike} />
               )}
-              <strong>10</strong>
+              <strong>{postCommentsDisLikes.length}</strong>
             </div>
           </div>
         </div>
