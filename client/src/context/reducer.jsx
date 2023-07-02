@@ -235,6 +235,8 @@ const reducer = (state, action) => {
       commentsLoading: false,
       comments: action.payload.comments,
       postComments: comments && comments.length,
+      postCommentsLikes: action.payload.commentLikes,
+      postCommentsDisLikes: action.payload.commentDisLikes,
     };
   }
 
@@ -474,14 +476,15 @@ const reducer = (state, action) => {
   if (action.type === COMMENT_LIKES) {
     return {
       ...state,
-      postCommentsLikes: action.payload. like_dislike_comment.likes.length,
+      postCommentsLikes: action.payload.commentLikes,
+
     };
   }
 
   if (action.type === COMMENT_DISLIKES) {
     return {
       ...state,
-      postCommentsDisLikes: action.payload.like_dislike_comment.dislikes.length,
+      postCommentsDisLikes: action.payload.commentDisLikes,
     };
   }
 

@@ -38,6 +38,7 @@ const Comments = ({ comment }) => {
     setPostCommentsDisLikes(dislikes);
     likes.includes(author._id) ? setLike(true) : setLike(false);
     dislikes.includes(author._id) ? setDislike(true) : setDislike(false);
+    console.log(postCommentsLikes);
   }, [likes, dislikes]);
 
   const handleLike = () => {

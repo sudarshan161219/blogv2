@@ -656,10 +656,10 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_COMMENT_BEGIN });
     try {
       const { data } = await authFetch.get(`/getcomments/${id}`);
-      const { comments } = data;
+      const { comments, commentLikes, commentDisLikes } = data;
       dispatch({
         type: GET_COMMENT_SUCCESS,
-        payload: { comments },
+        payload: { comments, commentLikes, commentDisLikes },
       });
     } catch (error) {
       console.log(error);
@@ -672,10 +672,10 @@ const ContextProvider = ({ children }) => {
   const likeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/likecomment/${id}`);
-      const { like_dislike_comment } = data;
+      const {commentLikes } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: { like_dislike_comment },
+        payload: {commentLikes },
       });
     } catch (error) {
       console.log(error);
@@ -685,10 +685,10 @@ const ContextProvider = ({ children }) => {
   const unLikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/unlikecomment/${id}`);
-      const { like_dislike_comment } = data;
+      const { commentLikes  } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: { like_dislike_comment },
+        payload: { commentLikes  },
       });
     } catch (error) {
       console.log(error);
@@ -698,10 +698,10 @@ const ContextProvider = ({ children }) => {
   const dislikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/dislikecomment/${id}`);
-      const { like_dislike_comment } = data;
+      const { commentDisLikes } = data;
       dispatch({
         type: COMMENT_DISLIKES,
-        payload: { like_dislike_comment },
+        payload: { commentDisLikes },
       });
     } catch (error) {
       console.log(error);
@@ -711,10 +711,10 @@ const ContextProvider = ({ children }) => {
   const unDislikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/undislikecomment/${id}`);
-      const { like_dislike_comment } = data;
+      const {  commentDisLikes } = data;
       dispatch({
         type: COMMENT_DISLIKES,
-        payload: { like_dislike_comment },
+        payload: { commentDisLikes },
       });
     } catch (error) {
       console.log(error);

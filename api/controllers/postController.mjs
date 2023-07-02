@@ -1,5 +1,6 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
+import Comment from "../models/Comments.mjs"
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
@@ -25,6 +26,7 @@ const getPost = async (req, res) => {
   const singlepost = await Post.findById({ _id: postId }).populate("author", [
     "name",
   ]).populate("comments")
+
 
   if (!singlepost) {
     throw new NotFoundError(`No post with id : ${postId}`);

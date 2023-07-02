@@ -8,6 +8,9 @@ import {
   NotFoundError,
 } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
+import mongoose from "mongoose";
+const { Types } = mongoose;
+
 
 const createPost = async (req, res) => {
   const { title, coverImg, content, postTags, category } = req.body;
@@ -342,8 +345,21 @@ const getComments = async (req, res) => {
   const queryObject = {
     postComment: id,
   };
-  let comments = await Comment.find(queryObject).populate("author", ["name", "userImg"])
-  res.status(StatusCodes.OK).json({comments});
+  let comments = await Comment.find(queryObject).populate("author", [
+    "name",
+    "userImg",
+  ]);
+
+  let commentLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$likes" } } },
+  ]);
+
+
+  let commentDisLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$dislikes" } } },
+  ]);
+
+  res.status(StatusCodes.OK).json({ comments, commentLikes, commentDisLikes });
 };
 
 //? like Comment
@@ -365,12 +381,16 @@ const likeComment = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({  like_dislike_comment });
+  let commentLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$likes" } } },
+  ]);
+
+  res.status(StatusCodes.OK).json({ like_dislike_comment, commentLikes });
 };
 
 //? unlike Comment
 const unLikeComment = async (req, res) => {
-  const { id: commentId  } = req.params;
+  const { id: commentId } = req.params;
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
@@ -387,9 +407,13 @@ const unLikeComment = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({ like_dislike_comment});
-};
+  let commentLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$likes" } } },
+  ]);
 
+
+  res.status(StatusCodes.OK).json({ like_dislike_comment, commentLikes });
+};
 
 const dislikeComment = async (req, res) => {
   const { id: commentId } = req.params;
@@ -409,12 +433,16 @@ const dislikeComment = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({  like_dislike_comment });
+  let commentDisLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$dislikes" } } },
+  ]);
+
+  res.status(StatusCodes.OK).json({ like_dislike_comment, commentDisLikes });
 };
 
 //? undislike Comment
 const unDislikeComment = async (req, res) => {
-  const { id: commentId  } = req.params;
+  const { id: commentId } = req.params;
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
@@ -431,9 +459,13 @@ const unDislikeComment = async (req, res) => {
     { new: true }
   );
 
-  res.status(StatusCodes.OK).json({ like_dislike_comment});
-};
+  let commentDisLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$dislikes" } } },
+  ]);
 
+
+  res.status(StatusCodes.OK).json({ like_dislike_comment , commentDisLikes});
+};
 
 export {
   createPost,
@@ -455,5 +487,5 @@ export {
   likeComment,
   unLikeComment,
   dislikeComment,
-  unDislikeComment
+  unDislikeComment,
 };

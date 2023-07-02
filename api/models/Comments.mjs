@@ -31,4 +31,5 @@ const CommentsSchema = new Schema(
 
 const CommentModel = model("Comment", CommentsSchema);
 
+
 export default CommentModel;
