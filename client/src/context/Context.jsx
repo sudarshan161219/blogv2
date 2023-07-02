@@ -121,7 +121,8 @@ const initialState = {
   postComments: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
-  likeId:[]
+  likeId:[],
+  paisaId:[]
 };
 const Context = createContext({});
 
@@ -672,11 +673,11 @@ const ContextProvider = ({ children }) => {
 
   const likeComment = async (id) => {
     try {
-      const { data } = await authFetch.put(`/likecomment/${id}`);
-      const {commentLikes,  } = data;
+      const { data, } = await authFetch.put(`/likecomment/${id}`);
+      const {commentLikes,   like_dislike_comment} = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: { commentLikes},
+        payload: { commentLikes, like_dislike_comment},
       });
     } catch (error) {
       console.log(error);
@@ -686,10 +687,10 @@ const ContextProvider = ({ children }) => {
   const unLikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/unlikecomment/${id}`);
-      const { commentLikes } = data;
+      const { commentLikes, like_dislike_comment } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: { commentLikes },
+        payload: { commentLikes, like_dislike_comment },
       });
     } catch (error) {
       console.log(error);

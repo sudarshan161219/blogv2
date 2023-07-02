@@ -62,7 +62,11 @@ const Wrapper = styled.div`
 
   .comment-like-container > strong,
   .comment-dislike-container > strong {
-    font-size: 0.8rem;
+    font-size: 1rem;
+  }
+  .ldc-icons{
+    font-size: 1.2rem;
+    cursor: pointer;
   }
 
   .comment-icons {

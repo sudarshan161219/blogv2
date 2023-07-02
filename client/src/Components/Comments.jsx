@@ -6,6 +6,7 @@ import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
+import { Link, useParams } from "react-router-dom";
 
 const Comments = ({ comment }) => {
   const {
@@ -23,6 +24,7 @@ const Comments = ({ comment }) => {
     postCommentsDisLikes,
     comments,
     user,
+    paisaId
   } = useAppContext();
 
   const { _id, content, author, repiles, createdAt, likes, dislikes } = comment;
@@ -46,10 +48,10 @@ const Comments = ({ comment }) => {
     if (dislikes.includes(user._id)) {
       setDislike(!dislike);
     }
+
   }, []);
 
   const handleLike = () => {
-    setLike(!like);
     if (!like) {
       likeComment(_id);
       unDislikeComment(_id);
@@ -60,16 +62,16 @@ const Comments = ({ comment }) => {
       setDislike(!dislike);
     }
 
-    if (likes.includes(user._id)) {
+    if (paisaId._id === _id && paisaId.likes.includes(user._id)) {
       unLikeComment(_id);
+      setLike(!like);
+    } else {
       setLike(!like);
     }
 
   };
 
   const handleDislike = () => {
-    setDislike(!dislike);
-
     if (!dislike) {
       dislikeComment(_id);
       unLikeComment(_id);
@@ -82,6 +84,8 @@ const Comments = ({ comment }) => {
 
     if (dislikes.includes(user._id)) {
       unDislikeComment(_id);
+      setDislike(!dislike);
+    } else {
       setDislike(!dislike);
     }
   };
@@ -106,10 +110,8 @@ const Comments = ({ comment }) => {
 
           <div className="comment-like-dislike-container">
             <div className="comment-like-container">
-              {likes.includes(user._id) ? (
-                <>
-                  <BiSolidLike className="ldc-icons" onClick={handleLike} />
-                </>
+              {paisaId._id === _id && paisaId.likes.includes(user._id) ? (
+                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
               ) : (
                 <>
                   {like ? (
@@ -147,6 +149,8 @@ const Comments = ({ comment }) => {
                 <strong key={item._id}>{item._id === _id && item.count}</strong>
               ))}
             </div>
+
+            {/* {user._id === author._id && "delete and Edit" } */}
           </div>
         </div>
 

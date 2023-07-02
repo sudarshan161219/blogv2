@@ -487,6 +487,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       postCommentsLikes: action.payload.commentLikes,
+      paisaId: action.payload.like_dislike_comment,
     };
   }
 
