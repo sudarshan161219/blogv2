@@ -82,7 +82,7 @@ const Comments = ({ comment }) => {
       setLike(!like);
     }
 
-    if (dislikes.includes(user._id)) {
+    if (paisaId._id === _id && paisaId.dislikes.includes(user._id)) {
       unDislikeComment(_id);
       setDislike(!dislike);
     } else {
@@ -126,7 +126,7 @@ const Comments = ({ comment }) => {
               ))}
             </div>
             <div className="comment-dislike-container">
-              {dislikes.includes(user._id) ? (
+              {paisaId._id === _id && paisaId.dislikes.includes(user._id) ? (
                 <>
                   <BiSolidDislike
                     className="ldc-icons"
