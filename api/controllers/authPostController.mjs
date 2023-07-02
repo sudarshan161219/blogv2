@@ -11,7 +11,6 @@ import checkPermissions from "../utils/checkPermissions.mjs";
 import mongoose from "mongoose";
 const { Types } = mongoose;
 
-
 const createPost = async (req, res) => {
   const { title, coverImg, content, postTags, category } = req.body;
   if (!title || !coverImg || !content || !postTags || !category) {
@@ -354,7 +353,6 @@ const getComments = async (req, res) => {
     { $project: { count: { $size: "$likes" } } },
   ]);
 
-
   let commentDisLikes = await Comment.aggregate([
     { $project: { count: { $size: "$dislikes" } } },
   ]);
@@ -365,6 +363,7 @@ const getComments = async (req, res) => {
 //? like Comment
 const likeComment = async (req, res) => {
   const { id: commentId } = req.params;
+
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
@@ -380,6 +379,8 @@ const likeComment = async (req, res) => {
     },
     { new: true }
   );
+
+
 
   let commentLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },
@@ -410,7 +411,6 @@ const unLikeComment = async (req, res) => {
   let commentLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },
   ]);
-
 
   res.status(StatusCodes.OK).json({ like_dislike_comment, commentLikes });
 };
@@ -463,8 +463,7 @@ const unDislikeComment = async (req, res) => {
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-
-  res.status(StatusCodes.OK).json({ like_dislike_comment , commentDisLikes});
+  res.status(StatusCodes.OK).json({ like_dislike_comment, commentDisLikes });
 };
 
 export {

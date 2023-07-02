@@ -121,6 +121,7 @@ const initialState = {
   postComments: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
+  likeId:[]
 };
 const Context = createContext({});
 
@@ -615,7 +616,7 @@ const ContextProvider = ({ children }) => {
   };
 
   const toggleCommentLikeBtn = () => {
-    dispatch({ type: TOGGLE_COMMENT_LIKE_BTN });
+      dispatch({ type: TOGGLE_COMMENT_LIKE_BTN });
   };
 
   const toggleCommentDisLikeBtn = () => {
@@ -656,10 +657,10 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_COMMENT_BEGIN });
     try {
       const { data } = await authFetch.get(`/getcomments/${id}`);
-      const { comments, commentLikes, commentDisLikes } = data;
+      const { like_dislike_comment, comments, commentLikes, commentDisLikes } = data;
       dispatch({
         type: GET_COMMENT_SUCCESS,
-        payload: { comments, commentLikes, commentDisLikes },
+        payload: { comments, commentLikes, commentDisLikes, like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
@@ -672,10 +673,10 @@ const ContextProvider = ({ children }) => {
   const likeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/likecomment/${id}`);
-      const {commentLikes } = data;
+      const {commentLikes,  } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: {commentLikes },
+        payload: { commentLikes},
       });
     } catch (error) {
       console.log(error);
@@ -685,10 +686,10 @@ const ContextProvider = ({ children }) => {
   const unLikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/unlikecomment/${id}`);
-      const { commentLikes  } = data;
+      const { commentLikes } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: { commentLikes  },
+        payload: { commentLikes },
       });
     } catch (error) {
       console.log(error);
@@ -711,7 +712,7 @@ const ContextProvider = ({ children }) => {
   const unDislikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/undislikecomment/${id}`);
-      const {  commentDisLikes } = data;
+      const { commentDisLikes } = data;
       dispatch({
         type: COMMENT_DISLIKES,
         payload: { commentDisLikes },

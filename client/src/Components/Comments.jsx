@@ -19,27 +19,34 @@ const Comments = ({ comment }) => {
     toggleCommentLikeBtn,
     toggleCommentDisLikeBtn,
     post,
+    postCommentsLikes,
+    postCommentsDisLikes,
+    comments,
+    user,
   } = useAppContext();
-  const { _id, content, author, repiles, createdAt, user, likes, dislikes } =
-    comment;
+
+  const { _id, content, author, repiles, createdAt, likes, dislikes } = comment;
+
   const [reply, setReply] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
-  const [postCommentsLikes, setPostCommentsLikes] = useState([]);
-  const [postCommentsDisLikes, setPostCommentsDisLikes] = useState([]);
   const { name, userImg } = author;
+
+  // let newArr;
+  // comments.map((item) => (newArr = item));
 
   const handleReply = () => {
     setReply(!reply);
   };
 
   useEffect(() => {
-    setPostCommentsLikes(likes);
-    setPostCommentsDisLikes(dislikes);
-    likes.includes(author._id) ? setLike(true) : setLike(false);
-    dislikes.includes(author._id) ? setDislike(true) : setDislike(false);
-    console.log(postCommentsLikes);
-  }, [likes, dislikes]);
+    if (likes.includes(user._id)) {
+      setLike(!like);
+    }
+    if (dislikes.includes(user._id)) {
+      setDislike(!dislike);
+    }
+  }, []);
 
   const handleLike = () => {
     setLike(!like);
@@ -52,10 +59,17 @@ const Comments = ({ comment }) => {
     if (dislike) {
       setDislike(!dislike);
     }
+
+    if (likes.includes(user._id)) {
+      unLikeComment(_id);
+      setLike(!like);
+    }
+
   };
 
   const handleDislike = () => {
     setDislike(!dislike);
+
     if (!dislike) {
       dislikeComment(_id);
       unLikeComment(_id);
@@ -64,6 +78,11 @@ const Comments = ({ comment }) => {
     }
     if (like) {
       setLike(!like);
+    }
+
+    if (dislikes.includes(user._id)) {
+      unDislikeComment(_id);
+      setDislike(!dislike);
     }
   };
 
@@ -87,20 +106,46 @@ const Comments = ({ comment }) => {
 
           <div className="comment-like-dislike-container">
             <div className="comment-like-container">
-              {like ? (
-                <BiSolidLike className="ldc-icons" onClick={handleLike} />
+              {likes.includes(user._id) ? (
+                <>
+                  <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                </>
               ) : (
-                <BiLike className="ldc-icons" onClick={handleLike} />
+                <>
+                  {like ? (
+                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                  ) : (
+                    <BiLike className="ldc-icons" onClick={handleLike} />
+                  )}
+                </>
               )}
-              <strong>{postCommentsLikes.length}</strong>
+              {postCommentsLikes.map((item) => (
+                <strong key={item._id}>{item._id === _id && item.count}</strong>
+              ))}
             </div>
             <div className="comment-dislike-container">
-              {dislike ? (
-                <BiSolidDislike className="ldc-icons" onClick={handleDislike} />
+              {dislikes.includes(user._id) ? (
+                <>
+                  <BiSolidDislike
+                    className="ldc-icons"
+                    onClick={handleDislike}
+                  />
+                </>
               ) : (
-                <BiDislike className="ldc-icons" onClick={handleDislike} />
+                <>
+                  {dislike ? (
+                    <BiSolidDislike
+                      className="ldc-icons"
+                      onClick={handleDislike}
+                    />
+                  ) : (
+                    <BiDislike className="ldc-icons" onClick={handleDislike} />
+                  )}
+                </>
               )}
-              <strong>{postCommentsDisLikes.length}</strong>
+              {postCommentsDisLikes.map((item) => (
+                <strong key={item._id}>{item._id === _id && item.count}</strong>
+              ))}
             </div>
           </div>
         </div>

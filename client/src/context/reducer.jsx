@@ -202,7 +202,13 @@ const reducer = (state, action) => {
 
   if (action.type === GET_SINGLE_POST_SUCCESS) {
     const { post, user, comments } = state;
-    const { likes, dislikes, savepost, author } = post;
+    const { likes, dislikes, savepost } = post;
+    const { author } = comments;
+
+    let newArr;
+
+    comments.map((item) => (newArr = item));
+    // console.log(newArr.likes.includes(user && user._id));
 
     return {
       ...state,
@@ -229,7 +235,10 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_COMMENT_SUCCESS) {
-    const { comments } = state;
+    const { comments, user } = state;
+    let newArr;
+
+    comments.map((item) => (newArr = item));
     return {
       ...state,
       commentsLoading: false,
@@ -237,6 +246,7 @@ const reducer = (state, action) => {
       postComments: comments && comments.length,
       postCommentsLikes: action.payload.commentLikes,
       postCommentsDisLikes: action.payload.commentDisLikes,
+      likeId: action.payload.comments,
     };
   }
 
@@ -477,7 +487,6 @@ const reducer = (state, action) => {
     return {
       ...state,
       postCommentsLikes: action.payload.commentLikes,
-
     };
   }
 
