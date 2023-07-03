@@ -7,7 +7,7 @@ import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
-
+import Ripples from "react-ripples";
 const Comments = ({ comment }) => {
   const {
     isLoading,
@@ -24,7 +24,7 @@ const Comments = ({ comment }) => {
     postCommentsDisLikes,
     comments,
     user,
-    paisaId
+    paisaId,
   } = useAppContext();
 
   const { _id, content, author, repiles, createdAt, likes, dislikes } = comment;
@@ -33,9 +33,6 @@ const Comments = ({ comment }) => {
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const { name, userImg } = author;
-
-  // let newArr;
-  // comments.map((item) => (newArr = item));
 
   const handleReply = () => {
     setReply(!reply);
@@ -48,7 +45,6 @@ const Comments = ({ comment }) => {
     if (dislikes.includes(user._id)) {
       setDislike(!dislike);
     }
-
   }, []);
 
   const handleLike = () => {
@@ -68,7 +64,6 @@ const Comments = ({ comment }) => {
     } else {
       setLike(!like);
     }
-
   };
 
   const handleDislike = () => {
@@ -100,8 +95,10 @@ const Comments = ({ comment }) => {
               <strong>{name}</strong>
             </div>
             <div onClick={handleReply} className="icon-container">
+              {/* <Ripples className="ripple"> */}
               <BsReplyFill className="reply-icon" />
               <strong>reply</strong>
+              {/* </Ripples> */}
             </div>
           </div>
           <div className="comment-content">
@@ -111,13 +108,19 @@ const Comments = ({ comment }) => {
           <div className="comment-like-dislike-container">
             <div className="comment-like-container">
               {paisaId._id === _id && paisaId.likes.includes(user._id) ? (
-                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                <Ripples className="comment-ripple">
+                  <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                </Ripples>
               ) : (
                 <>
                   {like ? (
-                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                    <Ripples className="comment-ripple">
+                      <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                    </Ripples>
                   ) : (
-                    <BiLike className="ldc-icons" onClick={handleLike} />
+                    <Ripples className="comment-ripple">
+                      <BiLike className="ldc-icons" onClick={handleLike} />
+                    </Ripples>
                   )}
                 </>
               )}
@@ -128,20 +131,29 @@ const Comments = ({ comment }) => {
             <div className="comment-dislike-container">
               {paisaId._id === _id && paisaId.dislikes.includes(user._id) ? (
                 <>
-                  <BiSolidDislike
-                    className="ldc-icons"
-                    onClick={handleDislike}
-                  />
-                </>
-              ) : (
-                <>
-                  {dislike ? (
+                  <Ripples className="comment-ripple">
                     <BiSolidDislike
                       className="ldc-icons"
                       onClick={handleDislike}
                     />
+                  </Ripples>
+                </>
+              ) : (
+                <>
+                  {dislike ? (
+                    <Ripples className="comment-ripple">
+                      <BiSolidDislike
+                        className="ldc-icons"
+                        onClick={handleDislike}
+                      />
+                    </Ripples>
                   ) : (
-                    <BiDislike className="ldc-icons" onClick={handleDislike} />
+                    <Ripples className="comment-ripple">
+                      <BiDislike
+                        className="ldc-icons"
+                        onClick={handleDislike}
+                      />
+                    </Ripples>
                   )}
                 </>
               )}

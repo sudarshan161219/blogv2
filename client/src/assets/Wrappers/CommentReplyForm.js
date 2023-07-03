@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   /* border-left: 1px solid gray; */
   /* margin-left: 0.5rem; */
   form {
-    width: 85%;
+    width: 88%;
     display: grid;
     background-color: #fff;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

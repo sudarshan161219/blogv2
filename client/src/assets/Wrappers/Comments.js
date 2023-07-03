@@ -39,6 +39,7 @@ const Wrapper = styled.div`
 
   .comment-content {
     padding: 0 0.5rem;
+    margin: 0.5rem 0;
   }
 
   .comment-content > p {
@@ -56,7 +57,7 @@ const Wrapper = styled.div`
   .comment-like-container,
   .comment-dislike-container {
     display: grid;
-    gap: 0.3rem;
+    gap: 0.1rem;
     text-align: center;
   }
 
@@ -77,6 +78,14 @@ const Wrapper = styled.div`
     display: grid;
     gap: 1rem;
     border-left: 1px solid gray;
+  }
+
+  .comment-ripple{
+    /* background-color: blue; */
+    /* width: 30px;
+    height: 30px; */
+    padding: 0.5rem;
+    border-radius: 100%;
   }
 
   @media (min-width: 700px) {

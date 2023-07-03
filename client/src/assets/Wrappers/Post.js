@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 
   .like-dislike-comment {
     display: flex;
-    gap: 1.5rem;
+    gap: 0.8rem;
   }
 
   .post-img-container > img {
@@ -96,12 +96,22 @@ const Wrapper = styled.div`
     color: #0079ff;
   }
 
+ .ldc-icons{
+    padding: 0.5rem;
+    border-radius: 100%;
+  } 
+/* 
+  .ripple{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+  } */
 
   @media (min-width: 700px) {
-    .post-container{
+    .post-container {
       padding: 0 2rem;
     }
-    
+
     .post-heading-container > h1 {
       font-size: 46px;
       letter-spacing: -3%;
@@ -127,17 +137,15 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1200px) {
-    .post-container{
-       padding: 1rem 5rem;
+    .post-container {
+      padding: 1rem 5rem;
     }
-   
   }
 
   @media (min-width: 1200px) {
-    .post-container{
+    .post-container {
       padding: 3rem 8rem;
     }
-    
   }
 `;
 

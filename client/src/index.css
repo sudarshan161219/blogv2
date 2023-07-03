@@ -607,3 +607,18 @@ h5 {
   background-color: rgb(242, 244, 247);
   padding: 1rem;
 }
+
+
+
+.ripple{
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+strong {
+  text-align: center;
+  font-size: 1rem;
+  font-family: FontSemiBold;
+  color: rgb(71, 84, 103);
+}
