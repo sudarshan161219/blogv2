@@ -315,19 +315,21 @@ const createComment = async (req, res) => {
 
 //?  Create Reply Comment
 const createReplyComment = async (req, res) => {
-  const { id, content } = req.body;
+  const { userId, commentId, Rcontent} = req.body;
+  if (!commentId || !Rcontent) {
+    throw new BadRequestError("please provide all values");
+  }
   const user = await User.findOne({ _id: req.user.userId });
 
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
-  const aurthorID = req.user.userId;
-
+  // const aurthorID = req.user.userId;
   const comment_relpy = await Comment.findByIdAndUpdate(
-    { _id: id },
+    { _id: commentId},
     {
-      $push: { repiles: { repileauthor: aurthorID, repileComment: content } },
+      $push: { repiles: {replieauthor:  req.user.userId, repileComment: Rcontent } },
     },
     { new: true }
   );

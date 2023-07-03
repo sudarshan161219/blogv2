@@ -63,6 +63,9 @@ import {
   CREATE_COMMENT_BEGIN,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_ERROR,
+  CREATE_COMMENT_REPLY_BEGIN,
+  CREATE_COMMENT_REPLY_SUCCESS,
+  CREATE_COMMENT_REPLY_ERROR,
   GET_COMMENT_BEGIN,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
@@ -544,6 +547,22 @@ const reducer = (state, action) => {
   if (action.type === CREATE_COMMENT_ERROR) {
     return { ...state, formLoading: false };
   }
+
+
+  if (action.type ===  CREATE_COMMENT_REPLY_BEGIN) {
+    return { ...state, formLoading: true };
+  }
+
+  if (action.type === CREATE_COMMENT_REPLY_SUCCESS) {
+    return { ...state, formLoading: false };
+  }
+
+  if (action.type ===  CREATE_COMMENT_REPLY_ERROR) {
+    return { ...state, formLoading: false };
+  }
+
+
+
 
   throw new Error(`no such action : ${action.type}`);
 };

@@ -167,9 +167,9 @@ const Comments = ({ comment }) => {
         </div>
 
         {/* //$conditional rendring */}
-        {reply && <CommentReplyForm />}
+        {reply && <CommentReplyForm name={name} commentId={_id} />}
         <div className="comment-replies">
-          {repiles.length > 0 && <CommentReplies />}
+          {/* {repiles.length > 0 && <CommentReplies />} */}
         </div>
       </div>
     </Wrapper>

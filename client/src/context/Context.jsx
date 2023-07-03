@@ -63,6 +63,9 @@ import {
   CREATE_COMMENT_BEGIN,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_ERROR,
+  CREATE_COMMENT_REPLY_BEGIN,
+  CREATE_COMMENT_REPLY_SUCCESS,
+  CREATE_COMMENT_REPLY_ERROR,
   GET_COMMENT_BEGIN,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
@@ -121,8 +124,8 @@ const initialState = {
   postComments: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
-  likeId:[],
-  paisaId:[]
+  likeId: [],
+  paisaId: [],
 };
 const Context = createContext({});
 
@@ -533,28 +536,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const createComment = async (data) => {
-    dispatch({ type: CREATE_COMMENT_BEGIN });
-    try {
-      const { userId, postId, content } = data;
-      await authFetch.post("/createcomment", {
-        userId,
-        postId,
-        content,
-      });
 
-      dispatch({ type: CREATE_COMMENT_SUCCESS });
-    } catch (error) {
-      if (error.response.status === 401) {
-        return;
-      }
-      console.log(error);
-      toast.error(error.response.data.msg);
-      dispatch({
-        type: CREATE_COMMENT_ERROR,
-      });
-    }
-  };
 
   const likePost = async (id) => {
     try {
@@ -616,8 +598,55 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: TOGGLE_DISLIKE_BTN });
   };
 
+  const createComment = async (data) => {
+    dispatch({ type: CREATE_COMMENT_BEGIN });
+    try {
+      const { userId, postId, content } = data;
+      await authFetch.post("/createcomment", {
+        userId,
+        postId,
+        content,
+      });
+
+      dispatch({ type: CREATE_COMMENT_SUCCESS });
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      console.log(error);
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: CREATE_COMMENT_ERROR,
+      });
+    }
+  };
+
+
+  const createCommentReply = async (data) => {
+    dispatch({ type:   CREATE_COMMENT_REPLY_BEGIN });
+    try {
+      const { userId, commentId, Rcontent } = data;
+      await authFetch.put("/replycomment", {
+        userId,
+        commentId,
+        Rcontent,
+      });
+
+      dispatch({ type: CREATE_COMMENT_REPLY_SUCCESS });
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      console.log(error);
+      toast.error(error.response.data.msg);
+      dispatch({
+        type:  CREATE_COMMENT_REPLY_ERROR,
+      });
+    }
+  };
+
   const toggleCommentLikeBtn = () => {
-      dispatch({ type: TOGGLE_COMMENT_LIKE_BTN });
+    dispatch({ type: TOGGLE_COMMENT_LIKE_BTN });
   };
 
   const toggleCommentDisLikeBtn = () => {
@@ -658,10 +687,16 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_COMMENT_BEGIN });
     try {
       const { data } = await authFetch.get(`/getcomments/${id}`);
-      const { like_dislike_comment, comments, commentLikes, commentDisLikes } = data;
+      const { like_dislike_comment, comments, commentLikes, commentDisLikes } =
+        data;
       dispatch({
         type: GET_COMMENT_SUCCESS,
-        payload: { comments, commentLikes, commentDisLikes, like_dislike_comment },
+        payload: {
+          comments,
+          commentLikes,
+          commentDisLikes,
+          like_dislike_comment,
+        },
       });
     } catch (error) {
       console.log(error);
@@ -673,11 +708,11 @@ const ContextProvider = ({ children }) => {
 
   const likeComment = async (id) => {
     try {
-      const { data, } = await authFetch.put(`/likecomment/${id}`);
-      const {commentLikes,   like_dislike_comment} = data;
+      const { data } = await authFetch.put(`/likecomment/${id}`);
+      const { commentLikes, like_dislike_comment } = data;
       dispatch({
         type: COMMENT_LIKES,
-        payload: { commentLikes, like_dislike_comment},
+        payload: { commentLikes, like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
@@ -762,6 +797,7 @@ const ContextProvider = ({ children }) => {
         savePost,
         unsavePost,
         createComment,
+        createCommentReply,
         getComments,
         likeComment,
         unLikeComment,

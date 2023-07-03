@@ -5,8 +5,10 @@ const CommentsSchema = new Schema(
   {
     content: { type: String },
     repiles: [
-      { repileComment: { type: String } },
-      { repileauthor: { type: Schema.Types.ObjectId, ref: "User" } },
+      { 
+        repileComment: { type: String },
+       replieauthor: { type: Schema.Types.ObjectId, ref: "User" } 
+      },
       { timestamps: true },
     ],
     likes: [
@@ -30,6 +32,5 @@ const CommentsSchema = new Schema(
 );
 
 const CommentModel = model("Comment", CommentsSchema);
-
 
 export default CommentModel;
