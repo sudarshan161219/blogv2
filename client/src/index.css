@@ -501,6 +501,14 @@ h5 {
   width: 65px;
 }
 
+
+strong {
+  text-align: center;
+  font-size: 0.8rem;
+  font-family: FontSemiBold;
+  color: rgb(71, 84, 103);
+}
+
 @media (min-width: 768px) {
   .register-main {
     width: 400px;
@@ -509,6 +517,10 @@ h5 {
 
   .sidebar-icons {
     display: none;
+  }
+
+  strong {
+    font-size: 1rem;
   }
 }
 
@@ -614,11 +626,4 @@ h5 {
   border-radius: 100%;
   width: 40px;
   height: 40px;
-}
-
-strong {
-  text-align: center;
-  font-size: 1rem;
-  font-family: FontSemiBold;
-  color: rgb(71, 84, 103);
 }

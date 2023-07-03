@@ -1,22 +1,15 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  .like-container,
-  .dislike-container {
+  /* .like-container,
+  .dislike-container, .comment-container {
     display: grid;
     gap: 0.33rem;
     align-items: center;
-  }
+  } */
 
-  .like-container > strong,
-  .dislike-container > strong {
-    text-align: center;
-    font-size: 1rem;
-    font-family: FontSemiBold;
-    color: #475467;
-  }
 
-  @media (min-width: 700px) {
+  /* @media (min-width: 700px) {
     .post-container{
       padding: 0 2rem;
     }
@@ -29,7 +22,7 @@ const Wrapper = styled.div`
     .like-dislike-comment-save {
       padding: 0;
     }
-  }
+  } */
 
 `;
 

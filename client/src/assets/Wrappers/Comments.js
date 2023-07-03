@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+   display: grid;
+    gap: 0.5rem;
   .comment-container {
     display: grid;
     gap: 1rem;
@@ -49,7 +51,7 @@ const Wrapper = styled.div`
   .comment-like-dislike-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0rem;
     margin-left: 0.5rem;
     margin-top: 1rem;
   }

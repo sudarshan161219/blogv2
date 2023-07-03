@@ -39,6 +39,7 @@ const Post = () => {
     save,
     savePost,
     unsavePost,
+    postComments,
   } = useAppContext();
 
   const { id } = useParams();
@@ -143,9 +144,12 @@ const Post = () => {
                   )}
                   <strong>{postDisLikes}</strong>
                 </div>
-                <Ripples className="ripple">
-                  <BiComment className="ldc-icons" />
-                </Ripples>
+                <div className="comment-container">
+                  <Ripples className="ripple">
+                    <BiComment className="ldc-icons" />
+                  </Ripples>
+                  <strong>{postComments}</strong>
+                </div>
               </div>
               <div>
                 {save ? (

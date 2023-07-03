@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+
+.like-container,
+  .dislike-container, .comment-container {
+    display: grid;
+    gap: 0.33rem;
+    align-items: center;
+  }
+
+
+
   .post-heading-container {
     display: grid;
     gap: 1rem;
@@ -100,12 +110,7 @@ const Wrapper = styled.div`
     padding: 0.5rem;
     border-radius: 100%;
   } 
-/* 
-  .ripple{
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-  } */
+
 
   @media (min-width: 700px) {
     .post-container {
