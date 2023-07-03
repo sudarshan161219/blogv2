@@ -16,6 +16,7 @@ const CommentReplyForm = ({ name, commentId }) => {
     const data = Object.fromEntries(formData);
     data.commentId = commentId;
     data.userId = user._id;
+    data.postId = id
     if (!data) {
       toast.error("please provide all values");
     } else {

@@ -1,6 +1,7 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
 import Comment from "../models/Comments.mjs";
+import CommentReply from "../models/CommentsReplies.mjs";
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
@@ -315,7 +316,7 @@ const createComment = async (req, res) => {
 
 //?  Create Reply Comment
 const createReplyComment = async (req, res) => {
-  const { userId, commentId, Rcontent} = req.body;
+  const { postId, commentId, Rcontent } = req.body;
   if (!commentId || !Rcontent) {
     throw new BadRequestError("please provide all values");
   }
@@ -325,17 +326,23 @@ const createReplyComment = async (req, res) => {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
-  // const aurthorID = req.user.userId;
-  const comment_relpy = await Comment.findByIdAndUpdate(
-    { _id: commentId},
+  req.body.replieAuthor = req.user.userId;
+  req.body.postCommentId = postId;
+  req.body.repliedComment = Rcontent;
+
+  const comment_relpy = await CommentReply.create(req.body);
+
+  const push_replycomment_comment = await Comment.findByIdAndUpdate(
+    { _id: commentId },
     {
-      $push: { repiles: {replieauthor:  req.user.userId, repileComment: Rcontent } },
+      $push: { replies: comment_relpy },
     },
     { new: true }
   );
 
   return res.status(StatusCodes.CREATED).json({
     comment_relpy,
+    push_replycomment_comment,
   });
 };
 
@@ -349,7 +356,7 @@ const getComments = async (req, res) => {
   let comments = await Comment.find(queryObject).populate("author", [
     "name",
     "userImg",
-  ]);
+  ]).populate("replies");
 
   let commentLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },
@@ -381,8 +388,6 @@ const likeComment = async (req, res) => {
     },
     { new: true }
   );
-
-
 
   let commentLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },

@@ -4,13 +4,7 @@ const { Schema, model } = mongoose;
 const CommentsSchema = new Schema(
   {
     content: { type: String },
-    repiles: [
-      { 
-        repileComment: { type: String },
-       replieauthor: { type: Schema.Types.ObjectId, ref: "User" } 
-      },
-      { timestamps: true },
-    ],
+
     likes: [
       {
         type: Schema.Types.ObjectId,
@@ -24,6 +18,8 @@ const CommentsSchema = new Schema(
         ref: "User",
       },
     ],
+
+    replies: [{ type: Schema.Types.ObjectId, ref: "CommentReply" }],
     postComment: { type: Schema.Types.ObjectId, ref: "Post" },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
@@ -34,3 +30,4 @@ const CommentsSchema = new Schema(
 const CommentModel = model("Comment", CommentsSchema);
 
 export default CommentModel;
+

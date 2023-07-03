@@ -625,7 +625,7 @@ const ContextProvider = ({ children }) => {
   const createCommentReply = async (data) => {
     dispatch({ type:   CREATE_COMMENT_REPLY_BEGIN });
     try {
-      const { userId, commentId, Rcontent } = data;
+      const { postId, userId, commentId, Rcontent } = data;
       await authFetch.put("/replycomment", {
         userId,
         commentId,
