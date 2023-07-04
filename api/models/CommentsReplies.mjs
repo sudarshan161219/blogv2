@@ -18,6 +18,7 @@ const ReplySchema = new Schema(
     ],
     repliedComment: { type: String },
     replieAuthor: { type: Schema.Types.ObjectId, ref: "User" },
+    parentCommentId:{type: Schema.Types.ObjectId, ref: "Comment"},
     postCommentId: { type: Schema.Types.ObjectId, ref: "Post" },
   },
   { timestamps: true }

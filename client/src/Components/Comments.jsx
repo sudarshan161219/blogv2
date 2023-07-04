@@ -168,17 +168,20 @@ const Comments = ({ comment }) => {
               ))}
             </div>
 
-            {/* {user._id === author._id && "delete and Edit" } */}
+            {user._id === author._id && "delete and Edit"}
           </div>
         </div>
 
         {/* //$conditional rendring */}
+
         {reply && <CommentReplyForm name={name} commentId={_id} />}
         <div className="comment-replies">
           {commentreplies &&
-            commentreplies.map((item) => (
-              <CommentReplies replies={item} key={item._id} />
-            ))}
+            commentreplies.map((item) =>
+              _id === item.parentCommentId ? (
+                <CommentReplies commentId={_id} replies={item} key={item._id} />
+              ) : null
+            )}
         </div>
       </div>
     </Wrapper>

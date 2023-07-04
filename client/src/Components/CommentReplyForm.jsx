@@ -16,11 +16,12 @@ const CommentReplyForm = ({ name, commentId }) => {
     const data = Object.fromEntries(formData);
     data.commentId = commentId;
     data.userId = user._id;
-    data.postId = id
+    data.postId = id;
+    data.parentCommentId = commentId;
     if (!data) {
       toast.error("please provide all values");
     } else {
-      createCommentReply(data)
+      createCommentReply(data);
       e.currentTarget.reset();
       setText("");
     }

@@ -316,7 +316,7 @@ const createComment = async (req, res) => {
 
 //?  Create Reply Comment
 const createReplyComment = async (req, res) => {
-  const { postId, commentId, Rcontent } = req.body;
+  const { postId, commentId, Rcontent, parentCommentId } = req.body;
   if (!commentId || !Rcontent) {
     throw new BadRequestError("please provide all values");
   }
@@ -329,7 +329,7 @@ const createReplyComment = async (req, res) => {
   req.body.replieAuthor = req.user.userId;
   req.body.postCommentId = postId;
   req.body.repliedComment = Rcontent;
-
+  req.body.parentCommentId = parentCommentId;
   const comment_relpy = await CommentReply.create(req.body);
 
   const push_replycomment_comment = await Comment.findByIdAndUpdate(
@@ -370,7 +370,9 @@ const getComments = async (req, res) => {
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ comments, commentLikes, commentDisLikes, commentsReply });
+  res
+    .status(StatusCodes.OK)
+    .json({ comments, commentLikes, commentDisLikes, commentsReply });
 };
 
 //? like Comment

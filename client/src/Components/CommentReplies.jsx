@@ -5,8 +5,8 @@ import { BiLike, BiDislike, BiComment } from "react-icons/bi";
 // import CommentRepliess from "./CommentReplies"
 import CommentReplyForm from "./CommentReplyForm";
 import { useAppContext } from "../context/Context";
-const CommentReplies = ({ replies }) => {
-  const { formLoading } = useAppContext();
+const CommentReplies = ({ replies, commentId }) => {
+  const { formLoading, user } = useAppContext();
   const [reply, setReply] = useState(false);
 
   const { repliedComment, replieAuthor } = replies;
@@ -18,7 +18,7 @@ const CommentReplies = ({ replies }) => {
     if (!formLoading) {
       setReply(false);
     }
-  }, []);
+  }, [formLoading]);
 
   return (
     <Wrapper>
@@ -66,9 +66,11 @@ const CommentReplies = ({ replies }) => {
             </div>
           </div>
         </div>
-
+        {user._id === replieAuthor._id && "edit or delete"}
         {/* //$conditional rendring */}
-        {reply && <CommentReplyForm name={replieAuthor.name} />}
+        {reply && (
+          <CommentReplyForm commentId={commentId} name={replieAuthor.name} />
+        )}
       </div>
     </Wrapper>
   );
