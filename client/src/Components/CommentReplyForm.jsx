@@ -21,9 +21,8 @@ const CommentReplyForm = ({ name, commentId }) => {
       toast.error("please provide all values");
     } else {
       createCommentReply(data)
-      console.log(data);
       e.currentTarget.reset();
-      // setText("");
+      setText("");
     }
   };
 

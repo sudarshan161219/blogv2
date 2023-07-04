@@ -246,6 +246,7 @@ const reducer = (state, action) => {
       ...state,
       commentsLoading: false,
       comments: action.payload.comments,
+      commentreplies: action.payload.commentsReply,
       postComments: comments && comments.length,
       postCommentsLikes: action.payload.commentLikes,
       postCommentsDisLikes: action.payload.commentDisLikes,
@@ -548,8 +549,7 @@ const reducer = (state, action) => {
     return { ...state, formLoading: false };
   }
 
-
-  if (action.type ===  CREATE_COMMENT_REPLY_BEGIN) {
+  if (action.type === CREATE_COMMENT_REPLY_BEGIN) {
     return { ...state, formLoading: true };
   }
 
@@ -557,12 +557,9 @@ const reducer = (state, action) => {
     return { ...state, formLoading: false };
   }
 
-  if (action.type ===  CREATE_COMMENT_REPLY_ERROR) {
+  if (action.type === CREATE_COMMENT_REPLY_ERROR) {
     return { ...state, formLoading: false };
   }
-
-
-
 
   throw new Error(`no such action : ${action.type}`);
 };

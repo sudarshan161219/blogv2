@@ -25,9 +25,11 @@ const Comments = ({ comment }) => {
     comments,
     user,
     paisaId,
+    commentreplies,
+    formLoading,
   } = useAppContext();
 
-  const { _id, content, author, repiles, createdAt, likes, dislikes } = comment;
+  const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
 
   const [reply, setReply] = useState(false);
   const [like, setLike] = useState(false);
@@ -45,7 +47,11 @@ const Comments = ({ comment }) => {
     if (dislikes.includes(user._id)) {
       setDislike(!dislike);
     }
-  }, []);
+
+    if (!formLoading) {
+      setReply(false);
+    }
+  }, [formLoading]);
 
   const handleLike = () => {
     if (!like) {
@@ -169,7 +175,10 @@ const Comments = ({ comment }) => {
         {/* //$conditional rendring */}
         {reply && <CommentReplyForm name={name} commentId={_id} />}
         <div className="comment-replies">
-          {/* {repiles.length > 0 && <CommentReplies />} */}
+          {commentreplies &&
+            commentreplies.map((item) => (
+              <CommentReplies replies={item} key={item._id} />
+            ))}
         </div>
       </div>
     </Wrapper>

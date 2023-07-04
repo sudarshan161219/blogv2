@@ -353,10 +353,14 @@ const getComments = async (req, res) => {
   const queryObject = {
     postComment: id,
   };
-  let comments = await Comment.find(queryObject).populate("author", [
-    "name",
-    "userImg",
-  ]).populate("replies");
+  let comments = await Comment.find(queryObject)
+    .populate("author", ["name", "userImg"])
+    .populate("replies");
+
+  let commentsReply = await CommentReply.find(queryObject).populate(
+    "replieAuthor",
+    ["name", "userImg"]
+  );
 
   let commentLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },
@@ -366,7 +370,7 @@ const getComments = async (req, res) => {
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ comments, commentLikes, commentDisLikes });
+  res.status(StatusCodes.OK).json({ comments, commentLikes, commentDisLikes, commentsReply });
 };
 
 //? like Comment

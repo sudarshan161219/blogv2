@@ -120,6 +120,7 @@ const initialState = {
   postLikes: [],
   postDisLikes: [],
   comments: [],
+  commentreplies: [],
   commentId: [],
   postComments: [],
   postCommentsLikes: [],
@@ -536,8 +537,6 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
-
   const likePost = async (id) => {
     try {
       const { data } = await authFetch.put(`/like/${id}`);
@@ -621,9 +620,8 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
   const createCommentReply = async (data) => {
-    dispatch({ type:   CREATE_COMMENT_REPLY_BEGIN });
+    dispatch({ type: CREATE_COMMENT_REPLY_BEGIN });
     try {
       const { postId, userId, commentId, Rcontent } = data;
       await authFetch.put("/replycomment", {
@@ -640,7 +638,7 @@ const ContextProvider = ({ children }) => {
       console.log(error);
       toast.error(error.response.data.msg);
       dispatch({
-        type:  CREATE_COMMENT_REPLY_ERROR,
+        type: CREATE_COMMENT_REPLY_ERROR,
       });
     }
   };
@@ -687,12 +685,18 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_COMMENT_BEGIN });
     try {
       const { data } = await authFetch.get(`/getcomments/${id}`);
-      const { like_dislike_comment, comments, commentLikes, commentDisLikes } =
-        data;
+      const {
+        like_dislike_comment,
+        comments,
+        commentsReply,
+        commentLikes,
+        commentDisLikes,
+      } = data;
       dispatch({
         type: GET_COMMENT_SUCCESS,
         payload: {
           comments,
+          commentsReply,
           commentLikes,
           commentDisLikes,
           like_dislike_comment,

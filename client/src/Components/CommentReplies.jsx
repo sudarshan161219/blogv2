@@ -1,17 +1,25 @@
-import React, { useState } from "react";
-import Wrapper from '../assets/Wrappers/CommentReplies'
+import React, { useEffect, useState } from "react";
+import Wrapper from "../assets/Wrappers/CommentReplies";
 import { BsReplyFill } from "react-icons/bs";
 import { BiLike, BiDislike, BiComment } from "react-icons/bi";
 // import CommentRepliess from "./CommentReplies"
-import  CommentReplyForm from "./CommentReplyForm"
+import CommentReplyForm from "./CommentReplyForm";
+import { useAppContext } from "../context/Context";
+const CommentReplies = ({ replies }) => {
+  const { formLoading } = useAppContext();
+  const [reply, setReply] = useState(false);
 
-const CommentReplies = () => {
-    const [reply, setReply] = useState(false);
+  const { repliedComment, replieAuthor } = replies;
+  const handleReply = () => {
+    setReply(!reply);
+  };
 
-    const handleReply = () => {
-      setReply(!reply);
-    };
-  
+  useEffect(() => {
+    if (!formLoading) {
+      setReply(false);
+    }
+  }, []);
+
   return (
     <Wrapper>
       <div className="comment-reply-container">
@@ -20,10 +28,10 @@ const CommentReplies = () => {
             <div className="comment-img-name">
               <img
                 className="mobile-comment-img"
-                src="https://api.dicebear.com/6.x/adventurer/svg?seed=Cali"
+                src={replieAuthor.userImg}
                 alt="avatar"
               />
-              <strong>User</strong>
+              <strong>{replieAuthor.name}</strong>
             </div>
             <div onClick={handleReply} className="icon-container">
               <BsReplyFill className="reply-icon" />
@@ -31,10 +39,7 @@ const CommentReplies = () => {
             </div>
           </div>
           <div className="comment-content">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
+            <p>{repliedComment}</p>
           </div>
 
           <div className="comment-like-dislike-container">
@@ -63,10 +68,10 @@ const CommentReplies = () => {
         </div>
 
         {/* //$conditional rendring */}
-        {reply && < CommentReplyForm />  }
+        {reply && <CommentReplyForm name={replieAuthor.name} />}
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default CommentReplies
+export default CommentReplies;
