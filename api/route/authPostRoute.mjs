@@ -23,6 +23,11 @@ import {
   unLikeComment,
   dislikeComment,
   unDislikeComment,
+
+  likeCommentReply,
+  unLikeCommentReply,
+  dislikeCommentReply,
+  unDislikeCommentReply,
 } from "../controllers/authPostController.mjs";
 
 //* POST 
@@ -47,6 +52,8 @@ router.route("/dislike/:id").put(disLikePost);
 router.route("/disunlike/:id").put(disUnLikePost);
 router.route("/savepost/:id").put(savepost);
 router.route("/unsavepost/:id").put(unsavepost);
+
+//$
 router.route("/likecomment/:id").put(likeComment);
 router.route("/unlikecomment/:id").put(unLikeComment);
 router.route("/dislikecomment/:id").put(dislikeComment);

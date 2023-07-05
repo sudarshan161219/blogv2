@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../assets/Wrappers/Comments";
 import { BsReplyFill } from "react-icons/bs";
-import { BiLike, BiDislike } from "react-icons/bi";
+import { BiEdit, BiLike, BiDislike } from "react-icons/bi";
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
+import { AiOutlineDelete } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import Ripples from "react-ripples";
+
 const Comments = ({ comment }) => {
   const {
     isLoading,
@@ -112,63 +114,81 @@ const Comments = ({ comment }) => {
           </div>
 
           <div className="comment-like-dislike-container">
-            <div className="comment-like-container">
-              {paisaId._id === _id && paisaId.likes.includes(user._id) ? (
-                <Ripples className="comment-ripple">
-                  <BiSolidLike className="ldc-icons" onClick={handleLike} />
-                </Ripples>
-              ) : (
-                <>
-                  {like ? (
-                    <Ripples className="comment-ripple">
-                      <BiSolidLike className="ldc-icons" onClick={handleLike} />
-                    </Ripples>
-                  ) : (
-                    <Ripples className="comment-ripple">
-                      <BiLike className="ldc-icons" onClick={handleLike} />
-                    </Ripples>
-                  )}
-                </>
-              )}
-              {postCommentsLikes.map((item) => (
-                <strong key={item._id}>{item._id === _id && item.count}</strong>
-              ))}
-            </div>
-            <div className="comment-dislike-container">
-              {paisaId._id === _id && paisaId.dislikes.includes(user._id) ? (
-                <>
+            <div className="like-dislike-container">
+              <div className="comment-like-container">
+                {paisaId._id === _id && paisaId.likes.includes(user._id) ? (
                   <Ripples className="comment-ripple">
-                    <BiSolidDislike
-                      className="ldc-icons"
-                      onClick={handleDislike}
-                    />
+                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
                   </Ripples>
-                </>
-              ) : (
-                <>
-                  {dislike ? (
+                ) : (
+                  <>
+                    {like ? (
+                      <Ripples className="comment-ripple">
+                        <BiSolidLike
+                          className="ldc-icons"
+                          onClick={handleLike}
+                        />
+                      </Ripples>
+                    ) : (
+                      <Ripples className="comment-ripple">
+                        <BiLike className="ldc-icons" onClick={handleLike} />
+                      </Ripples>
+                    )}
+                  </>
+                )}
+                {postCommentsLikes.map((item) => (
+                  <strong key={item._id}>
+                    {item._id === _id && item.count}
+                  </strong>
+                ))}
+              </div>
+              <div className="comment-dislike-container">
+                {paisaId._id === _id && paisaId.dislikes.includes(user._id) ? (
+                  <>
                     <Ripples className="comment-ripple">
                       <BiSolidDislike
                         className="ldc-icons"
                         onClick={handleDislike}
                       />
                     </Ripples>
-                  ) : (
-                    <Ripples className="comment-ripple">
-                      <BiDislike
-                        className="ldc-icons"
-                        onClick={handleDislike}
-                      />
-                    </Ripples>
-                  )}
-                </>
-              )}
-              {postCommentsDisLikes.map((item) => (
-                <strong key={item._id}>{item._id === _id && item.count}</strong>
-              ))}
+                  </>
+                ) : (
+                  <>
+                    {dislike ? (
+                      <Ripples className="comment-ripple">
+                        <BiSolidDislike
+                          className="ldc-icons"
+                          onClick={handleDislike}
+                        />
+                      </Ripples>
+                    ) : (
+                      <Ripples className="comment-ripple">
+                        <BiDislike
+                          className="ldc-icons"
+                          onClick={handleDislike}
+                        />
+                      </Ripples>
+                    )}
+                  </>
+                )}
+                {postCommentsDisLikes.map((item) => (
+                  <strong key={item._id}>
+                    {item._id === _id && item.count}
+                  </strong>
+                ))}
+              </div>
             </div>
 
-            {user._id === author._id && "delete and Edit"}
+            {user._id === author._id && (
+              <div className="comment-edit-delete-container">
+                <Ripples className="comment-ripple">
+                  <BiEdit className="edit-comment-icon" />
+                </Ripples>
+                <Ripples className="comment-ripple">
+                  <AiOutlineDelete className="delete-comment-icon" />
+                </Ripples>
+              </div>
+            )}
           </div>
         </div>
 

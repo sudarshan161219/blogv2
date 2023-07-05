@@ -763,6 +763,67 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+
+
+
+  const likeCommentReply = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/likecomment/${id}`);
+      const { commentLikes, like_dislike_comment } = data;
+      dispatch({
+        type: COMMENT_LIKES,
+        payload: { commentLikes, like_dislike_comment },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unLikeCommentReply = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/unlikecomment/${id}`);
+      const { commentLikes, like_dislike_comment } = data;
+      dispatch({
+        type: COMMENT_LIKES,
+        payload: { commentLikes, like_dislike_comment },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const dislikeCommentReply = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/dislikecomment/${id}`);
+      const { commentDisLikes } = data;
+      dispatch({
+        type: COMMENT_DISLIKES,
+        payload: { commentDisLikes },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unDislikeCommentReply = async (id) => {
+    try {
+      const { data } = await authFetch.put(`/undislikecomment/${id}`);
+      const { commentDisLikes } = data;
+      dispatch({
+        type: COMMENT_DISLIKES,
+        payload: { commentDisLikes },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+
+
+
+
   return (
     <Context.Provider
       value={{

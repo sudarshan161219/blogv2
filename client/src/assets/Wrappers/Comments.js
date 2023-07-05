@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-   display: grid;
-    gap: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
   .comment-container {
     display: grid;
     gap: 1rem;
@@ -50,8 +50,9 @@ const Wrapper = styled.div`
 
   .comment-like-dislike-container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0rem;
+    justify-content: space-between;
     margin-left: 0.5rem;
     margin-top: 1rem;
   }
@@ -67,7 +68,7 @@ const Wrapper = styled.div`
   .comment-dislike-container > strong {
     font-size: 1rem;
   }
-  .ldc-icons{
+  .ldc-icons {
     font-size: 1.2rem;
     cursor: pointer;
   }
@@ -76,18 +77,34 @@ const Wrapper = styled.div`
     font-size: 1.1rem;
   }
 
-  .comment-replies{
+  .comment-replies {
     display: grid;
     gap: 1rem;
     border-left: 1px solid gray;
+    margin-left: 0.8rem;
   }
 
-  .comment-ripple{
+  .comment-ripple {
     /* background-color: blue; */
     /* width: 30px;
     height: 30px; */
     padding: 0.5rem;
     border-radius: 100%;
+  }
+
+  .like-dislike-container{
+    display: flex;
+    align-items: center;
+    /* gap: 1rem; */
+  }
+
+  .edit-comment-icon,
+  .delete-comment-icon {
+    font-size: 1.3rem;
+    color: #121212;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
   }
 
   @media (min-width: 700px) {

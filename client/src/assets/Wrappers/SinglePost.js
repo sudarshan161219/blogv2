@@ -8,7 +8,6 @@ const Wrapper = styled.div`
     align-items: center;
   } */
 
-
   /* @media (min-width: 700px) {
     .post-container{
       padding: 0 2rem;
@@ -23,7 +22,10 @@ const Wrapper = styled.div`
       padding: 0;
     }
   } */
-
+  .comments {
+    display: grid;
+    gap: 1rem;
+  }
 `;
 
 export default Wrapper;
