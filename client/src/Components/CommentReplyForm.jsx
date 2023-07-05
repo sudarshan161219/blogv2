@@ -4,9 +4,10 @@ import { useAppContext } from "../context/Context";
 import Wrapper from "../assets/Wrappers/CommentReplyForm";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import Loading from "../assets/Rolling-0.7s-157px.svg";
 const CommentReplyForm = ({ name, commentId }) => {
-  const { user, createCommentReply } = useAppContext();
+  const { user, createCommentReply, commentsReplyformLoading } =
+    useAppContext();
   const [text, setText] = useState(`@${name}  `);
   const { id } = useParams();
 
@@ -57,7 +58,13 @@ const CommentReplyForm = ({ name, commentId }) => {
             src={user.userImg}
             alt={user.name}
           />
-          <button className="button-28 comment-btn">reply</button>
+          <button className="button-28 comment-btn">
+            {commentsReplyformLoading ? (
+              <img className="giff" src={Loading} alt="" />
+            ) : (
+              "reply"
+            )}
+          </button>
         </div>
       </form>
     </Wrapper>

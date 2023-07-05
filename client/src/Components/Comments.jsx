@@ -12,23 +12,16 @@ import Ripples from "react-ripples";
 
 const Comments = ({ comment }) => {
   const {
-    isLoading,
     likeComment,
     unLikeComment,
     dislikeComment,
     unDislikeComment,
-    commentLike,
-    commentDislike,
-    toggleCommentLikeBtn,
-    toggleCommentDisLikeBtn,
-    post,
     postCommentsLikes,
     postCommentsDisLikes,
-    comments,
     user,
     Comment_Liked_Disliked_Id,
     commentreplies,
-    formLoading,
+    commentsReplyformLoading,
   } = useAppContext();
 
   const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
@@ -50,10 +43,10 @@ const Comments = ({ comment }) => {
       setDislike(!dislike);
     }
 
-    if (!formLoading) {
+    if (!commentsReplyformLoading) {
       setReply(false);
     }
-  }, [formLoading]);
+  }, [commentsReplyformLoading]);
 
   const handleLike = () => {
     if (!like) {
@@ -143,11 +136,14 @@ const Comments = ({ comment }) => {
                     )}
                   </>
                 )}
-                {postCommentsLikes.map((item) => (
-                  <strong key={item._id}>
-                    {item._id === _id && item.count}
-                  </strong>
-                ))}
+                {postCommentsLikes.map(
+                  (item) =>
+                    item._id === _id && (
+                      <strong key={item._id}>
+                        {item._id === _id && item.count}
+                      </strong>
+                    )
+                )}
               </div>
               <div className="comment-dislike-container">
                 {Comment_Liked_Disliked_Id._id === _id &&
@@ -179,11 +175,14 @@ const Comments = ({ comment }) => {
                     )}
                   </>
                 )}
-                {postCommentsDisLikes.map((item) => (
-                  <strong key={item._id}>
-                    {item._id === _id && item.count}
-                  </strong>
-                ))}
+                {postCommentsDisLikes.map(
+                  (item) =>
+                    item._id === _id && (
+                      <strong key={item._id}>
+                        {item._id === _id && item.count}
+                      </strong>
+                    )
+                )}
               </div>
             </div>
 

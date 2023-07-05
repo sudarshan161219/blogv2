@@ -57,6 +57,12 @@ const Wrapper = styled.div`
     display: none;
   }
 
+  .giff {
+    width: 50px;
+    position: absolute;
+    top: -10px;
+  }
+
   @media (min-width: 700px) {
     .mobile-comment-img {
       display: none;

@@ -240,15 +240,18 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_COMMENT_SUCCESS) {
-    const { comments } = state;
+    const { comments, commentreplies } = state;
     return {
       ...state,
       commentsLoading: false,
       comments: action.payload.comments,
       commentreplies: action.payload.commentsReply,
       postComments: comments && comments.length,
+      postCommentsReply: commentreplies.length,
       postCommentsLikes: action.payload.commentLikes,
       postCommentsDisLikes: action.payload.commentDisLikes,
+      postCommentsReplyLikes: action.payload.commentReplyLikes, 
+      postCommentsReplyDisLikes: action.payload.commentReplyDisLikes,
       likeId: action.payload.comments,
     };
   }
@@ -564,15 +567,15 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_COMMENT_REPLY_BEGIN) {
-    return { ...state, formLoading: true };
+    return { ...state,   commentsReplyformLoading: true };
   }
 
   if (action.type === CREATE_COMMENT_REPLY_SUCCESS) {
-    return { ...state, formLoading: false };
+    return { ...state,   commentsReplyformLoading: false };
   }
 
   if (action.type === CREATE_COMMENT_REPLY_ERROR) {
-    return { ...state, formLoading: false };
+    return { ...state,   commentsReplyformLoading: false };
   }
 
   throw new Error(`no such action : ${action.type}`);

@@ -80,6 +80,7 @@ const post_id = localStorage.getItem("post_id");
 const initialState = {
   isLoading: false,
   formLoading: false,
+  commentsReplyformLoading: false,
   commentsLoading: false,
   showSidebar: false,
   dashNav: false,
@@ -125,6 +126,7 @@ const initialState = {
   commentreplies: [],
   commentId: [],
   postComments: [],
+  postCommentsReply: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
   postCommentsReplyLikes: [],
@@ -697,6 +699,8 @@ const ContextProvider = ({ children }) => {
         commentsReply,
         commentLikes,
         commentDisLikes,
+        commentReplyLikes,
+        commentReplyDisLikes,
       } = data;
       dispatch({
         type: GET_COMMENT_SUCCESS,
@@ -706,6 +710,8 @@ const ContextProvider = ({ children }) => {
           commentLikes,
           commentDisLikes,
           like_dislike_comment,
+          commentReplyLikes,
+          commentReplyDisLikes,
         },
       });
     } catch (error) {
