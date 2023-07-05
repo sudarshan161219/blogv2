@@ -53,6 +53,8 @@ import {
   POST_DISLIKES,
   COMMENT_LIKES,
   COMMENT_DISLIKES,
+  COMMENT_REPLY_LIKES,
+  COMMENT_REPLY_DISLIKES,
   SAVE_POST,
   UNSAVE_POST,
   TOGGLE_LIKE_BTN,
@@ -238,10 +240,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_COMMENT_SUCCESS) {
-    const { comments, user } = state;
-    let newArr;
-
-    comments.map((item) => (newArr = item));
+    const { comments } = state;
     return {
       ...state,
       commentsLoading: false,
@@ -491,7 +490,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       postCommentsLikes: action.payload.commentLikes,
-      paisaId: action.payload.like_dislike_comment,
+      Comment_Liked_Disliked_Id: action.payload.like_dislike_comment,
     };
   }
 
@@ -499,6 +498,21 @@ const reducer = (state, action) => {
     return {
       ...state,
       postCommentsDisLikes: action.payload.commentDisLikes,
+      Comment_Liked_Disliked_Id: action.payload.like_dislike_comment,
+    };
+  }
+
+  if (action.type === COMMENT_REPLY_LIKES) {
+    return {
+      ...state,
+      postCommentsReplyLikes: action.payload.commentReplyLikes,
+    };
+  }
+
+  if (action.type === COMMENT_REPLY_DISLIKES) {
+    return {
+      ...state,
+      postCommentsReplyDisLikes: action.payload.commentReplyDisLikes,
     };
   }
 

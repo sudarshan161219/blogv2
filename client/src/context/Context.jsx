@@ -55,6 +55,8 @@ import {
   POST_DISLIKES,
   COMMENT_LIKES,
   COMMENT_DISLIKES,
+  COMMENT_REPLY_LIKES,
+  COMMENT_REPLY_DISLIKES,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
   TOGGLE_COMMENT_LIKE_BTN,
@@ -125,8 +127,11 @@ const initialState = {
   postComments: [],
   postCommentsLikes: [],
   postCommentsDisLikes: [],
+  postCommentsReplyLikes: [],
+  postCommentsReplyDisLikes: [],
   likeId: [],
-  paisaId: [],
+  Comment_Liked_Disliked_Id: [],
+  CommentReply_Liked_Disliked_Id: [],
 };
 const Context = createContext({});
 
@@ -740,10 +745,10 @@ const ContextProvider = ({ children }) => {
   const dislikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/dislikecomment/${id}`);
-      const { commentDisLikes } = data;
+      const { commentDisLikes, like_dislike_comment } = data;
       dispatch({
         type: COMMENT_DISLIKES,
-        payload: { commentDisLikes },
+        payload: { commentDisLikes, like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
@@ -753,26 +758,23 @@ const ContextProvider = ({ children }) => {
   const unDislikeComment = async (id) => {
     try {
       const { data } = await authFetch.put(`/undislikecomment/${id}`);
-      const { commentDisLikes } = data;
+      const { commentDisLikes, like_dislike_comment } = data;
       dispatch({
         type: COMMENT_DISLIKES,
-        payload: { commentDisLikes },
+        payload: { commentDisLikes, like_dislike_comment },
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
-
   const likeCommentReply = async (id) => {
     try {
-      const { data } = await authFetch.put(`/likecomment/${id}`);
-      const { commentLikes, like_dislike_comment } = data;
+      const { data } = await authFetch.put(`/likecommentreply/${id}`);
+      const { commentReplyLikes } = data;
       dispatch({
-        type: COMMENT_LIKES,
-        payload: { commentLikes, like_dislike_comment },
+        type: COMMENT_REPLY_LIKES,
+        payload: { commentReplyLikes },
       });
     } catch (error) {
       console.log(error);
@@ -781,11 +783,11 @@ const ContextProvider = ({ children }) => {
 
   const unLikeCommentReply = async (id) => {
     try {
-      const { data } = await authFetch.put(`/unlikecomment/${id}`);
-      const { commentLikes, like_dislike_comment } = data;
+      const { data } = await authFetch.put(`/unlikecommentreply/${id}`);
+      const { commentReplyLikes } = data;
       dispatch({
-        type: COMMENT_LIKES,
-        payload: { commentLikes, like_dislike_comment },
+        type: COMMENT_REPLY_LIKES,
+        payload: { commentReplyLikes },
       });
     } catch (error) {
       console.log(error);
@@ -794,11 +796,11 @@ const ContextProvider = ({ children }) => {
 
   const dislikeCommentReply = async (id) => {
     try {
-      const { data } = await authFetch.put(`/dislikecomment/${id}`);
-      const { commentDisLikes } = data;
+      const { data } = await authFetch.put(`/dislikecommentreply/${id}`);
+      const { commentReplyDisLikes } = data;
       dispatch({
-        type: COMMENT_DISLIKES,
-        payload: { commentDisLikes },
+        type: COMMENT_REPLY_DISLIKES,
+        payload: { commentReplyDisLikes },
       });
     } catch (error) {
       console.log(error);
@@ -807,22 +809,16 @@ const ContextProvider = ({ children }) => {
 
   const unDislikeCommentReply = async (id) => {
     try {
-      const { data } = await authFetch.put(`/undislikecomment/${id}`);
-      const { commentDisLikes } = data;
+      const { data } = await authFetch.put(`/undislikecommentreply/${id}`);
+      const { commentReplyDisLikes } = data;
       dispatch({
-        type: COMMENT_DISLIKES,
-        payload: { commentDisLikes },
+        type: COMMENT_REPLY_DISLIKES,
+        payload: { commentReplyDisLikes },
       });
     } catch (error) {
       console.log(error);
     }
   };
-
-
-
-
-
-
 
   return (
     <Context.Provider
@@ -871,6 +867,11 @@ const ContextProvider = ({ children }) => {
         toggleCommentDisLikeBtn,
         dislikeComment,
         unDislikeComment,
+
+        likeCommentReply,
+        unLikeCommentReply,
+        dislikeCommentReply,
+        unDislikeCommentReply,
       }}
     >
       {children}

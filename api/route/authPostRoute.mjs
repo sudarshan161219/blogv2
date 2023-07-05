@@ -53,9 +53,16 @@ router.route("/disunlike/:id").put(disUnLikePost);
 router.route("/savepost/:id").put(savepost);
 router.route("/unsavepost/:id").put(unsavepost);
 
-//$
+//$ like and dislike comment(parent) 
 router.route("/likecomment/:id").put(likeComment);
 router.route("/unlikecomment/:id").put(unLikeComment);
 router.route("/dislikecomment/:id").put(dislikeComment);
 router.route("/undislikecomment/:id").put(unDislikeComment);
+
+
+//$ like and dislike comment reply (child) 
+router.route("/likecommentreply/:id").put(likeCommentReply);
+router.route("/unlikecommentreply/:id").put(unLikeCommentReply);
+router.route("/dislikecommentreply/:id").put(dislikeCommentReply);
+router.route("/undislikecommentreply/:id").put(unDislikeCommentReply);
 export default router;

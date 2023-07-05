@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../assets/Wrappers/CommentReplies";
 import { BsReplyFill } from "react-icons/bs";
-import { BiEdit, BiLike, BiDislike, BiComment } from "react-icons/bi";
-
+import { BiEdit, BiLike, BiDislike } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
-// import CommentRepliess from "./CommentReplies"
 import Ripples from "react-ripples";
 import CommentReplyForm from "./CommentReplyForm";
 import { useAppContext } from "../context/Context";
-const CommentReplies = ({ replies, commentId }) => {
-  const { formLoading, user } = useAppContext();
-  const [reply, setReply] = useState(false);
 
+const CommentReplies = ({ replies, commentId }) => {
+  const {
+    formLoading,
+    user,
+    likeCommentReply,
+    unLikeCommentReply,
+    dislikeCommentReply,
+    unDislikeCommentReply,
+  } = useAppContext();
+
+
+
+  const [reply, setReply] = useState(false);
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
   const { repliedComment, replieAuthor } = replies;
+
   const handleReply = () => {
     setReply(!reply);
   };
-
+  
   useEffect(() => {
     if (!formLoading) {
       setReply(false);
@@ -60,7 +71,6 @@ const CommentReplies = ({ replies, commentId }) => {
   //     setDislike(!dislike);
   //   }
   // };
-
 
   return (
     <Wrapper>

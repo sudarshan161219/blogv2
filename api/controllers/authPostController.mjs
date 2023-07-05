@@ -500,11 +500,11 @@ const likeCommentReply = async (req, res) => {
     { new: true }
   );
 
-  let commentLikes = await Comment.aggregate([
+  let commentReplyLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ like_dislike_comment, commentLikes });
+  res.status(StatusCodes.OK).json({ like_dislike_comment, commentReplyLikes });
 };
 
 //? unlike Comment Reply
@@ -526,11 +526,11 @@ const unLikeCommentReply = async (req, res) => {
     { new: true }
   );
 
-  let commentLikes = await Comment.aggregate([
+  let commentReplyLikes = await Comment.aggregate([
     { $project: { count: { $size: "$likes" } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ like_dislike_comment, commentLikes });
+  res.status(StatusCodes.OK).json({ like_dislike_comment, commentReplyLikes });
 };
 
 //? dislike Comment Reply
@@ -552,11 +552,13 @@ const dislikeCommentReply = async (req, res) => {
     { new: true }
   );
 
-  let commentDisLikes = await Comment.aggregate([
+  let commentReplyDisLikes = await Comment.aggregate([
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ like_dislike_comment, commentDisLikes });
+  res
+    .status(StatusCodes.OK)
+    .json({ like_dislike_comment, commentReplyDisLikes });
 };
 
 //? undislike Comment Reply
@@ -578,11 +580,13 @@ const unDislikeCommentReply = async (req, res) => {
     { new: true }
   );
 
-  let commentDisLikes = await Comment.aggregate([
+  let commentReplyDisLikes = await Comment.aggregate([
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-  res.status(StatusCodes.OK).json({ like_dislike_comment, commentDisLikes });
+  res
+    .status(StatusCodes.OK)
+    .json({ like_dislike_comment, commentReplyDisLikes });
 };
 
 export {

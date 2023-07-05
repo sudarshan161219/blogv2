@@ -26,7 +26,7 @@ const Comments = ({ comment }) => {
     postCommentsDisLikes,
     comments,
     user,
-    paisaId,
+    Comment_Liked_Disliked_Id,
     commentreplies,
     formLoading,
   } = useAppContext();
@@ -66,7 +66,10 @@ const Comments = ({ comment }) => {
       setDislike(!dislike);
     }
 
-    if (paisaId._id === _id && paisaId.likes.includes(user._id)) {
+    if (
+      Comment_Liked_Disliked_Id._id === _id &&
+      Comment_Liked_Disliked_Id.likes.includes(user._id)
+    ) {
       unLikeComment(_id);
       setLike(!like);
     } else {
@@ -85,7 +88,10 @@ const Comments = ({ comment }) => {
       setLike(!like);
     }
 
-    if (paisaId._id === _id && paisaId.dislikes.includes(user._id)) {
+    if (
+      Comment_Liked_Disliked_Id._id === _id &&
+      Comment_Liked_Disliked_Id.dislikes.includes(user._id)
+    ) {
       unDislikeComment(_id);
       setDislike(!dislike);
     } else {
@@ -116,7 +122,8 @@ const Comments = ({ comment }) => {
           <div className="comment-like-dislike-container">
             <div className="like-dislike-container">
               <div className="comment-like-container">
-                {paisaId._id === _id && paisaId.likes.includes(user._id) ? (
+                {Comment_Liked_Disliked_Id._id === _id &&
+                Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
                   <Ripples className="comment-ripple">
                     <BiSolidLike className="ldc-icons" onClick={handleLike} />
                   </Ripples>
@@ -143,7 +150,8 @@ const Comments = ({ comment }) => {
                 ))}
               </div>
               <div className="comment-dislike-container">
-                {paisaId._id === _id && paisaId.dislikes.includes(user._id) ? (
+                {Comment_Liked_Disliked_Id._id === _id &&
+                Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
                   <>
                     <Ripples className="comment-ripple">
                       <BiSolidDislike
