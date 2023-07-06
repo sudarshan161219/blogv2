@@ -1,10 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Wrapper from "../assets/Wrappers/DeleteAlertModal";
 import { useAppContext } from "../context/Context";
 
 const DeleteAlertModal = () => {
   const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal } =
     useAppContext();
+
+
+    useEffect(() => {
+      if (showDeleteModal ) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "unset";
+      }
+    }, [showDeleteModal ]);
 
   const handleCancel = () => {
     !toggleDeleteModal();
