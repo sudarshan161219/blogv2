@@ -1,10 +1,7 @@
 import Wrapper from "../assets/Wrappers/SinglePost";
-import {
-  CommentsContainer,
-  CommentForm,
-  Post,
-} from "../Components/export";
+import { CommentsContainer, CommentForm, Post } from "../Components/export";
 import DeleteAlertModal from "../Alert/DeleteAlertModal";
+import DeleteCRAlertModal from "../Alert/DeleteCRAlertModal";
 const SinglePost = () => {
   return (
     <Wrapper>
@@ -15,7 +12,8 @@ const SinglePost = () => {
           <CommentsContainer />
         </div>
       </div>
-      < DeleteAlertModal />
+      <DeleteAlertModal />
+      <DeleteCRAlertModal />
     </Wrapper>
   );
 };

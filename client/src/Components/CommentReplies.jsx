@@ -19,6 +19,7 @@ const CommentReplies = ({ replies, commentId }) => {
     postCommentsReplyLikes,
     postCommentsReplyDisLikes,
     commentsReplyformLoading,
+    toggleDeleteCrModal
   } = useAppContext();
 
   const [reply, setReply] = useState(false);
@@ -41,6 +42,10 @@ const CommentReplies = ({ replies, commentId }) => {
       setReply(false);
     }
   }, [commentsReplyformLoading]);
+
+  const handleClick = () => {
+    toggleDeleteCrModal(_id)
+  }
 
   const handleLike = () => {
     if (!like) {
@@ -187,7 +192,7 @@ const CommentReplies = ({ replies, commentId }) => {
                 <Ripples className="comment-ripple">
                   <BiEdit className="edit-comment-icon" />
                 </Ripples>
-                <Ripples className="comment-ripple">
+                <Ripples className="comment-ripple" onClick={handleClick}>
                   <AiOutlineDelete className="delete-comment-icon" />
                 </Ripples>
               </div>

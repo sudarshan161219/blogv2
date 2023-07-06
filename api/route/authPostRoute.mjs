@@ -29,7 +29,9 @@ import {
   dislikeCommentReply,
   unDislikeCommentReply,
   deleteComment,
-  editComment
+  editComment,
+  editCommentReply,
+  deleteCommentReply,
 } from "../controllers/authPostController.mjs";
 
 //* POST 
@@ -46,6 +48,7 @@ router.route("/savedposts").get(getSavedPosts);
 //$ DELETE  && PATCH 
 router.route("/ud/:id").delete(deletePost).patch(editPost);
 router.route("/comment/:id").delete(deleteComment).patch(editComment);
+router.route("/commentreply/:id").delete(deleteCommentReply).patch(editCommentReply);
 
 //? PUT
 router.route("/replycomment").put(createReplyComment);

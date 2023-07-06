@@ -39,6 +39,9 @@ import {
   DELETE_COMMENT_BEGIN,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_ERROR,
+  DELETE_COMMENT_REPLY_BEGIN,
+  DELETE_COMMENT_REPLY_SUCCESS,
+  DELETE_COMMENT_REPLY_ERROR,
   CLEAR_FILTERS,
   CHANGE_PAGE,
   GET_TAGS_SEARCH_POST_BEGIN,
@@ -75,6 +78,7 @@ import {
   GET_COMMENT_BEGIN,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
+  TOGGLE_DELETECR_MODAL_BTN
 } from "./action";
 
 import { initialState } from "./Context";
@@ -439,6 +443,19 @@ const reducer = (state, action) => {
     return { ...state, formLoading: false };
   }
 
+  if (action.type === DELETE_COMMENT_REPLY_BEGIN) {
+    return { ...state, commentsReplyformLoading: true };
+  }
+
+  if (action.type === DELETE_COMMENT_REPLY_SUCCESS) {
+    return { ...state, commentsReplyformLoading: false };
+  }
+
+  if (action.type === DELETE_COMMENT_REPLY_ERROR) {
+    return { ...state, commentsReplyformLoading: false };
+  }
+
+
   if (action.type === POST_ID) {
     return { ...state, postId: action.payload.postId };
   }
@@ -575,6 +592,14 @@ const reducer = (state, action) => {
       ...state,
       showDeleteModal: !state.showDeleteModal,
       deleteCommentId: action.payload.id
+    };
+  }
+
+  if (action.type === TOGGLE_DELETECR_MODAL_BTN) {
+    return {
+      ...state,
+      showDeleteCrModal: !state.showDeleteCrModal,
+      deleteCommentReplyId: action.payload.id
     };
   }
 

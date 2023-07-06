@@ -15,6 +15,7 @@ import {
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
   TOGGLE_DELETE_MODAL_BTN,
+  TOGGLE_DELETECR_MODAL_BTN,
   GET_PROFILE_BEGIN,
   GET_PROFILE_SUCCESS,
   UPDATE_USER_BEGIN,
@@ -40,6 +41,9 @@ import {
   DELETE_COMMENT_BEGIN,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_ERROR,
+  DELETE_COMMENT_REPLY_BEGIN,
+  DELETE_COMMENT_REPLY_SUCCESS,
+  DELETE_COMMENT_REPLY_ERROR,
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_PAGE,
@@ -88,6 +92,7 @@ const initialState = {
   commentsLoading: false,
   showSidebar: false,
   showDeleteModal: false,
+  showDeleteCrModal: false,
   dashNav: false,
   like: false,
   dislike: false,
@@ -137,7 +142,8 @@ const initialState = {
   postCommentsReplyLikes: [],
   postCommentsReplyDisLikes: [],
   likeId: [],
-  deleteCommentId:[],
+  deleteCommentId: [],
+  deleteCommentReplyId: [],
   Comment_Liked_Disliked_Id: [],
   CommentReply_Liked_Disliked_Id: [],
 };
@@ -200,9 +206,14 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: TOGGLE_DASHNAV });
   };
 
-  //* toggle deleteModal
+  //* toggle deleteCModal
   const toggleDeleteModal = (id) => {
-    dispatch({ type: TOGGLE_DELETE_MODAL_BTN, payload:{id} });
+    dispatch({ type: TOGGLE_DELETE_MODAL_BTN, payload: { id } });
+  };
+
+  //* toggle deleteCrModal
+  const toggleDeleteCrModal = (id) => {
+    dispatch({ type: TOGGLE_DELETECR_MODAL_BTN, payload: { id } });
   };
 
   //* global handle change
@@ -837,7 +848,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  //  //$ edit post
+  //  //$ edit comment
   //  const editPost = async (data) => {
   //   dispatch({ type: EDIT_POST_BEGIN });
   //   const { editPostId } = state;
@@ -864,7 +875,7 @@ const ContextProvider = ({ children }) => {
   //   }
   // };
 
-  // $ Delete Post
+  // $ Delete Comment
   const deleteComment = async (id) => {
     dispatch({ type: DELETE_COMMENT_BEGIN });
     try {
@@ -875,6 +886,19 @@ const ContextProvider = ({ children }) => {
       logoutUser();
     }
   };
+
+
+    // $ Delete Comment Reply
+    const deleteCommentReply = async (id) => {
+      dispatch({ type: DELETE_COMMENT_REPLY_BEGIN });
+      try {
+        await authFetch.delete(`/commentreply/${id}`);
+        dispatch({ type: DELETE_COMMENT_REPLY_SUCCESS });
+      } catch (error) {
+        dispatch({ type: DELETE_COMMENT_REPLY_ERROR });
+        logoutUser();
+      }
+    };
 
   return (
     <Context.Provider
@@ -931,6 +955,9 @@ const ContextProvider = ({ children }) => {
 
         deleteComment,
         toggleDeleteModal,
+
+        deleteCommentReply,
+        toggleDeleteCrModal
       }}
     >
       {children}

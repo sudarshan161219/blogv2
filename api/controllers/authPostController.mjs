@@ -378,16 +378,14 @@ const getComments = async (req, res) => {
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-  res
-    .status(StatusCodes.OK)
-    .json({
-      comments,
-      commentLikes,
-      commentDisLikes,
-      commentsReply,
-      commentReplyLikes,
-      commentReplyDisLikes,
-    });
+  res.status(StatusCodes.OK).json({
+    comments,
+    commentLikes,
+    commentDisLikes,
+    commentsReply,
+    commentReplyLikes,
+    commentReplyDisLikes,
+  });
 };
 
 //? like Comment
@@ -606,8 +604,10 @@ const unDislikeCommentReply = async (req, res) => {
     .json({ like_dislike_comment, commentReplyDisLikes });
 };
 
+//$ edit comment
 const editComment = async (req, res) => {};
 
+//$ delete comment
 const deleteComment = async (req, res) => {
   const { id: CommentId } = req.params;
   const comment = await Comment.findById({ _id: CommentId });
@@ -615,8 +615,23 @@ const deleteComment = async (req, res) => {
     throw new NotFoundError(`No post with id : ${id}`);
   }
   checkPermissions(req.user, comment.author);
-  await Comment.findByIdAndDelete({ _id: CommentId  });
+  await Comment.findByIdAndDelete({ _id: CommentId });
   res.status(StatusCodes.OK).json({ msg: "Success comment removed" });
+};
+
+//$ edit comment reply
+const editCommentReply = async (req, res) => {};
+
+//$ delete comment reply
+const deleteCommentReply = async (req, res) => {
+  const { id: CommentReplyId } = req.params;
+  const commentreply = await CommentReply.findById({ _id: CommentReplyId });
+  if (!commentreply) {
+    throw new NotFoundError(`No post with id : ${id}`);
+  }
+  checkPermissions(req.user, commentreply.replieAuthor);
+  await CommentReply.findByIdAndDelete({ _id: CommentReplyId });
+  res.status(StatusCodes.OK).json({ msg: "Success comment reply removed" });
 };
 
 export {
@@ -646,4 +661,6 @@ export {
   unDislikeCommentReply,
   deleteComment,
   editComment,
+  editCommentReply,
+  deleteCommentReply,
 };
