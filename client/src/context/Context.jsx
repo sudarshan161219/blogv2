@@ -137,6 +137,7 @@ const initialState = {
   postCommentsReplyLikes: [],
   postCommentsReplyDisLikes: [],
   likeId: [],
+  deleteCommentId:[],
   Comment_Liked_Disliked_Id: [],
   CommentReply_Liked_Disliked_Id: [],
 };
@@ -200,8 +201,8 @@ const ContextProvider = ({ children }) => {
   };
 
   //* toggle deleteModal
-  const toggleDeleteModal = () => {
-    dispatch({ type: TOGGLE_DELETE_MODAL_BTN });
+  const toggleDeleteModal = (id) => {
+    dispatch({ type: TOGGLE_DELETE_MODAL_BTN, payload:{id} });
   };
 
   //* global handle change

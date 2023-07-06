@@ -97,7 +97,7 @@ const Comments = ({ comment }) => {
 
 
   const handleDelete = () => {
-    toggleDeleteModal()
+    toggleDeleteModal(_id)
   }
 
   return (

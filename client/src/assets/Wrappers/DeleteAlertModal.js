@@ -58,6 +58,11 @@ const Wrapper = styled.div`
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
+  @media (min-width:700px){
+    .modal{
+      width: 450px;
+    }
+  }
 `;
 
 export default Wrapper;

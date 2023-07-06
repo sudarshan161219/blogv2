@@ -574,6 +574,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       showDeleteModal: !state.showDeleteModal,
+      deleteCommentId: action.payload.id
     };
   }
 

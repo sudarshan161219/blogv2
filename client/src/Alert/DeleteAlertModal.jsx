@@ -3,14 +3,25 @@ import Wrapper from "../assets/Wrappers/DeleteAlertModal";
 import { useAppContext } from "../context/Context";
 
 const DeleteAlertModal = () => {
-  const { deleteComment, toggleDeleteModal, showDeleteModal } = useAppContext();
+  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal } =
+    useAppContext();
 
   const handleCancel = () => {
     !toggleDeleteModal();
   };
 
+  const handleDelete = () => {
+    !toggleDeleteModal();
+    deleteComment(deleteCommentId);
+  };
+
   return (
-    <Wrapper style={{ opacity: `${showDeleteModal ? 1 : 0}` , zIndex:`${showDeleteModal ? 10 : -1}`}}>
+    <Wrapper
+      style={{
+        opacity: `${showDeleteModal ? 1 : 0}`,
+        zIndex: `${showDeleteModal ? 10 : -1}`,
+      }}
+    >
       <div className="modal">
         <div className="modal-heading">
           <h3>Delete Comment</h3>
@@ -25,7 +36,9 @@ const DeleteAlertModal = () => {
           <button className="no" onClick={handleCancel}>
             no, Cancel
           </button>
-          <button className="yes">yes, Delete</button>
+          <button className="yes" onClick={handleDelete}>
+            yes, Delete
+          </button>
         </div>
       </div>
     </Wrapper>
