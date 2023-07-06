@@ -4,7 +4,7 @@ import {
   CommentForm,
   Post,
 } from "../Components/export";
-
+import DeleteAlertModal from "../Alert/DeleteAlertModal";
 const SinglePost = () => {
   return (
     <Wrapper>
@@ -15,6 +15,7 @@ const SinglePost = () => {
           <CommentsContainer />
         </div>
       </div>
+      < DeleteAlertModal />
     </Wrapper>
   );
 };

@@ -20,17 +20,18 @@ const PORT = process.env.PORT || 4000
 const uri = process.env.MONGO_URI
 
 
-const corsOptions = {
-    origin: 'http://localhost:5174',
-    credentials: true,            //access-control-allow-credentials:true
-    optionSuccessStatus: 200,
-}
+// const corsOptions = {
+//     // origin: 'http://localhost:5174',
+//     credentials: true,            //access-control-allow-credentials:true
+//     optionSuccessStatus: 200,
+// }
 
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: false, limit: '50mb'}));
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
+app.use(cors())
 // app.use(express.static(path.resolve(__dirname, "../client/dist")));
 
 

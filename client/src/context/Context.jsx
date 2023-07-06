@@ -14,6 +14,7 @@ import {
   HANDLE_SELECT_SORT_CHANGE,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
+  TOGGLE_DELETE_MODAL_BTN,
   GET_PROFILE_BEGIN,
   GET_PROFILE_SUCCESS,
   UPDATE_USER_BEGIN,
@@ -36,6 +37,9 @@ import {
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
   DELETE_POST_BEGIN,
+  DELETE_COMMENT_BEGIN,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_ERROR,
   CLEAR_VALUES,
   CLEAR_FILTERS,
   CHANGE_PAGE,
@@ -83,6 +87,7 @@ const initialState = {
   commentsReplyformLoading: false,
   commentsLoading: false,
   showSidebar: false,
+  showDeleteModal: false,
   dashNav: false,
   like: false,
   dislike: false,
@@ -192,6 +197,11 @@ const ContextProvider = ({ children }) => {
   //* toggle dashnav
   const toggleDashNav = () => {
     dispatch({ type: TOGGLE_DASHNAV });
+  };
+
+  //* toggle deleteModal
+  const toggleDeleteModal = () => {
+    dispatch({ type: TOGGLE_DELETE_MODAL_BTN });
   };
 
   //* global handle change
@@ -826,6 +836,45 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  //  //$ edit post
+  //  const editPost = async (data) => {
+  //   dispatch({ type: EDIT_POST_BEGIN });
+  //   const { editPostId } = state;
+  //   try {
+  //     const { title, coverImg, content, postTags, category } = data;
+  //     await authFetch.patch(`/ud/${editPostId}`, {
+  //       title,
+  //       coverImg,
+  //       content,
+  //       postTags,
+  //       category,
+  //     });
+
+  //     dispatch({ type: EDIT_POST_SUCCESS });
+  //     toast.success("Post edited successfully!");
+  //   } catch (error) {
+  //     if (error.response.status === 401) {
+  //       return;
+  //     }
+  //     toast.error(error.response.data.msg);
+  //     dispatch({
+  //       type: EDIT_POST_ERROR,
+  //     });
+  //   }
+  // };
+
+  // $ Delete Post
+  const deleteComment = async (id) => {
+    dispatch({ type: DELETE_COMMENT_BEGIN });
+    try {
+      await authFetch.delete(`/comment/${id}`);
+      dispatch({ type: DELETE_COMMENT_SUCCESS });
+    } catch (error) {
+      dispatch({ type: DELETE_COMMENT_ERROR });
+      logoutUser();
+    }
+  };
+
   return (
     <Context.Provider
       value={{
@@ -878,6 +927,9 @@ const ContextProvider = ({ children }) => {
         unLikeCommentReply,
         dislikeCommentReply,
         unDislikeCommentReply,
+
+        deleteComment,
+        toggleDeleteModal,
       }}
     >
       {children}

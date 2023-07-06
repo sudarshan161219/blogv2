@@ -370,7 +370,6 @@ const getComments = async (req, res) => {
     { $project: { count: { $size: "$dislikes" } } },
   ]);
 
-
   let commentReplyLikes = await CommentReply.aggregate([
     { $project: { count: { $size: "$likes" } } },
   ]);
@@ -381,7 +380,14 @@ const getComments = async (req, res) => {
 
   res
     .status(StatusCodes.OK)
-    .json({ comments, commentLikes, commentDisLikes, commentsReply, commentReplyLikes, commentReplyDisLikes  });
+    .json({
+      comments,
+      commentLikes,
+      commentDisLikes,
+      commentsReply,
+      commentReplyLikes,
+      commentReplyDisLikes,
+    });
 };
 
 //? like Comment
@@ -600,6 +606,19 @@ const unDislikeCommentReply = async (req, res) => {
     .json({ like_dislike_comment, commentReplyDisLikes });
 };
 
+const editComment = async (req, res) => {};
+
+const deleteComment = async (req, res) => {
+  const { id: CommentId } = req.params;
+  const comment = await Comment.findById({ _id: CommentId });
+  if (!comment) {
+    throw new NotFoundError(`No post with id : ${id}`);
+  }
+  checkPermissions(req.user, comment.author);
+  await Comment.findByIdAndDelete({ _id: CommentId  });
+  res.status(StatusCodes.OK).json({ msg: "Success comment removed" });
+};
+
 export {
   createPost,
   authorPosts,
@@ -625,4 +644,6 @@ export {
   unLikeCommentReply,
   dislikeCommentReply,
   unDislikeCommentReply,
+  deleteComment,
+  editComment,
 };

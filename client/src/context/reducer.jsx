@@ -11,6 +11,7 @@ import {
   HANDLE_SELECT_SORT_CHANGE,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
+  TOGGLE_DELETE_MODAL_BTN,
   GET_PROFILE_BEGIN,
   GET_PROFILE_SUCCESS,
   UPDATE_USER_BEGIN,
@@ -35,6 +36,9 @@ import {
   EDIT_POST_ERROR,
   CLEAR_VALUES,
   DELETE_POST_BEGIN,
+  DELETE_COMMENT_BEGIN,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_ERROR,
   CLEAR_FILTERS,
   CHANGE_PAGE,
   GET_TAGS_SEARCH_POST_BEGIN,
@@ -250,7 +254,7 @@ const reducer = (state, action) => {
       postCommentsReply: commentreplies.length,
       postCommentsLikes: action.payload.commentLikes,
       postCommentsDisLikes: action.payload.commentDisLikes,
-      postCommentsReplyLikes: action.payload.commentReplyLikes, 
+      postCommentsReplyLikes: action.payload.commentReplyLikes,
       postCommentsReplyDisLikes: action.payload.commentReplyDisLikes,
       likeId: action.payload.comments,
     };
@@ -423,6 +427,18 @@ const reducer = (state, action) => {
     return { ...state, isLoading: true };
   }
 
+  if (action.type === DELETE_COMMENT_BEGIN) {
+    return { ...state, formLoading: true };
+  }
+
+  if (action.type === DELETE_COMMENT_SUCCESS) {
+    return { ...state, formLoading: false };
+  }
+
+  if (action.type === DELETE_COMMENT_ERROR) {
+    return { ...state, formLoading: false };
+  }
+
   if (action.type === POST_ID) {
     return { ...state, postId: action.payload.postId };
   }
@@ -554,6 +570,13 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === TOGGLE_DELETE_MODAL_BTN) {
+    return {
+      ...state,
+      showDeleteModal: !state.showDeleteModal,
+    };
+  }
+
   if (action.type === CREATE_COMMENT_BEGIN) {
     return { ...state, formLoading: true };
   }
@@ -567,15 +590,15 @@ const reducer = (state, action) => {
   }
 
   if (action.type === CREATE_COMMENT_REPLY_BEGIN) {
-    return { ...state,   commentsReplyformLoading: true };
+    return { ...state, commentsReplyformLoading: true };
   }
 
   if (action.type === CREATE_COMMENT_REPLY_SUCCESS) {
-    return { ...state,   commentsReplyformLoading: false };
+    return { ...state, commentsReplyformLoading: false };
   }
 
   if (action.type === CREATE_COMMENT_REPLY_ERROR) {
-    return { ...state,   commentsReplyformLoading: false };
+    return { ...state, commentsReplyformLoading: false };
   }
 
   throw new Error(`no such action : ${action.type}`);

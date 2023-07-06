@@ -8,6 +8,7 @@ import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
+import DeleteAlertModal from "../Alert/DeleteAlertModal"
 import Ripples from "react-ripples";
 
 const Comments = ({ comment }) => {
@@ -22,6 +23,8 @@ const Comments = ({ comment }) => {
     Comment_Liked_Disliked_Id,
     commentreplies,
     commentsReplyformLoading,
+    deleteComment,
+    toggleDeleteModal
   } = useAppContext();
 
   const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
@@ -91,6 +94,11 @@ const Comments = ({ comment }) => {
       setDislike(!dislike);
     }
   };
+
+
+  const handleDelete = () => {
+    toggleDeleteModal()
+  }
 
   return (
     <Wrapper>
@@ -191,8 +199,8 @@ const Comments = ({ comment }) => {
                 <Ripples className="comment-ripple">
                   <BiEdit className="edit-comment-icon" />
                 </Ripples>
-                <Ripples className="comment-ripple">
-                  <AiOutlineDelete className="delete-comment-icon" />
+                <Ripples onClick={handleDelete} className="comment-ripple">
+                  <AiOutlineDelete  className="delete-comment-icon" />
                 </Ripples>
               </div>
             )}
