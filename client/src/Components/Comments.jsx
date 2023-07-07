@@ -8,7 +8,7 @@ import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
-import DeleteAlertModal from "../Alert/DeleteAlertModal"
+import DeleteAlertModal from "../Alert/DeleteAlertModal";
 import Ripples from "react-ripples";
 
 const Comments = ({ comment }) => {
@@ -24,7 +24,7 @@ const Comments = ({ comment }) => {
     commentreplies,
     commentsReplyformLoading,
     deleteComment,
-    toggleDeleteModal
+    toggleDeleteModal,
   } = useAppContext();
 
   const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
@@ -32,10 +32,15 @@ const Comments = ({ comment }) => {
   const [reply, setReply] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [text, setText] = useState(content);
   const { name, userImg } = author;
-
   const handleReply = () => {
     setReply(!reply);
+  };
+
+  const handleEdit = () => {
+    setEdit(!edit);
   };
 
   useEffect(() => {
@@ -95,11 +100,29 @@ const Comments = ({ comment }) => {
     }
   };
 
-
   const handleDelete = () => {
-    toggleDeleteModal(_id)
-  }
+    toggleDeleteModal(_id);
+  };
 
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    // data.userId = user._id;
+    data.commentId = _id;
+    console.log(data);
+    // if (!data) {
+    //   toast.error("please provide all values");
+    // } else {
+    //   createComment(data);
+    //   e.currentTarget.reset();
+    //   setText("");
+    // }
+  };
   return (
     <Wrapper>
       <div className="comment-container">
@@ -117,94 +140,117 @@ const Comments = ({ comment }) => {
             </div>
           </div>
           <div className="comment-content">
-            <p>{content}</p>
+            {edit ? (
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  value={text}
+                  onChange={handleChange}
+                  placeholder="edit your comment"
+                  name="content"
+                  id="content"
+                  className="comment-form"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+                <div className="edit-form-btn-container">
+                  <button className="cancel-btn" onClick={handleEdit} type="reset">
+                    cancel
+                  </button>
+                  <button className="edit-btn" type="submit">edit</button>
+                </div>
+              </form>
+            ) : (
+              <p>{content}</p>
+            )}
           </div>
 
-          <div className="comment-like-dislike-container">
-            <div className="like-dislike-container">
-              <div className="comment-like-container">
-                {Comment_Liked_Disliked_Id._id === _id &&
-                Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
-                  <Ripples className="comment-ripple">
-                    <BiSolidLike className="ldc-icons" onClick={handleLike} />
-                  </Ripples>
-                ) : (
-                  <>
-                    {like ? (
-                      <Ripples className="comment-ripple">
-                        <BiSolidLike
-                          className="ldc-icons"
-                          onClick={handleLike}
-                        />
-                      </Ripples>
-                    ) : (
-                      <Ripples className="comment-ripple">
-                        <BiLike className="ldc-icons" onClick={handleLike} />
-                      </Ripples>
-                    )}
-                  </>
-                )}
-                {postCommentsLikes.map(
-                  (item) =>
-                    item._id === _id && (
-                      <strong key={item._id}>
-                        {item._id === _id && item.count}
-                      </strong>
-                    )
-                )}
-              </div>
-              <div className="comment-dislike-container">
-                {Comment_Liked_Disliked_Id._id === _id &&
-                Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
-                  <>
+          {!edit && (
+            <div className="comment-like-dislike-container">
+              <div className="like-dislike-container">
+                <div className="comment-like-container">
+                  {Comment_Liked_Disliked_Id._id === _id &&
+                  Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
                     <Ripples className="comment-ripple">
-                      <BiSolidDislike
-                        className="ldc-icons"
-                        onClick={handleDislike}
-                      />
+                      <BiSolidLike className="ldc-icons" onClick={handleLike} />
                     </Ripples>
-                  </>
-                ) : (
-                  <>
-                    {dislike ? (
+                  ) : (
+                    <>
+                      {like ? (
+                        <Ripples className="comment-ripple">
+                          <BiSolidLike
+                            className="ldc-icons"
+                            onClick={handleLike}
+                          />
+                        </Ripples>
+                      ) : (
+                        <Ripples className="comment-ripple">
+                          <BiLike className="ldc-icons" onClick={handleLike} />
+                        </Ripples>
+                      )}
+                    </>
+                  )}
+                  {postCommentsLikes.map(
+                    (item) =>
+                      item._id === _id && (
+                        <strong key={item._id}>
+                          {item._id === _id && item.count}
+                        </strong>
+                      )
+                  )}
+                </div>
+                <div className="comment-dislike-container">
+                  {Comment_Liked_Disliked_Id._id === _id &&
+                  Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
+                    <>
                       <Ripples className="comment-ripple">
                         <BiSolidDislike
                           className="ldc-icons"
                           onClick={handleDislike}
                         />
                       </Ripples>
-                    ) : (
-                      <Ripples className="comment-ripple">
-                        <BiDislike
-                          className="ldc-icons"
-                          onClick={handleDislike}
-                        />
-                      </Ripples>
-                    )}
-                  </>
-                )}
-                {postCommentsDisLikes.map(
-                  (item) =>
-                    item._id === _id && (
-                      <strong key={item._id}>
-                        {item._id === _id && item.count}
-                      </strong>
-                    )
-                )}
+                    </>
+                  ) : (
+                    <>
+                      {dislike ? (
+                        <Ripples className="comment-ripple">
+                          <BiSolidDislike
+                            className="ldc-icons"
+                            onClick={handleDislike}
+                          />
+                        </Ripples>
+                      ) : (
+                        <Ripples className="comment-ripple">
+                          <BiDislike
+                            className="ldc-icons"
+                            onClick={handleDislike}
+                          />
+                        </Ripples>
+                      )}
+                    </>
+                  )}
+                  {postCommentsDisLikes.map(
+                    (item) =>
+                      item._id === _id && (
+                        <strong key={item._id}>
+                          {item._id === _id && item.count}
+                        </strong>
+                      )
+                  )}
+                </div>
               </div>
-            </div>
 
-            {user._id === author._id && (
-              <div className="comment-edit-delete-container">
-                <Ripples className="comment-ripple">
-                  <BiEdit className="edit-comment-icon" />
-                </Ripples>
-                <Ripples onClick={handleDelete} className="comment-ripple">
-                  <AiOutlineDelete  className="delete-comment-icon" />
-                </Ripples>
-              </div>
-            )}
-          </div>
+              {user._id === author._id && (
+                <div className="comment-edit-delete-container">
+                  <Ripples onClick={handleEdit} className="comment-ripple">
+                    <BiEdit className="edit-comment-icon" />
+                  </Ripples>
+                  <Ripples onClick={handleDelete} className="comment-ripple">
+                    <AiOutlineDelete className="delete-comment-icon" />
+                  </Ripples>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* //$conditional rendring */}

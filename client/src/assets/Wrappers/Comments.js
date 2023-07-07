@@ -92,7 +92,7 @@ const Wrapper = styled.div`
     border-radius: 100%;
   }
 
-  .like-dislike-container{
+  .like-dislike-container {
     display: flex;
     align-items: center;
     /* gap: 1rem; */
@@ -105,6 +105,47 @@ const Wrapper = styled.div`
     border-radius: 50%;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+  }
+
+  .comment-form {
+    height: 120px;
+    width: 100%;
+    resize: none;
+    outline: #67727e 1px solid;
+    border: none;
+    font-size: 1rem;
+    font-family: FontRegular;
+    letter-spacing: 1.1px;
+    line-height: 150%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.2rem;
+  }
+
+  .edit-form-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+  }
+
+  .edit-form-btn-container > button {
+    border: none;
+    padding: 0.3rem 0.6rem;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .cancel-btn {
+    background-color: #67727e;
+  }
+
+  .edit-btn {
+    background-color: #164b60;
   }
 
   @media (min-width: 700px) {
