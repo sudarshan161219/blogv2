@@ -103,12 +103,12 @@ const editPost = async (req, res) => {
     throw new NotFoundError(`No post with id : ${id}`);
   }
   checkPermissions(req.user, post.author);
-  const updatedJob = await Post.findOneAndUpdate({ _id: postId }, req.body, {
+  const updatedPost = await Post.findOneAndUpdate({ _id: postId }, req.body, {
     new: true,
     runValidators: true,
   });
 
-  res.status(StatusCodes.OK).json({ updatedJob });
+  res.status(StatusCodes.OK).json({ updatedPost });
 };
 
 const deletePost = async (req, res) => {
@@ -494,7 +494,6 @@ const unDislikeComment = async (req, res) => {
 };
 
 //<--/// -->
-
 //? like Comment Reply
 const likeCommentReply = async (req, res) => {
   const { id: commentId } = req.params;
@@ -604,8 +603,23 @@ const unDislikeCommentReply = async (req, res) => {
     .json({ like_dislike_comment, commentReplyDisLikes });
 };
 
+
+
 //$ edit comment
-const editComment = async (req, res) => {};
+const editComment = async (req, res) => {
+  const { id: commentId } = req.params;
+  const comment = await Comment.findById({ _id: commentId });
+  if (!comment) {
+    throw new NotFoundError(`No post with id : ${id}`);
+  }
+  checkPermissions(req.user, comment.author);
+  const updatedComment = await Comment.findOneAndUpdate({ _id: commentId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(StatusCodes.OK).json({ updatedComment });
+};
 
 //$ delete comment
 const deleteComment = async (req, res) => {

@@ -10,7 +10,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { Link, useParams } from "react-router-dom";
 import DeleteAlertModal from "../Alert/DeleteAlertModal";
 import Ripples from "react-ripples";
-
+import { toast } from "react-hot-toast";
 const Comments = ({ comment }) => {
   const {
     likeComment,
@@ -23,8 +23,11 @@ const Comments = ({ comment }) => {
     Comment_Liked_Disliked_Id,
     commentreplies,
     commentsReplyformLoading,
+    editComment,
     deleteComment,
     toggleDeleteModal,
+    editCommentLoading,
+    setCommentId,
   } = useAppContext();
 
   const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
@@ -35,12 +38,15 @@ const Comments = ({ comment }) => {
   const [edit, setEdit] = useState(false);
   const [text, setText] = useState(content);
   const { name, userImg } = author;
+
+
   const handleReply = () => {
     setReply(!reply);
   };
 
   const handleEdit = () => {
     setEdit(!edit);
+    setCommentId(_id);
   };
 
   useEffect(() => {
@@ -54,7 +60,11 @@ const Comments = ({ comment }) => {
     if (!commentsReplyformLoading) {
       setReply(false);
     }
-  }, [commentsReplyformLoading]);
+
+    if (!editCommentLoading) {
+      setEdit(false);
+    }
+  }, [content, editCommentLoading, commentsReplyformLoading]);
 
   const handleLike = () => {
     if (!like) {
@@ -112,16 +122,13 @@ const Comments = ({ comment }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData);
-    // data.userId = user._id;
-    data.commentId = _id;
-    console.log(data);
-    // if (!data) {
-    //   toast.error("please provide all values");
-    // } else {
-    //   createComment(data);
-    //   e.currentTarget.reset();
-    //   setText("");
-    // }
+    if (!data.content) {
+      toast.error("please provide value");
+      console.log("emmpty");
+    } else {
+      editComment(data);
+      e.currentTarget.reset()
+    }
   };
   return (
     <Wrapper>
@@ -153,10 +160,20 @@ const Comments = ({ comment }) => {
                   rows="10"
                 ></textarea>
                 <div className="edit-form-btn-container">
-                  <button className="cancel-btn" onClick={handleEdit} type="reset">
+                  <button
+                    className="cancel-btn"
+                    onClick={handleEdit}
+                    type="reset"
+                  >
                     cancel
                   </button>
-                  <button className="edit-btn" type="submit">edit</button>
+                  <button
+                    disabled={editCommentLoading}
+                    className="edit-btn"
+                    type="submit"
+                  >
+                    {editCommentLoading ? "please wait" : "edit"}
+                  </button>
                 </div>
               </form>
             ) : (

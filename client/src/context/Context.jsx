@@ -32,11 +32,15 @@ import {
   GET_AUTHOR_SINGLE_POST_ERROR,
   CLEAR_AUTHOR_SINGLE_POST,
   POST_ID,
+  COMMENT_ID,
   SET_EDIT_POST,
   SET_EDIT_USER,
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
+  EDIT_COMMENT_BEGIN,
+  EDIT_COMMENT_SUCCESS,
+  EDIT_COMMENT_ERROR,
   DELETE_POST_BEGIN,
   DELETE_COMMENT_BEGIN,
   DELETE_COMMENT_SUCCESS,
@@ -90,6 +94,7 @@ const initialState = {
   formLoading: false,
   commentsReplyformLoading: false,
   commentsLoading: false,
+  editCommentLoading: false,
   showSidebar: false,
   showDeleteModal: false,
   showDeleteCrModal: false,
@@ -135,6 +140,7 @@ const initialState = {
   comments: [],
   commentreplies: [],
   commentId: [],
+  editCommentId: [],
   postComments: [],
   postCommentsReply: [],
   postCommentsLikes: [],
@@ -396,6 +402,10 @@ const ContextProvider = ({ children }) => {
   const setPostId = (postId) => {
     dispatch({ type: POST_ID, payload: { postId } });
     addPostIdToLocalStorage(postId);
+  };
+
+  const setCommentId = (commentId) => {
+    dispatch({ type: COMMENT_ID, payload: { commentId } });
   };
 
   const getSingleAuthorPost = async (id) => {
@@ -849,31 +859,27 @@ const ContextProvider = ({ children }) => {
   };
 
   //  //$ edit comment
-  //  const editPost = async (data) => {
-  //   dispatch({ type: EDIT_POST_BEGIN });
-  //   const { editPostId } = state;
-  //   try {
-  //     const { title, coverImg, content, postTags, category } = data;
-  //     await authFetch.patch(`/ud/${editPostId}`, {
-  //       title,
-  //       coverImg,
-  //       content,
-  //       postTags,
-  //       category,
-  //     });
+  const editComment = async (data) => {
+    dispatch({ type: EDIT_COMMENT_BEGIN });
+    const { editCommentId } = state;
+    try {
+      const { content } = data;
+      await authFetch.patch(`/comment/${editCommentId}`, {
+        content,
+      });
 
-  //     dispatch({ type: EDIT_POST_SUCCESS });
-  //     toast.success("Post edited successfully!");
-  //   } catch (error) {
-  //     if (error.response.status === 401) {
-  //       return;
-  //     }
-  //     toast.error(error.response.data.msg);
-  //     dispatch({
-  //       type: EDIT_POST_ERROR,
-  //     });
-  //   }
-  // };
+      dispatch({ type: EDIT_COMMENT_SUCCESS });
+      toast.success("Comment edited successfully!");
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: EDIT_COMMENT_ERROR,
+      });
+    }
+  };
 
   // $ Delete Comment
   const deleteComment = async (id) => {
@@ -887,18 +893,17 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
-    // $ Delete Comment Reply
-    const deleteCommentReply = async (id) => {
-      dispatch({ type: DELETE_COMMENT_REPLY_BEGIN });
-      try {
-        await authFetch.delete(`/commentreply/${id}`);
-        dispatch({ type: DELETE_COMMENT_REPLY_SUCCESS });
-      } catch (error) {
-        dispatch({ type: DELETE_COMMENT_REPLY_ERROR });
-        logoutUser();
-      }
-    };
+  // $ Delete Comment Reply
+  const deleteCommentReply = async (id) => {
+    dispatch({ type: DELETE_COMMENT_REPLY_BEGIN });
+    try {
+      await authFetch.delete(`/commentreply/${id}`);
+      dispatch({ type: DELETE_COMMENT_REPLY_SUCCESS });
+    } catch (error) {
+      dispatch({ type: DELETE_COMMENT_REPLY_ERROR });
+      logoutUser();
+    }
+  };
 
   return (
     <Context.Provider
@@ -957,7 +962,9 @@ const ContextProvider = ({ children }) => {
         toggleDeleteModal,
 
         deleteCommentReply,
-        toggleDeleteCrModal
+        toggleDeleteCrModal,
+        editComment,
+        setCommentId,
       }}
     >
       {children}

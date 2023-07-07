@@ -28,12 +28,16 @@ import {
   GET_AUTHOR_SINGLE_POST_SUCCESS,
   GET_AUTHOR_SINGLE_POST_ERROR,
   POST_ID,
+  COMMENT_ID,
   CLEAR_AUTHOR_SINGLE_POST,
   SET_EDIT_POST,
   SET_EDIT_USER,
   EDIT_POST_BEGIN,
   EDIT_POST_SUCCESS,
   EDIT_POST_ERROR,
+  EDIT_COMMENT_BEGIN,
+  EDIT_COMMENT_SUCCESS,
+  EDIT_COMMENT_ERROR,
   CLEAR_VALUES,
   DELETE_POST_BEGIN,
   DELETE_COMMENT_BEGIN,
@@ -78,7 +82,7 @@ import {
   GET_COMMENT_BEGIN,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
-  TOGGLE_DELETECR_MODAL_BTN
+  TOGGLE_DELETECR_MODAL_BTN,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -455,9 +459,12 @@ const reducer = (state, action) => {
     return { ...state, commentsReplyformLoading: false };
   }
 
-
   if (action.type === POST_ID) {
     return { ...state, postId: action.payload.postId };
+  }
+
+  if (action.type === COMMENT_ID) {
+    return { ...state, editCommentId: action.payload.commentId };
   }
 
   if (action.type === SET_EDIT_POST) {
@@ -538,6 +545,18 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === EDIT_COMMENT_BEGIN) {
+    return { ...state,   editCommentLoading: true };
+  }
+
+  if (action.type === EDIT_COMMENT_SUCCESS) {
+    return { ...state,    editCommentLoading: false };
+  }
+
+  if (action.type === EDIT_COMMENT_ERROR) {
+    return { ...state,    editCommentLoading: false };
+  }
+
   if (action.type === COMMENT_REPLY_LIKES) {
     return {
       ...state,
@@ -591,7 +610,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       showDeleteModal: !state.showDeleteModal,
-      deleteCommentId: action.payload.id
+      deleteCommentId: action.payload.id,
     };
   }
 
@@ -599,7 +618,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       showDeleteCrModal: !state.showDeleteCrModal,
-      deleteCommentReplyId: action.payload.id
+      deleteCommentReplyId: action.payload.id,
     };
   }
 
