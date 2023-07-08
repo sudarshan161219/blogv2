@@ -388,6 +388,34 @@ const getComments = async (req, res) => {
   });
 };
 
+// //? get comments replies
+// const getCommentsReplies = async (req, res) => {
+//   const { id } = req.params;
+
+//   const queryObject = {
+//     postComment: id,
+//   };
+
+//   let commentsReply = await CommentReply.find(queryObject).populate(
+//     "replieAuthor",
+//     ["name", "userImg"]
+//   );
+
+//   let commentReplyLikes = await CommentReply.aggregate([
+//     { $project: { count: { $size: "$likes" } } },
+//   ]);
+
+//   let commentReplyDisLikes = await CommentReply.aggregate([
+//     { $project: { count: { $size: "$dislikes" } } },
+//   ]);
+
+//   res.status(StatusCodes.OK).json({
+//     commentsReply,
+//     commentReplyLikes,
+//     commentReplyDisLikes,
+//   });
+// };
+
 //? like Comment
 const likeComment = async (req, res) => {
   const { id: commentId } = req.params;
@@ -603,20 +631,22 @@ const unDislikeCommentReply = async (req, res) => {
     .json({ like_dislike_comment, commentReplyDisLikes });
 };
 
-
-
 //$ edit comment
 const editComment = async (req, res) => {
   const { id: commentId } = req.params;
   const comment = await Comment.findById({ _id: commentId });
   if (!comment) {
-    throw new NotFoundError(`No post with id : ${id}`);
+    throw new NotFoundError(`No comment with id : ${id}`);
   }
   checkPermissions(req.user, comment.author);
-  const updatedComment = await Comment.findOneAndUpdate({ _id: commentId }, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  const updatedComment = await Comment.findOneAndUpdate(
+    { _id: commentId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
 
   res.status(StatusCodes.OK).json({ updatedComment });
 };
@@ -634,7 +664,25 @@ const deleteComment = async (req, res) => {
 };
 
 //$ edit comment reply
-const editCommentReply = async (req, res) => {};
+const editCommentReply = async (req, res) => {
+  const { id: commentReplyId } = req.params;
+  const commentreply = await CommentReply.findById({ _id: commentReplyId });
+  if (!commentreply) {
+    throw new NotFoundError(`No comment reply with id : ${id}`);
+  }
+  checkPermissions(req.user, commentreply.replieAuthor);
+
+  const updatedCommentReply = await CommentReply.findOneAndUpdate(
+    { _id: commentReplyId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(StatusCodes.OK).json({ updatedCommentReply });
+};
 
 //$ delete comment reply
 const deleteCommentReply = async (req, res) => {

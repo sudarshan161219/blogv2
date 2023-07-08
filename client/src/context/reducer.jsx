@@ -29,6 +29,7 @@ import {
   GET_AUTHOR_SINGLE_POST_ERROR,
   POST_ID,
   COMMENT_ID,
+  COMMENT_REPLY_ID,
   CLEAR_AUTHOR_SINGLE_POST,
   SET_EDIT_POST,
   SET_EDIT_USER,
@@ -38,6 +39,9 @@ import {
   EDIT_COMMENT_BEGIN,
   EDIT_COMMENT_SUCCESS,
   EDIT_COMMENT_ERROR,
+  EDIT_COMMENT_REPLY_BEGIN,
+  EDIT_COMMENT_REPLY_SUCCESS,
+  EDIT_COMMENT_REPLY_ERROR,
   CLEAR_VALUES,
   DELETE_POST_BEGIN,
   DELETE_COMMENT_BEGIN,
@@ -467,6 +471,12 @@ const reducer = (state, action) => {
     return { ...state, editCommentId: action.payload.commentId };
   }
 
+  if (action.type === COMMENT_REPLY_ID) {
+    return { ...state, editCommentReplyId: action.payload.commentReplyId };
+  }
+
+  //
+
   if (action.type === SET_EDIT_POST) {
     const authorsPosts = state.authorpost.find(
       (post) => post._id === action.payload.id
@@ -546,15 +556,27 @@ const reducer = (state, action) => {
   }
 
   if (action.type === EDIT_COMMENT_BEGIN) {
-    return { ...state,   editCommentLoading: true };
+    return { ...state, editCommentLoading: true };
   }
 
   if (action.type === EDIT_COMMENT_SUCCESS) {
-    return { ...state,    editCommentLoading: false };
+    return { ...state, editCommentLoading: false };
   }
 
   if (action.type === EDIT_COMMENT_ERROR) {
-    return { ...state,    editCommentLoading: false };
+    return { ...state, editCommentLoading: false };
+  }
+
+  if (action.type === EDIT_COMMENT_REPLY_BEGIN) {
+    return { ...state, editCommentReplyLoading: true };
+  }
+
+  if (action.type === EDIT_COMMENT_REPLY_SUCCESS) {
+    return { ...state, editCommentReplyLoading: false };
+  }
+
+  if (action.type === EDIT_COMMENT_REPLY_ERROR) {
+    return { ...state, editCommentReplyLoading: false };
   }
 
   if (action.type === COMMENT_REPLY_LIKES) {

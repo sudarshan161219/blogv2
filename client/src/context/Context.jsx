@@ -33,6 +33,7 @@ import {
   CLEAR_AUTHOR_SINGLE_POST,
   POST_ID,
   COMMENT_ID,
+  COMMENT_REPLY_ID,
   SET_EDIT_POST,
   SET_EDIT_USER,
   EDIT_POST_BEGIN,
@@ -41,6 +42,9 @@ import {
   EDIT_COMMENT_BEGIN,
   EDIT_COMMENT_SUCCESS,
   EDIT_COMMENT_ERROR,
+  EDIT_COMMENT_REPLY_BEGIN,
+  EDIT_COMMENT_REPLY_SUCCESS,
+  EDIT_COMMENT_REPLY_ERROR,
   DELETE_POST_BEGIN,
   DELETE_COMMENT_BEGIN,
   DELETE_COMMENT_SUCCESS,
@@ -95,6 +99,7 @@ const initialState = {
   commentsReplyformLoading: false,
   commentsLoading: false,
   editCommentLoading: false,
+  editCommentReplyLoading: false,
   showSidebar: false,
   showDeleteModal: false,
   showDeleteCrModal: false,
@@ -140,7 +145,8 @@ const initialState = {
   comments: [],
   commentreplies: [],
   commentId: [],
-  editCommentId: [],
+  editCommentId: "",
+  editCommentReplyId: "",
   postComments: [],
   postCommentsReply: [],
   postCommentsLikes: [],
@@ -407,6 +413,12 @@ const ContextProvider = ({ children }) => {
   const setCommentId = (commentId) => {
     dispatch({ type: COMMENT_ID, payload: { commentId } });
   };
+
+  const setCommentReplyId = (commentReplyId) => {
+    dispatch({ type: COMMENT_REPLY_ID, payload: { commentReplyId } });
+  };
+
+  //
 
   const getSingleAuthorPost = async (id) => {
     dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
@@ -893,6 +905,29 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  //  //$ edit comment reply
+  const editCommentReply = async (data) => {
+    dispatch({ type: EDIT_COMMENT_REPLY_BEGIN });
+    const { editCommentReplyId } = state;
+    try {
+      const { repliedComment} = data;
+      await authFetch.patch(`/commentreply/${editCommentReplyId}`, {
+        repliedComment,
+      });
+
+      dispatch({ type: EDIT_COMMENT_REPLY_SUCCESS });
+      toast.success("your reply edited successfully!");
+    } catch (error) {
+      if (error.response.status === 401) {
+        return;
+      }
+      toast.error(error.response.data.msg);
+      dispatch({
+        type: EDIT_COMMENT_REPLY_ERROR,
+      });
+    }
+  };
+
   // $ Delete Comment Reply
   const deleteCommentReply = async (id) => {
     dispatch({ type: DELETE_COMMENT_REPLY_BEGIN });
@@ -965,6 +1000,8 @@ const ContextProvider = ({ children }) => {
         toggleDeleteCrModal,
         editComment,
         setCommentId,
+        setCommentReplyId,
+        editCommentReply,
       }}
     >
       {children}

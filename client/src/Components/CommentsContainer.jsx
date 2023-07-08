@@ -3,13 +3,25 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import { useAppContext } from "../context/Context";
 const CommentsContainer = () => {
-  const { comments, getComments, formLoading, commentsReplyformLoading, editCommentLoading } =
-    useAppContext();
+  const {
+    comments,
+    getComments,
+    formLoading,
+    commentsReplyformLoading,
+    editCommentLoading,
+    editCommentReplyLoading,
+  } = useAppContext();
   const { id } = useParams();
 
   useEffect(() => {
     getComments(id);
-  }, [id, formLoading, commentsReplyformLoading, editCommentLoading]);
+  }, [
+    id,
+    formLoading,
+    commentsReplyformLoading,
+    editCommentLoading,
+    editCommentReplyLoading,
+  ]);
 
   return (
     <>

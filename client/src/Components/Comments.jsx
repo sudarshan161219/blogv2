@@ -28,6 +28,8 @@ const Comments = ({ comment }) => {
     toggleDeleteModal,
     editCommentLoading,
     setCommentId,
+    editCommentReplyLoading,
+    
   } = useAppContext();
 
   const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
@@ -38,16 +40,6 @@ const Comments = ({ comment }) => {
   const [edit, setEdit] = useState(false);
   const [text, setText] = useState(content);
   const { name, userImg } = author;
-
-
-  const handleReply = () => {
-    setReply(!reply);
-  };
-
-  const handleEdit = () => {
-    setEdit(!edit);
-    setCommentId(_id);
-  };
 
   useEffect(() => {
     if (likes.includes(user._id)) {
@@ -64,7 +56,16 @@ const Comments = ({ comment }) => {
     if (!editCommentLoading) {
       setEdit(false);
     }
-  }, [content, editCommentLoading, commentsReplyformLoading]);
+  }, [editCommentLoading, commentsReplyformLoading, editCommentReplyLoading]);
+
+  const handleReply = () => {
+    setReply(!reply);
+  };
+
+  const handleEdit = () => {
+    setEdit(!edit);
+    setCommentId(_id);
+  };
 
   const handleLike = () => {
     if (!like) {
@@ -124,10 +125,9 @@ const Comments = ({ comment }) => {
     const data = Object.fromEntries(formData);
     if (!data.content) {
       toast.error("please provide value");
-      console.log("emmpty");
     } else {
       editComment(data);
-      e.currentTarget.reset()
+      e.currentTarget.reset();
     }
   };
   return (
