@@ -270,8 +270,6 @@ h5 {
   color: #1c1c1c;
 }
 
-
-
 .button-28 {
   appearance: none;
   background-color: transparent;
@@ -308,14 +306,11 @@ h5 {
   pointer-events: none;
 }
 
-
-
 .button-28:active,
 .isMember-btn:active {
   box-shadow: none;
   transform: translateY(0);
 }
-
 
 .register-main {
   /* width: 300px; */
@@ -383,7 +378,6 @@ h5 {
   border-radius: 5px;
   margin-left: 0.5rem;
 }
-
 
 .form-para > .form-link:active {
   background-color: #1c1c1c;
@@ -501,7 +495,6 @@ h5 {
   width: 65px;
 }
 
-
 strong {
   text-align: center;
   font-size: 0.8rem;
@@ -509,7 +502,7 @@ strong {
   color: rgb(71, 84, 103);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .register-main {
     width: 400px;
     padding-top: 0;
@@ -521,6 +514,11 @@ strong {
 
   strong {
     font-size: 1rem;
+  }
+
+  .commentsContainerHeading {
+    width: 690px;
+    margin: 0px auto;
   }
 }
 
@@ -538,24 +536,23 @@ strong {
   }
 
   .button-28:hover,
-.isMember-btn:hover {
-  -webkit-tap-highlight-color: transparent;
-  color: #fff;
-  background-color: #1a1a1a;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
+  .isMember-btn:hover {
+    -webkit-tap-highlight-color: transparent;
+    color: #fff;
+    background-color: #1a1a1a;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+  }
 
-.button-28:hover > .nav-link {
-  color: #ffffff;
-}
+  .button-28:hover > .nav-link {
+    color: #ffffff;
+  }
 
-.form-para > .form-link:hover {
-  background-color: #1c1c1c;
-  color: #fff;
-  transition: linear 0.2s;
-}
-
+  .form-para > .form-link:hover {
+    background-color: #1c1c1c;
+    color: #fff;
+    transition: linear 0.2s;
+  }
 }
 
 .ql-snow {
@@ -620,9 +617,7 @@ h5 {
   padding: 1rem;
 }
 
-
-
-.ripple{
+.ripple {
   border-radius: 100%;
   width: 40px;
   height: 40px;

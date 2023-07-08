@@ -62,13 +62,13 @@ const Wrapper = styled.div`
   .like-dislike-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    /* gap: 1rem; */
   }
 
   .comment-like-container,
   .comment-dislike-container {
     display: grid;
-    gap: 0.3rem;
+    /* gap: 0.3rem; */
     text-align: center;
   }
 

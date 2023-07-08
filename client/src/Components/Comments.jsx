@@ -29,12 +29,12 @@ const Comments = ({ comment }) => {
     editCommentLoading,
     setCommentId,
     editCommentReplyLoading,
-    
   } = useAppContext();
 
   const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
 
   const [reply, setReply] = useState(false);
+  const [showReplies, setShowReplies] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [edit, setEdit] = useState(false);
@@ -130,6 +130,11 @@ const Comments = ({ comment }) => {
       e.currentTarget.reset();
     }
   };
+
+  const handleReplyClick = () => {
+    setShowReplies(!showReplies);
+  };
+
   return (
     <Wrapper>
       <div className="comment-container">
@@ -273,14 +278,27 @@ const Comments = ({ comment }) => {
         {/* //$conditional rendring */}
 
         {reply && <CommentReplyForm name={name} commentId={_id} />}
-        <div className="comment-replies">
-          {commentreplies &&
-            commentreplies.map((item) =>
-              _id === item.parentCommentId ? (
-                <CommentReplies commentId={_id} replies={item} key={item._id} />
-              ) : null
-            )}
-        </div>
+
+        {showReplies && (
+          <div className="comment-replies">
+            {commentreplies &&
+              commentreplies.map((item) =>
+                _id === item.parentCommentId ? (
+                  <CommentReplies
+                    commentId={_id}
+                    replies={item}
+                    key={item._id}
+                  />
+                ) : null
+              )}
+          </div>
+        )}
+
+        {replies.length > 0 && (
+          <button onClick={handleReplyClick}>
+            {showReplies ? "hide reply" : "show replies"}
+          </button>
+        )}
       </div>
     </Wrapper>
   );
