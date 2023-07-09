@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../assets/Wrappers/Comments";
+import moment from "moment";
 import { BsReplyFill } from "react-icons/bs";
 import { BiEdit, BiLike, BiDislike } from "react-icons/bi";
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
@@ -7,8 +8,6 @@ import CommentReplyForm from "./CommentReplyForm";
 import CommentReplies from "./CommentReplies";
 import { useAppContext } from "../context/Context";
 import { AiOutlineDelete } from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
-import DeleteAlertModal from "../Alert/DeleteAlertModal";
 import Ripples from "react-ripples";
 import { toast } from "react-hot-toast";
 const Comments = ({ comment }) => {
@@ -24,14 +23,23 @@ const Comments = ({ comment }) => {
     commentreplies,
     commentsReplyformLoading,
     editComment,
-    deleteComment,
     toggleDeleteModal,
     editCommentLoading,
     setCommentId,
     editCommentReplyLoading,
+    postCommentsReply,
   } = useAppContext();
 
-  const { _id, content, author, replies, createdAt, likes, dislikes } = comment;
+  const {
+    _id,
+    content,
+    author,
+    replies,
+    createdAt,
+    updatedAt,
+    likes,
+    dislikes,
+  } = comment;
 
   const [reply, setReply] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -40,6 +48,9 @@ const Comments = ({ comment }) => {
   const [edit, setEdit] = useState(false);
   const [text, setText] = useState(content);
   const { name, userImg } = author;
+
+  const date = moment(createdAt);
+  let Fdate = date.startOf("hour").fromNow();
 
   useEffect(() => {
     if (likes.includes(user._id)) {
@@ -143,6 +154,8 @@ const Comments = ({ comment }) => {
             <div className="comment-img-name">
               <img className="mobile-comment-img" src={userImg} alt={name} />
               <strong>{name}</strong>
+              &#x2022;
+              <span className="date">{Fdate} {createdAt !== updatedAt && '(edited)'}</span>
             </div>
             <div onClick={handleReply} className="icon-container">
               {/* <Ripples className="ripple"> */}
@@ -295,8 +308,8 @@ const Comments = ({ comment }) => {
         )}
 
         {replies.length > 0 && (
-          <button onClick={handleReplyClick}>
-            {showReplies ? "hide reply" : "show replies"}
+          <button className="replies-btn" onClick={handleReplyClick}>
+            {showReplies ? "hide reply" : `show replies ${postCommentsReply}`}
           </button>
         )}
       </div>

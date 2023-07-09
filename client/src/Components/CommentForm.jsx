@@ -31,7 +31,6 @@ const CommentForm = () => {
 
   return (
     <Wrapper>
-      {user ? (
         <form onSubmit={handleSubmit}>
           <div className="text-img-container">
             <img
@@ -54,8 +53,8 @@ const CommentForm = () => {
           <div className="img-btn">
             <img
               className="mobile-comment-img"
-              src={user.userImg}
-              alt={user.name}
+              src={user &&user.userImg}
+              alt={user && user.name}
               disabled={formLoading}
             />
             <button className="button-28 comment-btn">
@@ -67,20 +66,6 @@ const CommentForm = () => {
             </button>
           </div>
         </form>
-      ) : (
-        <div className="ldc-disable-msg">
-          <strong>
-            <Link className="strong-link" to="/register">
-              login
-            </Link>
-            &nbsp; or &nbsp;
-            <Link className="strong-link" to="/register">
-              sign up
-            </Link>
-            &nbsp; to like and comment on post
-          </strong>
-        </div>
-      )}
     </Wrapper>
   );
 };

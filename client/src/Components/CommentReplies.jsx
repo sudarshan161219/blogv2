@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../assets/Wrappers/CommentReplies";
+import moment from "moment";
 import { BsReplyFill } from "react-icons/bs";
 import { BiEdit, BiLike, BiDislike } from "react-icons/bi";
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
@@ -25,13 +26,24 @@ const CommentReplies = ({ replies, commentId }) => {
     editCommentReply,
   } = useAppContext();
 
-  const { likes, dislikes, _id, repliedComment, replieAuthor } = replies;
+  const {
+    likes,
+    dislikes,
+    _id,
+    repliedComment,
+    createdAt,
+    updatedAt,
+    replieAuthor,
+  } = replies;
 
   const [reply, setReply] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [edit, setEdit] = useState(false);
   const [text, setText] = useState(repliedComment);
+
+  const date = moment(createdAt);
+  let Fdate = date.startOf("hour").fromNow();
 
   useEffect(() => {
     if (likes.includes(user._id)) {
@@ -133,6 +145,8 @@ const CommentReplies = ({ replies, commentId }) => {
                 alt="avatar"
               />
               <strong>{replieAuthor.name}</strong>
+              &#x2022;
+              <span className="date">{Fdate} {createdAt !== updatedAt && '(edited)'}</span>
             </div>
             <div onClick={handleReply} className="icon-container">
               <BsReplyFill className="reply-icon" />

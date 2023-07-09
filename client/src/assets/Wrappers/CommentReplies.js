@@ -33,6 +33,9 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.3rem;
     font-size: 0.88rem;
+  }
+
+  .icon-container {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
@@ -114,7 +117,7 @@ const Wrapper = styled.div`
 
     .delete-ripple:hover {
       background-color: #e06469;
-       color: #2b2730;
+      color: #2b2730;
     }
 
     .edit-comment-icon:hover,

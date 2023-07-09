@@ -147,7 +147,7 @@ body::-webkit-scrollbar-track {
 }
 
 @font-face {
-  font-family: c;
+  font-family: fontRegular;
   src: url("./assets/Graphik-Font-Family/GraphikRegular.otf");
 }
 
@@ -497,9 +497,10 @@ h5 {
 
 strong {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-family: FontSemiBold;
   color: rgb(71, 84, 103);
+  letter-spacing: 1.1px;
 }
 
 @media (min-width: 700px) {

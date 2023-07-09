@@ -30,8 +30,12 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.3rem;
     font-size: 0.88rem;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
+    color: #67727e;
+  }
+
+  .icon-container{
+    cursor:pointer;
+    color: #121212;
   }
   .mobile-comment-img {
     width: 40px;
@@ -85,9 +89,6 @@ const Wrapper = styled.div`
   }
 
   .comment-ripple {
-    /* background-color: blue; */
-    /* width: 30px;
-    height: 30px; */
     padding: 0.5rem;
     border-radius: 100%;
   }
@@ -148,6 +149,36 @@ const Wrapper = styled.div`
     background-color: #164b60;
   }
 
+  .replies-btn {
+    padding: 0.5rem 0.5rem;
+    width: 150px;
+    font-size: 0.88rem;
+    font-family: FontMedium;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    justify-content: center;
+    outline: 0.5px solid #67727e;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 10px;
+  }
+
+  .replies-btn:active{
+    background-color: #121212;
+    color: #fff;
+    transition: 0.3s all;
+    transform: scale(0.99);
+  }
+
+  .date{
+    font-family: FontMedium;
+    color: #67727e;
+    font-size: 0.8rem;
+    letter-spacing: 1.1px;
+  }
+
   @media (min-width: 700px) {
     .comment-container {
       width: 690px;
@@ -156,6 +187,12 @@ const Wrapper = styled.div`
     .comment-content > p {
       font-size: 0.99rem;
     }
+
+    .replies-btn:hover{
+    background-color: #121212;
+    color: #fff;
+    transition: 0.3s all;
+  }
   }
 `;
 
