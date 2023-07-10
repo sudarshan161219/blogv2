@@ -7,7 +7,7 @@ import {
   SearchComponent,
 } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
-
+import DeletePostAlert  from "../../Alert/DeletePostAlert"
 const Allposts = () => {
   const {
     numOfPages,
@@ -27,6 +27,7 @@ const Allposts = () => {
 
   return (
     <Wrapper>
+      <DeletePostAlert />
       <SearchComponent />
       <>
         <h1 className="allPost-heading">{authorpost.length === 0 ? "no Posts yet" : "your Posts"}</h1>

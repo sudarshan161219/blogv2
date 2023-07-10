@@ -10,7 +10,7 @@ import {
 } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 import mongoose from "mongoose";
-const { Types } = mongoose;
+
 
 const createPost = async (req, res) => {
   const { title, coverImg, content, postTags, category } = req.body;
@@ -113,12 +113,23 @@ const editPost = async (req, res) => {
 
 const deletePost = async (req, res) => {
   const { id: postId } = req.params;
+
+  const queryComment = {
+    postComment: postId,
+  };
+
+  const queryCommentReply = {
+    postCommentId: postId,
+  };
+
   const post = await Post.findById({ _id: postId });
   if (!post) {
     throw new NotFoundError(`No post with id : ${id}`);
   }
   checkPermissions(req.user, post.author);
   await Post.findByIdAndDelete({ _id: postId });
+  await Comment.deleteMany(queryComment);
+  await CommentReply.deleteMany(queryCommentReply);
   res.status(StatusCodes.OK).json({ msg: "Success Post removed" });
 };
 
@@ -387,34 +398,6 @@ const getComments = async (req, res) => {
     commentReplyDisLikes,
   });
 };
-
-// //? get comments replies
-// const getCommentsReplies = async (req, res) => {
-//   const { id } = req.params;
-
-//   const queryObject = {
-//     postComment: id,
-//   };
-
-//   let commentsReply = await CommentReply.find(queryObject).populate(
-//     "replieAuthor",
-//     ["name", "userImg"]
-//   );
-
-//   let commentReplyLikes = await CommentReply.aggregate([
-//     { $project: { count: { $size: "$likes" } } },
-//   ]);
-
-//   let commentReplyDisLikes = await CommentReply.aggregate([
-//     { $project: { count: { $size: "$dislikes" } } },
-//   ]);
-
-//   res.status(StatusCodes.OK).json({
-//     commentsReply,
-//     commentReplyLikes,
-//     commentReplyDisLikes,
-//   });
-// };
 
 //? like Comment
 const likeComment = async (req, res) => {

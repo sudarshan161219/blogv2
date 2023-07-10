@@ -87,6 +87,7 @@ import {
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
   TOGGLE_DELETECR_MODAL_BTN,
+  TOGGLE_DELETEPT_MODAL_BTN,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -643,6 +644,17 @@ const reducer = (state, action) => {
       deleteCommentReplyId: action.payload.id,
     };
   }
+
+
+  if (action.type ===  TOGGLE_DELETEPT_MODAL_BTN) {
+    return {
+      ...state,
+      showDeletePostModal: !state.showDeletePostModal,
+      deletePostId: action.payload.id,
+    };
+  }
+
+ 
 
   if (action.type === CREATE_COMMENT_BEGIN) {
     return { ...state, formLoading: true };

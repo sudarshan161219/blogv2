@@ -87,6 +87,7 @@ import {
   GET_COMMENT_BEGIN,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
+  TOGGLE_DELETEPT_MODAL_BTN,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -103,6 +104,7 @@ const initialState = {
   showSidebar: false,
   showDeleteModal: false,
   showDeleteCrModal: false,
+  showDeletePostModal: false,
   dashNav: false,
   like: false,
   dislike: false,
@@ -155,6 +157,7 @@ const initialState = {
   postCommentsReplyDisLikes: [],
   likeId: [],
   deleteCommentId: [],
+  deletePostId: [],
   deleteCommentReplyId: [],
   Comment_Liked_Disliked_Id: [],
   CommentReply_Liked_Disliked_Id: [],
@@ -226,6 +229,11 @@ const ContextProvider = ({ children }) => {
   //* toggle deleteCrModal
   const toggleDeleteCrModal = (id) => {
     dispatch({ type: TOGGLE_DELETECR_MODAL_BTN, payload: { id } });
+  };
+
+  //* toggle delete post Modal
+  const toggleDeletePostModal = (id) => {
+    dispatch({ type: TOGGLE_DELETEPT_MODAL_BTN, payload: { id } });
   };
 
   //* global handle change
@@ -910,7 +918,7 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: EDIT_COMMENT_REPLY_BEGIN });
     const { editCommentReplyId } = state;
     try {
-      const { repliedComment} = data;
+      const { repliedComment } = data;
       await authFetch.patch(`/commentreply/${editCommentReplyId}`, {
         repliedComment,
       });
@@ -995,7 +1003,9 @@ const ContextProvider = ({ children }) => {
 
         deleteComment,
         toggleDeleteModal,
+        toggleDeletePostModal,
 
+        
         deleteCommentReply,
         toggleDeleteCrModal,
         editComment,

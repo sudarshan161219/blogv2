@@ -3,17 +3,17 @@ import Wrapper from "../assets/Wrappers/DeleteAlertModal";
 import { useAppContext } from "../context/Context";
 
 const DeleteAlertModal = () => {
-  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal } =
+  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal} =
     useAppContext();
 
 
     useEffect(() => {
-      if (showDeleteModal ) {
+      if (showDeleteModal) {
         document.body.style.overflow = "hidden";
       } else {
         document.body.style.overflow = "unset";
       }
-    }, [showDeleteModal ]);
+    }, [showDeleteModal]);
 
   const handleCancel = () => {
     !toggleDeleteModal();

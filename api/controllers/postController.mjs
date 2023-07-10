@@ -25,7 +25,7 @@ const getPost = async (req, res) => {
   const { id: postId } = req.params;
   const singlepost = await Post.findById({ _id: postId }).populate("author", [
     "name",
-  ]).populate("comments")
+  ])
 
 
   if (!singlepost) {

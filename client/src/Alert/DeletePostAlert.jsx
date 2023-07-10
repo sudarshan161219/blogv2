@@ -1,46 +1,43 @@
 import React, { useEffect } from "react";
-import Wrapper from "../assets/Wrappers/DeleteAlertModal";
+import Wrapper from "../assets/Wrappers/DeleteAlertModal"
 import { useAppContext } from "../context/Context";
-const DeleteCRAlertModal = () => {
-  const {
-    showDeleteCrModal,
-    deleteCommentReply,
-    toggleDeleteCrModal,
-    deleteCommentReplyId,
-  } = useAppContext();
+
+const DeletePostAlert = () => {
+  const { deletePostId, deletePost, toggleDeletePostModal, showDeletePostModal } =
+    useAppContext();
 
   useEffect(() => {
-    if (showDeleteCrModal) {
+    if (showDeletePostModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [showDeleteCrModal]);
+  }, [showDeletePostModal]);
 
   const handleCancel = () => {
-    !toggleDeleteCrModal();
+    !toggleDeletePostModal();
   };
 
   const handleDelete = () => {
-    !toggleDeleteCrModal();
-    deleteCommentReply(deleteCommentReplyId);
+    !toggleDeletePostModal();
+    deletePost(deletePostId);
   };
 
   return (
     <Wrapper
       style={{
-        opacity: `${showDeleteCrModal ? 1 : 0}`,
-        zIndex: `${showDeleteCrModal ? 10 : -1}`,
+        opacity: `${showDeletePostModal ? 1 : 0}`,
+        zIndex: `${showDeletePostModal ? 10 : -1}`,
       }}
     >
       <div className="modal">
         <div className="modal-heading">
-          <h3>Delete reply</h3>
+          <h3>Delete Comment</h3>
         </div>
         <div className="modal-info">
           <p>
-            Are you sure you want to delete this reply? This will remove the
-            reply and can’t be undone.
+            Are you sure you want to delete this post? This will remove the post
+            and can’t be undone.
           </p>
         </div>
         <div className="modal-btns">
@@ -56,4 +53,4 @@ const DeleteCRAlertModal = () => {
   );
 };
 
-export default DeleteCRAlertModal;
+export default DeletePostAlert;

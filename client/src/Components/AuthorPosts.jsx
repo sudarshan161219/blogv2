@@ -9,7 +9,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
 
 const AuthorPosts = ({ item }) => {
-  const { setEditPost, deletePost, isLoading } = useAppContext();
+  const {  toggleDeletePostModal, setEditPost, deletePost, isLoading } = useAppContext();
   const { _id, title, summary, coverImg, createdAt, category } = item;
 
   const date = moment(createdAt);
@@ -40,7 +40,7 @@ const AuthorPosts = ({ item }) => {
               >
                 <BiEdit className="edit-icon" />
               </Link>
-              <Link onClick={() => deletePost(_id)} className="Link ">
+              <Link onClick={() =>  toggleDeletePostModal(_id)} className="Link ">
                 <AiOutlineDelete className="delete-icon " />
               </Link>
             </div>
