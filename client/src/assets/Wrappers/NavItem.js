@@ -58,9 +58,10 @@ const Wrapper = styled.div`
     opacity: 0;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    display: grid;
+
     gap: 0.8rem;
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+    display: none;
   }
 
   .name {
@@ -95,6 +96,12 @@ const Wrapper = styled.div`
 
   .nav-link{
     height: 35px;
+  }
+
+  @media (min-width: 768px) {
+    .drop-down{
+      display: grid;
+    }
   }
 
   @media (min-width: 1024px) {

@@ -10,12 +10,14 @@ import { FiBookOpen } from "react-icons/fi";
 import {BiEdit} from "react-icons/bi";
 
 const Navlinks = () => {
-  const { toggleSidebar } = useAppContext();
+  const { toggleSidebar, user } = useAppContext();
 
   return (
     <ul>
 
-      <li className=" mobile-links">
+{user &&      
+<>
+ <li className=" mobile-links">
         <Link onClick={!toggleSidebar} className="Link" to="/user-profile">
           <IoGridOutline  className="sidebar-icons" /> Dashboard
         </Link>
@@ -34,6 +36,8 @@ const Navlinks = () => {
           <BiEdit className="sidebar-icons" /> edit profile
         </Link>
       </li>
+      </>
+      }
 
       <li>
         <Link onClick={!toggleSidebar} className="Link " to="/">
