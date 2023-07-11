@@ -175,7 +175,7 @@ const Wrapper = styled.div`
   .date{
     font-family: FontMedium;
     color: #67727e;
-    font-size: 0.8rem;
+    font-size: 0.5rem;
     letter-spacing: 1.1px;
   }
 
@@ -193,6 +193,11 @@ const Wrapper = styled.div`
     color: #fff;
     transition: 0.3s all;
   }
+
+  .date{
+    font-size: 0.8rem;
+  }
+
   }
 `;
 

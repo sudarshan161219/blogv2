@@ -684,6 +684,7 @@ const ContextProvider = ({ children }) => {
     try {
       const { postId, userId, commentId, Rcontent, parentCommentId } = data;
       await authFetch.put("/replycomment", {
+        postId,
         userId,
         commentId,
         Rcontent,

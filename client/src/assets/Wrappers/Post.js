@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   .dislike-container,
   .comment-container {
     display: grid;
-    gap: 0.33rem;
+    /* gap: 0.33rem; */
     align-items: center;
   }
 
