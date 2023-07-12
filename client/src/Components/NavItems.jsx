@@ -8,10 +8,11 @@ import Wrapper from "../assets/Wrappers/NavItem";
 
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
-  const { user, logoutUser, postId } = useAppContext();
+  const { user, logoutUser, postId, toggleSidebar } = useAppContext();
 
   const handleToggle = () => {
     setToggle(!toggle);
+    toggleSidebar()
   };
   const location = useLocation();
   const userPath = location.pathname === "/user-profile";
