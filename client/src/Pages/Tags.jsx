@@ -10,14 +10,14 @@ const Tags = () => {
       <div className="search-container">
         <SearchComponent />
       </div>
-
+{/* 
       <div className="btn-container">
         {tagArr.map((item, idx) => (
           <button className="btn-tag" key={idx}>
             {item}
           </button>
         ))}
-      </div>
+      </div> */}
     </Wrapper>
   );
 };

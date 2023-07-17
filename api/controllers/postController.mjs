@@ -1,6 +1,6 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
-import Comment from "../models/Comments.mjs"
+import Comment from "../models/Comments.mjs";
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
@@ -25,8 +25,7 @@ const getPost = async (req, res) => {
   const { id: postId } = req.params;
   const singlepost = await Post.findById({ _id: postId }).populate("author", [
     "name",
-  ])
-
+  ]);
 
   if (!singlepost) {
     throw new NotFoundError(`No post with id : ${postId}`);
@@ -46,30 +45,29 @@ const getAuthorPage = async (req, res) => {
 };
 
 const tagsSearch = async (req, res) => {
-  const { search, sort, category, tag, author } = req.query;
+  const { search, sort, category, tag } = req.query;
 
-  const user = await User.find();
 
-  const queryObject = {
-    author: user,
-  };
+  // if(!search, !sort, !category, !tag ){
+  //   throw new BadRequestError("please provide all values");
+  // }
 
   // //$ add stuff based on condition
-  if (category) {
-    queryObject.category = { $regex: category, $options: "i" };
+  if (category == "all") {
+    req.body.category = { $regex: category, $options: "i" };
   }
 
   if (search) {
-    queryObject.title = { $regex: search, $options: "i" };
+    req.body.title = { $regex: search, $options: "i" };
   }
 
   // //$  in progrss
   if (tag) {
-    queryObject.postTags = tag;
+    req.body.postTags = tag;
   }
 
   //$ no Await
-  let result = Post.find(queryObject);
+  let result = Post.find(req.body);
 
   // //$chain sort condition
   if (sort === "latest") {
@@ -88,7 +86,7 @@ const tagsSearch = async (req, res) => {
   result = result.skip(skip).limit(limit);
   const post = await result;
 
-  const totalPosts = await Post.countDocuments(queryObject);
+  const totalPosts = await Post.countDocuments();
   const numOfPages = Math.ceil(totalPosts / limit);
 
   return res.status(StatusCodes.OK).json({
@@ -98,28 +96,4 @@ const tagsSearch = async (req, res) => {
   });
 };
 
-
-// const likePost = async (req, res) => {
-//   const { postId, userId } = req.body;
-
-//   const user = await User.findOne({ _id: userId });
-
-//   if (!user) {
-//     throw new UnauthenticatedError(
-//       "Login or Sign Up for like, comment the post"
-//     );
-//   }
-
-//   const likedPost = Post.findByIdAndUpdate(
-//     postId,
-//     {
-//       $push: { likes: userId },
-//     },
-//     { new: true }
-//   );
-
-//   res.status(StatusCodes.OK).json(likedPost);
-// };
-
-
-export { getAllPost, tagsSearch, getPost, getAuthorPage,   };
+export { getAllPost, tagsSearch, getPost, getAuthorPage };

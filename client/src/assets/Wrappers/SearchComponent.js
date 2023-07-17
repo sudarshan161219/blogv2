@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: left;
   gap: 1rem;
-  /* padding-top: 5rem; */
   margin-bottom: 3rem;
 
   .search-container-form {
@@ -17,7 +16,6 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* width: 70%; */
   }
   .search-container-input {
     width: 100%;
@@ -45,7 +43,6 @@ const Wrapper = styled.div`
     position: absolute;
     right: 25px;
     padding: 0.4rem 0 0.4rem 0.4rem;
-    /* z-index: 2; */
     background-color: white;
     border-radius: 50%;
   }
@@ -67,7 +64,6 @@ const Wrapper = styled.div`
     font-size: 1.1rem;
     padding: 0.2rem 1rem;
     border-radius: 20px;
-    /* margin: 0.2rem 0.3rem; */
     appearance: none;
     background-color: transparent;
     box-sizing: border-box;
@@ -103,21 +99,21 @@ const Wrapper = styled.div`
     transform: translateY(0);
   }
 
-  .css-b62m3t-container{
+  .css-b62m3t-container {
     width: 210px;
-    border-radius:10px;
+    border-radius: 10px;
   }
 
-  .css-13cymwt-control{
-  border-color: hsl(0deg 0% 3.15%);
+  .css-13cymwt-control {
+    border-color: hsl(0deg 0% 3.15%);
     border-radius: 15px;
   }
 
-  .select-container{
+  .select-container {
     display: flex;
     gap: 1rem;
+    justify-content: space-between;
   }
-
 
   @media (min-width: 700px) {
     /* width: 800px; */
@@ -127,13 +123,12 @@ const Wrapper = styled.div`
     flex-direction: inherit;
 
     .search-container-form {
-    width: 500px;
+      width: 500px;
+    }
+    .css-b62m3t-container {
+      width: 50%;
+    }
   }
-  .css-b62m3t-container{
-    width: 50%
-  }
-  }
-
 `;
 
 export default Wrapper;

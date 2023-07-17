@@ -9,7 +9,7 @@ import {
   NotFoundError,
 } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
-import mongoose from "mongoose";
+
 
 
 const createPost = async (req, res) => {
