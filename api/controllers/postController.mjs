@@ -48,12 +48,7 @@ const tagsSearch = async (req, res) => {
   const { search, sort, category, tag } = req.query;
 
 
-  // if(!search, !sort, !category, !tag ){
-  //   throw new BadRequestError("please provide all values");
-  // }
-
-  // //$ add stuff based on condition
-  if (category == "all") {
+  if (category !== "all") {
     req.body.category = { $regex: category, $options: "i" };
   }
 
@@ -61,15 +56,13 @@ const tagsSearch = async (req, res) => {
     req.body.title = { $regex: search, $options: "i" };
   }
 
-  // //$  in progrss
+
   if (tag) {
     req.body.postTags = tag;
   }
 
-  //$ no Await
   let result = Post.find(req.body);
 
-  // //$chain sort condition
   if (sort === "latest") {
     result = result.sort("-createdAt");
   }
@@ -84,15 +77,15 @@ const tagsSearch = async (req, res) => {
   const skip = (page - 1) * limit;
 
   result = result.skip(skip).limit(limit);
-  const post = await result;
+  const postg = await result;
 
-  const totalPosts = await Post.countDocuments();
-  const numOfPages = Math.ceil(totalPosts / limit);
+  const totalPostsg = await Post.countDocuments();
+  const numOfPagesg = Math.ceil(totalPostsg / limit);
 
   return res.status(StatusCodes.OK).json({
-    post,
-    totalPosts,
-    numOfPages,
+    postg,
+    totalPostsg,
+    numOfPagesg,
   });
 };
 

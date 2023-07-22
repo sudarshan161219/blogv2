@@ -12,6 +12,9 @@ import {
   HANDLE_CHANGE,
   HANDLE_SELECT_CHANGE,
   HANDLE_SELECT_SORT_CHANGE,
+  HANDLE_CHANGE_TAG,
+  HANDLE_SELECT_CHANGE_TAG,
+  HANDLE_SELECT_SORT_CHANGE_TAG,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
   TOGGLE_DELETE_MODAL_BTN,
@@ -138,6 +141,10 @@ const initialState = {
   search: "",
   SearchCategory: "all",
   sort: "",
+  pageT: 1,
+  searchT: "",
+  SearchCategoryT: "",
+  sortT: "",
   allPosts: [],
   post: [],
   GauthorPosts: [],
@@ -161,6 +168,9 @@ const initialState = {
   deleteCommentReplyId: [],
   Comment_Liked_Disliked_Id: [],
   CommentReply_Liked_Disliked_Id: [],
+  postg: [],
+  totalPostsg: [],
+  numOfPagesg: [],
 };
 const Context = createContext({});
 
@@ -248,6 +258,20 @@ const ContextProvider = ({ children }) => {
   const handleSortSelectChange = (value) => {
     dispatch({ type: HANDLE_SELECT_SORT_CHANGE, payload: { value } });
   };
+
+
+  const handleChangeT = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE_TAG, payload: { name, value } });
+  };
+
+  const handleSelectChangeT = (value) => {
+    dispatch({ type: HANDLE_SELECT_CHANGE_TAG, payload: { value } });
+  };
+
+  const handleSortSelectChangeT = (value) => {
+    dispatch({ type: HANDLE_SELECT_SORT_CHANGE_TAG, payload: { value } });
+  };
+
 
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS });
@@ -387,20 +411,21 @@ const ContextProvider = ({ children }) => {
   };
 
   const getTagSearchPost = async () => {
-    const { search, SearchCategory, sort, page } = state;
-    let url = `/tags?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
-    if (search) {
-      url = url + `search=${search}`;
+    const { searchT, SearchCategoryT, sortT, pageT } = state;
+    let url = `/tags?page=${pageT}&category=${SearchCategoryT}&search=${searchT}&sort=${sortT}`;
+    if (searchT) {
+      url = url + `search=${searchT}`;
     }
     dispatch({ type: GET_TAGS_SEARCH_POST_BEGIN });
     try {
       const { data } = await authFetch.get(url, {
         credentials: "omit",
       });
-      const { authorpost, totalPosts, numOfPages } = data;
+
+      const { postg, totalPostsg, numOfPagesg } = data;
       dispatch({
         type: GET_TAGS_SEARCH_POST_SUCCESS,
-        payload: { authorpost, totalPosts, numOfPages },
+        payload: { postg, totalPostsg, numOfPagesg },
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
@@ -425,8 +450,6 @@ const ContextProvider = ({ children }) => {
   const setCommentReplyId = (commentReplyId) => {
     dispatch({ type: COMMENT_REPLY_ID, payload: { commentReplyId } });
   };
-
-  //
 
   const getSingleAuthorPost = async (id) => {
     dispatch({ type: GET_AUTHOR_SINGLE_POST_BEGIN });
@@ -958,6 +981,9 @@ const ContextProvider = ({ children }) => {
         handleChange,
         handleSelectChange,
         handleSortSelectChange,
+        handleChangeT,
+        handleSelectChangeT,
+        handleSortSelectChangeT,
         registerFn,
         loginFn,
         getProfile,
@@ -1006,7 +1032,6 @@ const ContextProvider = ({ children }) => {
         toggleDeleteModal,
         toggleDeletePostModal,
 
-        
         deleteCommentReply,
         toggleDeleteCrModal,
         editComment,

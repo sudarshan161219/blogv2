@@ -9,6 +9,9 @@ import {
   HANDLE_CHANGE,
   HANDLE_SELECT_CHANGE,
   HANDLE_SELECT_SORT_CHANGE,
+  HANDLE_CHANGE_TAG,
+  HANDLE_SELECT_CHANGE_TAG,
+  HANDLE_SELECT_SORT_CHANGE_TAG,
   TOGGLE_SIDEBAR,
   TOGGLE_DASHNAV,
   TOGGLE_DELETE_MODAL_BTN,
@@ -288,9 +291,9 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      authorpost: action.payload.authorpost,
-      totalPosts: action.payload.totalPosts,
-      numOfPages: action.payload.numOfPages,
+      postg: action.payload.postg,
+      totalPostsg: action.payload.totalPostsg,
+      numOfPagesg: action.payload.numOfPagesg,
     };
   }
 
@@ -378,6 +381,19 @@ const reducer = (state, action) => {
   if (action.type === HANDLE_SELECT_SORT_CHANGE) {
     return { ...state, sort: action.payload.value };
   }
+
+  if (action.type === HANDLE_CHANGE_TAG) {
+    return { ...state, [action.payload.name]: action.payload.value };
+  }
+
+  if (action.type === HANDLE_SELECT_CHANGE_TAG) {
+    return { ...state, SearchCategoryT: action.payload.value };
+  }
+
+  if (action.type === HANDLE_SELECT_SORT_CHANGE_TAG) {
+    return { ...state, sortT: action.payload.value };
+  }
+
 
   if (action.type === CLEAR_FILTERS) {
     return {
@@ -476,7 +492,6 @@ const reducer = (state, action) => {
     return { ...state, editCommentReplyId: action.payload.commentReplyId };
   }
 
-  //
 
   if (action.type === SET_EDIT_POST) {
     const authorsPosts = state.authorpost.find(

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useLocation } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/SearchComponent";
 import { BsSearch } from "react-icons/bs";
 import Select from "react-select";
@@ -9,24 +10,45 @@ const SearchComponent = () => {
     handleChange,
     handleSelectChange,
     handleSortSelectChange,
+    handleChangeT,
+    handleSelectChangeT,
+    handleSortSelectChangeT,
     search,
     sort,
     SearchCategory,
+    searchT,
+    sortT,
+    SearchCategoryT,
     isLoading,
   } = useAppContext();
 
+  let location = useLocation();
+  const tagpath = location.pathname === "/tags";
+
   const selectChange = (e) => {
-    handleSelectChange(e.value);
+    if (tagpath) {
+      handleSelectChangeT(e.value);
+    } else {
+      handleSelectChange(e.value);
+    }
   };
 
   const selectSortChange = (e) => {
-    handleSortSelectChange(e.value);
+    if (tagpath) {
+      handleSortSelectChangeT(e.value);
+    } else {
+      handleSortSelectChange(e.value);
+    }
   };
 
   const handleSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (isLoading) return;
-    handleChange({ name: e.target.name, value: e.target.value });
+    if (tagpath) {
+      handleChangeT({ name: e.target.name, value: e.target.value });
+    } else {
+      handleChange({ name: e.target.name, value: e.target.value });
+    }
   };
 
   return (
@@ -36,8 +58,8 @@ const SearchComponent = () => {
           <input
             className="search-container-input"
             type="text"
-            name="search"
-            value={search}
+            name={tagpath ? "searchT" : "search"}
+            value={tagpath ? searchT : search}
             placeholder="Search Posts"
             onChange={handleSearch}
           />
@@ -48,14 +70,14 @@ const SearchComponent = () => {
       </div>
       <div className="select-container">
         <Select
-          defaultValue={SearchCategory}
+          defaultValue={tagpath ? SearchCategoryT : SearchCategory}
           name="SearchCategory"
           placeholder="category"
           onChange={selectChange}
           options={options}
         />
         <Select
-          defaultValue={sort}
+          defaultValue={tagpath ? sortT : sort}
           name="sort"
           placeholder="sort"
           onChange={selectSortChange}
