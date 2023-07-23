@@ -3,11 +3,9 @@ import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAppContext();
-  if (!user) {
-    return (
-      <Navigate to="/" />
-    )
+  const { user, token } = useAppContext();
+  if (!token) {
+    return <Navigate to="/" />;
   }
   return children;
 };

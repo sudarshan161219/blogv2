@@ -91,6 +91,7 @@ import {
   GET_COMMENT_ERROR,
   TOGGLE_DELETECR_MODAL_BTN,
   TOGGLE_DELETEPT_MODAL_BTN,
+  USER_R_TOKEN
 } from "./action";
 
 import { initialState } from "./Context";
@@ -132,9 +133,9 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      token: action.payload.token,
+      token: action.payload.Access_Token,
       user: action.payload.user,
-      editUser: action.payload.editUser,
+      // editUser: action.payload.editUser,
     };
   }
 
@@ -660,7 +661,6 @@ const reducer = (state, action) => {
     };
   }
 
-
   if (action.type ===  TOGGLE_DELETEPT_MODAL_BTN) {
     return {
       ...state,
@@ -668,8 +668,6 @@ const reducer = (state, action) => {
       deletePostId: action.payload.id,
     };
   }
-
- 
 
   if (action.type === CREATE_COMMENT_BEGIN) {
     return { ...state, formLoading: true };
@@ -693,6 +691,14 @@ const reducer = (state, action) => {
 
   if (action.type === CREATE_COMMENT_REPLY_ERROR) {
     return { ...state, commentsReplyformLoading: false };
+  }
+
+  if (action.type === USER_R_TOKEN) {
+    return {
+      ...state,
+      token: action.payload.Access_Token,
+      // user: action.payload.userr,
+    };
   }
 
   throw new Error(`no such action : ${action.type}`);

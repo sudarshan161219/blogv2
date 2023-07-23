@@ -8,16 +8,19 @@ import {
   updateUser,
   profile,
   logout,
+  refreshToken
 } from "../controllers/authController.mjs";
 import auth from "../middlewares/auth.mjs";
-
+import loginLimiter from "../middlewares/loginLimiter.mjs";
 
 //? POST
 router.route("/register").post(register);
-router.route("/login").post(login);
+router.route("/login").post(loginLimiter, login);
+router.route("/logout").post(logout);
 
 //? GET
-router.route("/profile").get(auth, profile); //$ get user profile
+router.route("/profile").get(auth, profile);
+router.route("/refresh").get(refreshToken);
 
 router.route("/updateUser").patch(auth, updateUser);
 

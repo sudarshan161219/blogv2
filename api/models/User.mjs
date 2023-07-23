@@ -44,6 +44,7 @@ const UserSchema = new Schema({
   twitter: { type: String },
   instagram: { type: String },
   linkden: { type: String },
+  userToken:{type: String}
 });
 
 //* saving documents
@@ -53,12 +54,19 @@ UserSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-//* creating jwt token
-UserSchema.methods.createJWT = function () {
-  return jwt.sign({ userId: this._id }, process.env.ACCESS_TOKEN_KEY, {
-    expiresIn: process.env.JWT_LIFETIME,
+//* creating jwt token Access_Token
+UserSchema.methods.createAccess_TokenJWT = function () {
+return jwt.sign({ userId: this._id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: process.env.JWT_SHORT_LIFETIME,
   });
 };
+
+//* creating jwt token Refresh_Token
+UserSchema.methods.createRefresh_TokenJWT = function () {
+  return  jwt.sign({ userId: this._id }, process.env.REFRESH_TOKEN_SECRET, {
+      expiresIn: process.env.JWT_LONG_LIFETIME,
+    });
+  };
 
 UserSchema.methods.comparePassword = async function (candidatePassword) {
   const isMatch = await bcrypt.compare(candidatePassword, this.password);

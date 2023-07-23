@@ -8,6 +8,10 @@ export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
 
 export const LOGOUT_USER = "LOGOUT_USER";
 
+
+export const  USER_R_TOKEN = "USER_R_TOKEN";
+
+
 export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
 export const TOGGLE_DASHNAV = "TOGGLE_DASHNAV";
 

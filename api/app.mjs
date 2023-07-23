@@ -2,6 +2,7 @@ import express from "express";
 const app = express()
 import dotenv from "dotenv"
 dotenv.config()
+import cookieParser from "cookie-parser"
 import 'express-async-errors';
 import cors from "cors"
 // import { dirname } from "path";
@@ -20,20 +21,22 @@ const PORT = process.env.PORT || 4000
 const uri = process.env.MONGO_URI
 
 
-// const corsOptions = {
-//     // origin: 'http://localhost:5174',
-//     credentials: true,            //access-control-allow-credentials:true
-//     optionSuccessStatus: 200,
-// }
+const corsOrigin ={
+    origin:'http://localhost:5173', //or whatever port your frontend is using
+    credentials:true,            
+    optionSuccessStatus:200
+}
+// app.use(cors(corsOrigin));
+
 
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: false, limit: '50mb'}));
-// app.use(cors(corsOptions))
-app.use(cors())
+// app.use(cors())
+app.use(cors(corsOrigin));
 // app.use(express.static(path.resolve(__dirname, "../client/dist")));
-
+app.use(cookieParser())
 
 
 
@@ -50,6 +53,11 @@ app.use("/api",  auth,  authPostRoute)
 
 app.get("/", (req, res) => {
 res.send("Home")
+res.setHeader("Access-Control-Allow-Origin", "*")
+res.setHeader("Access-Control-Allow-Credentials", "true");
+res.setHeader("Access-Control-Max-Age", "1800");
+res.setHeader("Access-Control-Allow-Headers", "content-type");
+res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
 });
 
 //* Middlewares
@@ -58,7 +66,7 @@ app.use(errorHandlerMiddleware)
 
 const start = async () => {
     try {
-        await connectDB(uri )
+        await connectDB(uri)
         console.log('connected to Db....');
         app.listen(PORT, () => console.log(`server is listening on port http://localhost:${PORT}`))
     } catch (error) {

@@ -7,6 +7,8 @@ import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
+  LOGIN_USER_BEGIN,
+  LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGOUT_USER,
   HANDLE_CHANGE,
@@ -91,10 +93,10 @@ import {
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
   TOGGLE_DELETEPT_MODAL_BTN,
+  USER_R_TOKEN,
 } from "./action";
 
 const user = localStorage.getItem("user");
-const token = localStorage.getItem("userToken");
 const post_id = localStorage.getItem("post_id");
 
 const initialState = {
@@ -115,7 +117,7 @@ const initialState = {
   commentDislike: false,
   save: false,
   user: user ? JSON.parse(user) : null,
-  token: token ? token : null,
+  token: "",
   name: "",
   userInfo: "",
   instagram: "",
@@ -177,10 +179,11 @@ const Context = createContext({});
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // axios.defaults.headers['Authorization'] = `Bearer ${state.token}`
-
+  axios.defaults.withCredentials = true;
   const authFetch = axios.create({
     baseURL: "http://localhost:3000/api",
+    withCredentials: true,
+    crossDomain: true,
     headers: {
       Authorization: `Bearer ${state.token}`,
     },
@@ -207,9 +210,8 @@ const ContextProvider = ({ children }) => {
     }
   );
 
-  const addUserToLocalStorage = ({ user, token }) => {
+  const addUserToLocalStorage = ({ user }) => {
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("userToken", token);
   };
 
   const addPostIdToLocalStorage = (Id) => {
@@ -218,7 +220,6 @@ const ContextProvider = ({ children }) => {
 
   const removeUserFromLocalStorage = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("userToken");
   };
 
   //* toggle sidebar
@@ -259,7 +260,6 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: HANDLE_SELECT_SORT_CHANGE, payload: { value } });
   };
 
-
   const handleChangeT = ({ name, value }) => {
     dispatch({ type: HANDLE_CHANGE_TAG, payload: { name, value } });
   };
@@ -271,7 +271,6 @@ const ContextProvider = ({ children }) => {
   const handleSortSelectChangeT = (value) => {
     dispatch({ type: HANDLE_SELECT_SORT_CHANGE_TAG, payload: { value } });
   };
-
 
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS });
@@ -306,19 +305,19 @@ const ContextProvider = ({ children }) => {
   };
 
   const loginFn = async (userData) => {
-    dispatch({ type: REGISTER_USER_BEGIN });
+    dispatch({ type: LOGIN_USER_BEGIN });
     try {
       const { data } = await axios.post(
         "http://localhost:3000/api/login",
         userData
       );
-      const { user, token } = data;
+      const { user, Access_Token } = data;
       dispatch({
-        type: REGISTER_USER_SUCCESS,
-        payload: { user, token },
+        type: LOGIN_USER_SUCCESS,
+        payload: { user, Access_Token },
       });
       toast.success("Login Successful!,  Redirecting.....");
-      addUserToLocalStorage({ user, token });
+      addUserToLocalStorage({ user });
     } catch (error) {
       toast.error(error.response.data.msg);
       dispatch({
@@ -326,6 +325,20 @@ const ContextProvider = ({ children }) => {
       });
     }
   };
+
+  const silentRefresh = async () => {
+    try {
+      const { data } = await authFetch.get("/refresh");
+      const { userr, Access_Token } = data;
+      dispatch({ type: USER_R_TOKEN, payload: { Access_Token } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    silentRefresh();
+  }, []);
 
   const updateUserFn = async (updateData) => {
     dispatch({ type: UPDATE_USER_BEGIN });
@@ -384,30 +397,29 @@ const ContextProvider = ({ children }) => {
   };
 
   const getAuthorPost = async () => {
-    const { search, SearchCategory, sort, page } = state;
+    const { search, SearchCategory, sort, page, token } = state;
     let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
     if (search) {
       url = url + `search=${search}`;
     }
     dispatch({ type: GET_AUTHOR_POST_BEGIN });
+
     try {
-      const { data } = await authFetch.get(url, {
-        credentials: "omit",
-      });
-      const { authorpost, totalPosts, numOfPages } = data;
-      dispatch({
-        type: GET_AUTHOR_POST_SUCCESS,
-        payload: { authorpost, totalPosts, numOfPages },
-      });
-      dispatch({ type: CLEAR_VALUES });
-    } catch (error) {
-      if (error.response.status === 401) {
-        logoutUser();
+        const { data } = await authFetch.get(url, {
+          credentials: "omit",
+        });
+        const { authorpost, totalPosts, numOfPages } = data;
+        dispatch({
+          type: GET_AUTHOR_POST_SUCCESS,
+          payload: { authorpost, totalPosts, numOfPages },
+        });
+        dispatch({ type: CLEAR_VALUES });
+
+      } catch (error) {
+        dispatch({
+          type: GET_AUTHOR_POST_ERROR,
+        });
       }
-      dispatch({
-        type: GET_AUTHOR_POST_ERROR,
-      });
-    }
   };
 
   const getTagSearchPost = async () => {
@@ -429,9 +441,6 @@ const ContextProvider = ({ children }) => {
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
-      if (error.response.status === 401) {
-        logoutUser();
-      }
       dispatch({
         type: GET_TAGS_SEARCH_POST_ERROR,
       });
@@ -555,12 +564,6 @@ const ContextProvider = ({ children }) => {
   };
 
   const getALLPost = async () => {
-    // const { search, SearchCategory, sort, page } = state;
-    // let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
-    // if (search) {
-    //   url = url + `search=${search}`;
-    // }
-    // let url =
     const { allPosts } = state;
     if (allPosts.length === 0) {
       dispatch({ type: GET_ALL_POST_BEGIN });
@@ -933,7 +936,6 @@ const ContextProvider = ({ children }) => {
       dispatch({ type: DELETE_COMMENT_SUCCESS });
     } catch (error) {
       dispatch({ type: DELETE_COMMENT_ERROR });
-      logoutUser();
     }
   };
 
@@ -968,7 +970,6 @@ const ContextProvider = ({ children }) => {
       dispatch({ type: DELETE_COMMENT_REPLY_SUCCESS });
     } catch (error) {
       dispatch({ type: DELETE_COMMENT_REPLY_ERROR });
-      logoutUser();
     }
   };
 

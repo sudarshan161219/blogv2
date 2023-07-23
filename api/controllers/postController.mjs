@@ -1,6 +1,6 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
-import Comment from "../models/Comments.mjs";
+import jwt from "jsonwebtoken";
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
@@ -89,4 +89,18 @@ const tagsSearch = async (req, res) => {
   });
 };
 
-export { getAllPost, tagsSearch, getPost, getAuthorPage };
+const refreshToken = async (req, res) => {
+  // const cookies = req.cookies
+
+  // if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+
+  // const refresh_Token = cookies.jwt
+
+  // jwt.verify(refresh_Token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+  //   if (err) return res.sendStatus(403);
+  //   const Access_Token = user.createAccess_TokenJWT();
+  //   res.json({ Access_Token });
+  // });
+};
+
+export { getAllPost, tagsSearch, getPost, getAuthorPage, refreshToken };
