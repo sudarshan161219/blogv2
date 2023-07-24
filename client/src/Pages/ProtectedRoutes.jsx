@@ -4,9 +4,9 @@ import { useAppContext } from "../context/Context";
 
 const ProtectedRoute = ({ children }) => {
   const { user, token } = useAppContext();
-  if (!token) {
-    return <Navigate to="/" />;
-  }
+  // if (!user) {
+  //   return <Navigate to="/" />;
+  // }
   return children;
 };
 

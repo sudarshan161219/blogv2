@@ -97,6 +97,7 @@ import {
 } from "./action";
 
 const user = localStorage.getItem("user");
+const user2 = localStorage.getItem("user2");
 const post_id = localStorage.getItem("post_id");
 
 const initialState = {
@@ -117,6 +118,7 @@ const initialState = {
   commentDislike: false,
   save: false,
   user: user ? JSON.parse(user) : null,
+  user2: [],
   token: "",
   name: "",
   userInfo: "",
@@ -205,6 +207,9 @@ const ContextProvider = ({ children }) => {
     },
     (error) => {
       if (error.response.status === 401) {
+        throw error.response
+      }
+      if (!state.token) {
         logoutUser();
       }
     }
@@ -330,7 +335,7 @@ const ContextProvider = ({ children }) => {
     try {
       const { data } = await authFetch.get("/refresh");
       const { userr, Access_Token } = data;
-      dispatch({ type: USER_R_TOKEN, payload: { Access_Token } });
+      dispatch({ type: USER_R_TOKEN, payload: { userr, Access_Token } });
     } catch (error) {
       console.log(error);
     }
@@ -389,15 +394,16 @@ const ContextProvider = ({ children }) => {
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
-      console.log(error);
-      if (error.response.status === 401) {
-        logoutUser();
+      if(!state.token){
       }
+      // if (error.response.status === 401) {
+      //   logoutUser();
+      // }
     }
   };
 
   const getAuthorPost = async () => {
-    const { search, SearchCategory, sort, page, token } = state;
+    const { search, SearchCategory, sort, page } = state;
     let url = `/author-post?page=${page}&category=${SearchCategory}&search=${search}&sort=${sort}`;
     if (search) {
       url = url + `search=${search}`;
@@ -405,21 +411,20 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: GET_AUTHOR_POST_BEGIN });
 
     try {
-        const { data } = await authFetch.get(url, {
-          credentials: "omit",
-        });
-        const { authorpost, totalPosts, numOfPages } = data;
-        dispatch({
-          type: GET_AUTHOR_POST_SUCCESS,
-          payload: { authorpost, totalPosts, numOfPages },
-        });
-        dispatch({ type: CLEAR_VALUES });
-
-      } catch (error) {
-        dispatch({
-          type: GET_AUTHOR_POST_ERROR,
-        });
-      }
+      const { data } = await authFetch.get(url, {
+        credentials: "omit",
+      });
+      const { authorpost, totalPosts, numOfPages } = data;
+      dispatch({
+        type: GET_AUTHOR_POST_SUCCESS,
+        payload: { authorpost, totalPosts, numOfPages },
+      });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (error) {
+      dispatch({
+        type: GET_AUTHOR_POST_ERROR,
+      });
+    }
   };
 
   const getTagSearchPost = async () => {

@@ -18,12 +18,12 @@ const Allposts = () => {
     sort,
     SearchCategory,
     page,
-    // getTagSearchPost,
+    token
   } = useAppContext();
 
   useEffect(() => {
     getAuthorPost();
-  }, [ search, sort, SearchCategory, page]);
+  }, [ search, sort, SearchCategory, page, token]);
 
   return (
     <Wrapper>

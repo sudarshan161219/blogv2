@@ -40,6 +40,7 @@ const EditPage = () => {
     personalLink,
     userImg,
     edited,
+    token
   } = useAppContext();
   const [values, setValues] = useState(initialState);
   const [file, setFile] = useState();
@@ -57,7 +58,7 @@ const EditPage = () => {
         navigate("/user-profile/profile");
       }, 1100);
     }
-  }, [isEditing, edited, navigate]);
+  }, [isEditing, edited, navigate,   token]);
 
   const onUpload = async (e) => {
     const base64 = await convertToBase64(e.target.files[0]);

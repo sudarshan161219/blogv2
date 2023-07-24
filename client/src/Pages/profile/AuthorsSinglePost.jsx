@@ -13,6 +13,7 @@ const AuthorsSinglePost = () => {
     isLoading,
     setPostId,
     setEditPost,
+    token
   } = useAppContext();
   const { id } = useParams();
   const { _id, title, summary, coverImg, createdAt, content, postTags, category } =
@@ -21,7 +22,7 @@ const AuthorsSinglePost = () => {
   useEffect(() => {
     setPostId(id);
     getSingleAuthorPost(id);
-  }, [id]);
+  }, [id,    token]);
 
   const handleClick = () => {
     clearAuthorSinglePost();

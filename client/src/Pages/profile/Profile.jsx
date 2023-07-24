@@ -13,25 +13,23 @@ import {
 } from "react-icons/ai";
 
 const Profile = () => {
-  const { getProfile, user, isLoading } = useAppContext();
+  const { getProfile, user, isLoading, token } = useAppContext();
 
-
+//  const {
+//       name,
+//       userInfo,
+//       userProfile,
+//       userImg,
+//       personalLink,
+//       twitter,
+//       instagram,
+//       linkden,
+//     } =  user;
   
-  const {
-    name,
-    userInfo,
-    userProfile,
-    userImg,
-    personalLink,
-    twitter,
-    instagram,
-    linkden,
-  } = user;
 
   useEffect(() => {
     getProfile();
-  }, [user.name]);
-
+  }, [user&&user.name, token]);
 
   if (isLoading) {
     return <Loading />;
@@ -41,37 +39,43 @@ const Profile = () => {
     <Wrapper>
       <div className="profile-container">
         <div className="img-container">
-          <img className="profile-img" src={userImg || profile} alt="profile" />
+          <img className="profile-img" src={user && user.userImg || profile} alt="profile" />
         </div>
 
         <div className="profile-info">
-          <h1>{name}</h1>
+          <h1>{user && user.name}</h1>
           <span>@test123</span>
 
-          <p>{userInfo}</p>
+          <p>{user && user.userInfo}</p>
           <div className="profile-social-container">
             <ul className="link">
-                <li className={personalLink === " " ? "atag" : null}>
-                  <a href={personalLink || "https://www.google.com/"} target="_blank">
-                    <BsLink45Deg className="link-icon" />
-                  </a>
-                </li>
+              <li className={user && user.personalLink === " " ? "atag" : null}>
+                <a
+                  href={user && user.personalLink || "https://www.google.com/"}
+                  target="_blank"
+                >
+                  <BsLink45Deg className="link-icon" />
+                </a>
+              </li>
             </ul>
 
             <ul className="socials link">
-              <li className={twitter === " " ? "atag" : null}>
-              <a href={twitter || "https://www.google.com/"} target="_blank">
-                <AiOutlineTwitter className="social-icon" />
+              <li className={user && user.twitter === " " ? "atag" : null}>
+                <a href={user && user.twitter || "https://www.google.com/"} target="_blank">
+                  <AiOutlineTwitter className="social-icon" />
                 </a>
               </li>
-              <li className={instagram === " " ? "atag" : null}>
-              <a href={instagram || "https://www.google.com/"} target="_blank">
-                <AiFillInstagram className="social-icon" />
+              <li className={user && user.instagram === " " ? "atag" : null}>
+                <a
+                  href={user && user.instagram || "https://www.google.com/"}
+                  target="_blank"
+                >
+                  <AiFillInstagram className="social-icon" />
                 </a>
               </li>
-              <li className={linkden === " " ? "atag" : null}>
-              <a href={linkden || "https://www.google.com/"} target="_blank">
-                <AiFillLinkedin className="social-icon" />
+              <li className={user && user.linkden === " " ? "atag" : null}>
+                <a href={user && user.linkden || "https://www.google.com/"} target="_blank">
+                  <AiFillLinkedin className="social-icon" />
                 </a>
               </li>
             </ul>

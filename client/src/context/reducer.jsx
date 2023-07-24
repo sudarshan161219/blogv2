@@ -356,7 +356,6 @@ const reducer = (state, action) => {
   if (action.type === LOGOUT_USER) {
     return {
       ...initialState,
-      token: null,
       user: null,
     };
   }
@@ -394,7 +393,6 @@ const reducer = (state, action) => {
   if (action.type === HANDLE_SELECT_SORT_CHANGE_TAG) {
     return { ...state, sortT: action.payload.value };
   }
-
 
   if (action.type === CLEAR_FILTERS) {
     return {
@@ -694,10 +692,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === USER_R_TOKEN) {
+    const {user} = state
     return {
       ...state,
       token: action.payload.Access_Token,
-      // user: action.payload.userr,
+      user: action.payload.userr,
     };
   }
 
