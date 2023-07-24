@@ -3,9 +3,9 @@ import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAppContext();
+  const { token } = useAppContext();
   setTimeout(() => {
-      if (!user) {
+      if (!token) {
     return <Navigate to="/" />;
   }
   }, 3500);

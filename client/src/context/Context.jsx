@@ -118,6 +118,8 @@ const initialState = {
   commentDislike: false,
   save: false,
   user: user ? JSON.parse(user) : null,
+  loggedIn:false,
+  loggedOut:false,
   expiresIN: [],
   token: "",
   name: "",
@@ -223,9 +225,9 @@ const ContextProvider = ({ children }) => {
     localStorage.setItem("post_id", Id);
   };
 
-  // const removeUserFromLocalStorage = () => {
-  //   localStorage.removeItem("user");
-  // };
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem("user");
+  };
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -285,6 +287,7 @@ const ContextProvider = ({ children }) => {
     try {
       await authFetch.post("/logout");
       dispatch({ type: LOGOUT_USER });
+      removeUserFromLocalStorage();
     } catch (error) {
       console.log(error);
     }
@@ -355,10 +358,8 @@ const ContextProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    const { token } = state;
-    if (token === "") {
+    // const { token } = state;
       silentRefresh();
-    }
   }, []);
 
   const updateUserFn = async (updateData) => {
