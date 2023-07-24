@@ -55,8 +55,8 @@ const login = async (req, res) => {
     sameSite: "None", //cross-site cookie
     maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
   });
-
-  return res.status(StatusCodes.OK).json({ user, Access_Token });
+const expiresIn = 3600
+  return res.status(StatusCodes.OK).json({ user, Access_Token, expiresIn });
 };
 
 const refreshToken = async (req, res) => {
@@ -74,7 +74,8 @@ const refreshToken = async (req, res) => {
       const { userId } = user;
       const userr = await User.findOne({ userId });
       const Access_Token = userr.createAccess_TokenJWT();
-      return res.status(StatusCodes.OK).json({ userr, Access_Token });
+      const expiresIn = 3600
+      return res.status(StatusCodes.OK).json({ userr, Access_Token, expiresIn });
     }
   );
 };
@@ -109,7 +110,7 @@ const profile = async (req, res) => {
 // * post logout
 const logout = async (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); //No content
+  if (!cookies?.jwt) return res.sendStatus(204); 
   res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
   res.json({ message: "Cookie cleared" });
 };

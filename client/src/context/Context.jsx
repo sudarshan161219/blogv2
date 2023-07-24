@@ -118,7 +118,7 @@ const initialState = {
   commentDislike: false,
   save: false,
   user: user ? JSON.parse(user) : null,
-  user2: [],
+  expiresIN: [],
   token: "",
   name: "",
   userInfo: "",
@@ -207,7 +207,7 @@ const ContextProvider = ({ children }) => {
     },
     (error) => {
       if (error.response.status === 401) {
-        throw error.response
+        throw error.response;
       }
       if (!state.token) {
         logoutUser();
@@ -223,9 +223,9 @@ const ContextProvider = ({ children }) => {
     localStorage.setItem("post_id", Id);
   };
 
-  const removeUserFromLocalStorage = () => {
-    localStorage.removeItem("user");
-  };
+  // const removeUserFromLocalStorage = () => {
+  //   localStorage.removeItem("user");
+  // };
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -281,9 +281,13 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: CLEAR_FILTERS });
   };
 
-  const logoutUser = () => {
-    dispatch({ type: LOGOUT_USER });
-    removeUserFromLocalStorage();
+  const logoutUser = async () => {
+    try {
+      await authFetch.post("/logout");
+      dispatch({ type: LOGOUT_USER });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const registerFn = async (userData) => {
@@ -316,10 +320,10 @@ const ContextProvider = ({ children }) => {
         "http://localhost:3000/api/login",
         userData
       );
-      const { user, Access_Token } = data;
+      const { user, Access_Token, expiresIn } = data;
       dispatch({
         type: LOGIN_USER_SUCCESS,
-        payload: { user, Access_Token },
+        payload: { user, Access_Token, expiresIn },
       });
       toast.success("Login Successful!,  Redirecting.....");
       addUserToLocalStorage({ user });
@@ -334,15 +338,27 @@ const ContextProvider = ({ children }) => {
   const silentRefresh = async () => {
     try {
       const { data } = await authFetch.get("/refresh");
-      const { userr, Access_Token } = data;
-      dispatch({ type: USER_R_TOKEN, payload: { userr, Access_Token } });
+      const { userr, Access_Token, expiresIn } = data;
+      dispatch({
+        type: USER_R_TOKEN,
+        payload: { userr, Access_Token, expiresIn },
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
+  if (state.expiresIN) {
+    setTimeout(() => {
+      silentRefresh();
+    }, state.expiresIN * 1000);
+  }
+
   useEffect(() => {
-    silentRefresh();
+    const { token } = state;
+    if (token === "") {
+      silentRefresh();
+    }
   }, []);
 
   const updateUserFn = async (updateData) => {
@@ -394,7 +410,7 @@ const ContextProvider = ({ children }) => {
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
-      if(!state.token){
+      if (!state.token) {
       }
       // if (error.response.status === 401) {
       //   logoutUser();

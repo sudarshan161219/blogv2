@@ -28,6 +28,7 @@ const Comments = ({ comment }) => {
     setCommentId,
     editCommentReplyLoading,
     postCommentsReply,
+    token
   } = useAppContext();
 
   const {
@@ -39,6 +40,7 @@ const Comments = ({ comment }) => {
     updatedAt,
     likes,
     dislikes,
+    
   } = comment;
 
   const [reply, setReply] = useState(false);
@@ -67,7 +69,7 @@ const Comments = ({ comment }) => {
     if (!editCommentLoading) {
       setEdit(false);
     }
-  }, [editCommentLoading, commentsReplyformLoading, editCommentReplyLoading]);
+  }, [token, editCommentLoading, commentsReplyformLoading, editCommentReplyLoading]);
 
   const handleReply = () => {
     setReply(!reply);

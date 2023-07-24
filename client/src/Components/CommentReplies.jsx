@@ -24,6 +24,7 @@ const CommentReplies = ({ replies, commentId }) => {
     setCommentReplyId,
     editCommentReplyLoading,
     editCommentReply,
+    token
   } = useAppContext();
 
   const {
@@ -58,7 +59,7 @@ const CommentReplies = ({ replies, commentId }) => {
     if (!editCommentReplyLoading) {
       setEdit(false);
     }
-  }, [editCommentReplyLoading, commentsReplyformLoading, repliedComment]);
+  }, [token, editCommentReplyLoading, commentsReplyformLoading, repliedComment]);
 
   const handleReply = () => {
     setReply(!reply);

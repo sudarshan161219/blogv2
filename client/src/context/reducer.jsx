@@ -91,7 +91,7 @@ import {
   GET_COMMENT_ERROR,
   TOGGLE_DELETECR_MODAL_BTN,
   TOGGLE_DELETEPT_MODAL_BTN,
-  USER_R_TOKEN
+  USER_R_TOKEN,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -135,6 +135,7 @@ const reducer = (state, action) => {
       isLoading: false,
       token: action.payload.Access_Token,
       user: action.payload.user,
+      expiresIN: action.payload.expiresIn,
       // editUser: action.payload.editUser,
     };
   }
@@ -357,6 +358,7 @@ const reducer = (state, action) => {
     return {
       ...initialState,
       user: null,
+      token:null
     };
   }
 
@@ -490,7 +492,6 @@ const reducer = (state, action) => {
   if (action.type === COMMENT_REPLY_ID) {
     return { ...state, editCommentReplyId: action.payload.commentReplyId };
   }
-
 
   if (action.type === SET_EDIT_POST) {
     const authorsPosts = state.authorpost.find(
@@ -659,7 +660,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type ===  TOGGLE_DELETEPT_MODAL_BTN) {
+  if (action.type === TOGGLE_DELETEPT_MODAL_BTN) {
     return {
       ...state,
       showDeletePostModal: !state.showDeletePostModal,
@@ -692,11 +693,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === USER_R_TOKEN) {
-    const {user} = state
     return {
       ...state,
       token: action.payload.Access_Token,
       user: action.payload.userr,
+      expiresIN: action.payload.expiresIn,
     };
   }
 

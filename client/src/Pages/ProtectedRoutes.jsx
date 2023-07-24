@@ -3,10 +3,13 @@ import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, token } = useAppContext();
-  // if (!user) {
-  //   return <Navigate to="/" />;
-  // }
+  const { user } = useAppContext();
+  setTimeout(() => {
+      if (!user) {
+    return <Navigate to="/" />;
+  }
+  }, 3500);
+
   return children;
 };
 
