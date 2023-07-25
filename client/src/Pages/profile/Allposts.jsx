@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useAppContext } from "../../context/Context";
 import {
   AuthorPosts,
@@ -7,7 +7,7 @@ import {
   SearchComponent,
 } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
-import DeletePostAlert  from "../../Alert/DeletePostAlert"
+import DeletePostAlert from "../../Alert/DeletePostAlert";
 const Allposts = () => {
   const {
     numOfPages,
@@ -18,19 +18,23 @@ const Allposts = () => {
     sort,
     SearchCategory,
     page,
-    token
+    token,
   } = useAppContext();
 
   useEffect(() => {
-    getAuthorPost();
-  }, [ search, sort, SearchCategory, page, token]);
+    token !== "" ? getAuthorPost() : null;
+  }, [search, sort, SearchCategory, page, token]);
+
+
 
   return (
     <Wrapper>
       <DeletePostAlert />
       <SearchComponent />
       <>
-        <h1 className="allPost-heading">{authorpost.length === 0 ? "no Posts yet" : "your Posts"}</h1>
+        <h1 className="allPost-heading">
+          {authorpost.length === 0 ? "no Posts yet" : "your Posts"}
+        </h1>
         {isLoading ? (
           <div>
             <SkeletonLoding />

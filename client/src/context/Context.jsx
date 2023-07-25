@@ -97,7 +97,6 @@ import {
 } from "./action";
 
 const user = localStorage.getItem("user");
-const user2 = localStorage.getItem("user2");
 const post_id = localStorage.getItem("post_id");
 
 const initialState = {
@@ -118,9 +117,9 @@ const initialState = {
   commentDislike: false,
   save: false,
   user: user ? JSON.parse(user) : null,
-  loggedIn:false,
-  loggedOut:false,
-  expiresIN: [],
+  loggedIn: false,
+  loggedOut: false,
+  expiresIN: "",
   token: "",
   name: "",
   userInfo: "",
@@ -351,16 +350,25 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  if (state.expiresIN) {
-    setTimeout(() => {
-      silentRefresh();
-    }, state.expiresIN * 1000);
-  }
+  // if (state.token !== "" && state.expiresIN !== "") {
+  //   setTimeout(() => {
+  //     silentRefresh();
+  //   }, state.expiresIN * 1000);
+  // }
+  // if (state.token !== "") {
+  //   silentRefresh();
+  //   if (state.expiresIN !== "") {
+  //     setTimeout(() => {
+  //       silentRefresh();
+  //     }, state.expiresIN * 1000);
+  //   }
+  // }
 
-  useEffect(() => {
-    // const { token } = state;
-      silentRefresh();
-  }, []);
+  // useEffect(() => {
+  //   // if (state.token !== "") {
+  //     silentRefresh();
+  //   // }
+  // }, []);
 
   const updateUserFn = async (updateData) => {
     dispatch({ type: UPDATE_USER_BEGIN });
@@ -1061,6 +1069,8 @@ const ContextProvider = ({ children }) => {
         setCommentId,
         setCommentReplyId,
         editCommentReply,
+
+        silentRefresh 
       }}
     >
       {children}

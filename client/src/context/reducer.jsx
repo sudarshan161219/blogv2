@@ -107,7 +107,7 @@ const reducer = (state, action) => {
 
   if (action.type === REGISTER_USER_BEGIN) {
     return { ...state, isLoading: true };
-  }
+  }  
 
   if (action.type === REGISTER_USER_SUCCESS) {
     return {
@@ -136,7 +136,7 @@ const reducer = (state, action) => {
       token: action.payload.Access_Token,
       user: action.payload.user,
       expiresIN: action.payload.expiresIn,
-      // editUser: action.payload.editUser,
+      loggedIn:true,
     };
   }
 
@@ -358,7 +358,9 @@ const reducer = (state, action) => {
     return {
       ...initialState,
       user: null,
-      token:null
+      token: null,
+      loggedIn:false,
+      // loggedOut:true,
     };
   }
 
@@ -693,11 +695,13 @@ const reducer = (state, action) => {
   }
 
   if (action.type === USER_R_TOKEN) {
+    const { token } = state;
     return {
       ...state,
       token: action.payload.Access_Token,
       user: action.payload.userr,
       expiresIN: action.payload.expiresIn,
+      loggedIn: token ? true : false,
     };
   }
 
