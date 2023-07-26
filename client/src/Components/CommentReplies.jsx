@@ -24,7 +24,7 @@ const CommentReplies = ({ replies, commentId }) => {
     setCommentReplyId,
     editCommentReplyLoading,
     editCommentReply,
-    token
+    token,
   } = useAppContext();
 
   const {
@@ -47,10 +47,10 @@ const CommentReplies = ({ replies, commentId }) => {
   let Fdate = date.startOf("hour").fromNow();
 
   useEffect(() => {
-    if (likes.includes(user._id)) {
+    if (likes.includes(user && user._id)) {
       setLike(!like);
     }
-    if (dislikes.includes(user._id)) {
+    if (dislikes.includes(user && user._id)) {
       setDislike(!dislike);
     }
     if (!commentsReplyformLoading) {
@@ -59,7 +59,12 @@ const CommentReplies = ({ replies, commentId }) => {
     if (!editCommentReplyLoading) {
       setEdit(false);
     }
-  }, [token, editCommentReplyLoading, commentsReplyformLoading, repliedComment]);
+  }, [
+    token,
+    editCommentReplyLoading,
+    commentsReplyformLoading,
+    repliedComment,
+  ]);
 
   const handleReply = () => {
     setReply(!reply);
@@ -147,12 +152,16 @@ const CommentReplies = ({ replies, commentId }) => {
               />
               <strong>{replieAuthor.name}</strong>
               &#x2022;
-              <span className="date">{Fdate} {createdAt !== updatedAt && '(edited)'}</span>
+              <span className="date">
+                {Fdate} {createdAt !== updatedAt && "(edited)"}
+              </span>
             </div>
-            <div onClick={handleReply} className="icon-container">
-              <BsReplyFill className="reply-icon" />
-              <strong>reply</strong>
-            </div>
+            {user && (
+              <div onClick={handleReply} className="icon-container">
+                <BsReplyFill className="reply-icon" />
+                <strong>reply</strong>
+              </div>
+            )}
           </div>
           <div className="comment-content">
             {edit ? (
@@ -200,16 +209,27 @@ const CommentReplies = ({ replies, commentId }) => {
                     </Ripples>
                   ) : (
                     <>
-                      {like ? (
-                        <Ripples className="comment-ripple">
-                          <BiSolidLike
-                            className="ldc-icons"
-                            onClick={handleLike}
-                          />
-                        </Ripples>
+                      {user ? (
+                        <>
+                          {like ? (
+                            <Ripples className="comment-ripple">
+                              <BiSolidLike
+                                className="ldc-icons"
+                                onClick={handleLike}
+                              />
+                            </Ripples>
+                          ) : (
+                            <Ripples className="comment-ripple">
+                              <BiLike
+                                className="ldc-icons"
+                                onClick={handleLike}
+                              />
+                            </Ripples>
+                          )}
+                        </>
                       ) : (
                         <Ripples className="comment-ripple">
-                          <BiLike className="ldc-icons" onClick={handleLike} />
+                          <BiLike className="ldc-icons" />
                         </Ripples>
                       )}
                     </>
@@ -236,18 +256,28 @@ const CommentReplies = ({ replies, commentId }) => {
                     </>
                   ) : (
                     <>
-                      {dislike ? (
-                        <Ripples className="comment-ripple">
-                          <BiSolidDislike
-                            className="ldc-icons"
-                            onClick={handleDislike}
-                          />
-                        </Ripples>
+                      {user ? (
+                        <>
+                          {dislike ? (
+                            <Ripples className="comment-ripple">
+                              <BiSolidDislike
+                                className="ldc-icons"
+                                onClick={handleDislike}
+                              />
+                            </Ripples>
+                          ) : (
+                            <Ripples className="comment-ripple">
+                              <BiDislike
+                                className="ldc-icons"
+                                onClick={handleDislike}
+                              />
+                            </Ripples>
+                          )}
+                        </>
                       ) : (
                         <Ripples className="comment-ripple">
                           <BiDislike
                             className="ldc-icons"
-                            onClick={handleDislike}
                           />
                         </Ripples>
                       )}
@@ -264,7 +294,7 @@ const CommentReplies = ({ replies, commentId }) => {
                 </div>
               </div>
 
-              {user._id === replieAuthor._id && (
+              {user && user._id === replieAuthor._id && (
                 <div className="comment-edit-delete-container">
                   <Ripples onClick={handleEdit} className="comment-ripple">
                     <BiEdit className="edit-comment-icon" />

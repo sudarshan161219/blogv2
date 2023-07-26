@@ -28,7 +28,7 @@ const Comments = ({ comment }) => {
     setCommentId,
     editCommentReplyLoading,
     postCommentsReply,
-    token
+    token,
   } = useAppContext();
 
   const {
@@ -40,7 +40,6 @@ const Comments = ({ comment }) => {
     updatedAt,
     likes,
     dislikes,
-    
   } = comment;
 
   const [reply, setReply] = useState(false);
@@ -55,10 +54,10 @@ const Comments = ({ comment }) => {
   let Fdate = date.startOf("hour").fromNow();
 
   useEffect(() => {
-    if (likes.includes(user._id)) {
+    if (likes.includes(user && user._id)) {
       setLike(!like);
     }
-    if (dislikes.includes(user._id)) {
+    if (dislikes.includes(user && user._id)) {
       setDislike(!dislike);
     }
 
@@ -69,7 +68,12 @@ const Comments = ({ comment }) => {
     if (!editCommentLoading) {
       setEdit(false);
     }
-  }, [token, editCommentLoading, commentsReplyformLoading, editCommentReplyLoading]);
+  }, [
+    token,
+    editCommentLoading,
+    commentsReplyformLoading,
+    editCommentReplyLoading,
+  ]);
 
   const handleReply = () => {
     setReply(!reply);
@@ -157,14 +161,18 @@ const Comments = ({ comment }) => {
               <img className="mobile-comment-img" src={userImg} alt={name} />
               <strong>{name}</strong>
               &#x2022;
-              <span className="date">{Fdate} {createdAt !== updatedAt && '(edited)'}</span>
+              <span className="date">
+                {Fdate} {createdAt !== updatedAt && "(edited)"}
+              </span>
             </div>
-            <div onClick={handleReply} className="icon-container">
-              {/* <Ripples className="ripple"> */}
-              <BsReplyFill className="reply-icon" />
-              <strong>reply</strong>
-              {/* </Ripples> */}
-            </div>
+            {user && (
+              <div onClick={handleReply} className="icon-container">
+                {/* <Ripples className="ripple"> */}
+                <BsReplyFill className="reply-icon" />
+                <strong>reply</strong>
+                {/* </Ripples> */}
+              </div>
+            )}
           </div>
           <div className="comment-content">
             {edit ? (
@@ -212,16 +220,27 @@ const Comments = ({ comment }) => {
                     </Ripples>
                   ) : (
                     <>
-                      {like ? (
-                        <Ripples className="comment-ripple">
-                          <BiSolidLike
-                            className="ldc-icons"
-                            onClick={handleLike}
-                          />
-                        </Ripples>
+                      {user ? (
+                        <>
+                          {like ? (
+                            <Ripples className="comment-ripple">
+                              <BiSolidLike
+                                className="ldc-icons"
+                                onClick={handleLike}
+                              />
+                            </Ripples>
+                          ) : (
+                            <Ripples className="comment-ripple">
+                              <BiLike
+                                className="ldc-icons"
+                                onClick={handleLike}
+                              />
+                            </Ripples>
+                          )}
+                        </>
                       ) : (
                         <Ripples className="comment-ripple">
-                          <BiLike className="ldc-icons" onClick={handleLike} />
+                          <BiLike className="ldc-icons" />
                         </Ripples>
                       )}
                     </>
@@ -248,19 +267,27 @@ const Comments = ({ comment }) => {
                     </>
                   ) : (
                     <>
-                      {dislike ? (
-                        <Ripples className="comment-ripple">
-                          <BiSolidDislike
-                            className="ldc-icons"
-                            onClick={handleDislike}
-                          />
-                        </Ripples>
+                      {user ? (
+                        <>
+                          {dislike ? (
+                            <Ripples className="comment-ripple">
+                              <BiSolidDislike
+                                className="ldc-icons"
+                                onClick={handleDislike}
+                              />
+                            </Ripples>
+                          ) : (
+                            <Ripples className="comment-ripple">
+                              <BiDislike
+                                className="ldc-icons"
+                                onClick={handleDislike}
+                              />
+                            </Ripples>
+                          )}
+                        </>
                       ) : (
                         <Ripples className="comment-ripple">
-                          <BiDislike
-                            className="ldc-icons"
-                            onClick={handleDislike}
-                          />
+                          <BiDislike className="ldc-icons" />
                         </Ripples>
                       )}
                     </>
@@ -276,7 +303,7 @@ const Comments = ({ comment }) => {
                 </div>
               </div>
 
-              {user._id === author._id && (
+              {user && user._id === author._id && (
                 <div className="comment-edit-delete-container">
                   <Ripples onClick={handleEdit} className="comment-ripple">
                     <BiEdit className="edit-comment-icon" />
