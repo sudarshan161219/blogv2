@@ -18,7 +18,7 @@ import {
   getSavedPosts,
   createComment,
   createReplyComment,
-  getComments,
+  // getComments,
   likeComment,
   unLikeComment,
   dislikeComment,
@@ -41,7 +41,7 @@ router.route("/createcomment").post(createComment);
 //* GET
 router.route("/author-post").get(authorPosts);
 router.route("/single-post/:id").get(getSinglePost);
-router.route("/getcomments/:id").get(getComments);
+// router.route("/getcomments/:id").get(getComments);
 router.route("/likedposts").get(likedPosts);
 router.route("/savedposts").get(getSavedPosts);
 

@@ -12,11 +12,12 @@ const CommentsContainer = () => {
     editCommentReplyLoading,
     postComments,
     user,
+    token,
   } = useAppContext();
   const { id } = useParams();
 
   useEffect(() => {
-    getComments(id);
+   getComments(id) 
   }, [
     id,
     formLoading,

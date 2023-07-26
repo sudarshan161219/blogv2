@@ -1,6 +1,8 @@
 import Post from "../models/Post.mjs";
 import User from "../models/User.mjs";
 import jwt from "jsonwebtoken";
+import Comment from "../models/Comments.mjs";
+import CommentReply from "../models/CommentsReplies.mjs";
 import { StatusCodes } from "http-status-codes";
 import {
   BadRequestError,
@@ -47,7 +49,6 @@ const getAuthorPage = async (req, res) => {
 const tagsSearch = async (req, res) => {
   const { search, sort, category, tag } = req.query;
 
-
   if (category !== "all") {
     req.body.category = { $regex: category, $options: "i" };
   }
@@ -55,7 +56,6 @@ const tagsSearch = async (req, res) => {
   if (search) {
     req.body.title = { $regex: search, $options: "i" };
   }
-
 
   if (tag) {
     req.body.postTags = tag;
@@ -89,18 +89,46 @@ const tagsSearch = async (req, res) => {
   });
 };
 
-const refreshToken = async (req, res) => {
-  // const cookies = req.cookies
+//? get comments
+const getComments = async (req, res) => {
+  const { id } = req.params;
 
-  // if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+  const queryObject = {
+    postComment: id,
+  };
+  let comments = await Comment.find(queryObject)
+    .populate("author", ["name", "userImg"])
+    .populate("replies");
 
-  // const refresh_Token = cookies.jwt
+  let commentsReply = await CommentReply.find(queryObject).populate(
+    "replieAuthor",
+    ["name", "userImg"]
+  );
 
-  // jwt.verify(refresh_Token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-  //   if (err) return res.sendStatus(403);
-  //   const Access_Token = user.createAccess_TokenJWT();
-  //   res.json({ Access_Token });
-  // });
+  let commentLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$likes" } } },
+  ]);
+
+  let commentDisLikes = await Comment.aggregate([
+    { $project: { count: { $size: "$dislikes" } } },
+  ]);
+
+  let commentReplyLikes = await CommentReply.aggregate([
+    { $project: { count: { $size: "$likes" } } },
+  ]);
+
+  let commentReplyDisLikes = await CommentReply.aggregate([
+    { $project: { count: { $size: "$dislikes" } } },
+  ]);
+
+  res.status(StatusCodes.OK).json({
+    comments,
+    commentLikes,
+    commentDisLikes,
+    commentsReply,
+    commentReplyLikes,
+    commentReplyDisLikes,
+  });
 };
 
-export { getAllPost, tagsSearch, getPost, getAuthorPage, refreshToken };
+export { getAllPost, tagsSearch, getPost, getAuthorPage, getComments };

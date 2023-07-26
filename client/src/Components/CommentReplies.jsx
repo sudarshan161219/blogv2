@@ -99,7 +99,7 @@ const CommentReplies = ({ replies, commentId }) => {
   const handleDislike = () => {
     if (!dislike) {
       dislikeCommentReply(_id);
-      unLikeCommenReplyt(_id);
+      unLikeCommentReply(_id);
     } else {
       unDislikeCommentReply(_id);
     }

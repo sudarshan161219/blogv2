@@ -6,13 +6,21 @@ import { useAppContext } from "../context/Context";
 import { SkeletonLoding } from "../Components/export";
 // import {getALLPost} from ""
 const Home = () => {
-  const { getALLPost, allPosts, isLoading } = useAppContext();
+  const { getALLPost, allPosts, isLoading, expiresIN, silentRefresh } =
+    useAppContext();
 
   useEffect(() => {
     getALLPost();
+    // if (expiresIN) {
+    //   setTimeout(() => {
+    //     silentRefresh();
+    //   }, expiresIN * 1000);
+    // } else {
+    //   silentRefresh();
+    // }
   }, [allPosts]);
 
-  const suffule =  allPosts.sort( () => Math.random() - 0.5)
+  const suffule = allPosts.sort(() => Math.random() - 0.5);
 
   return (
     <Wrapper>

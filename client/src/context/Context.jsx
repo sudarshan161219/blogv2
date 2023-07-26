@@ -350,25 +350,19 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  // if (state.token !== "" && state.expiresIN !== "") {
-  //   setTimeout(() => {
-  //     silentRefresh();
-  //   }, state.expiresIN * 1000);
-  // }
-  // if (state.token !== "") {
-  //   silentRefresh();
-  //   if (state.expiresIN !== "") {
-  //     setTimeout(() => {
-  //       silentRefresh();
-  //     }, state.expiresIN * 1000);
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   // if (state.token !== "") {
-  //     silentRefresh();
-  //   // }
-  // }, []);
+  useEffect(() => {
+    if (!state.user) {
+      return;
+    } else {
+      silentRefresh();
+      if (state.expiresIN) {
+        setTimeout(() => {
+          silentRefresh();
+        }, state.expiresIN * 1000);
+      }
+    }
+  }, []);
 
   const updateUserFn = async (updateData) => {
     dispatch({ type: UPDATE_USER_BEGIN });
@@ -1070,7 +1064,7 @@ const ContextProvider = ({ children }) => {
         setCommentReplyId,
         editCommentReply,
 
-        silentRefresh 
+        silentRefresh,
       }}
     >
       {children}
