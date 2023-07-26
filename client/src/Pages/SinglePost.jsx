@@ -2,15 +2,23 @@ import Wrapper from "../assets/Wrappers/SinglePost";
 import { CommentsContainer, CommentForm, Post } from "../Components/export";
 import DeleteAlertModal from "../Alert/DeleteAlertModal";
 import DeleteCRAlertModal from "../Alert/DeleteCRAlertModal";
+import { useAppContext } from "../context/Context";
+import { Loading } from "../Components/export";
+
 const SinglePost = () => {
+  const { user, isLoading } = useAppContext();
   return (
     <Wrapper>
       <Post />
       <div className="comment-container-div">
-        <CommentForm />
-        <div className="comments">
-          <CommentsContainer />
-        </div>
+        {user && <CommentForm />}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div className="comments">
+            <CommentsContainer />
+          </div>
+        )}
       </div>
       <DeleteAlertModal />
       <DeleteCRAlertModal />
