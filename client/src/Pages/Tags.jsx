@@ -19,7 +19,13 @@ const Tags = () => {
   } = useAppContext();
 
   useEffect(() => {
+    if (searchT !== "") {
       getTagSearchPost();
+    } else if (sortT !== "") {
+      getTagSearchPost();
+    } else if (SearchCategoryT !== "") {
+      getTagSearchPost();
+    }
   }, [searchT, sortT, SearchCategoryT, pageT]);
 
   return (
@@ -28,16 +34,16 @@ const Tags = () => {
         <SearchComponent />
       </div>
       <Wrapper>
-      {isLoading ? (
-        <SkeletonLoding />
-      ) : (
-        <>
-          {postg.map((item) => (
-            <HomePage item={item} key={item._id} />
-          ))}
-        </>
-      )}
-    </Wrapper>
+        {isLoading ? (
+          <SkeletonLoding />
+        ) : (
+          <>
+            {postg.map((item) => (
+              <HomePage item={item} key={item._id} />
+            ))}
+          </>
+        )}
+      </Wrapper>
     </Wrapper>
   );
 };
