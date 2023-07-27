@@ -65,12 +65,20 @@ const Sidebar = () => {
           <Navlinks />
         </div>
 
-        <div className="logout-container">
+        {user && (
+          <div className="logout-container">
+            <div className="icon-name" onClick={logoutUser}>
+              <AiOutlineLogout />
+              <strong>Logout</strong>
+            </div>
+          </div>
+        )}
+        {/* <div className="logout-container">
           <div className="icon-name" onClick={logoutUser}>
             <AiOutlineLogout />
             <strong>Logout</strong>
           </div>
-        </div>
+        </div> */}
       </aside>
     </Wrapper>
   );

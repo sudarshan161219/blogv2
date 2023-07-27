@@ -5,8 +5,11 @@ const Wrapper = styled.div`
   -webkit-box-pack: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 5rem;
-  margin: 0 1rem;
+  /* padding-top: 5rem; */
+  padding: 0 1rem;
+  margin-top: 5rem;
+  gap: 1.5rem;
+  /* margin: 0 1rem; */
 
   .search-container-form {
     position: relative;
@@ -16,6 +19,7 @@ const Wrapper = styled.div`
     /* width: 100%; */
     /* width: 70%; */
   }
+
   .search-container-input {
     width: 100%;
     position: relative;
@@ -101,13 +105,13 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 700px) {
-    width: 600px;
+    /* width: 600px; */
     margin: 0 auto;
     gap: 2.5rem;
   }
 
   @media (min-width: 1100px) {
-    width: 800px;
+    /* width: 800px; */
   }
 `;
 

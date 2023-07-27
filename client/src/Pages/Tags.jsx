@@ -1,32 +1,43 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/Tags";
 import { BsSearch } from "react-icons/bs";
 import tagArr from "../utils/tagArr";
 import { SearchComponent } from "../Components/export";
 import { useAppContext } from "../context/Context";
-
+import { HomePage, SkeletonLoding } from "../Components/export";
+import WrapperR from "../assets/Wrappers/Home";
 
 const Tags = () => {
+  const {
+    isLoading,
+    getTagSearchPost,
+    searchT,
+    sortT,
+    SearchCategoryT,
+    pageT,
+    postg,
+  } = useAppContext();
 
-const {getTagSearchPost, searchT, sortT, SearchCategoryT, pageT} = useAppContext()
-
-useEffect(() => {
-  getTagSearchPost()
-},[searchT, sortT, SearchCategoryT, pageT])
+  useEffect(() => {
+      getTagSearchPost();
+  }, [searchT, sortT, SearchCategoryT, pageT]);
 
   return (
     <Wrapper>
       <div className="search-container">
         <SearchComponent />
       </div>
-{/* 
-      <div className="btn-container">
-        {tagArr.map((item, idx) => (
-          <button className="btn-tag" key={idx}>
-            {item}
-          </button>
-        ))}
-      </div> */}
+      <Wrapper>
+      {isLoading ? (
+        <SkeletonLoding />
+      ) : (
+        <>
+          {postg.map((item) => (
+            <HomePage item={item} key={item._id} />
+          ))}
+        </>
+      )}
+    </Wrapper>
     </Wrapper>
   );
 };

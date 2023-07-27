@@ -24,9 +24,9 @@ const Navbar = () => {
     <Wrapper className="nav-header">
       <Sidebar />
       <nav className="nav">
-        {/* {!regpath ? (
+        {!regpath ? (
           <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
-        ) : null} */}
+        ) : null}
         <div className="nav-links">
           <Link to="/" className="Link logo-logo-name">
             <Logo />

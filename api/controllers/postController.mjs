@@ -77,7 +77,9 @@ const tagsSearch = async (req, res) => {
   const skip = (page - 1) * limit;
 
   result = result.skip(skip).limit(limit);
-  const postg = await result;
+  const postg = await result.populate("author", [
+    "name",
+  ]);
 
   const totalPostsg = await Post.countDocuments();
   const numOfPagesg = Math.ceil(totalPostsg / limit);

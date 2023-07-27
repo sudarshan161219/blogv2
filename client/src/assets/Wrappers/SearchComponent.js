@@ -9,13 +9,17 @@ const Wrapper = styled.div`
   align-items: left;
   gap: 1rem;
   margin-bottom: 3rem;
-
+  .search-container {
+    margin: 0 1rem;
+  }
+  /* margin: 0 1rem 3rem 1rem; */
   .search-container-form {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    /* padding: 0 1rem; */
   }
   .search-container-input {
     width: 100%;
@@ -42,13 +46,13 @@ const Wrapper = styled.div`
   .icon-container {
     position: absolute;
     right: 25px;
-    padding: 0.4rem 0 0.4rem 0.4rem;
+    /* padding: 0.4rem 0 0.4rem 0.4rem; */
     background-color: white;
     border-radius: 50%;
   }
 
   .search-container-searchIcon {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #2b2b2b;
   }
 
@@ -113,6 +117,7 @@ const Wrapper = styled.div`
     display: flex;
     gap: 1rem;
     justify-content: space-between;
+    margin: 0 1rem;
   }
 
   @media (min-width: 700px) {
