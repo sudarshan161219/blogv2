@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   /* margin: 1.5rem 1rem; */
+  margin: 1rem;
   h3 {
     margin-bottom: 1rem;
   }

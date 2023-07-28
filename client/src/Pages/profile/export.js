@@ -6,6 +6,7 @@ import EditPage from "./EditPage";
 import SharedLayout from "./SharedLayout";
 import AuthorsSinglePost from "./AuthorsSinglePost";
 import SavedPost from "./SavedPost";
+import SavedSinglePost from "./SavedSinglePost";
 
 export {
   Dashboard,
@@ -16,4 +17,5 @@ export {
   SharedLayout,
   AuthorsSinglePost,
   SavedPost,
+  SavedSinglePost
 };

@@ -474,10 +474,10 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  // const setPostId = (postId) => {
-  //   dispatch({ type: POST_ID, payload: { postId } });
-  //   addPostIdToLocalStorage(postId);
-  // };
+  const setPostId = (postId) => {
+    dispatch({ type: POST_ID, payload: { postId } });
+    // addPostIdToLocalStorage(postId);
+  };
 
   const setCommentId = (commentId) => {
     dispatch({ type: COMMENT_ID, payload: { commentId } });
@@ -629,6 +629,7 @@ const ContextProvider = ({ children }) => {
       });
     }
   };
+  
 
   const getAuthorPage = async (id) => {
     dispatch({ type: GET_AUTHOR_PAGE_BEGIN });
@@ -650,13 +651,10 @@ const ContextProvider = ({ children }) => {
   };
 
   const getSavedPost = async () => {
-    // const { savedPosts } = state;
-    // if (savedPosts.length === 0) {
       dispatch({ type: GET_SAVED_POST_BEGIN });
       try {
         const { data } = await authFetch.get("/savedposts");
         const { result } = data;
-        console.log(data);
         dispatch({
           type: GET_SAVED_POST_SUCCESS,
           payload: { result },
@@ -666,7 +664,7 @@ const ContextProvider = ({ children }) => {
           type: GET_SAVED_POST_ERROR,
         });
       }
-    // }
+
   };
 
   const likePost = async (id) => {
@@ -1039,7 +1037,7 @@ const ContextProvider = ({ children }) => {
         updateUserFn,
         createPost,
         getAuthorPost,
-        // setPostId,
+        setPostId,
         getSingleAuthorPost,
         clearAuthorSinglePost,
         setEditPost,

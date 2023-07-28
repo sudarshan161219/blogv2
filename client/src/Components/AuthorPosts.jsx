@@ -9,11 +9,12 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
 
 const AuthorPosts = ({ item }) => {
-  const {  toggleDeletePostModal, setEditPost, deletePost, isLoading } = useAppContext();
-  const { _id, title, summary, coverImg, createdAt, category } = item;
+  const {  toggleDeletePostModal, setEditPost, deletePost, isLoading, user } = useAppContext();
+  const { _id, title, summary, coverImg, createdAt, category, author } = item;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
+
 
   return (
     <Wrapper>
@@ -32,7 +33,7 @@ const AuthorPosts = ({ item }) => {
           </div>
 
           <div className="action-link-container">
-            <div className="action-container">
+         {user._id === author &&   <div className="action-container">
               <Link
                 className="Link "
                 onClick={() => setEditPost(_id)}
@@ -43,7 +44,7 @@ const AuthorPosts = ({ item }) => {
               <Link onClick={() =>  toggleDeletePostModal(_id)} className="Link ">
                 <AiOutlineDelete className="delete-icon " />
               </Link>
-            </div>
+            </div> }
             <Link className="Link read" to={`/user-profile/${_id}`}>
               Read <HiOutlineArrowNarrowRight className="read-icon" />
             </Link>

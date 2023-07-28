@@ -20,7 +20,9 @@ import {
   SharedLayout,
   AuthorsSinglePost,
   SavedPost,
+  SavedSinglePost,
 } from "./Pages/profile/export";
+
 import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
@@ -44,6 +46,7 @@ const App = () => {
           <Route path="edit" element={<EditPage />} />
           <Route path=":id" element={<AuthorsSinglePost />} />
           <Route path="savedpost" element={<SavedPost />} />
+          <Route path="saved-s-post/:id" element={<SavedSinglePost />} />
         </Route>
 
         <Route path="/tags" element={<Tags />} />

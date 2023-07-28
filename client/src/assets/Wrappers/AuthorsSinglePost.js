@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  padding: 1rem;
   .img-container > img {
     width: 100%;
   }
@@ -50,13 +51,13 @@ const Wrapper = styled.div`
 
   .tags-container {
     display: flex;
-    flex-wrap:wrap;
-    font-size:0.9rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
     gap: 1rem;
     font-weight: 500;
   }
 
-  .tags{
+  .tags {
     padding: 0.5rem;
     border-radius: 8px;
     background-color: #121212;

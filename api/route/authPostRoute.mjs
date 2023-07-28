@@ -44,6 +44,7 @@ router.route("/single-post/:id").get(getSinglePost);
 // router.route("/getcomments/:id").get(getComments);
 router.route("/likedposts").get(likedPosts);
 router.route("/savedposts").get(getSavedPosts);
+router.route("/savedposts").get(getSavedPosts);
 
 //$ DELETE  && PATCH 
 router.route("/ud/:id").delete(deletePost).patch(editPost);

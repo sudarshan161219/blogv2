@@ -47,7 +47,7 @@ const Post = () => {
 
   useEffect(() => {
     getSinglePost(id);
-  }, [id, user]);
+  }, [id]);
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -117,11 +117,11 @@ const Post = () => {
                 <div className="like-container">
                   {like ? (
                     <Ripples className="ripple">
-                      <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                      <BiSolidLike className="post-ldc-icons" onClick={handleLike} />
                     </Ripples>
                   ) : (
                     <Ripples className="ripple">
-                      <BiLike className="ldc-icons" onClick={handleLike} />
+                      <BiLike className="post-ldc-icons" onClick={handleLike} />
                     </Ripples>
                   )}
                   <strong>{postLikes}</strong>
@@ -130,14 +130,14 @@ const Post = () => {
                   {dislike ? (
                     <Ripples className="ripple">
                       <BiSolidDislike
-                        className="ldc-icons"
+                        className="post-ldc-icons"
                         onClick={handleDislike}
                       />
                     </Ripples>
                   ) : (
                     <Ripples className="ripple">
                       <BiDislike
-                        className="ldc-icons"
+                        className="post-ldc-icons"
                         onClick={handleDislike}
                       />
                     </Ripples>
@@ -146,7 +146,7 @@ const Post = () => {
                 </div>
                 <div className="comment-container">
                   <Ripples className="ripple">
-                    <BiComment className="ldc-icons" />
+                    <BiComment className="post-ldc-icons" />
                   </Ripples>
                   <strong>{postComments}</strong>
                 </div>
@@ -155,13 +155,13 @@ const Post = () => {
                 {save ? (
                   <Ripples className="ripple">
                     <BsFillBookmarkCheckFill
-                      className="ldc-icons"
+                      className="post-ldc-icons"
                       onClick={handleSave}
                     />
                   </Ripples>
                 ) : (
                   <Ripples className="ripple">
-                    <BsBookmark className="ldc-icons" onClick={handleSave} />
+                    <BsBookmark className="post-ldc-icons" onClick={handleSave} />
                   </Ripples>
                 )}
               </div>

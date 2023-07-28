@@ -13,16 +13,25 @@ const AuthorsSinglePost = () => {
     isLoading,
     setPostId,
     setEditPost,
-    token
+    token,
+    user,
   } = useAppContext();
   const { id } = useParams();
-  const { _id, title, summary, coverImg, createdAt, content, postTags, category } =
-    authors_post;
+  const {
+    _id,
+    title,
+    summary,
+    coverImg,
+    createdAt,
+    content,
+    postTags,
+    category,
+  } = authors_post;
 
   useEffect(() => {
     setPostId(id);
-    getSingleAuthorPost(id);
-  }, [id,    token]);
+    token ? getSingleAuthorPost(id) : null;
+  }, [id, token]);
 
   const handleClick = () => {
     clearAuthorSinglePost();
@@ -31,7 +40,6 @@ const AuthorsSinglePost = () => {
   if (isLoading) {
     return <Loading />;
   }
-
 
   return (
     <Wrapper>
@@ -58,9 +66,14 @@ const AuthorsSinglePost = () => {
         <h1>{title}</h1>
         <p>{summary}</p>
         <div className="tags-container">
-          {postTags && postTags.map((tag, idx) => {
-            return <strong key={idx} className="tags">{tag}</strong>;
-          })}
+          {postTags &&
+            postTags.map((tag, idx) => {
+              return (
+                <strong key={idx} className="tags">
+                  {tag}
+                </strong>
+              );
+            })}
         </div>
       </div>
       <br />

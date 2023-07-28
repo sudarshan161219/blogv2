@@ -22,7 +22,9 @@ import AuthorPostsG from "./AuthorPostsG";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import CommentsContainer from "./CommentsContainer";
-import Post from "./Post"
+import Post from "./Post";
+import SavedPosts from "./Savedposts"
+import SavedSinglePost from "../Pages/profile/SavedSinglePost"
 
 export {
   AboutHeroS,
@@ -49,5 +51,7 @@ export {
   Comments,
   CommentForm,
   CommentsContainer,
-  Post
+  Post,
+  SavedPosts,
+  SavedSinglePost
 };

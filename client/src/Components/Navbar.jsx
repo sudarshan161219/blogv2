@@ -18,7 +18,8 @@ const Navbar = () => {
   const userPathC = location.pathname === "/user-profile/createpost";
   const userPathA = location.pathname === `/user-profile/author-post`;
   const userPathE = location.pathname === "/user-profile/edit";
-  const userPathSP = location.pathname === `/user-profile/${ postId}`;
+  const userPathSP = location.pathname === `/user-profile/${postId}`;
+  const userPathSSP = location.pathname === `/user-profile/savedpost`;
 
   return (
     <Wrapper className="nav-header">
@@ -37,9 +38,10 @@ const Navbar = () => {
           userPathC ||
           userPathA ||
           userPathE ||
-          userPathSP ? null : 
+          userPathSP ||
+          userPathSSP ? null : (
             <Navlinks />
-          }
+          )}
         </div>
         {!regpath ? <NavItems /> : null}
       </nav>

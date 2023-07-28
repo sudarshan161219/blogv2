@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   /* margin: 1.5rem 1rem; */
+  padding: 1rem;
   .img-container {
     margin: 0 auto;
     display: flex;

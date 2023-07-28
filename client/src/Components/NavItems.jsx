@@ -19,6 +19,7 @@ const NavItems = () => {
   const userPathA = location.pathname === `/user-profile/author-post`;
   const userPathE = location.pathname === "/user-profile/edit";
   const userPathSP = location.pathname === `/user-profile/${postId}`;
+  const userPathSSP = location.pathname === `/user-profile/savedpost`;
   return (
     <Wrapper className="nav-items ">
       {!user ? (
@@ -46,7 +47,7 @@ const NavItems = () => {
               !userPathC &&
               !userPathA &&
               !userPathE &&
-              !userPathSP ? (
+              !userPathSP  ? (
                 <>
                   <li className="list-items">
                     <Link className="Link list-items" to="/user-profile">

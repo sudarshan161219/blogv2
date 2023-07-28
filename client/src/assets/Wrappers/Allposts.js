@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+padding:1rem;
   @media (min-width: 1024px) {
     .allPost-heading {
       text-align: center;

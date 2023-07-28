@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+
   .like-container,
   .dislike-container,
   .comment-container {
@@ -50,11 +51,11 @@ const Wrapper = styled.div`
     /* gap: 0.5rem; */
   }
 
-  .ldc-icons {
+  /* .ldc-icons {
     font-size: 1.5rem;
     cursor: pointer;
     color: #1d2939;
-  }
+  } */
 
   .like-dislike-comment-save {
     display: flex;
@@ -102,9 +103,12 @@ const Wrapper = styled.div`
     color: #0079ff;
   }
 
-  .ldc-icons {
+  .post-ldc-icons {
+    font-size: 1.3rem;
     padding: 0.6rem;
     border-radius: 100%;
+    cursor: pointer;
+    color: #1d2939;
   }
 
   @media (min-width: 700px) {
