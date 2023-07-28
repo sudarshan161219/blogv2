@@ -32,6 +32,9 @@ import {
   GET_AUTHOR_POST_BEGIN,
   GET_AUTHOR_POST_SUCCESS,
   GET_AUTHOR_POST_ERROR,
+  GET_SAVED_POST_BEGIN,
+  GET_SAVED_POST_SUCCESS,
+  GET_SAVED_POST_ERROR,
   GET_AUTHOR_SINGLE_POST_BEGIN,
   GET_AUTHOR_SINGLE_POST_SUCCESS,
   GET_AUTHOR_SINGLE_POST_ERROR,
@@ -176,6 +179,7 @@ const initialState = {
   postg: [],
   totalPostsg: [],
   numOfPagesg: [],
+  savedPosts: [],
 };
 const Context = createContext({});
 
@@ -350,7 +354,6 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
   useEffect(() => {
     if (!state.user) {
       return;
@@ -471,10 +474,10 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const setPostId = (postId) => {
-    dispatch({ type: POST_ID, payload: { postId } });
-    addPostIdToLocalStorage(postId);
-  };
+  // const setPostId = (postId) => {
+  //   dispatch({ type: POST_ID, payload: { postId } });
+  //   addPostIdToLocalStorage(postId);
+  // };
 
   const setCommentId = (commentId) => {
     dispatch({ type: COMMENT_ID, payload: { commentId } });
@@ -644,6 +647,26 @@ const ContextProvider = ({ children }) => {
         type: GET_AUTHOR_PAGE_ERROR,
       });
     }
+  };
+
+  const getSavedPost = async () => {
+    // const { savedPosts } = state;
+    // if (savedPosts.length === 0) {
+      dispatch({ type: GET_SAVED_POST_BEGIN });
+      try {
+        const { data } = await authFetch.get("/savedposts");
+        const { result } = data;
+        console.log(data);
+        dispatch({
+          type: GET_SAVED_POST_SUCCESS,
+          payload: { result },
+        });
+      } catch (error) {
+        dispatch({
+          type: GET_SAVED_POST_ERROR,
+        });
+      }
+    // }
   };
 
   const likePost = async (id) => {
@@ -1016,7 +1039,7 @@ const ContextProvider = ({ children }) => {
         updateUserFn,
         createPost,
         getAuthorPost,
-        setPostId,
+        // setPostId,
         getSingleAuthorPost,
         clearAuthorSinglePost,
         setEditPost,
@@ -1065,6 +1088,7 @@ const ContextProvider = ({ children }) => {
         editCommentReply,
 
         silentRefresh,
+        getSavedPost,
       }}
     >
       {children}

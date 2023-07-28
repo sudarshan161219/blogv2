@@ -18,13 +18,14 @@ import {
   Allposts,
   EditPage,
   SharedLayout,
-  AuthorsSinglePost
+  AuthorsSinglePost,
+  SavedPost,
 } from "./Pages/profile/export";
 import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <>
-        <Toaster position="top-center" reverseOrder={false}></Toaster>
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
 
       <Navbar />
       <Routes>
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="author-post" element={<Allposts />} />
           <Route path="edit" element={<EditPage />} />
           <Route path=":id" element={<AuthorsSinglePost />} />
+          <Route path="savedpost" element={<SavedPost />} />
         </Route>
 
         <Route path="/tags" element={<Tags />} />

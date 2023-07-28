@@ -357,46 +357,9 @@ const createReplyComment = async (req, res) => {
   });
 };
 
-// //? get comments
-// const getComments = async (req, res) => {
-//   const { id } = req.params;
+// // //? get saved post
+// const getSavedPost = async (req, res) => {
 
-//   const queryObject = {
-//     postComment: id,
-//   };
-//   let comments = await Comment.find(queryObject)
-//     .populate("author", ["name", "userImg"])
-//     .populate("replies");
-
-//   let commentsReply = await CommentReply.find(queryObject).populate(
-//     "replieAuthor",
-//     ["name", "userImg"]
-//   );
-
-//   let commentLikes = await Comment.aggregate([
-//     { $project: { count: { $size: "$likes" } } },
-//   ]);
-
-//   let commentDisLikes = await Comment.aggregate([
-//     { $project: { count: { $size: "$dislikes" } } },
-//   ]);
-
-//   let commentReplyLikes = await CommentReply.aggregate([
-//     { $project: { count: { $size: "$likes" } } },
-//   ]);
-
-//   let commentReplyDisLikes = await CommentReply.aggregate([
-//     { $project: { count: { $size: "$dislikes" } } },
-//   ]);
-
-//   res.status(StatusCodes.OK).json({
-//     comments,
-//     commentLikes,
-//     commentDisLikes,
-//     commentsReply,
-//     commentReplyLikes,
-//     commentReplyDisLikes,
-//   });
 // };
 
 //? like Comment

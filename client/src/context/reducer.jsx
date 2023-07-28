@@ -27,6 +27,9 @@ import {
   GET_AUTHOR_POST_BEGIN,
   GET_AUTHOR_POST_SUCCESS,
   GET_AUTHOR_POST_ERROR,
+  GET_SAVED_POST_BEGIN,
+  GET_SAVED_POST_SUCCESS,
+  GET_SAVED_POST_ERROR,
   GET_AUTHOR_SINGLE_POST_BEGIN,
   GET_AUTHOR_SINGLE_POST_SUCCESS,
   GET_AUTHOR_SINGLE_POST_ERROR,
@@ -107,7 +110,7 @@ const reducer = (state, action) => {
 
   if (action.type === REGISTER_USER_BEGIN) {
     return { ...state, isLoading: true };
-  }  
+  }
 
   if (action.type === REGISTER_USER_SUCCESS) {
     return {
@@ -136,7 +139,7 @@ const reducer = (state, action) => {
       token: action.payload.Access_Token,
       user: action.payload.user,
       expiresIN: action.payload.expiresIn,
-      loggedIn:true,
+      loggedIn: true,
     };
   }
 
@@ -359,7 +362,7 @@ const reducer = (state, action) => {
       ...initialState,
       user: null,
       token: null,
-      loggedIn:false,
+      loggedIn: false,
       // loggedOut:true,
     };
   }
@@ -702,6 +705,25 @@ const reducer = (state, action) => {
       user: action.payload.userr,
       expiresIN: action.payload.expiresIn,
       loggedIn: token ? true : false,
+    };
+  }
+
+  if (action.type === GET_SAVED_POST_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === GET_SAVED_POST_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      savedPosts: action.payload.result,
+    };
+  }
+
+  if (action.type === GET_SAVED_POST_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
     };
   }
 

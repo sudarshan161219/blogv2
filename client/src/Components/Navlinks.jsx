@@ -4,10 +4,11 @@ import { useAppContext } from "../context/Context";
 import { AiOutlineHome, AiOutlineTag } from "react-icons/ai";
 import { TbSquareLetterA } from "react-icons/tb";
 import { IoGridOutline } from "react-icons/io5";
-import { BsPerson } from "react-icons/bs";
+import { BsBookmark } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
 import {BiEdit} from "react-icons/bi";
+
 
 const Navlinks = () => {
   const { toggleSidebar, user } = useAppContext();
@@ -34,6 +35,13 @@ const Navlinks = () => {
       <li className="mobile-links">
         <Link onClick={!toggleSidebar} className="Link " to="/user-profile/edit">
           <BiEdit className="sidebar-icons" /> edit profile
+        </Link>
+      </li>
+
+
+      <li className="mobile-links">
+        <Link onClick={!toggleSidebar} className="Link " to="/user-profile/savedpost">
+          <BsBookmark className="sidebar-icons" /> saved posts
         </Link>
       </li>
       </>

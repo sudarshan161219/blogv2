@@ -5,5 +5,15 @@ import Allposts from "./Allposts";
 import EditPage from "./EditPage";
 import SharedLayout from "./SharedLayout";
 import AuthorsSinglePost from "./AuthorsSinglePost";
+import SavedPost from "./SavedPost";
 
-export { Dashboard, Profile, Createpost, Allposts, EditPage, SharedLayout, AuthorsSinglePost };
+export {
+  Dashboard,
+  Profile,
+  Createpost,
+  Allposts,
+  EditPage,
+  SharedLayout,
+  AuthorsSinglePost,
+  SavedPost,
+};

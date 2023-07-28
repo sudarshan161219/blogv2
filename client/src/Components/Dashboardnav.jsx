@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/Dashboardnav";
 import Logo2 from "../Components/Logo2";
 import { IoGridOutline } from "react-icons/io5";
-import { BsPerson } from "react-icons/bs";
+import { BsPerson, BsBookmark  } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
 
@@ -43,6 +43,13 @@ const Dashboardnav = () => {
             <Link to="author-post" className="Link ">
               <FiBookOpen className="dash-icons" />
              <span className="dash-nav-text">Posts</span> 
+            </Link>
+          </li>
+          <li>
+            <Link to="savedpost" className="Link ">
+              {/* <FiBookOpen className="dash-icons" /> */}
+              <BsBookmark className="dash-icons" />
+             <span className="dash-nav-text">Saved Post</span> 
             </Link>
           </li>
         </ul>

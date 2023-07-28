@@ -72,7 +72,7 @@ const refreshToken = async (req, res) => {
     async (err, user) => {
       if (err) return res.sendStatus(403);
       const { userId } = user;
-      const userr = await User.findOne({ userId });
+      const userr = await User.findOne({_id: userId });
       const Access_Token = userr.createAccess_TokenJWT();
       const expiresIn = 3600
       return res.status(StatusCodes.OK).json({ userr, Access_Token, expiresIn });
