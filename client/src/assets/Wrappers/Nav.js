@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
 const Wrapper = styled.header`
+  padding: 0.4rem 1rem;
   color: #1c1c1c;
-  /* padding-bottom: 2rem; */
-  margin: 1.3rem 1rem ;
-  /* background-color:#f3f3f3; */
+background-color: inherit;
 
-  /* margin: 1rem; */
+  .scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: lightblue;
+  }
   ul {
     display: none;
   }

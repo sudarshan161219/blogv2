@@ -14,20 +14,6 @@
 }
 
 
-//  function handleImageUpload(event) {
-//     var options = {
-//       maxSizeMB: 0.4,
-//       maxWidthOrHeight: 1920,
-//       useWebWorker: true
-//     }
-//     imageCompression(event, options)
-//       .then(function (compressedFile) {
-//         return convertToBase64(compressedFile);
-//       })
-//       .catch(function (error) {
-//         console.log(error.message);
-//       });
-//   }
 
 export  {convertToBase64 }
 

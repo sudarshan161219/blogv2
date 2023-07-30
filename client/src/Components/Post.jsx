@@ -43,7 +43,7 @@ const Post = () => {
   } = useAppContext();
 
   const { id } = useParams();
-  const { title, coverImg, content, createdAt, author } = post;
+  const { title, coverImg, content, createdAt, author, postTags } = post;
 
   useEffect(() => {
     getSinglePost(id);
@@ -117,7 +117,10 @@ const Post = () => {
                 <div className="like-container">
                   {like ? (
                     <Ripples className="ripple">
-                      <BiSolidLike className="post-ldc-icons" onClick={handleLike} />
+                      <BiSolidLike
+                        className="post-ldc-icons"
+                        onClick={handleLike}
+                      />
                     </Ripples>
                   ) : (
                     <Ripples className="ripple">
@@ -161,7 +164,10 @@ const Post = () => {
                   </Ripples>
                 ) : (
                   <Ripples className="ripple">
-                    <BsBookmark className="post-ldc-icons" onClick={handleSave} />
+                    <BsBookmark
+                      className="post-ldc-icons"
+                      onClick={handleSave}
+                    />
                   </Ripples>
                 )}
               </div>
@@ -182,12 +188,22 @@ const Post = () => {
           )}
         </div>
 
-        {/* <div className="ql-snow post-content-container">
-    <div
-      className="ql-editor"
-      dangerouslySetInnerHTML={{ __html: content }}
-    ></div>
-  </div> */}
+        <div className="tags">
+          <ul>
+            {postTags&&postTags.map((item, idx) => (
+              <li key={idx}>
+              {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="ql-snow post-content-container">
+          <div
+            className="ql-editor"
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
+        </div>
       </div>
     </Wrapper>
   );

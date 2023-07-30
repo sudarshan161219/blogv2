@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-
   .like-container,
   .dislike-container,
   .comment-container {
     display: grid;
-    /* gap: 0.33rem; */
     align-items: center;
   }
 
@@ -48,14 +46,7 @@ const Wrapper = styled.div`
   .post-img-container {
     padding-bottom: 3rem;
     display: grid;
-    /* gap: 0.5rem; */
   }
-
-  /* .ldc-icons {
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #1d2939;
-  } */
 
   .like-dislike-comment-save {
     display: flex;
@@ -104,11 +95,21 @@ const Wrapper = styled.div`
   }
 
   .post-ldc-icons {
-    font-size: 1.3rem;
-    padding: 0.6rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
     border-radius: 100%;
     cursor: pointer;
     color: #1d2939;
+  }
+
+  .tags {
+    padding: 0 1rem;
+  }
+
+  .tags ul > li {
+    font-size: 1.5rem;
+    color: #1D5D9B;
+
   }
 
   @media (min-width: 700px) {

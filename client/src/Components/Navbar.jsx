@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Logo from "../Components/Logo";
 import Navlinks from "./Navlinks";
@@ -10,7 +10,7 @@ import { useAppContext } from "../context/Context";
 
 const Navbar = () => {
   const { id } = useParams();
-  const { toggleSidebar, postId } = useAppContext();
+  const { toggleSidebar, postId, user } = useAppContext();
   let location = useLocation();
   const regpath = location.pathname === "/register";
   const userPath = location.pathname === "/user-profile";
@@ -21,12 +21,13 @@ const Navbar = () => {
   const userPathSP = location.pathname === `/user-profile/${postId}`;
   const userPathSSP = location.pathname === `/user-profile/savedpost`;
 
+
   return (
-    <Wrapper className="nav-header">
+    <Wrapper className="nav-header ">
       <Sidebar />
       <nav className="nav">
         {!regpath ? (
-          <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
+         !user && <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
         ) : null}
         <div className="nav-links">
           <Link to="/" className="Link logo-logo-name">

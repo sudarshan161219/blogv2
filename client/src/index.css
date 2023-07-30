@@ -572,7 +572,6 @@ strong {
 
 .ql-editor p {
   font-family: "Poppins", sans-serif;
-  /* font-family: FontRegular; */
   line-height: 1.5rem;
   letter-spacing: 1px;
   font-weight: 400;
@@ -585,16 +584,11 @@ h4,
 h5 {
   font-family: FontSemiBold;
   letter-spacing: 1px;
-  /* font-weight: 500; */
 }
 
 .ql-snow .ql-editor h1 {
   font-size: 1.5em;
 }
-
-/* .dashboard-page {
-  margin: 1.5rem 1rem;
-} */
 
 .ql-snow .ql-editor pre.ql-syntax {
   font-size: 13px;
