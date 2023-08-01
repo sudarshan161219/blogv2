@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/SearchComponent";
 import { BsSearch } from "react-icons/bs";
@@ -6,6 +6,7 @@ import Select from "react-select";
 import { options, sortOptions } from "../utils/categoryList";
 import { useAppContext } from "../context/Context";
 const SearchComponent = () => {
+  const [loacalSearch, setLocalSearch] = useState("");
   const {
     handleChange,
     handleSelectChange,
@@ -41,15 +42,31 @@ const SearchComponent = () => {
     }
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (isLoading) return;
-    if (tagpath) {
-      handleChangeT({ name: e.target.name, value: e.target.value });
-    } else {
-      handleChange({ name: e.target.name, value: e.target.value });
-    }
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   if (isLoading) return;
+  //   if (tagpath) {
+  //     handleChangeT({ name: e.target.name, value: e.target.value });
+  //   } else {
+  //     handleChange({ name: e.target.name, value: e.target.value });
+  //   }
+  // };
+  const debounce = () => {
+    let timeoutId;
+    return (e) => {
+      setLocalSearch(e.target.value);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() =>{
+        if (tagpath) {
+          handleChangeT({ name: e.target.name, value: e.target.value });
+        } else {
+          handleChange({ name: e.target.name, value: e.target.value });
+        }
+        setLocalSearch("")
+      },1500)
+    };
   };
+  const optimizedDebounce = useMemo(() => debounce(), []);
 
   return (
     <Wrapper>
@@ -59,9 +76,9 @@ const SearchComponent = () => {
             className="search-container-input"
             type="text"
             name={tagpath ? "searchT" : "search"}
-            value={tagpath ? searchT : search}
+            value={loacalSearch}
             placeholder="Search Posts"
-            onChange={handleSearch}
+            onChange={optimizedDebounce}
           />
           <div className="icon-container">
             <BsSearch className="search-container-searchIcon" />
