@@ -97,6 +97,7 @@ import {
   GET_COMMENT_ERROR,
   TOGGLE_DELETEPT_MODAL_BTN,
   USER_R_TOKEN,
+  CLEAR_SEARCH_VALUES
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -629,7 +630,6 @@ const ContextProvider = ({ children }) => {
       });
     }
   };
-  
 
   const getAuthorPage = async (id) => {
     dispatch({ type: GET_AUTHOR_PAGE_BEGIN });
@@ -651,20 +651,19 @@ const ContextProvider = ({ children }) => {
   };
 
   const getSavedPost = async () => {
-      dispatch({ type: GET_SAVED_POST_BEGIN });
-      try {
-        const { data } = await authFetch.get("/savedposts");
-        const { result } = data;
-        dispatch({
-          type: GET_SAVED_POST_SUCCESS,
-          payload: { result },
-        });
-      } catch (error) {
-        dispatch({
-          type: GET_SAVED_POST_ERROR,
-        });
-      }
-
+    dispatch({ type: GET_SAVED_POST_BEGIN });
+    try {
+      const { data } = await authFetch.get("/savedposts");
+      const { result } = data;
+      dispatch({
+        type: GET_SAVED_POST_SUCCESS,
+        payload: { result },
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_SAVED_POST_ERROR,
+      });
+    }
   };
 
   const likePost = async (id) => {
@@ -1018,6 +1017,10 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const clearSearchValues = () => {
+    dispatch({ type: CLEAR_SEARCH_VALUES });
+  };
+
   return (
     <Context.Provider
       value={{
@@ -1087,6 +1090,7 @@ const ContextProvider = ({ children }) => {
 
         silentRefresh,
         getSavedPost,
+        clearSearchValues
       }}
     >
       {children}

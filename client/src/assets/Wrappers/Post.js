@@ -107,9 +107,15 @@ const Wrapper = styled.div`
   }
 
   .tags ul > li {
-    font-size: 1.5rem;
-    color: #1D5D9B;
+    font-size: 1.3rem;
+    color: #1d5d9b;
+  }
 
+  .tags ul {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   @media (min-width: 700px) {

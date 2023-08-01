@@ -95,6 +95,7 @@ import {
   TOGGLE_DELETECR_MODAL_BTN,
   TOGGLE_DELETEPT_MODAL_BTN,
   USER_R_TOKEN,
+  CLEAR_SEARCH_VALUES,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -407,6 +408,16 @@ const reducer = (state, action) => {
       search: "",
       SearchCategory: "all",
       sort: "",
+    };
+  }
+
+  if (action.type === CLEAR_SEARCH_VALUES) {
+    return {
+      ...state,
+      searchT: "",
+      SearchCategoryT: "",
+      sortT: "",
+      postg:[]
     };
   }
 

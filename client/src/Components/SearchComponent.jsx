@@ -21,6 +21,8 @@ const SearchComponent = () => {
     sortT,
     SearchCategoryT,
     isLoading,
+    clearSearchValues,
+    clearFilters
   } = useAppContext();
 
   let location = useLocation();
@@ -42,30 +44,21 @@ const SearchComponent = () => {
     }
   };
 
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   if (isLoading) return;
-  //   if (tagpath) {
-  //     handleChangeT({ name: e.target.name, value: e.target.value });
-  //   } else {
-  //     handleChange({ name: e.target.name, value: e.target.value });
-  //   }
-  // };
   const debounce = () => {
     let timeoutId;
     return (e) => {
       setLocalSearch(e.target.value);
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() =>{
+      timeoutId = setTimeout(() => {
         if (tagpath) {
           handleChangeT({ name: e.target.name, value: e.target.value });
         } else {
           handleChange({ name: e.target.name, value: e.target.value });
         }
-        setLocalSearch("")
-      },1500)
+      }, 1200);
     };
   };
+
   const optimizedDebounce = useMemo(() => debounce(), []);
 
   return (
@@ -80,9 +73,9 @@ const SearchComponent = () => {
             placeholder="Search Posts"
             onChange={optimizedDebounce}
           />
-          <div className="icon-container">
+          {/* <div className="icon-container">
             <BsSearch className="search-container-searchIcon" />
-          </div>
+          </div> */}
         </form>
       </div>
       <div className="select-container">
@@ -100,6 +93,9 @@ const SearchComponent = () => {
           onChange={selectSortChange}
           options={sortOptions}
         />
+      </div>
+      <div className="select-container">
+        <button onClick={tagpath ? clearSearchValues : clearFilters} className="clear-btn">clear filters</button>
       </div>
     </Wrapper>
   );
