@@ -189,12 +189,15 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_ALL_POST_SUCCESS) {
+    // numOfPagesG: 1,
+    // totalPostsG: 0,
+    // pageG: 1,
     return {
       ...state,
       isLoading: false,
       allPosts: action.payload.allPosts,
-      // totalPosts: action.payload.totalPosts,
-      // numOfPages: action.payload.numOfPages,
+      totalPosts: action.payload.totalPosts,
+      numOfPages: action.payload.numOfPages,
     };
   }
 
@@ -417,7 +420,7 @@ const reducer = (state, action) => {
       searchT: "",
       SearchCategoryT: "",
       sortT: "",
-      postg:[]
+      postg: [],
     };
   }
 

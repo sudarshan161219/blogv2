@@ -181,6 +181,10 @@ const initialState = {
   totalPostsg: [],
   numOfPagesg: [],
   savedPosts: [],
+
+  numOfPagesG: 1,
+  totalPostsG: 0,
+  pageG: 1,
 };
 const Context = createContext({});
 
@@ -432,7 +436,7 @@ const ContextProvider = ({ children }) => {
       url = url + `search=${search}`;
     }
 
-    if (state.authorpost.length  === 0) {
+    if (state.authorpost.length === 0) {
       dispatch({ type: GET_AUTHOR_POST_BEGIN });
 
       try {
@@ -595,24 +599,25 @@ const ContextProvider = ({ children }) => {
   };
 
   const getALLPost = async () => {
-    const { allPosts } = state;
-    if (allPosts.length === 0) {
+    const { allPosts, pageG} = state;
+    let url = `/?page=${pageG}`;
+    // if (allPosts.length === 0) {
       dispatch({ type: GET_ALL_POST_BEGIN });
       try {
-        const { data } = await authFetch.get("/", {
+        const { data } = await authFetch.get(url, {
           credentials: "omit",
         });
-        const { allPosts } = data;
+        const { allPosts, totalPosts, numOfPages } = data;
         dispatch({
           type: GET_ALL_POST_SUCCESS,
-          payload: { allPosts },
+          payload: { allPosts, totalPosts, numOfPages },
         });
       } catch (error) {
         dispatch({
           type: GET_ALL_POST_ERROR,
         });
       }
-    }
+    // }
   };
 
   const getSinglePost = async (id) => {

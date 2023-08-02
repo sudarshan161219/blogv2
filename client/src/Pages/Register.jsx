@@ -70,9 +70,12 @@ const Register = () => {
     setValues({ ...values, visible: !values.visible });
   };
 
+  const addUserInfo = () => {
+    setValues({ ...values, email: "testuser@gmail.com", password: "testuser" });
+  };
+
   return (
     <main className="register-main">
-      {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
       <div className="form-container">
         <div className="heading-para">
           <Logo />
@@ -156,6 +159,19 @@ const Register = () => {
               "Login"
             )}
           </button>
+
+          <div className="guest-btn">
+            {values.isMember && (
+              <button
+                onClick={addUserInfo}
+                type="submit"
+                className="button-28"
+                disabled={isLoading}
+              >
+                login as guest
+              </button>
+            )}
+          </div>
         </form>
         <p className="form-para">
           {values.isMember ? "Not a member yet ? " : "Already a member ? "}

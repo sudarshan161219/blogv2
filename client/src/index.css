@@ -503,6 +503,16 @@ strong {
   letter-spacing: 1.1px;
 }
 
+.guest-btn{
+  margin-top: 1rem;
+}
+
+
+.guest-btn > button{
+  background-color: #4682A9;
+  color: #D8D9DA;
+}
+
 @media (min-width: 700px) {
   .register-main {
     width: 400px;

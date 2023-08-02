@@ -110,7 +110,7 @@ width: 100%;
 
 
   @media (min-width: 1024px) {
-   justify-content:end ;
+   justify-content:center ;
   }
 
 `;

@@ -1,56 +1,148 @@
 [
-    {
-      "title": "The Art of Cooking",
-      "coverImg": "https://source.unsplash.com/random/800x600?food",
-      "content": "<p>Cooking is an art that brings joy to millions around the world. Whether it's baking a delicious cake or grilling a mouthwatering steak, the act of cooking connects people through the love of food.</p><p>Food has a unique way of bringing people together. It transcends cultural boundaries and creates a shared experience that can be cherished for a lifetime.</p><p>From experimenting with new ingredients to crafting traditional family recipes, the kitchen is a place of creativity and tradition. It's where stories are shared, memories are made, and flavors are savored.</p><p>Whether you're a seasoned chef or a beginner in the culinary world, cooking is a journey of discovery. It's a delightful blend of science and art, where each dish becomes a masterpiece.</p>",
-      "postTags": ["cooking", "food", "recipes", "culinary"],
-      "category": "Food & Cooking",
-      "author": "64ca0d00c59841b9168397c5",
-      "createdAt": "2023-08-02T12:34:56Z"
-    },
-    {
-      "title": "Exploring the Great Outdoors",
-      "coverImg": "https://source.unsplash.com/random/800x600?nature",
-      "content": "<p>Nature offers us breathtaking landscapes, and exploring the great outdoors can be an exhilarating experience. From hiking through lush forests to camping under the stars, nature never fails to inspire and amaze.</p><p>Being in nature allows us to disconnect from the digital world and reconnect with ourselves. It reminds us of the beauty and simplicity of life.</p><p>As we traverse through vast wildernesses and stand in awe of majestic mountains, we find solace and rejuvenation. The natural world offers us a sense of perspective, grounding us in the grandeur of existence.</p><p>Whether it's witnessing a vibrant sunrise over a serene lake or marveling at the night sky's constellations, nature's wonders remind us of the profound interconnectedness of all living beings.</p>",
-      "postTags": ["outdoors", "nature", "travel", "adventure"],
-      "category": "Travel",
-      "author": "64ca0d00c59841b9168397c5",
-      "createdAt": "2023-07-30T08:45:12Z"
-    },
-    {
-      "title": "The Future of AI and Technology",
-      "coverImg": "https://source.unsplash.com/random/800x600?technology",
-      "content": "<p>Artificial Intelligence (AI) is rapidly changing the technological landscape, revolutionizing various industries. From self-driving cars to personalized virtual assistants, the future of AI holds limitless possibilities.</p><p>AI-driven technologies have the potential to make our lives more efficient and convenient, but they also raise important ethical and social considerations that need careful attention.</p><p>As we embrace the advancements in AI, it becomes imperative to ensure responsible development and use of these technologies. Safeguarding privacy, avoiding bias, and addressing potential job displacement are some of the critical challenges ahead.</p><p>However, amidst these challenges, AI also offers opportunities for incredible progress. From medical diagnostics to environmental conservation, AI has the potential to tackle pressing global issues and improve human lives on an unprecedented scale.</p>",
-      "postTags": ["technology", "AI", "innovation", "future"],
-      "category": "Technology",
-      "author": "64ca0d00c59841b9168397c5",
-      "createdAt": "2023-07-25T16:20:00Z"
-    },
-    {
-      "title": "Mindfulness and Mental Health",
-      "coverImg": "https://source.unsplash.com/random/800x600?mindfulness",
-      "content": "<p>In a fast-paced world, mindfulness practices have become essential for maintaining mental well-being. Taking moments of stillness and self-reflection can lead to a healthier and more balanced life.</p><p>Mindfulness enables us to cultivate awareness, reduce stress, and improve our relationships with others and ourselves.</p><p>Through mindfulness, we learn to be present in each moment, free from judgment and distractions. We develop the ability to observe our thoughts and emotions with compassion, fostering greater emotional resilience.</p><p>Practicing mindfulness can enhance our overall well-being, contributing to improved focus, creativity, and better decision-making. It helps us navigate life's challenges with grace and equanimity.</p><p>Embracing mindfulness is not just a personal journey; it also cultivates empathy and compassion towards others, strengthening the fabric of our interconnected world.</p>",
-      "postTags": ["mindfulness", "mental health", "well-being", "self-care"],
-      "category": "Health & Wellness",
-      "author": "64ca0d00c59841b9168397c5",
-      "createdAt": "2023-07-20T14:15:30Z"
-    },
-    {
-      "title": "The Marvels of Astrophysics",
-      "coverImg": "https://source.unsplash.com/random/800x600?space",
-      "content": "<p>Astrophysics is a captivating field that delves into the mysteries of the cosmos. From the birth of stars to the formation of galaxies, astrophysicists study the universe's wonders.</p><p>Stargazing has fascinated humans for millennia, inspiring myths and legends that reflect our curiosity about the celestial realm.</p><p>Modern telescopes and space missions have revealed breathtaking images of distant galaxies, sparking awe and wonder in the hearts of stargazers worldwide.</p><p>As astrophysicists deepen their understanding of dark matter, black holes, and cosmic evolution, new questions arise, pushing the boundaries of human knowledge.</p>",
-      "postTags": ["astrophysics", "space", "cosmos", "galaxies"],
-      "category": "Science",
-      "author": "64ca0d00c59841b9168397c5",
-      "createdAt": "2023-07-15T11:30:00Z"
-    },
-    {
-      "title": "Capturing Moments: The Art of Photography",
-      "coverImg": "https://source.unsplash.com/random/800x600?photography",
-      "content": "<p>Photography is a powerful medium that freezes moments in time, preserving memories for generations to come.</p><p>From breathtaking landscapes to intimate portraits, photographs have the ability to convey emotions and tell stories.</p><p>Photographers skillfully use composition, lighting, and perspective to transform ordinary scenes into extraordinary visual experiences.</p><p>Whether it's capturing candid moments of laughter or documenting historical events, photography has a profound impact on how we perceive the world.</p><p>Through the lens of a camera, we witness beauty, complexity, and the diversity of the human experience.</p>",
-      "postTags": ["photography", "art", "memories", "visual"],
-      "category": "Arts & Culture",
-      "author": "64ca0d00c59841b9168397c5",
-      "createdAt": "2023-07-15T11:30:00Z"
-    }
-]  
+  {
+    "title": "The Art of Cooking",
+    "coverImg": "https://source.unsplash.com/random/800x600?food",
+    "content": "<p>Cooking is an art that brings joy to millions around the world. Whether it's baking a delicious cake or grilling a mouthwatering steak, the act of cooking connects people through the love of food.</p><p>Food has a unique way of bringing people together. It transcends cultural boundaries and creates a shared experience that can be cherished for a lifetime.</p><p>From experimenting with new ingredients to crafting traditional family recipes, the kitchen is a place of creativity and tradition. It's where stories are shared, memories are made, and flavors are savored.</p><p>Whether you're a seasoned chef or a beginner in the culinary world, cooking is a journey of discovery. It's a delightful blend of science and art, where each dish becomes a masterpiece.</p>",
+    "postTags": ["#cooking", "#food", "#recipes", "#culinary"],
+    "category": "Food & Cooking",
+    "author": "64ca0d00c59841b9168397c5",
+    "createdAt": "2023-08-02T12:34:56Z"
+  },
+  {
+    "title": "Exploring the Great Outdoors",
+    "coverImg": "https://source.unsplash.com/random/800x600?nature",
+    "content": "<p>Nature offers us breathtaking landscapes, and exploring the great outdoors can be an exhilarating experience. From hiking through lush forests to camping under the stars, nature never fails to inspire and amaze.</p><p>Being in nature allows us to disconnect from the digital world and reconnect with ourselves. It reminds us of the beauty and simplicity of life.</p><p>As we traverse through vast wildernesses and stand in awe of majestic mountains, we find solace and rejuvenation. The natural world offers us a sense of perspective, grounding us in the grandeur of existence.</p><p>Whether it's witnessing a vibrant sunrise over a serene lake or marveling at the night sky's constellations, nature's wonders remind us of the profound interconnectedness of all living beings.</p>",
+    "postTags": ["#outdoors", "#nature", "#travel", "#adventure"],
+    "category": "Travel",
+    "author": "64ca0d00c59841b9168397c5",
+    "createdAt": "2023-07-30T08:45:12Z"
+  },
+  {
+    "title": "The Future of AI and Technology",
+    "coverImg": "https://source.unsplash.com/random/800x600?technology",
+    "content": "<p>Artificial Intelligence (AI) is rapidly changing the technological landscape, revolutionizing various industries. From self-driving cars to personalized virtual assistants, the future of AI holds limitless possibilities.</p><p>AI-driven technologies have the potential to make our lives more efficient and convenient, but they also raise important ethical and social considerations that need careful attention.</p><p>As we embrace the advancements in AI, it becomes imperative to ensure responsible development and use of these technologies. Safeguarding privacy, avoiding bias, and addressing potential job displacement are some of the critical challenges ahead.</p><p>However, amidst these challenges, AI also offers opportunities for incredible progress. From medical diagnostics to environmental conservation, AI has the potential to tackle pressing global issues and improve human lives on an unprecedented scale.</p>",
+    "postTags": ["#technology", "#AI", "#innovation", "#future"],
+    "category": "Technology",
+    "author": "64ca0d00c59841b9168397c5",
+    "createdAt": "2023-07-25T16:20:00Z"
+  },
+  {
+    "title": "Mindfulness and Mental Health",
+    "coverImg": "https://source.unsplash.com/random/800x600?mindfulness",
+    "content": "<p>In a fast-paced world, mindfulness practices have become essential for maintaining mental well-being. Taking moments of stillness and self-reflection can lead to a healthier and more balanced life.</p><p>Mindfulness enables us to cultivate awareness, reduce stress, and improve our relationships with others and ourselves.</p><p>Through mindfulness, we learn to be present in each moment, free from judgment and distractions. We develop the ability to observe our thoughts and emotions with compassion, fostering greater emotional resilience.</p><p>Practicing mindfulness can enhance our overall well-being, contributing to improved focus, creativity, and better decision-making. It helps us navigate life's challenges with grace and equanimity.</p><p>Embracing mindfulness is not just a personal journey; it also cultivates empathy and compassion towards others, strengthening the fabric of our interconnected world.</p>",
+    "postTags": ["#mindfulness", "#mental health", "#well-being", "#self-care"],
+    "category": "Health & Wellness",
+    "author": "64ca0d00c59841b9168397c5",
+    "createdAt": "2023-07-20T14:15:30Z"
+  },
+  {
+    "title": "The Marvels of Astrophysics",
+    "coverImg": "https://source.unsplash.com/random/800x600?space",
+    "content": "<p>Astrophysics is a captivating field that delves into the mysteries of the cosmos. From the birth of stars to the formation of galaxies, astrophysicists study the universe's wonders.</p><p>Stargazing has fascinated humans for millennia, inspiring myths and legends that reflect our curiosity about the celestial realm.</p><p>Modern telescopes and space missions have revealed breathtaking images of distant galaxies, sparking awe and wonder in the hearts of stargazers worldwide.</p><p>As astrophysicists deepen their understanding of dark matter, black holes, and cosmic evolution, new questions arise, pushing the boundaries of human knowledge.</p>",
+    "postTags": ["#astrophysics", "#space", "#cosmos", "#galaxies"],
+    "category": "Science",
+    "author": "64ca0d00c59841b9168397c5",
+    "createdAt": "2023-07-15T11:30:00Z"
+  },
+  {
+    "title": "Capturing Moments: The Art of Photography",
+    "coverImg": "https://source.unsplash.com/random/800x600?photography",
+    "content": "<p>Photography is a powerful medium that freezes moments in time, preserving memories for generations to come.</p><p>From breathtaking landscapes to intimate portraits, photographs have the ability to convey emotions and tell stories.</p><p>Photographers skillfully use composition, lighting, and perspective to transform ordinary scenes into extraordinary visual experiences.</p><p>Whether it's capturing candid moments of laughter or documenting historical events, photography has a profound impact on how we perceive the world.</p><p>Through the lens of a camera, we witness beauty, complexity, and the diversity of the human experience.</p>",
+    "postTags": ["#photography", "#art", "#memories", "#visual"],
+    "category": "Arts & Culture",
+    "author": "64ca0d00c59841b9168397c5",
+    "createdAt": "2023-07-15T11:30:00Z"
+  },
+
+  {
+    "title": "Delicious Desserts",
+    "coverImg": "https://source.unsplash.com/random/800x600?desserts",
+    "content": "<p>Indulge in a delightful journey of sweet treats with mouthwatering desserts from around the world.</p><p>From rich chocolate cakes to creamy gelato, desserts offer a symphony of flavors that satisfy the senses.</p><p>Explore the art of pastry-making and discover the secrets behind creating the perfect dessert to impress your guests.</p><p>Whether you have a sweet tooth or enjoy experimenting in the kitchen, desserts are a universal language of joy.</p>",
+    "postTags": ["#desserts", "#baking", "#sweets", "#pastry"],
+    "category": "Food & Cooking",
+    "author": "642447db1d40f790da57d956",
+    "createdAt": "2023-08-10T15:20:30Z"
+  },
+  {
+    "title": "Wonders of Wildlife",
+    "coverImg": "https://source.unsplash.com/random/800x600?wildlife",
+    "content": "<p>Step into the enchanting world of wildlife and witness the beauty of creatures in their natural habitats.</p><p>From majestic elephants roaming the savannah to graceful dolphins leaping through ocean waves, wildlife offers an awe-inspiring spectacle.</p><p>Discover the efforts of conservationists working tirelessly to protect endangered species and preserve biodiversity.</p><p>Through wildlife photography and documentaries, we connect with animals and gain a deeper understanding of our interconnectedness with nature.</p>",
+    "postTags": ["#wildlife", "#animals", "#conservation", "#nature"],
+    "category": "Nature & Environment",
+    "author": "642447db1d40f790da57d956",
+    "createdAt": "2023-08-08T12:45:00Z"
+  },
+  {
+    "title": "Blockchain Revolution",
+    "coverImg": "https://source.unsplash.com/random/800x600?blockchain",
+    "content": "<p>Unravel the potential of blockchain technology and its impact on the future of finance, supply chain, and beyond.</p><p>Blockchain's decentralized and transparent nature offers security and trust in a world filled with digital transactions.</p><p>Explore how cryptocurrencies are reshaping the financial landscape and enabling borderless transactions.</p><p>Beyond finance, blockchain's immutable ledger is transforming industries, from healthcare to logistics, fostering innovation and efficiency.</p>",
+    "postTags": ["#blockchain", "#cryptocurrency", "#technology", "#innovation"],
+    "category": "Technology",
+    "author": "642447db1d40f790da57d956",
+    "createdAt": "2023-08-05T09:10:15Z"
+  },
+  {
+    "title": "Mediterranean Adventures",
+    "coverImg": "https://source.unsplash.com/random/800x600?mediterranean",
+    "content": "<p>Embark on a journey through the enchanting Mediterranean region, a treasure trove of history and culture.</p><p>Explore ancient ruins and marvel at architectural wonders that tell tales of civilizations long past.</p><p>Relish the sun-kissed beaches, azure waters, and delectable cuisine that make the Mediterranean a sought-after destination.</p><p>From the picturesque villages of Greece to the vibrant markets of Morocco, every corner offers a unique experience to cherish.</p>",
+    "postTags": ["#travel", "#Mediterranean", "#history", "#culture"],
+    "category": "Travel",
+    "author": "642447db1d40f790da57d956",
+    "createdAt": "2023-08-03T18:30:00Z"
+  },
+  {
+    "title": "Exploring the Quantum Universe",
+    "coverImg": "https://source.unsplash.com/random/800x600?quantum",
+    "content": "<p>Venture into the mysterious realm of quantum physics, where particles and waves dance in an intricate cosmic ballet.</p><p>Discover the mind-bending principles of superposition, entanglement, and quantum tunneling that challenge our perception of reality.</p><p>From the elusive nature of subatomic particles to the potential of quantum computing, the quantum universe sparks curiosity and scientific exploration.</p><p>As we unlock the secrets of quantum mechanics, we glimpse into a future where quantum technologies shape our world in unimaginable ways.</p>",
+    "postTags": ["#quantum physics", "#science", "#cosmos", "#technology"],
+    "category": "Science & Space",
+    "author": "642447db1d40f790da57d956",
+    "createdAt": "2023-08-01T14:55:20Z"
+  },
+  {
+    "title": "A Journey Through History",
+    "coverImg": "https://source.unsplash.com/random/800x600?history",
+    "content": "<p>Embark on a captivating journey through the annals of history and discover the tales of ancient civilizations.</p><p>From the pyramids of Egypt to the ruins of Machu Picchu, historical sites hold the secrets of human ingenuity and resilience.</p><p>Uncover the stories of great conquerors, visionary leaders, and ordinary people who shaped the course of human civilization.</p><p>History is a tapestry of cultures, wars, and revolutions, and through its study, we gain insights into our collective heritage.</p>",
+    "postTags": ["#history", "ancient civilizations", "archaeology", "culture"],
+    "category": "Education",
+    "author": "6448bd77f1b30bd3ad76f2ef",
+    "createdAt": "2023-08-20T11:25:00Z"
+  },
+  {
+    "title": "Culinary Adventures Around the World",
+    "coverImg": "https://source.unsplash.com/random/800x600?culinary",
+    "content": "<p>Embark on a delectable journey of culinary delights from diverse corners of the globe.</p><p>Explore the aromatic spices of India, the savory pasta of Italy, the exotic street food of Thailand, and the hearty barbecues of the United States.</p><p>Discover the art of pairing wine with exquisite dishes and the traditions that make each meal a celebration.</p><p>Culinary adventures allow us to savor the flavors of different cultures and connect with people through the universal language of food.</p>",
+    "postTags": ["#culinary", "food", "international cuisine", "gastronomy"],
+    "category": "Food & Travel",
+    "author": "6448bd77f1b30bd3ad76f2ef",
+    "createdAt": "2023-08-18T16:30:10Z"
+  },
+  {
+    "title": "Emerging Technologies: Shaping Tomorrow",
+    "coverImg": "https://source.unsplash.com/random/800x600?emerging",
+    "content": "<p>Discover the latest breakthroughs in emerging technologies that are transforming industries and society.</p><p>Explore the potential of 5G connectivity in powering smart cities and enabling a new era of communication.</p><p>Dive into the world of virtual reality and augmented reality, revolutionizing how we experience entertainment and education.</p><p>From gene editing to renewable energy innovations, emerging technologies hold the promise of a brighter and sustainable future.</p>",
+    "postTags": ["#emerging technologies", "5G", "virtual reality", "sustainability"],
+    "category": "Technology & Innovation",
+    "author": "6448bd77f1b30bd3ad76f2ef",
+    "createdAt": "2023-08-15T14:40:30Z"
+  },
+  {
+    "title": "The Marvels of Marine Life",
+    "coverImg": "https://source.unsplash.com/random/800x600?marine",
+    "content": "<p>Dive into the mesmerizing world beneath the waves and explore the wonders of marine life.</p><p>From colorful coral reefs teeming with diverse marine species to the hauntingly majestic presence of whales, the ocean is a treasure trove of biodiversity.</p><p>Learn about the delicate balance of marine ecosystems and the importance of conservation efforts to protect our oceans.</p><p>Marine life, with its beauty and mysteries, reminds us of the interconnectedness of all living creatures on our blue planet.</p>",
+    "postTags": ["#marine life", "ocean", "biodiversity", "conservation"],
+    "category": "Nature & Environment",
+    "author": "6448bd77f1b30bd3ad76f2ef",
+    "createdAt": "2023-08-12T09:55:45Z"
+  },
+  {
+    "title": "The Art of Mindful Living",
+    "coverImg": "https://source.unsplash.com/random/800x600?mindful",
+    "content": "<p>Embrace the art of mindfulness and learn to live in the present moment with awareness and compassion.</p><p>Practice meditation and mindful breathing to cultivate inner peace and reduce stress in a fast-paced world.</p><p>Explore mindfulness in daily activities, from savoring each bite of food to engaging fully in conversations with loved ones.</p><p>Mindful living empowers us to appreciate life's simple joys, find balance, and nurture our well-being.</p>",
+    "postTags": ["#mindfulness", "meditation", "well-being", "self-awareness"],
+    "category": "Health & Wellness",
+    "author": "6448bd77f1b30bd3ad76f2ef",
+    "createdAt": "2023-08-10T17:15:00Z"
+  }
+
+]
