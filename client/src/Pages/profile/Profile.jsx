@@ -39,7 +39,7 @@ const Profile = () => {
     <Wrapper>
       <div className="profile-container">
         <div className="img-container">
-          <img className="profile-img" src={user && user.userImg || profile} alt="profile" />
+          <img className="profile-img" src={user.userImg ? user.userImg : profile} alt="profile" />
         </div>
 
         <div className="profile-info">

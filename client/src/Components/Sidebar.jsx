@@ -4,7 +4,7 @@ import { useAppContext } from "../context/Context";
 import { AiOutlineClose, AiOutlineLogout } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
-
+import profile from "../assets/imgs/profile.png";
 import Logo2 from "./Logo2";
 import Navlinks from "./Navlinks";
 
@@ -54,7 +54,7 @@ const Sidebar = () => {
             className="nav-profile-container Link"
           >
             <div className="nav-img-name">
-              <img className="nav-img" src={user.userImg} alt={user.name} />
+              <img className="nav-img" src={user.userImg ? user.userImg : profile} alt={user.name} />
               <strong className="nav-name"> {user.name}</strong>
             </div>
             <BsArrowRight className="nav-icon" />

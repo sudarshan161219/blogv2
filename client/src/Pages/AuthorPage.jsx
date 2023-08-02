@@ -4,6 +4,8 @@ import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
 import { AuthorInfoG, AuthorPostsG } from "../Components/export";
 import { Loading, SkeletonLoding } from "../Components/export";
+
+
 const AuthorPage = () => {
   const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading } =
     useAppContext();

@@ -97,7 +97,7 @@ import {
   GET_COMMENT_ERROR,
   TOGGLE_DELETEPT_MODAL_BTN,
   USER_R_TOKEN,
-  CLEAR_SEARCH_VALUES
+  CLEAR_SEARCH_VALUES,
 } from "./action";
 
 const user = localStorage.getItem("user");
@@ -431,22 +431,25 @@ const ContextProvider = ({ children }) => {
     if (search) {
       url = url + `search=${search}`;
     }
-    dispatch({ type: GET_AUTHOR_POST_BEGIN });
 
-    try {
-      const { data } = await authFetch.get(url, {
-        credentials: "omit",
-      });
-      const { authorpost, totalPosts, numOfPages } = data;
-      dispatch({
-        type: GET_AUTHOR_POST_SUCCESS,
-        payload: { authorpost, totalPosts, numOfPages },
-      });
-      dispatch({ type: CLEAR_VALUES });
-    } catch (error) {
-      dispatch({
-        type: GET_AUTHOR_POST_ERROR,
-      });
+    if (state.authorpost.length  === 0) {
+      dispatch({ type: GET_AUTHOR_POST_BEGIN });
+
+      try {
+        const { data } = await authFetch.get(url, {
+          credentials: "omit",
+        });
+        const { authorpost, totalPosts, numOfPages } = data;
+        dispatch({
+          type: GET_AUTHOR_POST_SUCCESS,
+          payload: { authorpost, totalPosts, numOfPages },
+        });
+        dispatch({ type: CLEAR_VALUES });
+      } catch (error) {
+        dispatch({
+          type: GET_AUTHOR_POST_ERROR,
+        });
+      }
     }
   };
 
@@ -1090,7 +1093,7 @@ const ContextProvider = ({ children }) => {
 
         silentRefresh,
         getSavedPost,
-        clearSearchValues
+        clearSearchValues,
       }}
     >
       {children}

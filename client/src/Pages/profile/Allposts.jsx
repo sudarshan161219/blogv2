@@ -23,7 +23,7 @@ const Allposts = () => {
 
   useEffect(() => {
     token !== "" ? getAuthorPost() : null;
-  }, [search, sort, SearchCategory, page, token]);
+  }, [search, sort, SearchCategory, page, token, ]);
 
 
 

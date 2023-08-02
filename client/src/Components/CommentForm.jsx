@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../assets/Rolling-0.7s-157px.svg";
+import profile from "../assets/imgs/profile.png";
 const CommentForm = () => {
   const [text, setText] = useState("");
   const { user, createComment, formLoading } = useAppContext();
@@ -35,7 +36,7 @@ const CommentForm = () => {
           <div className="text-img-container">
             <img
               className="desktop-comment-img"
-              src={user && user.userImg}
+              src={user.userImg ? user.userImg : profile}
               alt={user && user.name}
             />
 
@@ -53,7 +54,7 @@ const CommentForm = () => {
           <div className="img-btn">
             <img
               className="mobile-comment-img"
-              src={user &&user.userImg}
+              src={user.userImg ? user.userImg : profile}
               alt={user && user.name}
               disabled={formLoading}
             />

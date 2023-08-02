@@ -6,6 +6,7 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
+import profile from "../assets/imgs/profile.png";
 
 const AuthorInfoG = ({ authorInfo }) => {
   const { name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
@@ -13,7 +14,7 @@ const AuthorInfoG = ({ authorInfo }) => {
   return (
     <Wrapper>
       <div className="author_info_img_conyainer">
-        <img src={userImg} alt={name} />
+        <img src={authorInfo.userImg ? userImg : profile} alt={name} />
       </div>
       <div className="author_info_info_container">
         <h1>{name}</h1>
@@ -25,17 +26,17 @@ const AuthorInfoG = ({ authorInfo }) => {
           <ul className="author_info_unodredlist">
             <li>
               <a href={instagram} _blank="true">
-                <AiFillInstagram className="link-icon"/>
+                <AiFillInstagram className="link-icon" />
               </a>
             </li>
             <li>
               <a href={twitter} _blank="true">
-                <AiOutlineTwitter className="link-icon"/>
+                <AiOutlineTwitter className="link-icon" />
               </a>
             </li>
             <li>
               <a href={linkden} _blank="true">
-                <AiFillLinkedin className="link-icon"/>
+                <AiFillLinkedin className="link-icon" />
               </a>
             </li>
           </ul>
