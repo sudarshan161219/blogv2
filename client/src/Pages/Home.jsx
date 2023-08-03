@@ -7,14 +7,13 @@ import { SkeletonLoding, PageBtnContainer } from "../Components/export";
 
 
 const Home = () => {
-  const { getALLPost, allPosts, isLoading, numOfPages, page } =
+  const { user, getALLPost, allPosts, isLoading, numOfPages, page } =
     useAppContext();
 
   useEffect(() => {
     getALLPost();
-  }, [page]);
+  }, [page, user]);
 
-  const suffule = allPosts.sort(() => Math.random() - 0.5);
 
   return (
     <Wrapper>

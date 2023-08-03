@@ -13,23 +13,12 @@ import {
 } from "react-icons/ai";
 
 const Profile = () => {
-  const { getProfile, user, isLoading, token } = useAppContext();
+  const { getProfile, user, isLoading } = useAppContext();
 
-//  const {
-//       name,
-//       userInfo,
-//       userProfile,
-//       userImg,
-//       personalLink,
-//       twitter,
-//       instagram,
-//       linkden,
-//     } =  user;
-  
 
   useEffect(() => {
     getProfile();
-  }, [user&&user.name, token]);
+  }, [user&&user.name]);
 
   if (isLoading) {
     return <Loading />;

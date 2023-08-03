@@ -96,11 +96,12 @@ import {
   GET_COMMENT_SUCCESS,
   GET_COMMENT_ERROR,
   TOGGLE_DELETEPT_MODAL_BTN,
-  USER_R_TOKEN,
   CLEAR_SEARCH_VALUES,
+  GET_CURRENT_USER_BEGIN,
+  GET_CURRENT_USER_SUCCESS
 } from "./action";
 
-const user = localStorage.getItem("user");
+// const user = localStorage.getItem("user");
 const post_id = localStorage.getItem("post_id");
 
 const initialState = {
@@ -110,6 +111,7 @@ const initialState = {
   commentsLoading: false,
   editCommentLoading: false,
   editCommentReplyLoading: false,
+  userLoading : true,
   showSidebar: false,
   showDeleteModal: false,
   showDeleteCrModal: false,
@@ -120,11 +122,9 @@ const initialState = {
   commentLike: false,
   commentDislike: false,
   save: false,
-  user: user ? JSON.parse(user) : null,
+  user: null,
   loggedIn: false,
   loggedOut: false,
-  expiresIN: "",
-  token: "",
   name: "",
   userInfo: "",
   instagram: "",
@@ -201,15 +201,6 @@ const ContextProvider = ({ children }) => {
     },
   });
 
-  authFetch.interceptors.request.use(
-    (config) => {
-      config.headers["Authorization"] = `Bearer ${state.token}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
 
   authFetch.interceptors.response.use(
     (response) => {
@@ -217,25 +208,13 @@ const ContextProvider = ({ children }) => {
     },
     (error) => {
       if (error.response.status === 401) {
-        throw error.response;
-      }
-      if (!state.token) {
         logoutUser();
+        throw error.response;
       }
     }
   );
 
-  const addUserToLocalStorage = ({ user }) => {
-    localStorage.setItem("user", JSON.stringify(user));
-  };
 
-  const addPostIdToLocalStorage = (Id) => {
-    localStorage.setItem("post_id", Id);
-  };
-
-  const removeUserFromLocalStorage = () => {
-    localStorage.removeItem("user");
-  };
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -295,7 +274,6 @@ const ContextProvider = ({ children }) => {
     try {
       await authFetch.post("/logout");
       dispatch({ type: LOGOUT_USER });
-      removeUserFromLocalStorage();
     } catch (error) {
       console.log(error);
     }
@@ -308,12 +286,11 @@ const ContextProvider = ({ children }) => {
         "http://localhost:3000/api/register",
         userData
       );
-
       // authFetch
-      const { user, token } = response.data;
+      const { user } = response.data;
       dispatch({
         type: REGISTER_USER_SUCCESS,
-        payload: { user, token },
+        payload: { user },
       });
       toast.success("User Created!,  Redirecting.....");
     } catch (error) {
@@ -331,13 +308,12 @@ const ContextProvider = ({ children }) => {
         "http://localhost:3000/api/login",
         userData
       );
-      const { user, Access_Token, expiresIn } = data;
+      const { user } = data;
       dispatch({
         type: LOGIN_USER_SUCCESS,
-        payload: { user, Access_Token, expiresIn },
+        payload: { user },
       });
       toast.success("Login Successful!,  Redirecting.....");
-      addUserToLocalStorage({ user });
     } catch (error) {
       toast.error(error.response.data.msg);
       dispatch({
@@ -346,18 +322,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const silentRefresh = async () => {
-    try {
-      const { data } = await authFetch.get("/refresh");
-      const { userr, Access_Token, expiresIn } = data;
-      dispatch({
-        type: USER_R_TOKEN,
-        payload: { userr, Access_Token, expiresIn },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   useEffect(() => {
     if (!state.user) {
@@ -393,12 +358,11 @@ const ContextProvider = ({ children }) => {
         personalLink,
         userImg,
       });
-      const { user, token } = data;
+      const { user } = data;
       dispatch({
         type: UPDATE_USER_SUCCESS,
-        payload: { user, token },
+        payload: { user },
       });
-      addUserToLocalStorage({ user, token });
       toast.success("User Profile, Updated!");
     } catch (error) {
       if (error.response.status !== 401) {
@@ -599,24 +563,24 @@ const ContextProvider = ({ children }) => {
   };
 
   const getALLPost = async () => {
-    const { allPosts, pageG} = state;
+    const { pageG } = state;
     let url = `/?page=${pageG}`;
     // if (allPosts.length === 0) {
-      dispatch({ type: GET_ALL_POST_BEGIN });
-      try {
-        const { data } = await authFetch.get(url, {
-          credentials: "omit",
-        });
-        const { allPosts, totalPosts, numOfPages } = data;
-        dispatch({
-          type: GET_ALL_POST_SUCCESS,
-          payload: { allPosts, totalPosts, numOfPages },
-        });
-      } catch (error) {
-        dispatch({
-          type: GET_ALL_POST_ERROR,
-        });
-      }
+    dispatch({ type: GET_ALL_POST_BEGIN });
+    try {
+      const { data } = await authFetch.get(url, {
+        credentials: "omit",
+      });
+      const { allPosts, totalPosts, numOfPages } = data;
+      dispatch({
+        type: GET_ALL_POST_SUCCESS,
+        payload: { allPosts, totalPosts, numOfPages },
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_ALL_POST_ERROR,
+      });
+    }
     // }
   };
 
@@ -1029,6 +993,21 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: CLEAR_SEARCH_VALUES });
   };
 
+  const getCurrebtUser = async () => {
+    dispatch({ type: GET_CURRENT_USER_BEGIN })
+    try {
+      const { data } = await authFetch("/getCurrentUser")
+      const { user } = data
+      dispatch({ type: GET_CURRENT_USER_SUCCESS, payload: { user } })
+    } catch {
+      if (error.response.status === 400) return
+      logoutUser()
+    }
+  }
+  useEffect(() => {
+    getCurrebtUser()
+  }, [])
+
   return (
     <Context.Provider
       value={{
@@ -1096,7 +1075,6 @@ const ContextProvider = ({ children }) => {
         setCommentReplyId,
         editCommentReply,
 
-        silentRefresh,
         getSavedPost,
         clearSearchValues,
       }}

@@ -96,6 +96,8 @@ import {
   TOGGLE_DELETEPT_MODAL_BTN,
   USER_R_TOKEN,
   CLEAR_SEARCH_VALUES,
+  GET_CURRENT_USER_BEGIN,
+  GET_CURRENT_USER_SUCCESS
 } from "./action";
 
 import { initialState } from "./Context";
@@ -117,7 +119,6 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      token: action.payload.token,
       user: action.payload.user,
     };
   }
@@ -137,10 +138,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      token: action.payload.Access_Token,
       user: action.payload.user,
-      expiresIN: action.payload.expiresIn,
-      loggedIn: true,
     };
   }
 
@@ -189,9 +187,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_ALL_POST_SUCCESS) {
-    // numOfPagesG: 1,
-    // totalPostsG: 0,
-    // pageG: 1,
     return {
       ...state,
       isLoading: false,
@@ -349,7 +344,6 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       edited: true,
-      token: action.payload.token,
       user: action.payload.user,
     };
   }
@@ -365,9 +359,7 @@ const reducer = (state, action) => {
     return {
       ...initialState,
       user: null,
-      token: null,
-      loggedIn: false,
-      // loggedOut:true,
+      userLoading: false
     };
   }
 
@@ -739,6 +731,21 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
     };
+  }
+
+  if (action.type === GET_CURRENT_USER_BEGIN) {
+    return {
+      ...state,
+      userLoading: true
+    }
+  }
+
+  if (action.type === GET_CURRENT_USER_SUCCESS) {
+    return {
+      ...state,
+      userLoading: false,
+      user: action.payload.user
+    }
   }
 
   throw new Error(`no such action : ${action.type}`);

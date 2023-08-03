@@ -18,12 +18,12 @@ const Allposts = () => {
     sort,
     SearchCategory,
     page,
-    token,
+
   } = useAppContext();
 
   useEffect(() => {
-    token !== "" ? getAuthorPost() : null;
-  }, [search, sort, SearchCategory, page, token, ]);
+    getAuthorPost()
+  }, [search, sort, SearchCategory, page]);
 
 
 

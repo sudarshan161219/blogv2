@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import User from "../models/User.mjs";
 import { BadRequestError, UnauthenticatedError } from "../errors/export.mjs";
 import jwt from "jsonwebtoken";
+import attachCookie from "../utils/attachCookie.mjs";
 
 //* post register
 const register = async (req, res) => {
@@ -20,6 +21,8 @@ const register = async (req, res) => {
   }
 
   const user = await User.create({ email, name, password });
+  const Access_Token = user.createAccess_TokenJWT();
+  attachCookie({ res, Access_Token });
 
   return res.status(StatusCodes.CREATED).json({
     user: {
@@ -47,16 +50,10 @@ const login = async (req, res) => {
   }
 
   const Access_Token = user.createAccess_TokenJWT();
-  const Refresh_Token = user.createRefresh_TokenJWT();
 
-  res.cookie("jwt", Refresh_Token, {
-    httpOnly: true, //accessible only by web server
-    secure: true, //https
-    sameSite: "None", //cross-site cookie
-    maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
-  });
-const expiresIn = 3600
-  return res.status(StatusCodes.OK).json({ user, Access_Token, expiresIn });
+  attachCookie({ res, Access_Token });
+
+  return res.status(StatusCodes.OK).json({ user });
 };
 
 const refreshToken = async (req, res) => {
@@ -72,10 +69,12 @@ const refreshToken = async (req, res) => {
     async (err, user) => {
       if (err) return res.sendStatus(403);
       const { userId } = user;
-      const userr = await User.findOne({_id: userId });
+      const userr = await User.findOne({ _id: userId });
       const Access_Token = userr.createAccess_TokenJWT();
-      const expiresIn = 3600
-      return res.status(StatusCodes.OK).json({ userr, Access_Token, expiresIn });
+      const expiresIn = 3600;
+      return res
+        .status(StatusCodes.OK)
+        .json({ userr, Access_Token, expiresIn });
     }
   );
 };
@@ -91,11 +90,10 @@ const updateUser = async (req, res) => {
     }
   );
   await user.save();
-  const token = user.createJWT();
-
+  const Access_Token = user.createAccess_TokenJWT();
+  attachCookie({ res, Access_Token });
   return res.status(StatusCodes.OK).json({
     user,
-    token,
   });
 };
 
@@ -110,9 +108,22 @@ const profile = async (req, res) => {
 // * post logout
 const logout = async (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); 
+  if (!cookies?.jwt) return res.sendStatus(204);
   res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
   res.json({ message: "Cookie cleared" });
 };
 
-export { register, login, updateUser, profile, logout, refreshToken };
+const getCurrentUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+  res.status(StatusCodes.OK).json({ user });
+};
+
+export {
+  register,
+  login,
+  updateUser,
+  profile,
+  logout,
+  refreshToken,
+  getCurrentUser,
+};

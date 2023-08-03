@@ -8,7 +8,8 @@ import {
   updateUser,
   profile,
   logout,
-  refreshToken
+  refreshToken,
+  getCurrentUser,
 } from "../controllers/authController.mjs";
 import auth from "../middlewares/auth.mjs";
 import loginLimiter from "../middlewares/loginLimiter.mjs";
@@ -23,5 +24,6 @@ router.route("/profile").get(auth, profile);
 router.route("/refresh").get(refreshToken);
 
 router.route("/updateUser").patch(auth, updateUser);
+router.route("/getCurrentUser").get(auth, getCurrentUser);
 
 export default router;

@@ -30,8 +30,8 @@ const AuthorsSinglePost = () => {
 
   useEffect(() => {
     setPostId(id);
-    token ? getSingleAuthorPost(id) : null;
-  }, [id, token]);
+    getSingleAuthorPost(id)
+  }, [id]);
 
   const handleClick = () => {
     clearAuthorSinglePost();

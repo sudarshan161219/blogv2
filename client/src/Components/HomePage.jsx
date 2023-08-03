@@ -26,8 +26,8 @@ const HomePage = ({ item }) => {
           <div className="homepage-text-info-container">
             <h1>{title}</h1>
             <p
-            className="ptag"
-              dangerouslySetInnerHTML={{ __html: content.substring(0, 130) }}
+              className="ptag"
+              dangerouslySetInnerHTML={{ __html: content.substring(0, 105)}}
             ></p>
             <Link className="homepage-link" to={`/post/${_id}`}>
               Read More

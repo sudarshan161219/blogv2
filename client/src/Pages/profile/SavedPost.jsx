@@ -3,10 +3,10 @@ import { useAppContext } from "../../context/Context";
 import { SavedPosts, SkeletonLoding } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts"
 const SavedPost = () => {
-  const { getSavedPost, token, savedPosts, isLoading } = useAppContext();
+  const { getSavedPost,savedPosts, isLoading } = useAppContext();
   useEffect(() => {
-    token !== "" ? getSavedPost() : null;
-  }, [token]);
+getSavedPost() 
+  }, []);
   return (
     <Wrapper>
       <h1 className="allPost-heading">
