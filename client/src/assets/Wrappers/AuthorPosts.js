@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
   }
 
   .authorpost-text-info-container {
@@ -36,6 +36,7 @@ const Wrapper = styled.div`
     justify-content: center;
     text-align: center;
     gap: 0.5rem;
+    display:grid;
     line-height: 1.1;
     letter-spacing: 1px;
     padding: 1rem;
@@ -53,7 +54,7 @@ const Wrapper = styled.div`
   }
 
   .action-link-container {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -101,6 +102,9 @@ const Wrapper = styled.div`
       padding: 0;
       order: -1;
       width: 60%;
+      display: grid;
+      justify-content: flex-start;
+
     }
 
     .image-containner {

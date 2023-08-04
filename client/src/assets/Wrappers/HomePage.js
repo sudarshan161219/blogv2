@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.main`
-  /* background-color: #f2f4f7; */
   .card {
     background-color: #fff;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
   }
 
   .homepage-author-info-container {
@@ -28,6 +28,7 @@ const Wrapper = styled.main`
   }
 
   .homepage-info-container {
+    display: grid;
     padding: 1rem;
   }
 
@@ -54,6 +55,43 @@ const Wrapper = styled.main`
     font-size: 16px;
     font-family: FontRegular;
   }
+
+
+  .action-link-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+  .edit-icon,
+  .delete-icon {
+    font-size: 1.3rem;
+    color: #121212;
+    padding: 0.6rem;
+    border-radius: 50%;
+  }
+
+  .delete-icon:active {
+    background-color: #e06469;
+    color: antiquewhite;
+  }
+
+  .edit-icon:active {
+    background-color: #afd3e2;
+  }
+
+  .read {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: FontSemiBold;
+    color: #475467;
+    line-height: 130%;
+  }
+
 
   @media (min-width: 700px) {
     .card {
@@ -103,6 +141,14 @@ const Wrapper = styled.main`
     .homepage-link:hover {
       opacity: 0.5;
       transition: all 0.3s;
+    }
+    .delete-icon:hover {
+      background-color: #e06469;
+      color: antiquewhite;
+    }
+
+    .edit-icon:hover {
+      background-color: #afd3e2;
     }
   }
 `;

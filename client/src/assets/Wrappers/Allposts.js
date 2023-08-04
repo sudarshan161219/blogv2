@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
 padding:1rem;
+.cards{
+  display:grid;
+    gap: 1.3rem;
+}
   @media (min-width: 1024px) {
     .allPost-heading {
       text-align: center;
@@ -15,27 +19,10 @@ padding:1rem;
   }
 
   @media (min-width: 768px) {
-    /* .card {
-      grid-template-columns: repeat(3, 1fr);
-      display: grid;
-      gap: 1rem;
-    } */
     .allPost-heading {
       text-align: left;
     }
   }
-
-  /* @media (min-width: 1024px) {
-    .card {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1360px) {
-    .card {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  } */
 `;
 
 export default Wrapper;

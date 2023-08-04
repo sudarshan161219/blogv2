@@ -40,7 +40,7 @@ const Allposts = () => {
             <SkeletonLoding />
           </div>
         ) : (
-          <div className="card">
+          <div className="cards">
             {authorpost.map((item) => (
               <AuthorPosts key={item._id} item={item} />
             ))}

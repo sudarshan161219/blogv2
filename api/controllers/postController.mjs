@@ -23,7 +23,7 @@ const getAllPost = async (req, res) => {
 
   const allPosts = await result
     .populate("author", ["name"])
-    .sort({ "createdAt": -1 });
+    .sort({ createdAt: -1 });
 
   const totalPosts = await Post.countDocuments(allPosts);
   const numOfPages = Math.ceil(totalPosts / limit);
@@ -44,6 +44,9 @@ const getPost = async (req, res) => {
   if (!singlepost) {
     throw new NotFoundError(`No post with id : ${postId}`);
   }
+
+  singlepost.views += 1;
+  // await singlepost.save();
 
   res.status(StatusCodes.OK).json({ singlepost });
 };
