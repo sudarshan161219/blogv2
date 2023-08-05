@@ -97,7 +97,10 @@ import {
   USER_R_TOKEN,
   CLEAR_SEARCH_VALUES,
   GET_CURRENT_USER_BEGIN,
-  GET_CURRENT_USER_SUCCESS
+  GET_CURRENT_USER_SUCCESS,
+  GET_USER_STATS_BEGIN,
+  GET_USER_STATS_SUCCESS,
+  GET_USER_STATS_ERROR
 } from "./action";
 
 import { initialState } from "./Context";
@@ -747,6 +750,35 @@ const reducer = (state, action) => {
       user: action.payload.user
     }
   }
+
+
+
+  if (action.type === GET_USER_STATS_BEGIN) {
+    return {
+      ...state,
+      statsLoading: true
+    }
+  }
+
+  if (action.type === GET_USER_STATS_SUCCESS) {
+    return {
+      ...state,
+      statsLoading: false,
+      mostViewedPosts: action.payload.mostViewedPosts,
+      totalPosts: action.payload.totalPosts,
+      totalViews: action.payload.totalViews,
+
+    }
+  }
+
+  if (action.type === GET_USER_STATS_ERROR) {
+    return {
+      ...state,
+      statsLoading: false,
+      user: action.payload.user
+    }
+  }
+
 
   throw new Error(`no such action : ${action.type}`);
 };

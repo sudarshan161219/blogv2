@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   .stats-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     padding: 1rem;
     display: grid;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .dash-stats {
@@ -27,9 +28,13 @@ const Wrapper = styled.div`
   .most-viewed-article-container {
   }
 
-  .most-viewed-article-container > strong,
+  .stats-container > div > strong,
   span {
     text-align: left;
+  }
+
+  .dashloading {
+    width: 50px;
   }
 `;
 

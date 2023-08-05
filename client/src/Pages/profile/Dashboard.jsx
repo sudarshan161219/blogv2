@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Wrapper from '../../assets/Wrappers/Dashboard'
 import { AiOutlineEye } from "react-icons/ai"
 import { GoPencil } from "react-icons/go"
+import { useAppContext } from '../../context/Context'
+import loading from "../../assets/Rolling-0.7s-157px.svg"
 
 const Dashboard = () => {
+  const { getUserStats, mostViewedPosts, totalPosts, totalViews, statsLoading } = useAppContext()
+
+  useEffect(() => {
+    getUserStats()
+  }, [])
+
+
   return (
     <Wrapper>
       <h1>Dashboard</h1>
@@ -12,22 +21,24 @@ const Dashboard = () => {
           <strong>total views</strong>
           <div className='dash-stats'>
             <AiOutlineEye />
-            <span>215k</span>
+            {statsLoading ? <img className='dashloading' src={loading} alt="loading...." /> : <span>{totalViews}</span>}
           </div>
         </div>
         <div className="total-posts-container">
           <strong>total posts</strong>
           <div className='dash-stats'>
             <GoPencil />
-            <span>215k</span>
+            {statsLoading ? <img className='dashloading' src={loading} alt="loading...." /> : <span>{totalPosts}</span>}
           </div>
         </div>
         <div className="most-viewed-article-container">
-          <strong>Most viewed article </strong>
-          <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae ab nulla culpa accusantium, consectetur nostrum.</span>
+          <strong>Most viewed articles </strong>
+          {statsLoading ? <img className='dashloading' src={loading} alt="loading...." /> : mostViewedPosts.map((item, idx) => <>
+          <span key={idx}>{item.title}</span>
+          </>)}
         </div>
       </div>
-{/* chart */}
+      {/* chart */}
     </Wrapper>
   )
 }

@@ -98,7 +98,10 @@ import {
   TOGGLE_DELETEPT_MODAL_BTN,
   CLEAR_SEARCH_VALUES,
   GET_CURRENT_USER_BEGIN,
-  GET_CURRENT_USER_SUCCESS
+  GET_CURRENT_USER_SUCCESS,
+  GET_USER_STATS_BEGIN,
+  GET_USER_STATS_SUCCESS,
+  GET_USER_STATS_ERROR
 } from "./action";
 
 // const user = localStorage.getItem("user");
@@ -111,7 +114,8 @@ const initialState = {
   commentsLoading: false,
   editCommentLoading: false,
   editCommentReplyLoading: false,
-  userLoading : true,
+  userLoading: true,
+  statsLoading: false,
   showSidebar: false,
   showDeleteModal: false,
   showDeleteCrModal: false,
@@ -185,6 +189,11 @@ const initialState = {
   numOfPagesG: 1,
   totalPostsG: 0,
   pageG: 1,
+
+
+  mostViewedPosts: [],
+  totalPosts: "",
+  totalViews: ""
 };
 const Context = createContext({});
 
@@ -992,6 +1001,28 @@ const ContextProvider = ({ children }) => {
   const clearSearchValues = () => {
     dispatch({ type: CLEAR_SEARCH_VALUES });
   };
+  // GET_USER_STATS_BEGIN,
+  // GET_USER_STATS_SUCCESS,
+  // GET_USER_STATS_ERROR
+
+  const getUserStats = async () => {
+    dispatch({ type: GET_USER_STATS_BEGIN })
+
+    try {
+      const { data } = await authFetch("/dashStats")
+      const {
+        mostViewedPosts, totalPosts, totalViews } = data
+      dispatch({
+        type: GET_USER_STATS_SUCCESS, payload: {
+          mostViewedPosts, totalPosts, totalViews
+        }
+      })
+    } catch (error) {
+      dispatch({
+        type: GET_USER_STATS_ERROR
+      })
+    }
+  }
 
   const getCurrebtUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN })
@@ -999,7 +1030,7 @@ const ContextProvider = ({ children }) => {
       const { data } = await authFetch("/getCurrentUser")
       const { user } = data
       dispatch({ type: GET_CURRENT_USER_SUCCESS, payload: { user } })
-    } catch {
+    } catch (error) {
       if (error.response.status === 400) return
       logoutUser()
     }
@@ -1077,6 +1108,8 @@ const ContextProvider = ({ children }) => {
 
         getSavedPost,
         clearSearchValues,
+
+        getUserStats
       }}
     >
       {children}

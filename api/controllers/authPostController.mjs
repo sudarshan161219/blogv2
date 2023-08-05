@@ -10,8 +10,6 @@ import {
 } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 
-
-
 const createPost = async (req, res) => {
   const { title, coverImg, content, postTags, category } = req.body;
   if (!title || !coverImg || !content || !postTags || !category) {
@@ -357,11 +355,6 @@ const createReplyComment = async (req, res) => {
   });
 };
 
-// // //? get saved post
-// const getSavedPost = async (req, res) => {
-
-// };
-
 //? like Comment
 const likeComment = async (req, res) => {
   const { id: commentId } = req.params;
@@ -642,6 +635,24 @@ const deleteCommentReply = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Success comment reply removed" });
 };
 
+const dashStats = async (req, res) => {
+  const queryObject = {
+    author: req.user.userId,
+  };
+  const user = await User.findById({ _id: req.user.userId });
+
+  if (!user) {
+    throw new UnauthenticatedError("Invalid Credentials");
+  }
+
+  const blogPosts = await Post.find(queryObject).sort({ views: -1 }).limit(5);
+  const mostViewedPosts = blogPosts.map((post) => ({ title: post.title }));
+  const totalPosts = await Post.countDocuments(queryObject);
+  const totalViews = blogPosts.reduce((total, post) => total + post.views, 0);
+
+  res.status(StatusCodes.OK).json({ mostViewedPosts, totalPosts, totalViews });
+};
+
 export {
   createPost,
   authorPosts,
@@ -671,4 +682,5 @@ export {
   editComment,
   editCommentReply,
   deleteCommentReply,
+  dashStats,
 };
