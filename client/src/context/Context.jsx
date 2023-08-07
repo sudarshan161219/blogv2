@@ -1003,22 +1003,25 @@ const ContextProvider = ({ children }) => {
     }
   }
 
-  const getCurrebtUser = async () => {
-    dispatch({ type: GET_CURRENT_USER_BEGIN })
+
+  const getCurrentUser = async () => {
+    dispatch({ type: GET_CURRENT_USER_BEGIN });
     try {
-      const { data } = await authFetch("/getCurrentUser")
-      const { user } = data
-      dispatch({ type: GET_CURRENT_USER_SUCCESS, payload: { user } })
+      const { data } = await authFetch('/getCurrentUser');
+      const { user} = data;
+
+      dispatch({
+        type: GET_CURRENT_USER_SUCCESS,
+        payload: { user },
+      });
     } catch (error) {
-      if (error.response.status === 401) {
-        logoutUser();
-        throw error.response;
-      }
+      if (error.response.status === 401) return;
+      logoutUser();
     }
-  }
+  };
   useEffect(() => {
-    getCurrebtUser()
-  }, [])
+    getCurrentUser();
+  }, []);
 
   return (
     <Context.Provider
