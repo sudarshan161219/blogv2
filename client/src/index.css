@@ -624,10 +624,13 @@ h5 {
 
 .ripple {
   border-radius: 100%;
-  width: 40px;
-  height: 40px;
 }
 
+.footer-container{
+  height: 50px;
+  padding: 1rem;
+  text-align: center;
+}
 
 @media (min-width: 700px) {
   .mobile-links{

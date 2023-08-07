@@ -28,7 +28,7 @@ const PageBtnContainer = () => {
   return (
     <Wrapper>
 
-<ul className="btns">
+<ul className="btn-container">
       <div className="prev-btn" onClick={prevPage}>
         <HiChevronDoubleLeft />
       </div>

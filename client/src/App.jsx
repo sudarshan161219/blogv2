@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, ScrolltoTopBtn } from "./Components/export";
+import { Navbar, ScrolltoTopBtn, Footer} from "./Components/export";
 import {
   Register,
   Home,
@@ -21,7 +21,9 @@ import {
   AuthorsSinglePost,
   SavedPost,
   SavedSinglePost,
+
 } from "./Pages/profile/export";
+
 
 import { Toaster } from "react-hot-toast";
 const App = () => {
@@ -55,6 +57,7 @@ const App = () => {
         <Route path="/author/:id" element={<AuthorPage />} />
       </Routes>
       <ScrolltoTopBtn />
+      <Footer />
     </>
   );
 };

@@ -192,7 +192,7 @@ const initialState = {
 
 
   mostViewedPosts: [],
-  totalPosts: "",
+  totalAuthorPosts: "",
   totalViews: ""
 };
 const Context = createContext({});

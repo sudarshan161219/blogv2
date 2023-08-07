@@ -765,7 +765,7 @@ const reducer = (state, action) => {
       ...state,
       statsLoading: false,
       mostViewedPosts: action.payload.mostViewedPosts,
-      totalPosts: action.payload.totalPosts,
+      totalAuthorPosts: action.payload.totalPosts,
       totalViews: action.payload.totalViews,
 
     }

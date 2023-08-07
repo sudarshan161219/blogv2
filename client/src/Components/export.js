@@ -23,9 +23,9 @@ import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import CommentsContainer from "./CommentsContainer";
 import Post from "./Post";
-import SavedPosts from "./Savedposts"
-import SavedSinglePost from "../Pages/profile/SavedSinglePost"
-
+import SavedPosts from "./Savedposts";
+import SavedSinglePost from "../Pages/profile/SavedSinglePost";
+import Footer from "./Footer";
 export {
   AboutHeroS,
   AboutS,
@@ -53,5 +53,6 @@ export {
   CommentsContainer,
   Post,
   SavedPosts,
-  SavedSinglePost
+  SavedSinglePost,
+  Footer,
 };

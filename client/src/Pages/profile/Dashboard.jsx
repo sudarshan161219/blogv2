@@ -6,7 +6,7 @@ import { useAppContext } from '../../context/Context'
 import loading from "../../assets/Rolling-0.7s-157px.svg"
 
 const Dashboard = () => {
-  const { getUserStats, mostViewedPosts, totalPosts, totalViews, statsLoading } = useAppContext()
+  const { getUserStats, mostViewedPosts, totalAuthorPosts, totalViews, statsLoading } = useAppContext()
 
   useEffect(() => {
     getUserStats()
@@ -28,7 +28,7 @@ const Dashboard = () => {
           <strong>total posts</strong>
           <div className='dash-stats'>
             <GoPencil />
-            {statsLoading ? <img className='dashloading' src={loading} alt="loading...." /> : <span>{totalPosts}</span>}
+            {statsLoading ? <img className='dashloading' src={loading} alt="loading...." /> : <span>{totalAuthorPosts}</span>}
           </div>
         </div>
         <div className="most-viewed-article-container">
