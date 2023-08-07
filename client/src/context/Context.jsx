@@ -983,9 +983,6 @@ const ContextProvider = ({ children }) => {
   const clearSearchValues = () => {
     dispatch({ type: CLEAR_SEARCH_VALUES });
   };
-  // GET_USER_STATS_BEGIN,
-  // GET_USER_STATS_SUCCESS,
-  // GET_USER_STATS_ERROR
 
   const getUserStats = async () => {
     dispatch({ type: GET_USER_STATS_BEGIN })
@@ -1013,7 +1010,8 @@ const ContextProvider = ({ children }) => {
       const { user } = data
       dispatch({ type: GET_CURRENT_USER_SUCCESS, payload: { user } })
     } catch (error) {
-      if (error.response.status === 400) return
+      if (error === 400) return
+      // console.log(error);
       logoutUser()
     }
   }
