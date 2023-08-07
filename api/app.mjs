@@ -20,14 +20,9 @@ import notFoundMiddleware from "./middlewares/not-found.mjs";
 import errorHandlerMiddleware from "./middlewares/error-handler.mjs";
 import auth from "./middlewares/auth.mjs";
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 const uri = process.env.MONGO_URI;
 
-const corsOrigin = {
-  origin: "http://localhost:5173", //or whatever port your frontend is using
-  credentials: true,
-  optionSuccessStatus: 200,
-};
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -38,11 +33,11 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        connectSrc: [
-          "'self'",
-          "http://127.0.0.1:8000",
-          "ws://localhost:42877/",
-        ],
+        // connectSrc: [
+        //   "'self'",
+        //   "http://127.0.0.1:8000",
+        //   "ws://localhost:42877/",
+        // ],
         "img-src": ["'self'", "https: data:"],
       },
     },
@@ -51,8 +46,6 @@ app.use(
 app.use(xss());
 app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
-// app.use(cors())
-app.use(cors(corsOrigin));
 app.use(express.static(path.resolve(__dirname, "../client/dist")));
 app.use(cookieParser());
 

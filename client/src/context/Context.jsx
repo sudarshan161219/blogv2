@@ -202,12 +202,9 @@ const ContextProvider = ({ children }) => {
 
   axios.defaults.withCredentials = true;
   const authFetch = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: '/api',
     withCredentials: true,
     crossDomain: true,
-    headers: {
-      Authorization: `Bearer ${state.token}`,
-    },
   });
 
 
@@ -291,8 +288,8 @@ const ContextProvider = ({ children }) => {
   const registerFn = async (userData) => {
     dispatch({ type: REGISTER_USER_BEGIN });
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/register",
+      const response = await authFetch.post(
+        "/register",
         userData
       );
       // authFetch
@@ -313,8 +310,8 @@ const ContextProvider = ({ children }) => {
   const loginFn = async (userData) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
-      const { data } = await axios.post(
-        "http://localhost:3000/api/login",
+      const { data } = await authFetch.post(
+        "/login",
         userData
       );
       const { user } = data;
@@ -330,21 +327,6 @@ const ContextProvider = ({ children }) => {
       });
     }
   };
-
-
-
-  useEffect(() => {
-    if (!state.user) {
-      return;
-    } else {
-      silentRefresh();
-      if (state.expiresIN) {
-        setTimeout(() => {
-          silentRefresh();
-        }, state.expiresIN * 1000);
-      }
-    }
-  }, []);
 
   const updateUserFn = async (updateData) => {
     dispatch({ type: UPDATE_USER_BEGIN });
