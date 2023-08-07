@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/HomePage";
 import moment from "moment";
 
-import { HiOutlineArrowNarrowRight } from "react-icons/hi ";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
@@ -47,7 +46,7 @@ const AuthorPosts = ({ item }) => {
                 </Link>
               </div>}
               <Link className="Link read" to={`/user-profile/${_id}`}>
-                Read <HiOutlineArrowNarrowRight className="read-icon" />
+                Read
               </Link>
             </div>
           </div>
