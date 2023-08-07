@@ -1010,9 +1010,10 @@ const ContextProvider = ({ children }) => {
       const { user } = data
       dispatch({ type: GET_CURRENT_USER_SUCCESS, payload: { user } })
     } catch (error) {
-      if (error === 400) return
-      // console.log(error);
-      logoutUser()
+      if (error.response.status === 401) {
+        logoutUser();
+        throw error.response;
+      }
     }
   }
   useEffect(() => {
