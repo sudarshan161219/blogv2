@@ -34,14 +34,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json({ limit: "50mb" }));
 app.use(helmet());
-app.use(
-    helmet.contentSecurityPolicy({
-      useDefaults: true,
-      directives: {
-        "img-src": ["'self'", "https: data:"]
-      }
-    })
-  )
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", 'http://127.0.0.1:8000', 'ws://localhost:42877/']
+    }
+  }
+}));
 app.use(xss());
 app.use(mongoSanitize());
 app.use(express.urlencoded({ extended: false, limit: "50mb" }));
