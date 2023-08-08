@@ -46,9 +46,9 @@ const getPost = async (req, res) => {
   }
 
   singlepost.views += 1;
-  // await singlepost.save();
-
-  res.status(StatusCodes.OK).json({ singlepost });
+  const postLikes = singlepost.likes.length;
+  const postDisLikes = singlepost.dislikes.length;
+  res.status(StatusCodes.OK).json({ singlepost, postLikes, postDisLikes });
 };
 
 const getAuthorPage = async (req, res) => {

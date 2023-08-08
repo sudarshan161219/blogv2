@@ -10,6 +10,8 @@ import { useAppContext } from "../context/Context";
 import { AiOutlineDelete } from "react-icons/ai";
 import Ripples from "react-ripples";
 import { toast } from "react-hot-toast";
+import profile from "../assets/imgs/profile.png"
+
 const Comments = ({ comment }) => {
   const {
     likeComment,
@@ -158,7 +160,8 @@ const Comments = ({ comment }) => {
         <div className="comment-info-container">
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
-              <img className="mobile-comment-img" src={userImg} alt={name} />
+              <img className="mobile-comment-img" src={user.userImg ? user.userImg : profile}
+                alt={user && user.name}  />
               <strong>{name}</strong>
               &#x2022;
               <span className="date">
@@ -214,7 +217,7 @@ const Comments = ({ comment }) => {
               <div className="like-dislike-container">
                 <div className="comment-like-container">
                   {Comment_Liked_Disliked_Id._id === _id &&
-                  Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
+                    Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
                     <Ripples className="comment-ripple">
                       <BiSolidLike className="ldc-icons" onClick={handleLike} />
                     </Ripples>
@@ -256,7 +259,7 @@ const Comments = ({ comment }) => {
                 </div>
                 <div className="comment-dislike-container">
                   {Comment_Liked_Disliked_Id._id === _id &&
-                  Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
+                    Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
                     <>
                       <Ripples className="comment-ripple">
                         <BiSolidDislike

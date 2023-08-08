@@ -141,15 +141,18 @@ const likePost = async (req, res) => {
     );
   }
 
-  const like_dislike_Post = await Post.findByIdAndUpdate(
-    { _id: postId },
-    {
-      $push: { likes: req.user.userId },
-    },
-    { new: true }
-  );
+  const blogPost = await Post.findById(postId);
+  if (!blogPost) {
+    return res.status(404).json({ error: "Blog post not found" });
+  }
 
-  res.status(StatusCodes.OK).json({ like_dislike_Post });
+  if (!blogPost.likes.includes(req.user.userId)) {
+    blogPost.likes.push(req.user.userId);
+    await blogPost.save();
+  }
+
+  const postLikes = blogPost.likes.length;
+  res.status(StatusCodes.OK).json({ postLikes });
 };
 
 const unLikePost = async (req, res) => {
@@ -162,15 +165,18 @@ const unLikePost = async (req, res) => {
     );
   }
 
-  const like_dislike_Post = await Post.findByIdAndUpdate(
-    { _id: postId },
-    {
-      $pull: { likes: req.user.userId },
-    },
-    { new: true }
-  );
+  const blogPost = await Post.findById(postId);
+  if (!blogPost) {
+    return res.status(404).json({ error: "Blog post not found" });
+  }
 
-  res.status(StatusCodes.OK).json({ like_dislike_Post });
+  if (blogPost.likes.includes(req.user.userId)) {
+    blogPost.likes.pull(req.user.userId);
+    await blogPost.save();
+  }
+  const postLikes = blogPost.likes.length;
+
+  res.status(StatusCodes.OK).json({ postLikes });
 };
 
 const disLikePost = async (req, res) => {
@@ -183,15 +189,18 @@ const disLikePost = async (req, res) => {
     );
   }
 
-  const like_dislike_Post = await Post.findByIdAndUpdate(
-    { _id: postId },
-    {
-      $push: { dislikes: req.user.userId },
-    },
-    { new: true }
-  );
+  const blogPost = await Post.findById(postId);
+  if (!blogPost) {
+    return res.status(404).json({ error: "Blog post not found" });
+  }
 
-  res.status(StatusCodes.OK).json({ like_dislike_Post });
+  if (!blogPost.dislikes.includes(req.user.userId)) {
+    blogPost.dislikes.push(req.user.userId);
+    await blogPost.save();
+  }
+  const postDisLikes = blogPost.dislikes.length;
+
+  res.status(StatusCodes.OK).json({ postDisLikes });
 };
 
 const disUnLikePost = async (req, res) => {
@@ -204,15 +213,17 @@ const disUnLikePost = async (req, res) => {
     );
   }
 
-  const like_dislike_Post = await Post.findByIdAndUpdate(
-    { _id: postId },
-    {
-      $pull: { dislikes: req.user.userId },
-    },
-    { new: true }
-  );
+  const blogPost = await Post.findById(postId);
+  if (!blogPost) {
+    return res.status(404).json({ error: "Blog post not found" });
+  }
 
-  res.status(StatusCodes.OK).json({ like_dislike_Post });
+  if (blogPost.dislikes.includes(req.user.userId)) {
+    blogPost.dislikes.pull(req.user.userId);
+    await blogPost.save();
+  }
+  const postDisLikes = blogPost.dislikes.length;
+  res.status(StatusCodes.OK).json({ postDisLikes });
 };
 
 //$ get save post

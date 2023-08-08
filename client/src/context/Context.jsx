@@ -632,10 +632,10 @@ const ContextProvider = ({ children }) => {
   const likePost = async (id) => {
     try {
       const { data } = await authFetch.put(`/like/${id}`);
-      const { like_dislike_Post } = data;
+      const { postLikes } = data;
       dispatch({
         type: POST_LIKES,
-        payload: { like_dislike_Post },
+        payload: { postLikes },
       });
     } catch (error) {
       console.log(error);
@@ -645,10 +645,10 @@ const ContextProvider = ({ children }) => {
   const unLikePost = async (id) => {
     try {
       const { data } = await authFetch.put(`/unlike/${id}`);
-      const { like_dislike_Post } = data;
+      const { postLikes } = data;
       dispatch({
         type: POST_LIKES,
-        payload: { like_dislike_Post },
+        payload: { postLikes },
       });
     } catch (error) {
       console.log(error);
@@ -658,10 +658,10 @@ const ContextProvider = ({ children }) => {
   const dislikePost = async (id) => {
     try {
       const { data } = await authFetch.put(`/dislike/${id}`);
-      const { like_dislike_Post } = data;
+      const { postDisLikes } = data;
       dispatch({
         type: POST_DISLIKES,
-        payload: { like_dislike_Post },
+        payload: { postDisLikes },
       });
     } catch (error) {
       console.log(error);
@@ -671,10 +671,10 @@ const ContextProvider = ({ children }) => {
   const disunLikePost = async (id) => {
     try {
       const { data } = await authFetch.put(`/disunlike/${id}`);
-      const { like_dislike_Post } = data;
+      const { postDisLikes } = data;
       dispatch({
         type: POST_DISLIKES,
-        payload: { like_dislike_Post },
+        payload: { postDisLikes },
       });
     } catch (error) {
       console.log(error);
@@ -1006,18 +1006,18 @@ const ContextProvider = ({ children }) => {
 
   const getCurrentUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN });
-      try {
-        const { data } = await authFetch('/getCurrentUser');
-        const { user } = data;
+    try {
+      const { data } = await authFetch('/getCurrentUser');
+      const { user } = data;
 
-        dispatch({
-          type: GET_CURRENT_USER_SUCCESS,
-          payload: { user },
-        });
-      } catch (error) {
-        if (error.status === 401) return;
-        logoutUser();
-      }
+      dispatch({
+        type: GET_CURRENT_USER_SUCCESS,
+        payload: { user },
+      });
+    } catch (error) {
+      if (error.status === 401) return;
+      logoutUser();
+    }
   };
 
 

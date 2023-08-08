@@ -558,14 +558,14 @@ const reducer = (state, action) => {
   if (action.type === POST_LIKES) {
     return {
       ...state,
-      postLikes: action.payload.like_dislike_Post.likes.length,
+      postLikes: action.payload.postLikes,
     };
   }
 
   if (action.type === POST_DISLIKES) {
     return {
       ...state,
-      postDisLikes: action.payload.like_dislike_Post.dislikes.length,
+      postDisLikes: action.payload.postDisLikes,
     };
   }
 
@@ -750,8 +750,6 @@ const reducer = (state, action) => {
       user: action.payload.user
     }
   }
-
-
 
   if (action.type === GET_USER_STATS_BEGIN) {
     return {
