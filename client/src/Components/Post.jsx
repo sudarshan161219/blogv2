@@ -43,7 +43,7 @@ const Post = () => {
   } = useAppContext();
 
   const { id } = useParams();
-  const { title, coverImg, content, createdAt, author, postTags } = post;
+  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
 
   useEffect(() => {
     getSinglePost(id);
@@ -127,7 +127,7 @@ const Post = () => {
                       <BiLike className="post-ldc-icons" onClick={handleLike} />
                     </Ripples>
                   )}
-                  <strong>{postLikes}</strong>
+                  <strong>{postLikes || likes.length}</strong>
                 </div>
                 <div className="dislike-container">
                   {dislike ? (
@@ -145,7 +145,7 @@ const Post = () => {
                       />
                     </Ripples>
                   )}
-                  <strong>{postDisLikes}</strong>
+                  <strong>{postDisLikes || dislikes.length}</strong>
                 </div>
                 <div className="comment-container">
                   <Ripples className="ripple">
