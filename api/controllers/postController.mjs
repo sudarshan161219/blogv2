@@ -11,29 +11,61 @@ import {
 } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 
+// const getAllPost = async (req, res) => {
+//   let result = Post.find();
+
+//   const page = Number(req.query.page) || 1;
+//   const limit = Number(req.query.limit) || 10;
+
+//   const skip = (page - 1) * limit;
+
+//   result = result.skip(skip).limit(limit);
+
+//   const allPosts = await result
+//     .populate("author", ["name"])
+//     .sort({ createdAt: -1 });
+
+//   const totalPosts = await Post.countDocuments(allPosts);
+//   const numOfPages = Math.ceil(totalPosts / limit);
+
+//   return res.status(StatusCodes.OK).json({
+//     allPosts,
+//     totalPosts,
+//     numOfPages,
+//   });
+// };
+
 const getAllPost = async (req, res) => {
-  let result = Post.find();
+  try {
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
 
-  const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
+    const allPostsPromise = Post.find()
+      .skip(skip)
+      .limit(limit)
+      .populate("author", ["name"])
+      .sort({ createdAt: -1 });
 
-  const skip = (page - 1) * limit;
+    const totalPostsPromise = Post.countDocuments();
 
-  result = result.skip(skip).limit(limit);
+    const [allPosts, totalPosts] = await Promise.all([allPostsPromise, totalPostsPromise]);
+    
+    const numOfPages = Math.ceil(totalPosts / limit);
 
-  const allPosts = await result
-    .populate("author", ["name"])
-    .sort({ createdAt: -1 });
-
-  const totalPosts = await Post.countDocuments(allPosts);
-  const numOfPages = Math.ceil(totalPosts / limit);
-
-  return res.status(StatusCodes.OK).json({
-    allPosts,
-    totalPosts,
-    numOfPages,
-  });
+    return res.status(StatusCodes.OK).json({
+      allPosts,
+      totalPosts,
+      numOfPages,
+    });
+  } catch (error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      error: 'Server error',
+    });
+  }
 };
+
+
 
 const getPost = async (req, res) => {
   const { id: postId } = req.params;

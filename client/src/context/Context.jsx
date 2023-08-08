@@ -189,7 +189,7 @@ const initialState = {
   numOfPagesG: 1,
   totalPostsG: 0,
   pageG: 1,
-
+  limit: 5,
 
   mostViewedPosts: [],
   totalAuthorPosts: "",
@@ -390,25 +390,22 @@ const ContextProvider = ({ children }) => {
     if (search) {
       url = url + `search=${search}`;
     }
+    dispatch({ type: GET_AUTHOR_POST_BEGIN });
 
-    if (state.authorpost.length === 0) {
-      dispatch({ type: GET_AUTHOR_POST_BEGIN });
-
-      try {
-        const { data } = await authFetch.get(url, {
-          credentials: "omit",
-        });
-        const { authorpost, totalPosts, numOfPages } = data;
-        dispatch({
-          type: GET_AUTHOR_POST_SUCCESS,
-          payload: { authorpost, totalPosts, numOfPages },
-        });
-        dispatch({ type: CLEAR_VALUES });
-      } catch (error) {
-        dispatch({
-          type: GET_AUTHOR_POST_ERROR,
-        });
-      }
+    try {
+      const { data } = await authFetch.get(url, {
+        credentials: "omit",
+      });
+      const { authorpost, totalPosts, numOfPages } = data;
+      dispatch({
+        type: GET_AUTHOR_POST_SUCCESS,
+        payload: { authorpost, totalPosts, numOfPages },
+      });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (error) {
+      dispatch({
+        type: GET_AUTHOR_POST_ERROR,
+      });
     }
   };
 
@@ -553,27 +550,27 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: CHANGE_PAGE, payload: { page } });
   };
 
-  const getALLPost = async () => {
-    const { pageG } = state;
-    let url = `/?page=${pageG}`;
-    // if (allPosts.length === 0) {
-    dispatch({ type: GET_ALL_POST_BEGIN });
-    try {
-      const { data } = await authFetch.get(url, {
-        credentials: "omit",
-      });
-      const { allPosts, totalPosts, numOfPages } = data;
-      dispatch({
-        type: GET_ALL_POST_SUCCESS,
-        payload: { allPosts, totalPosts, numOfPages },
-      });
-    } catch (error) {
-      dispatch({
-        type: GET_ALL_POST_ERROR,
-      });
-    }
-    // }
-  };
+  // const getALLPost = async () => {
+  //   const { pageG } = state;
+  //   let url = `/?page=${pageG + 1}`;
+  //   // if (allPosts.length === 0) {
+  //   dispatch({ type: GET_ALL_POST_BEGIN });
+  //   try {
+  //     const { data } = await authFetch.get(url, {
+  //       credentials: "omit",
+  //     });
+  //     const { allPosts, totalPosts, numOfPages } = data;
+  //     dispatch({
+  //       type: GET_ALL_POST_SUCCESS,
+  //       payload: { allPosts, totalPosts, numOfPages },
+  //     });
+  //   } catch (error) {
+  //     dispatch({
+  //       type: GET_ALL_POST_ERROR,
+  //     });
+  //   }
+  //   // }
+  // };
 
   const getSinglePost = async (id) => {
     dispatch({ type: GET_SINGLE_POST_BEGIN });
@@ -1054,7 +1051,7 @@ const ContextProvider = ({ children }) => {
         clearFilters,
         changePage,
         getTagSearchPost,
-        getALLPost,
+        // getALLPost,
         getSinglePost,
         getAuthorPage,
         likePost,

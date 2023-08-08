@@ -51,9 +51,16 @@ const Createpost = () => {
   );
   const navigate = useNavigate();
 
+  function htmlDecode(content) {
+    let e = document.createElement('div');
+    e.innerHTML = content;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+
+
   useEffect(() => {
     if (isEditing) {
-      setVQuill(content);
+      setVQuill(htmlDecode(content)|| content);
       if (file === undefined) {
         setFile(coverImg);
       } else if (file !== undefined) {
@@ -95,7 +102,7 @@ const Createpost = () => {
       toast.error("please provide all values");
     } else {
       createPost(data);
-      e.currentTarget.reset();
+      e.currentTarget.reset();;
     }
   };
 
@@ -128,24 +135,6 @@ const Createpost = () => {
     setInput(value);
   };
 
-
-
-  // const onKeyDown = (e) => {
-  //   const { key } = e;
-  //   const trimmedInput = input.trim();
-  //   if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
-  //     e.preventDefault();
-  //     setTags((prevState) => [...prevState, "#" + trimmedInput]);
-  //     setInput(" ");
-  //     if (isEditing) {
-  //       newTag.push("#" + trimmedInput);
-  //       const merge = [...tags, ...newTag];
-  //       let uniqueChars = [...new Set(merge)];
-  //       setTags(uniqueChars);
-  //       setInput("");
-  //     }
-  //   }
-  // };
 
   const addTag = (e) => {
     e.preventDefault();
@@ -181,7 +170,6 @@ const Createpost = () => {
   return (
     <>
       <Wrapper className="container">
-        {/* <Toaster position="top-center" reverseOrder={false}></Toaster> */}
         <div className="row">
           <form onSubmit={handleSubmit} className="quill-form">
             <h3> {isEditing ? "Edit Post" : "Create Post"} </h3>
@@ -263,6 +251,7 @@ const Createpost = () => {
                   formats={formats}
                   theme="snow"
                   value={vquill}
+
                   placeholder={placeholder}
                   onChange={setVQuill}
                 />

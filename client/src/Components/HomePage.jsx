@@ -10,6 +10,13 @@ const HomePage = ({ item }) => {
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
 
+  function htmlDecode(content) {
+    let e = document.createElement('div');
+    e.innerHTML = content;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+  
+
   return (
     <Wrapper>
       <div className="card">
@@ -27,7 +34,7 @@ const HomePage = ({ item }) => {
             <h1>{title}</h1>
             <p
               className="ptag"
-              dangerouslySetInnerHTML={{ __html: content.substring(0, 105)}}
+              dangerouslySetInnerHTML={{ __html: htmlDecode(content.substring(0, 105)) || content.substring(0, 105) }}
             ></p>
             <Link className="homepage-link" to={`/post/${_id}`}>
               Read More

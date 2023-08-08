@@ -4,6 +4,7 @@ import { Loading } from "../../Components/export";
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/AuthorsSinglePost";
 import { BiEdit } from "react-icons/bi";
+import DOMPurify from "dompurify";
 
 const AuthorsSinglePost = () => {
   const {
@@ -41,6 +42,12 @@ const AuthorsSinglePost = () => {
     return <Loading />;
   }
 
+  function htmlDecode(content) {
+    let e = document.createElement('div');
+    e.innerHTML = content;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+
   return (
     <Wrapper>
       <Link
@@ -66,21 +73,16 @@ const AuthorsSinglePost = () => {
         <h1>{title}</h1>
         <p>{summary}</p>
         <div className="tags-container">
-          {postTags &&
-            postTags.map((tag, idx) => {
-              return (
-                <strong key={idx} className="tags">
-                  {tag}
-                </strong>
-              );
-            })}
+          {postTags && postTags.map((tag, idx) => {
+            return <strong key={idx} className="tags">{tag}</strong>;
+          })}
         </div>
       </div>
       <br />
       <div className="ql-snow">
         <div
           className="ql-editor"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: htmlDecode(content) || content}}
         ></div>
       </div>
     </Wrapper>

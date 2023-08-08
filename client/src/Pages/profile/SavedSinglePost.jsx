@@ -4,13 +4,12 @@ import { Link, useParams } from "react-router-dom";
 import { useAppContext } from "../../context/Context";
 import {
   Loading,
-  Post,
   CommentForm,
   CommentsContainer,
 } from "../../Components/export";
 import DeleteAlertModal from "../../Alert/DeleteAlertModal"
 import DeleteCRAlertModal from "../../Alert/DeleteCRAlertModal"
-
+import Post from "../Post";
 const SavedSinglePost = () => {
   const { clearAuthorSinglePost, getSinglePost, isLoading, user, post } =
     useAppContext();
