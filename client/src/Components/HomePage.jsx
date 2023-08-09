@@ -1,11 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Wrapper from "../assets/Wrappers/HomePage";
 import moment from "moment";
 import { BsPersonCircle } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
-const HomePage = ({ item }) => {
-  const { _id, title, coverImg, content, createdAt, author } = item;
+
+
+const HomePage = forwardRef(({ post }, ref) => {
+
+  const { _id, title, coverImg, content:decs, createdAt, author } = props.item;
+
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -15,10 +19,9 @@ const HomePage = ({ item }) => {
     e.innerHTML = content;
     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
   }
-  
 
-  return (
-    <Wrapper>
+
+  const postBody = (
       <div className="card">
         <div className="homepage-img-container">
           <img className="homepage-img" src={coverImg} alt=" articalimg" />
@@ -34,7 +37,7 @@ const HomePage = ({ item }) => {
             <h1>{title}</h1>
             <p
               className="ptag"
-              dangerouslySetInnerHTML={{ __html: htmlDecode(content.substring(0, 105)) || content.substring(0, 105) }}
+              dangerouslySetInnerHTML={{ __html: htmlDecode(decs.substring(0, 105)) || decs.substring(0, 105) }}
             ></p>
             <Link className="homepage-link" to={`/post/${_id}`}>
               Read More
@@ -42,8 +45,11 @@ const HomePage = ({ item }) => {
           </div>
         </div>
       </div>
-    </Wrapper>
-  );
-};
+)
+
+    const content = ref ? <Wrapper ref={ref}>{postBody}</Wrapper> : <Wrapper>{postBody}</Wrapper>
+    return content
+  
+})
 
 export default HomePage;

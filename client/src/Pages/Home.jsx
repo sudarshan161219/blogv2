@@ -1,76 +1,47 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { HomePage } from "../Components/export";
 import Wrapper from "../assets/Wrappers/Home";
 import { useAppContext } from "../context/Context";
 import { SkeletonLoding, PageBtnContainer } from "../Components/export";
-
+import usePosts from "../../hooks/usePosts";
 
 const Home = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loadedPosts, setLoadedPosts] = useState([]);
-  const [hasMoreData, setHasMoreData] = useState(true);
+  const [pageNum, setPageNum] = useState(1)
+  const { isLoading, isError, error, results, hasNextPage } = usePosts(pageNum)
 
 
-  useEffect(() => {
-    fetchData();
-    window.addEventListener('scroll', handleScroll);
+  const intObserver = useRef()
+  const lastPostRef = useCallback(post => {
+    if (isLoading) return
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const fetchData = async () => {
-    if (!hasMoreData) return;
-
-    try {
-      const {data} = await axios.get(`/api/?page=${currentPage}&limit=5`);
-      console.log(data);
-      const {allPosts} = data
-      // const newPosts = response.data.allPosts;
-      // const totalPages = response.data.numOfPages;
-
-      setLoadedPosts((prevPosts) => [...prevPosts, ...allPosts]);
-      setCurrentPage((prevPage) => prevPage + 1);
-
-      if (currentPage >= totalPages) {
-        setHasMoreData(false);
+    if (intObserver.current) intObserver.current.disconnect()
+    intObserver.current = new IntersectionObserver(posts => {
+      if (posts[0].isIntersecting && hasNextPage) {
+        console.log("we are near last post");
+        setPageNum(prev => prev + 1)
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    })
+
+    if (post) intObserver.current.observe(post)
+  }, [isLoading, hasNextPage])
+
+
+  if (isError) return <p>Error: {error.message}</p>
+
+  const content = results.map((post, i) => {
+    if (results.length === i + 1) {
+      return <HomePage ref={lastPostRef} item={post} key={i} />
     }
-  };
+    return <HomePage item={post} key={i} />
 
-  const handleScroll = () => {
-    const scrolledToBottom =
-      window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
-
-    if (scrolledToBottom) {
-      fetchData();
-    }
-  };
-
+  })
 
 
   return (
     <Wrapper>
-      {/* {isLoading ? (
-        <SkeletonLoding />
-      ) : ( */}
-      <>
-        {loadedPosts.map((item) => (
-          <HomePage item={item} key={item._id} />
-        ))}
-        {hasMoreData && <p>Loading more...</p>}
-        {!hasMoreData && <p>No more data</p>}
-
-        {/* {numOfPages > 1 && <PageBtnContainer />} */}
-      </>
-      {/* )} */}
+      {content}
     </Wrapper>
   );
-};
+}
 
 export default Home;
