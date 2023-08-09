@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.main`
+const Wrapper = styled.article`
   .card {
     background-color: #fff;
     overflow: hidden;

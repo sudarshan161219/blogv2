@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { getPostsPage } from "../api/axios";
+// import  getPostsPage  from "../api/axios.js";
+import { useAppContext } from "../src/context/Context";
 
 const usePosts = (pageNum = 1) => {
+  const {getPostApi} = useAppContext()
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -16,11 +18,11 @@ const usePosts = (pageNum = 1) => {
     const controller = new AbortController();
     const { signal } = controller;
 
-    getPostsPage(pageNum, { signal })
+    getPostApi(pageNum, { signal })
       .then((data) => {
         const { numOfPages, allPosts } = data;
         setResults((prev) => [...prev, ...allPosts]);
-        setHasNextPage(Boolean(numOfPages));
+        setHasNextPage(Boolean(allPosts.length));
         setIsLoading(false);
       })
       .catch((e) => {

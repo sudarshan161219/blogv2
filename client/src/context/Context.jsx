@@ -572,6 +572,11 @@ const ContextProvider = ({ children }) => {
   //   // }
   // };
 
+  const getPostApi = async (pageparam = 1, options = {}) => {
+    const response = await authFetch.get(`/?page=${pageparam}&limit=5`, options);
+    return response.data;
+  }
+
   const getSinglePost = async (id) => {
     dispatch({ type: GET_SINGLE_POST_BEGIN });
     try {
@@ -1092,7 +1097,8 @@ const ContextProvider = ({ children }) => {
         getSavedPost,
         clearSearchValues,
 
-        getUserStats
+        getUserStats,
+        getPostApi
       }}
     >
       {children}

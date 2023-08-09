@@ -56,8 +56,8 @@ const App = () => {
         <Route path="/post/:id" element={<SinglePost />} />
         <Route path="/author/:id" element={<AuthorPage />} />
       </Routes>
-      <ScrolltoTopBtn />
-      <Footer />
+      {/* <ScrolltoTopBtn /> */}
+      {/* <Footer /> */}
     </>
   );
 };
