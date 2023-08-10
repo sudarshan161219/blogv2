@@ -160,7 +160,7 @@ const Comments = ({ comment }) => {
         <div className="comment-info-container">
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
-              <img className="mobile-comment-img" src={user.userImg ? user.userImg : profile}
+              <img className="mobile-comment-img" src={user ? user.userImg : profile}
                 alt={user && user.name}  />
               <strong>{name}</strong>
               &#x2022;
