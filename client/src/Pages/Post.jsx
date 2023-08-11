@@ -205,9 +205,13 @@ const Post = () => {
         </div>
 
         <div className="ql-snow post-content-container">
-          <div
+          {/* <div
             className="ql-editor"
             dangerouslySetInnerHTML={{ __html: htmlDecode(content) || content }}
+          ></div> */}
+                    <div
+            className="ql-editor"
+            dangerouslySetInnerHTML={{ __html: content }}
           ></div>
         </div>
       </div>
