@@ -999,8 +999,10 @@ const ContextProvider = ({ children }) => {
       });
     } catch (error) {
       if (signal.aborted) return;
-      if (error.status === 401) return
-      logoutUser();
+      if (error.response && error.response.status === 401) {
+        logoutUser()
+        return;
+      }
     }
   };
 

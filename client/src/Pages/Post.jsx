@@ -47,7 +47,7 @@ const Post = () => {
 
   useEffect(() => {
     getSinglePost(id);
-  }, [id]);
+  }, []);
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");

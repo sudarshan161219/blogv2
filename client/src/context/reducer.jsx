@@ -214,12 +214,8 @@ const reducer = (state, action) => {
   if (action.type === GET_SINGLE_POST_SUCCESS) {
     const { post, user, comments } = state;
     const { likes, dislikes, savepost } = post;
-    const { author } = comments;
-
     let newArr;
-
     comments.map((item) => (newArr = item));
-    // console.log(newArr.likes.includes(user && user._id));
 
     return {
       ...state,
