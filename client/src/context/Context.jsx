@@ -222,7 +222,8 @@ const ContextProvider = ({ children }) => {
     }
   );
 
-
+  const controller = new AbortController();
+  const { signal } = controller;
 
   //* toggle sidebar
   const toggleSidebar = () => {
@@ -989,7 +990,7 @@ const ContextProvider = ({ children }) => {
   const getCurrentUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN });
     try {
-      const { data } = await authFetch('/getCurrentUser');
+      const { data } = await authFetch('/getCurrentUser', { signal });
       const { user } = data;
 
       dispatch({
@@ -997,7 +998,8 @@ const ContextProvider = ({ children }) => {
         payload: { user },
       });
     } catch (error) {
-      if (error.status === 401) return;
+      if (signal.aborted) return;
+      if (error.status === 401) return
       logoutUser();
     }
   };
