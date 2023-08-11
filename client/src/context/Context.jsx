@@ -193,7 +193,9 @@ const initialState = {
 
   mostViewedPosts: [],
   totalAuthorPosts: "",
-  totalViews: ""
+  totalViews: "",
+  totalAuthorViews: "",
+
 };
 const Context = createContext({});
 
@@ -549,28 +551,6 @@ const ContextProvider = ({ children }) => {
   const changePage = (page) => {
     dispatch({ type: CHANGE_PAGE, payload: { page } });
   };
-
-  // const getALLPost = async () => {
-  //   const { pageG } = state;
-  //   let url = `/?page=${pageG + 1}`;
-  //   // if (allPosts.length === 0) {
-  //   dispatch({ type: GET_ALL_POST_BEGIN });
-  //   try {
-  //     const { data } = await authFetch.get(url, {
-  //       credentials: "omit",
-  //     });
-  //     const { allPosts, totalPosts, numOfPages } = data;
-  //     dispatch({
-  //       type: GET_ALL_POST_SUCCESS,
-  //       payload: { allPosts, totalPosts, numOfPages },
-  //     });
-  //   } catch (error) {
-  //     dispatch({
-  //       type: GET_ALL_POST_ERROR,
-  //     });
-  //   }
-  //   // }
-  // };
 
   const getPostApi = async (pageparam = 1, options = {}) => {
     const response = await authFetch.get(`/?page=${pageparam}&limit=5`, options);
@@ -992,10 +972,10 @@ const ContextProvider = ({ children }) => {
     try {
       const { data } = await authFetch("/dashStats")
       const {
-        mostViewedPosts, totalPosts, totalViews } = data
+        mostViewedPosts, totalPosts, totalViews, totalAuthorViews } = data
       dispatch({
         type: GET_USER_STATS_SUCCESS, payload: {
-          mostViewedPosts, totalPosts, totalViews
+          mostViewedPosts, totalPosts, totalViews, totalAuthorViews
         }
       })
     } catch (error) {
@@ -1056,7 +1036,6 @@ const ContextProvider = ({ children }) => {
         clearFilters,
         changePage,
         getTagSearchPost,
-        // getALLPost,
         getSinglePost,
         getAuthorPage,
         likePost,
@@ -1098,7 +1077,8 @@ const ContextProvider = ({ children }) => {
         clearSearchValues,
 
         getUserStats,
-        getPostApi
+        getPostApi,
+
       }}
     >
       {children}

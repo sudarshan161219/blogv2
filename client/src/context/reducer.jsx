@@ -185,27 +185,6 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === GET_ALL_POST_BEGIN) {
-    return { ...state, isLoading: true };
-  }
-
-  if (action.type === GET_ALL_POST_SUCCESS) {
-    return {
-      ...state,
-      isLoading: false,
-      allPosts: action.payload.allPosts,
-      totalPosts: action.payload.totalPosts,
-      numOfPages: action.payload.numOfPages,
-    };
-  }
-
-  if (action.type === GET_ALL_POST_ERROR) {
-    return {
-      ...state,
-      isLoading: false,
-    };
-  }
-
   if (action.type === GET_AUTHOR_PAGE_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -765,7 +744,7 @@ const reducer = (state, action) => {
       mostViewedPosts: action.payload.mostViewedPosts,
       totalAuthorPosts: action.payload.totalPosts,
       totalViews: action.payload.totalViews,
-
+      totalAuthorViews: action.payload.totalAuthorViews,
     }
   }
 
@@ -773,7 +752,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       statsLoading: false,
-      user: action.payload.user
+      // user: action.payload.user
     }
   }
 

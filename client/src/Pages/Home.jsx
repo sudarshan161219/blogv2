@@ -1,18 +1,18 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { HomePage } from "../Components/export";
 import Wrapper from "../assets/Wrappers/Home";
-import { useAppContext } from "../context/Context";
-import { SkeletonLoding, PageBtnContainer } from "../Components/export";
+import { SkeletonLoding } from "../Components/export";
 import usePosts from "../../hooks/usePosts.js";
 import { useInfiniteQuery } from "react-query"
-
+import { Suspense } from "react";
 
 const Home = () => {
-
   const [pageNum, setPageNum] = useState(1)
   const {
     isLoading, isError, error, results, hasNextPage
   } = usePosts(pageNum)
+
+
 
   const intObserver = useRef()
   const lastPostRef = useCallback(post => {
@@ -29,9 +29,6 @@ const Home = () => {
   }, [isLoading, hasNextPage])
 
 
-  if (isError) return <p>Error: {error.message}</p>
-
-
   const content = results.map((post, i) => {
     if (results.length === i + 1) {
       return <HomePage ref={lastPostRef} item={post} key={i} />
@@ -40,10 +37,13 @@ const Home = () => {
   })
 
 
+  if (isLoading) {
+    return <SkeletonLoding />
+  }
+
   return (
     <Wrapper>
-      {content}
-      {!hasNextPage && "You have reached end"}
+        {content}
     </Wrapper>
   );
 }

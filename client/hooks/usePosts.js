@@ -5,7 +5,7 @@ import { useAppContext } from "../src/context/Context";
 const usePosts = (pageNum = 1) => {
   const {getPostApi} = useAppContext()
   const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState({});
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -20,7 +20,7 @@ const usePosts = (pageNum = 1) => {
 
     getPostApi(pageNum, { signal })
       .then((data) => {
-        const { numOfPages, allPosts } = data;
+        const { allPosts } = data;
         setResults((prev) => [...prev, ...allPosts]);
         setHasNextPage(Boolean(allPosts.length));
         setIsLoading(false);

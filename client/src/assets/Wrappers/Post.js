@@ -80,13 +80,13 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     padding: 1rem;
-    background-color: #dde6ed;
+    background-color: #1d2939;
   }
 
   .ldc-disable-msg > strong {
     font-size: 1rem;
     font-family: FontSemiBold;
-    color: #e76161;
+    color: #ffffff;
   }
 
   .ldc-disable-msg > strong > .strong-link {

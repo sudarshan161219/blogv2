@@ -35,16 +35,18 @@ const UserSchema = new Schema({
 
   userImg: {
     type: String,
+    default: "https://api.dicebear.com/6.x/adventurer/svg?seed=Cuddles",
   },
 
   userInfo: {
     type: String,
   },
+  views: { type: Number, default: 0 },
   personalLink: { type: String },
   twitter: { type: String },
   instagram: { type: String },
   linkden: { type: String },
-  userToken:{type: String}
+  userToken: { type: String },
 });
 
 //* saving documents
@@ -56,17 +58,17 @@ UserSchema.pre("save", async function () {
 
 //* creating jwt token Access_Token
 UserSchema.methods.createAccess_TokenJWT = function () {
-return jwt.sign({ userId: this._id }, process.env.ACCESS_TOKEN_SECRET, {
+  return jwt.sign({ userId: this._id }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: process.env.JWT_SHORT_LIFETIME,
   });
 };
 
 //* creating jwt token Refresh_Token
 UserSchema.methods.createRefresh_TokenJWT = function () {
-  return  jwt.sign({ userId: this._id }, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: process.env.JWT_LONG_LIFETIME,
-    });
-  };
+  return jwt.sign({ userId: this._id }, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: process.env.JWT_LONG_LIFETIME,
+  });
+};
 
 UserSchema.methods.comparePassword = async function (candidatePassword) {
   const isMatch = await bcrypt.compare(candidatePassword, this.password);

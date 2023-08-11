@@ -11,30 +11,6 @@ import {
 } from "../errors/export.mjs";
 import checkPermissions from "../utils/checkPermissions.mjs";
 
-// const getAllPost = async (req, res) => {
-//   let result = Post.find();
-
-//   const page = Number(req.query.page) || 1;
-//   const limit = Number(req.query.limit) || 10;
-
-//   const skip = (page - 1) * limit;
-
-//   result = result.skip(skip).limit(limit);
-
-//   const allPosts = await result
-//     .populate("author", ["name"])
-//     .sort({ createdAt: -1 });
-
-//   const totalPosts = await Post.countDocuments(allPosts);
-//   const numOfPages = Math.ceil(totalPosts / limit);
-
-//   return res.status(StatusCodes.OK).json({
-//     allPosts,
-//     totalPosts,
-//     numOfPages,
-//   });
-// };
-
 const getAllPost = async (req, res) => {
   try {
     const page = Number(req.query.page) || 1;
@@ -49,8 +25,11 @@ const getAllPost = async (req, res) => {
 
     const totalPostsPromise = Post.countDocuments();
 
-    const [allPosts, totalPosts] = await Promise.all([allPostsPromise, totalPostsPromise]);
-    
+    const [allPosts, totalPosts] = await Promise.all([
+      allPostsPromise,
+      totalPostsPromise,
+    ]);
+
     const numOfPages = Math.ceil(totalPosts / limit);
 
     return res.status(StatusCodes.OK).json({
@@ -60,12 +39,10 @@ const getAllPost = async (req, res) => {
     });
   } catch (error) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      error: 'Server error',
+      error: "Server error",
     });
   }
 };
-
-
 
 const getPost = async (req, res) => {
   const { id: postId } = req.params;
@@ -78,6 +55,7 @@ const getPost = async (req, res) => {
   }
 
   singlepost.views += 1;
+  singlepost.save();
   const postLikes = singlepost.likes.length;
   const postDisLikes = singlepost.dislikes.length;
   res.status(StatusCodes.OK).json({ singlepost, postLikes, postDisLikes });
@@ -89,6 +67,8 @@ const getAuthorPage = async (req, res) => {
     author: authorId,
   };
   const authorInfo = await User.findById({ _id: authorId });
+  authorInfo.views += 1;
+  authorInfo.save();
   const authorPosts = await Post.find(queryObject).sort({ createdAt: -1 });
   res.status(StatusCodes.OK).json({ authorPosts, authorInfo });
 };

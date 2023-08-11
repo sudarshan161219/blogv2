@@ -4,11 +4,10 @@ const Wrapper = styled.div`
   padding: 1rem;
 
   .stats-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: center; */
-    gap: 1rem;
-    margin-top: 2rem;
+    padding: 1rem;
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minMax(min(100%, 250px), 1fr));
   }
 
   .stats-container > div {
@@ -16,7 +15,6 @@ const Wrapper = styled.div`
     padding: 1rem;
     display: grid;
     gap: 0.5rem;
-    width: 100%;
   }
 
   .dash-stats {
@@ -24,8 +22,16 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
   }
+  .most-viewed-container {
+    padding: 1rem;
+  }
 
   .most-viewed-article-container {
+    border: 1px solid #000;
+    padding: 1rem;
+    display: grid;
+    gap: 0.5rem;
+    width: 300px;
   }
 
   .stats-container > div > strong,

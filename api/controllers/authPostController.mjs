@@ -657,11 +657,14 @@ const dashStats = async (req, res) => {
   }
 
   const blogPosts = await Post.find(queryObject).sort({ views: -1 }).limit(5);
-  const mostViewedPosts = blogPosts.map((post) => ({ title: post.title }));
+  const mostViewedPosts = blogPosts.map((post) => ({ title: post.title, id: post._id }));
   const totalPosts = await Post.countDocuments(queryObject);
   const totalViews = blogPosts.reduce((total, post) => total + post.views, 0);
+  const totalAuthorViews = user.views;
 
-  res.status(StatusCodes.OK).json({ mostViewedPosts, totalPosts, totalViews });
+  res
+    .status(StatusCodes.OK)
+    .json({ mostViewedPosts, totalPosts, totalViews, totalAuthorViews });
 };
 
 export {
