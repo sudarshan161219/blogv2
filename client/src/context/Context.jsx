@@ -195,7 +195,6 @@ const initialState = {
   totalAuthorPosts: "",
   totalViews: "",
   totalAuthorViews: "",
-
 };
 const Context = createContext({});
 

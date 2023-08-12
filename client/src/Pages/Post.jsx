@@ -43,14 +43,18 @@ const Post = () => {
   } = useAppContext();
 
   const { id } = useParams();
-  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
+  // const { _id, title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
+
+  const check = post.length === 0
 
   useEffect(() => {
-    getSinglePost(id);
-  }, [id]);
+    // getSinglePost(id);
+    // if (post.length === 0) {
+      getSinglePost(id);
+    // }
+  }, [id, check]);
 
-  const date = moment(createdAt);
-  let Fdate = date.format("MMM Do, YYYY");
+
 
   const handleLike = () => {
     toggleLikeBtn();
@@ -94,8 +98,19 @@ const Post = () => {
   }
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading />; // Render a loading indicator while fetching data
   }
+
+  // if (post.length === 0) {
+  //   useEffect(() => {
+  //     getSinglePost(id);
+  //   }, [id]);
+  // }
+
+  const { _id, title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
+
+  const date = moment(createdAt);
+  let Fdate = date.format("MMM Do, YYYY");
 
   return (
     <Wrapper>
@@ -205,10 +220,10 @@ const Post = () => {
         </div>
 
         <div className="ql-snow post-content-container">
-          {post._id && <div
+          <div
             className="ql-editor"
             dangerouslySetInnerHTML={{ __html: htmlDecode(content) || content }}
-          />}
+          />
         </div>
       </div>
     </Wrapper>
