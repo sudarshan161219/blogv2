@@ -13,7 +13,7 @@ const SinglePost = () => {
   return (
     <Wrapper>
       <Post />
-      {/* <div className="comment-container-div">
+      <div className="comment-container-div">
         {user && <CommentForm />}
         {isLoading ? (
           <Loading />
@@ -22,7 +22,7 @@ const SinglePost = () => {
             <CommentsContainer />
           </div>
         )}
-      </div> */}
+      </div>
       <DeleteAlertModal />
       <DeleteCRAlertModal />
     </Wrapper>
