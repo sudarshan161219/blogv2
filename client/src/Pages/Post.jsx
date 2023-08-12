@@ -47,7 +47,7 @@ const Post = () => {
 
   useEffect(() => {
     getSinglePost(id);
-  }, [user]);
+  }, [id]);
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -196,19 +196,19 @@ const Post = () => {
 
         <div className="tags">
           <ul>
-            {postTags&&postTags.map((item, idx) => (
+            {postTags && postTags.map((item, idx) => (
               <li key={idx}>
-              {item}
+                {item}
               </li>
             ))}
           </ul>
         </div>
 
         <div className="ql-snow post-content-container">
-          <div
+          {post._id && <div
             className="ql-editor"
             dangerouslySetInnerHTML={{ __html: htmlDecode(content) || content }}
-          ></div>
+          />}
         </div>
       </div>
     </Wrapper>

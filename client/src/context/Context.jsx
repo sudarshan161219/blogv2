@@ -561,9 +561,7 @@ const ContextProvider = ({ children }) => {
   const getSinglePost = async (id) => {
     dispatch({ type: GET_SINGLE_POST_BEGIN });
     try {
-      const { data } = await authFetch.get(`/post/${id}`, {
-        credentials: "omit",
-      });
+      const { data } = await authFetch.get(`/post/${id}`);
       const { singlepost } = data;
       dispatch({
         type: GET_SINGLE_POST_SUCCESS,
