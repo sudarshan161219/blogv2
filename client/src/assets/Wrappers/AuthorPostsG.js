@@ -21,9 +21,14 @@ const Wrapper = styled.main`
     gap: 0.3rem;
   }
 
+  .homepage-img-container {
+    height: 200px;
+    overflow: hidden;
+  }
+
   .homepage-img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
   }
 
   .homepage-info-container {
@@ -74,6 +79,7 @@ const Wrapper = styled.main`
       width: 40%;
       display: grid;
       align-items: center;
+      height: 200px;
     }
     .homepage-text-info-container > p {
       display: block;

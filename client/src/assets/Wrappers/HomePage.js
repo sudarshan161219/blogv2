@@ -22,9 +22,13 @@ const Wrapper = styled.article`
     gap: 0.3rem;
   }
 
+  .homepage-img-container{
+    height: 200px;
+    overflow: hidden;
+  }
+
   .homepage-img {
     width: 100%;
-    height: 100%;
   }
 
   .homepage-info-container {

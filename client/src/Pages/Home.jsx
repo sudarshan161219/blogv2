@@ -3,15 +3,13 @@ import { HomePage } from "../Components/export";
 import Wrapper from "../assets/Wrappers/Home";
 import { SkeletonLoding } from "../Components/export";
 import usePosts from "../../hooks/usePosts.js";
-import { useInfiniteQuery } from "react-query"
-import { Suspense } from "react";
+
 
 const Home = () => {
   const [pageNum, setPageNum] = useState(1)
   const {
     isLoading, isError, error, results, hasNextPage
   } = usePosts(pageNum)
-
 
 
   const intObserver = useRef()
@@ -37,13 +35,10 @@ const Home = () => {
   })
 
 
-  if (isLoading) {
-    return <SkeletonLoding />
-  }
-
   return (
     <Wrapper>
         {content}
+        {isLoading &&  <SkeletonLoding />}
     </Wrapper>
   );
 }

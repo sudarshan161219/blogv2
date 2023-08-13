@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-// import  getPostsPage  from "../api/axios.js";
 import { useAppContext } from "../src/context/Context";
 
 const usePosts = (pageNum = 1) => {
-  const {getPostApi} = useAppContext()
+  const { getPostApi } = useAppContext();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -11,23 +10,23 @@ const usePosts = (pageNum = 1) => {
   const [hasNextPage, setHasNextPage] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
     setIsLoading(true);
     setIsError(false);
     setError({});
-
-    const controller = new AbortController();
-    const { signal } = controller;
 
     getPostApi(pageNum, { signal })
       .then((data) => {
         const { allPosts } = data;
         setResults((prev) => [...prev, ...allPosts]);
         setHasNextPage(Boolean(allPosts.length));
-        setIsLoading(false);
+          setIsLoading(false);
       })
       .catch((e) => {
-        setIsLoading(false);
         if (signal.aborted) return;
+        setIsLoading(false);
         setIsError(true);
         setError({ msg: e.message });
       });
@@ -35,7 +34,7 @@ const usePosts = (pageNum = 1) => {
     return () => {
       controller.abort();
     };
-  }, [pageNum]);
+  }, [pageNum]);;
   return { isLoading, isError, error, results, hasNextPage };
 };
 

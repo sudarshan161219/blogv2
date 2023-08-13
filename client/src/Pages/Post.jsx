@@ -4,9 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import {
   Loading,
-  CommentsContainer,
-  Comments,
-  CommentForm,
 } from "../Components/export";
 import {
   BsDot,
@@ -43,15 +40,11 @@ const Post = () => {
   } = useAppContext();
 
   const { id } = useParams();
-  // const { _id, title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
 
   const check = post.length === 0
 
   useEffect(() => {
-    // getSinglePost(id);
-    // if (post.length === 0) {
       getSinglePost(id);
-    // }
   }, [id, check]);
 
 
@@ -98,14 +91,9 @@ const Post = () => {
   }
 
   if (isLoading) {
-    return <Loading />; // Render a loading indicator while fetching data
+    return <Loading />;
   }
 
-  // if (post.length === 0) {
-  //   useEffect(() => {
-  //     getSinglePost(id);
-  //   }, [id]);
-  // }
 
   const { _id, title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
 

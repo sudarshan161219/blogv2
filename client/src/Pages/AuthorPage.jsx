@@ -10,11 +10,15 @@ const AuthorPage = () => {
   const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading } =
     useAppContext();
   const { id } = useParams();
+
+  const check = GauthorPosts.length === 0
+
   useEffect(() => {
     getAuthorPage(id);
-  }, []);
+  }, [check]);
 
-  // if (isLoading) return <Loading />;
+
+  
 
   return (
     <Wrapper>
