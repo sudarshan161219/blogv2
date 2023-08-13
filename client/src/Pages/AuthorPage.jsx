@@ -18,7 +18,7 @@ const AuthorPage = () => {
   }, [check]);
 
 
-  
+
 
   return (
     <Wrapper>
@@ -27,6 +27,9 @@ const AuthorPage = () => {
         <SkeletonLoding />
       ) : (
         <div className="postG">
+          <div className="postG-heading-container">
+            <h1>{GauthorInfo.name} {GauthorPosts.length > 1 ? "Posts" : "Post"} </h1>
+          </div>
           {GauthorPosts.map((post) => (
             <AuthorPostsG key={post._id} post={post} />
           ))}

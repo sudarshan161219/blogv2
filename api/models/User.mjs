@@ -40,13 +40,13 @@ const UserSchema = new Schema({
 
   userInfo: {
     type: String,
+    default: "A mysterious individual with stories untold.",
   },
   views: { type: Number, default: 0 },
   personalLink: { type: String },
   twitter: { type: String },
   instagram: { type: String },
   linkden: { type: String },
-  userToken: { type: String },
 });
 
 //* saving documents

@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 1rem;
-  .author_info_img_conyainer {
+  .author_info_img_container {
     display: flex;
     justify-content: center;
   }
-  .author_info_img_conyainer > img {
+  .author_info_img_container > img {
     width: 150px;
     border-radius: 100%;
   }
@@ -45,6 +45,10 @@ const Wrapper = styled.div`
   .social-icon {
     font-size: 1.5rem;
   }
+
+  /* .author-links{
+
+  } */
 
   @media (min-width: 700px) {
     display: flex;
