@@ -101,7 +101,8 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_USER_STATS_BEGIN,
   GET_USER_STATS_SUCCESS,
-  GET_USER_STATS_ERROR
+  GET_USER_STATS_ERROR,
+  TOGGLE_COMMENT_SECTION
 } from "./action";
 
 // const user = localStorage.getItem("user");
@@ -121,6 +122,7 @@ const initialState = {
   showDeleteCrModal: false,
   showDeletePostModal: false,
   dashNav: false,
+  commentSection:false,
   like: false,
   dislike: false,
   commentLike: false,
@@ -233,6 +235,12 @@ const ContextProvider = ({ children }) => {
   const toggleDashNav = () => {
     dispatch({ type: TOGGLE_DASHNAV });
   };
+
+    //* toggle dashnav
+    const toggleCommentSection = () => {
+      dispatch({ type: TOGGLE_COMMENT_SECTION });
+    };
+  
 
   //* toggle deleteCModal
   const toggleDeleteModal = (id) => {
@@ -1079,7 +1087,7 @@ const ContextProvider = ({ children }) => {
 
         getUserStats,
         getPostApi,
-
+        toggleCommentSection
       }}
     >
       {children}

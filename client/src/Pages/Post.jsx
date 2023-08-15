@@ -37,6 +37,7 @@ const Post = () => {
     savePost,
     unsavePost,
     postComments,
+    toggleCommentSection
   } = useAppContext();
 
   const { id } = useParams();
@@ -157,7 +158,7 @@ const Post = () => {
                   <strong>{postDisLikes || dislikes.length}</strong>
                 </div>
                 <div className="comment-container">
-                  <Ripples className="ripple">
+                  <Ripples onClick={() =>   toggleCommentSection()} className="ripple">
                     <BiComment className="post-ldc-icons" />
                   </Ripples>
                   <strong>{postComments}</strong>

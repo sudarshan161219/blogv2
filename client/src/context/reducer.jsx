@@ -100,7 +100,8 @@ import {
   GET_CURRENT_USER_SUCCESS,
   GET_USER_STATS_BEGIN,
   GET_USER_STATS_SUCCESS,
-  GET_USER_STATS_ERROR
+  GET_USER_STATS_ERROR,
+  TOGGLE_COMMENT_SECTION
 } from "./action";
 
 import { initialState } from "./Context";
@@ -112,6 +113,9 @@ const reducer = (state, action) => {
 
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
+  }
+  if(action.type === TOGGLE_COMMENT_SECTION){
+    return { ...state, commentSection: !state.commentSection };
   }
 
   if (action.type === REGISTER_USER_BEGIN) {
