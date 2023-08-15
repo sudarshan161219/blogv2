@@ -30,7 +30,7 @@ const DeleteCRAlertModal = () => {
     <Wrapper
       style={{
         opacity: `${showDeleteCrModal ? 1 : 0}`,
-        zIndex: `${showDeleteCrModal ? 10 : -1}`,
+        zIndex: `${showDeleteCrModal ? 13 : -1}`,
       }}
     >
       <div className="modal">

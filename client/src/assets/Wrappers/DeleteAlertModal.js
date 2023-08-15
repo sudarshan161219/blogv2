@@ -16,9 +16,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* z-index: 10; */
   padding: 1rem;
-  transition: all 0.3s;
+  /* transition: all 0.1s; */
   h3 {
     color: #334253;
   }

@@ -180,10 +180,10 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 700px) {
-    .comment-container {
+    /* .comment-container {
       width: 690px;
       margin: 0 auto;
-    }
+    } */
     .comment-content > p {
       font-size: 0.99rem;
     }

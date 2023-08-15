@@ -102,9 +102,6 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 700px) {
-    .comment-reply-container {
-      width: 650px;
-    }
     .comment-content > p {
       font-size: 0.99rem;
     }

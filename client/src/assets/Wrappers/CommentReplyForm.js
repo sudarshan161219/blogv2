@@ -85,10 +85,10 @@ const Wrapper = styled.div`
       gap: 1rem;
     }
 
-    form {
+    /* form {
       width: 600px;
-      /* margin: 0 auto; */
-    }
+      margin: 0 auto;
+    } */
   }
 `;
 

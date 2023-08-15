@@ -28,7 +28,7 @@ const DeleteAlertModal = () => {
     <Wrapper
       style={{
         opacity: `${showDeleteModal ? 1 : 0}`,
-        zIndex: `${showDeleteModal ? 10 : -1}`,
+        zIndex: `${showDeleteModal ? 13 : -1}`,
       }}
     >
       <div className="modal">

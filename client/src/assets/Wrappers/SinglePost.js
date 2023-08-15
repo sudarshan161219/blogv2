@@ -50,6 +50,27 @@ const Wrapper = styled.div`
     font-size: 2rem;
     cursor: pointer;
   }
+  @media (min-width: 1000px) {
+    .comment-container-div {
+      display: block;
+      position: fixed;
+      background-color: rgb(242, 244, 247);
+      height: 100vh;
+      z-index: 11;
+      transform: translateX(900px);
+      /* width: 60%; */
+      width:600px;
+      transition: ease-in-out 0.3s;
+      overflow: auto;
+      right: 0;
+    }
+
+    .comment-container-div-visible {
+      transform: translateX(0px);
+      transition: ease-in-out 0.3s;
+      right: 0;
+    }
+  }
 `;
 
 export default Wrapper;

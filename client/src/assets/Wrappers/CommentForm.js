@@ -84,10 +84,10 @@ padding: 1rem;
       gap: 1rem;
     }
 
-    form {
+    /* form {
       width: 650px;
       margin: 0 auto;
-    }
+    } */
   }
 `;
 
