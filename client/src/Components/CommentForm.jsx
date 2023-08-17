@@ -58,7 +58,7 @@ const CommentForm = () => {
               alt={user && user.name}
               disabled={formLoading}
             />
-            <button className="button-28 comment-btn">
+            <button className="button-4 comment-btn">
               {formLoading ? (
                 <img className="giff" src={Loading} alt="" />
               ) : (

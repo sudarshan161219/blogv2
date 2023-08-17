@@ -16,9 +16,9 @@ const Dashboardnav = () => {
 
   return (
     <Wrapper>
-      {/* <Link to="/">
+      <Link to="/">
         <Logo2 />
-      </Link> */}
+      </Link>
 
       <div className={userPathE ? "dashboard-nav hide-dashboard-nav" : "dashboard-nav"}>
         <ul>
@@ -44,12 +44,6 @@ const Dashboardnav = () => {
             <Link to="createpost" className="Link ">
               <HiOutlinePencil className="dash-icons" />
               <span className="dash-nav-text">Write a Post</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="author-post" className="Link ">
-              <FiBookOpen className="dash-icons" />
-              <span className="dash-nav-text">Posts</span>
             </Link>
           </li>
           <li>

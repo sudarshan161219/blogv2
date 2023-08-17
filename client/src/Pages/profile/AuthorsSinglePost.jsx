@@ -51,9 +51,9 @@ const AuthorsSinglePost = () => {
   return (
     <Wrapper>
       <Link
-        to="/user-profile/author-post"
+        to="/user-profile/profile"
         onClick={handleClick}
-        className="back-btn button-28"
+        className="back-btn button-4"
       >
         Back
       </Link>

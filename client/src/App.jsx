@@ -48,7 +48,7 @@ const App = () => {
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
           <Route path="createpost" element={<Createpost />} />
-          <Route path="author-post" element={<Allposts />} />
+          {/* <Route path="author-post" element={<Allposts />} /> */}
           <Route path="edit" element={<EditPage />} />
           <Route path=":id" element={<AuthorsSinglePost />} />
           <Route path="savedpost" element={<SavedPost />} />

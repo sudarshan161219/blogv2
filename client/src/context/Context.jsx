@@ -110,6 +110,7 @@ const post_id = localStorage.getItem("post_id");
 
 const initialState = {
   isLoading: false,
+  profileisLoading: false,
   formLoading: false,
   commentsReplyformLoading: false,
   commentsLoading: false,
@@ -386,11 +387,9 @@ const ContextProvider = ({ children }) => {
       });
       dispatch({ type: CLEAR_VALUES });
     } catch (error) {
-      if (!state.token) {
+      if (error.response.status === 401) {
+        logoutUser();
       }
-      // if (error.response.status === 401) {
-      //   logoutUser();
-      // }
     }
   };
 
@@ -594,7 +593,6 @@ const ContextProvider = ({ children }) => {
         payload: { authorPosts, authorInfo },
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: GET_AUTHOR_PAGE_ERROR,
       });

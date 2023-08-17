@@ -24,7 +24,7 @@ const NavItems = () => {
     <Wrapper className="nav-items ">
       {!user ? (
         <Link
-          className="nav-link register Link nav-btn register-btn button-28"
+          className="nav-link register Link nav-btn register-btn button-4"
           to="/register"
         >
           Login

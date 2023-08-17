@@ -6,6 +6,7 @@ const Wrapper = styled.header`
   background-color: white;
   position: fixed;
   width: 100%;
+  top: 0;
   .scrolled {
     position: fixed;
     top: 0;

@@ -58,7 +58,7 @@ const CommentReplyForm = ({ name, commentId }) => {
             src={user.userImg}
             alt={user.name}
           />
-          <button className="button-28 comment-btn">
+          <button className="button-4 comment-btn">
             {commentsReplyformLoading ? (
               <img className="giff" src={Loading} alt="" />
             ) : (

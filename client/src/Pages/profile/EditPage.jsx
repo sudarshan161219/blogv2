@@ -83,8 +83,8 @@ const EditPage = () => {
   return (
     <Wrapper>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <Link to="/user-profile" className="edit-btn button-28">
-        back to Dashboard
+      <Link to="/user-profile/profile" className=" button-4">
+        back
       </Link>
       <form
         className="profile-form"
@@ -179,7 +179,7 @@ const EditPage = () => {
         <button
           disabled={isLoading}
           type="submit"
-          className="button-28 btn-profile"
+          className="button-4"
         >
           {isLoading ? "Please wait...." : "save"}
         </button>

@@ -149,23 +149,23 @@ const Register = () => {
                 />
               ))}
           </div>
-
-          <button type="submit" className="button-28" disabled={isLoading}>
-            {isLoading ? (
-              <img className="gif" src={gif} alt="gif" />
-            ) : !values.isMember ? (
-              "Register "
-            ) : (
-              "Login"
-            )}
-          </button>
-
           <div className="guest-btn">
+            <button type="submit" className="button-4" disabled={isLoading}>
+              {isLoading ? (
+                <img className="gif" src={gif} alt="gif" />
+              ) : !values.isMember ? (
+                "Register "
+              ) : (
+                "Login"
+              )}
+            </button>
+
+
             {values.isMember && (
               <button
                 onClick={addUserInfo}
                 type="submit"
-                className="button-28"
+                className="button-4 guest-btn-btn"
                 disabled={isLoading}
               >
                 login as guest
@@ -178,7 +178,7 @@ const Register = () => {
           <button
             type="button "
             onClick={toggleMember}
-            className="isMember-btn"
+            className="member"
           >
             {values.isMember ? "Register " : "Login"}
           </button>

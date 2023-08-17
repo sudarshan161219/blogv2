@@ -46,6 +46,11 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
   }
 
+  .author_info_btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
 
   @media (min-width: 700px) {
     display: flex;

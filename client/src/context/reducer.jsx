@@ -157,19 +157,19 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_PROFILE_BEGIN) {
-    return { ...state, isLoading: true };
+    return { ...state,  profileisLoading: true };
   }
 
   if (action.type === GET_PROFILE_SUCCESS) {
     return {
       ...state,
-      isLoading: false,
+       profileisLoading: false,
       user: action.payload.user,
     };
   }
 
   if (action.type === GET_AUTHOR_POST_BEGIN) {
-    return { ...state, isLoading: true };
+    return { ...state,  isLoading: true };
   }
 
   if (action.type === GET_AUTHOR_POST_SUCCESS) {

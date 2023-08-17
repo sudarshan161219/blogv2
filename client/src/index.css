@@ -230,7 +230,7 @@ h5 {
 }
 
 .Link,
-.button-28,
+.button-4,
 .homepage-link {
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
@@ -269,53 +269,81 @@ h5 {
   color: #1c1c1c;
 }
 
-.button-28 {
+/* CSS */
+.button-4 {
   appearance: none;
-  background-color: transparent;
-  border: 1px solid #1c1c1c;
-  border-radius: 8px;
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
   box-sizing: border-box;
-  color: #1c1c1c;
+  color: #24292e;
   cursor: pointer;
   display: inline-block;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  font-weight: 600;
-  line-height: normal;
-  outline: none;
-  padding: 0.3rem 1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 100%;
-  will-change: transform;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+  /* width: 150px; */
   overflow: hidden;
-  height: 45px;
+  height: 40px;
   display: grid;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  align-content: space-evenly;
+  text-align: center;
 }
 
-.button-28:disabled,
-.isMember-btn:disabled {
-  pointer-events: none;
+.button-4:hover {
+  background-color: #61677a;
+  color: #fafbfc;
+  text-decoration: none;
+  transition-duration: 0.1s;
 }
 
-.button-28:active,
-.isMember-btn:active {
-  box-shadow: none;
-  transform: translateY(0);
+.button-4:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.button-4:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button-4:focus {
+  outline: 1px transparent;
+}
+
+.button-4:before {
+  display: none;
+}
+
+.button-4:-webkit-details-marker {
+  display: none;
 }
 
 .register-main {
-  /* width: 300px; */
-  padding: 5rem 0 0 0;
-  margin: 0 auto;
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
   justify-content: center;
 }
 .form-container {
@@ -324,7 +352,6 @@ h5 {
   display: flex;
   margin: 0 1.5rem 0 1.5rem;
   align-items: center;
-  /* padding-top: 5rem; */
   justify-content: space-evenly;
   padding: 1.2rem 0;
   border-radius: 10px;
@@ -354,7 +381,6 @@ h5 {
 
 .register-form {
   width: 100%;
-  /* display: grid; */
   gap: 1rem;
   padding: 0.6rem 0;
 }
@@ -430,31 +456,6 @@ h5 {
   letter-spacing: 1px;
 }
 
-.isMember-btn {
-  appearance: none;
-  background-color: transparent;
-  border: 1px solid #1c1c1c;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: #1c1c1c;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 15px;
-  font-weight: 600;
-  line-height: normal;
-  outline: none;
-  padding: 0.2rem 1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  will-change: transform;
-}
-
 .profile-btn {
   position: relative;
   display: flex;
@@ -502,22 +503,40 @@ strong {
   letter-spacing: 1.1px;
 }
 
-.guest-btn{
-  margin-top: 1rem;
+.guest-btn {
+  margin-top: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+  overflow: hidden;
+  /* justify-content: center; */
 }
 
+.guest-btn > button {
+  width: 70%;
+  margin: 0 auto;
+}
 
-.guest-btn > button{
-  background-color: #4682A9;
-  color: #D8D9DA;
+.guest-btn-btn {
+  background-color: #4682a9;
+  color: #d8d9da;
+}
+
+.member{
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  background: #6E6D70;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 @media (min-width: 700px) {
-  .register-main {
-    width: 400px;
-    padding-top: 0;
-  }
-
   .sidebar-icons {
     display: none;
   }
@@ -532,25 +551,8 @@ strong {
     width: 95px;
   }
 
-  .register-main {
-    padding: 2rem 0 0 0;
-  }
-
   .loader {
     width: 125px;
-  }
-
-  .button-28:hover,
-  .isMember-btn:hover {
-    -webkit-tap-highlight-color: transparent;
-    color: #fff;
-    background-color: #1a1a1a;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-    transform: translateY(-2px);
-  }
-
-  .button-28:hover > .nav-link {
-    color: #ffffff;
   }
 
   .form-para > .form-link:hover {
@@ -619,14 +621,14 @@ h5 {
   border-radius: 100%;
 }
 
-.footer-container{
+.footer-container {
   height: 50px;
   padding: 1rem;
   text-align: center;
 }
 
 @media (min-width: 700px) {
-  .mobile-links{
-   display: none;
-  } 
- }
+  .mobile-links {
+    display: none;
+  }
+}

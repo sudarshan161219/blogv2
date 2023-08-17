@@ -261,7 +261,7 @@ const Createpost = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="button-28 quill-btn"
+                  className="button-4 quill-btn"
                 >
                   {isLoading
                     ? "Please wait...."

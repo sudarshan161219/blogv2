@@ -33,7 +33,8 @@ const Allposts = () => {
       <SearchComponent />
       <>
         <h1 className="allPost-heading">
-          {authorpost.length === 0 ? "no Posts yet" : "your Posts"}
+          {authorpost.length === 0 && "no Posts yet"}
+          {authorpost.length > 1 ? "Posts" : "Post"} 
         </h1>
         {isLoading ? (
           <div>
