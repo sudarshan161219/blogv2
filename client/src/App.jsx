@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Navbar, ScrolltoTopBtn, Footer} from "./Components/export";
+import { Navbar, ScrolltoTopBtn, Footer } from "./Components/export";
 import {
   Register,
   Home,
@@ -35,12 +35,16 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/tags" element={<Tags />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/post/:id" element={<SinglePost />} />
+        <Route path="/author/:id" element={<AuthorPage />} />
 
+        {/* Protected routes */}
         <Route
           path="/user-profile"
           element={<ProtectedRoutes>{<SharedLayout />}</ProtectedRoutes>}
         >
-          {/* Protected routes */}
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
           <Route path="createpost" element={<Createpost />} />
@@ -50,13 +54,8 @@ const App = () => {
           <Route path="savedpost" element={<SavedPost />} />
           <Route path="saved-s-post/:id" element={<SavedSinglePost />} />
         </Route>
-
-        <Route path="/tags" element={<Tags />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/post/:id" element={<SinglePost />} />
-        <Route path="/author/:id" element={<AuthorPage />} />
       </Routes>
-      {/* <ScrolltoTopBtn /> */}
+      <ScrolltoTopBtn />
       {/* <Footer /> */}
     </>
   );

@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 const Wrapper = styled.header`
-  padding: 0.4rem 1rem;
+  /* padding: 0.4rem; */
   color: #1c1c1c;
-background-color: inherit;
-
+  background-color: white;
+  position: fixed;
+  width: 100%;
   .scrolled {
     position: fixed;
     top: 0;
@@ -25,6 +26,7 @@ background-color: inherit;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5rem;
   }
 
   .ham-icon {
@@ -58,6 +60,13 @@ background-color: inherit;
 
     .ham-icon {
       display: none;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .nav {
+      width: 85%;
+      margin: 0 auto;
     }
   }
 `;

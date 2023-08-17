@@ -23,31 +23,33 @@ const Navbar = () => {
 
 
   return (
-    <Wrapper className="nav-header ">
-      <Sidebar />
-      <nav className="nav">
-        {!regpath ? (
-         !user && <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
-        ) : null}
-        <div className="nav-links">
-          <Link to="/" className="Link logo-logo-name">
-            <Logo />
-          </Link>
-          {regpath ||
-          userPath ||
-          userPathP ||
-          userPathC ||
-          userPathA ||
-          userPathE ||
-          userPathSP ||
-          userPathSSP ? null : (
-            <Navlinks />
-          )}
-        </div>
-        {!regpath ? <NavItems /> : null}
-      </nav>
-    </Wrapper>
-  );
+    <>
+      {userPath ||
+        userPathP ||
+        userPathC ||
+        userPathA ||
+        userPathE ||
+        userPathSP ||
+        userPathSSP ?  null : <Wrapper className="nav-header ">
+        <Sidebar />
+        <nav className="nav">
+          {!regpath ? (
+            !user && <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
+          ) : null}
+          <div className="nav-links">
+            <Link to="/" className="Link logo-logo-name">
+              <Logo />
+            </Link>
+            {regpath
+              ? null : (
+                <Navlinks />
+              )}
+          </div>
+          {!regpath ? <NavItems /> : null}
+        </nav>
+      </Wrapper>  }
+    </>
+  )
 };
 
 export default Navbar;

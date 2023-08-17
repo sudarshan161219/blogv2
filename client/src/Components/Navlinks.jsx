@@ -7,7 +7,7 @@ import { IoGridOutline } from "react-icons/io5";
 import { BsBookmark } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
-import {BiEdit} from "react-icons/bi";
+import { BiEdit } from "react-icons/bi";
 
 
 const Navlinks = () => {
@@ -16,35 +16,35 @@ const Navlinks = () => {
   return (
     <ul>
 
-{user &&      
-<>
- <li className=" mobile-links">
-        <Link onClick={!toggleSidebar} className="Link" to="/user-profile">
-          <IoGridOutline  className="sidebar-icons" /> Dashboard
-        </Link>
-      </li>
+      {user &&
+        <>
+          <li className=" mobile-links">
+            <Link onClick={!toggleSidebar} className="Link" to="/user-profile">
+              <IoGridOutline className="sidebar-icons" /> Dashboard
+            </Link>
+          </li>
 
 
-      <li className="mobile-links">
-        <Link onClick={!toggleSidebar} className="Link " to="/user-profile/createpost">
-          <HiOutlinePencil className="sidebar-icons" /> Write a post
-        </Link>
-      </li>
+          <li className="mobile-links">
+            <Link onClick={!toggleSidebar} className="Link " to="/user-profile/createpost">
+              <HiOutlinePencil className="sidebar-icons" /> Write a post
+            </Link>
+          </li>
 
 
-      <li className="mobile-links">
-        <Link onClick={!toggleSidebar} className="Link " to="/user-profile/edit">
-          <BiEdit className="sidebar-icons" /> edit profile
-        </Link>
-      </li>
+          <li className="mobile-links">
+            <Link onClick={!toggleSidebar} className="Link " to="/user-profile/edit">
+              <BiEdit className="sidebar-icons" /> edit profile
+            </Link>
+          </li>
 
 
-      <li className="mobile-links">
-        <Link onClick={!toggleSidebar} className="Link " to="/user-profile/savedpost">
-          <BsBookmark className="sidebar-icons" /> saved posts
-        </Link>
-      </li>
-      </>
+          <li className="mobile-links">
+            <Link onClick={!toggleSidebar} className="Link " to="/user-profile/savedpost">
+              <BsBookmark className="sidebar-icons" /> saved posts
+            </Link>
+          </li>
+        </>
       }
 
       <li>

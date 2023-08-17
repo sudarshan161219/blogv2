@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Wrapper from "../../assets/Wrappers/Profile";
+import Wrapper from "../../assets/Wrappers/AuthorInfoG";
 import profile from "../../assets/imgs/profile.png";
 import { BsLink45Deg } from "react-icons/bs";
 import { useAppContext } from "../../context/Context";
@@ -18,7 +18,7 @@ const Profile = () => {
 
   useEffect(() => {
     getProfile();
-  }, [user&&user.name]);
+  }, [user && user.name]);
 
   if (isLoading) {
     return <Loading />;
@@ -26,49 +26,33 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      <div className="profile-container">
-        <div className="img-container">
-          <img className="profile-img" src={user.userImg ? user.userImg : profile} alt="profile" />
-        </div>
-
-        <div className="profile-info">
-          <h1>{user && user.name}</h1>
-          <span>@test123</span>
-
-          <p>{user && user.userInfo}</p>
-          <div className="profile-social-container">
-            <ul className="link">
-              <li className={user && user.personalLink === " " ? "atag" : null}>
-                <a
-                  href={user && user.personalLink || "https://www.google.com/"}
-                  target="_blank"
-                >
-                  <BsLink45Deg className="link-icon" />
-                </a>
-              </li>
-            </ul>
-
-            <ul className="socials link">
-              <li className={user && user.twitter === " " ? "atag" : null}>
-                <a href={user && user.twitter || "https://www.google.com/"} target="_blank">
-                  <AiOutlineTwitter className="social-icon" />
-                </a>
-              </li>
-              <li className={user && user.instagram === " " ? "atag" : null}>
-                <a
-                  href={user && user.instagram || "https://www.google.com/"}
-                  target="_blank"
-                >
-                  <AiFillInstagram className="social-icon" />
-                </a>
-              </li>
-              <li className={user && user.linkden === " " ? "atag" : null}>
-                <a href={user && user.linkden || "https://www.google.com/"} target="_blank">
-                  <AiFillLinkedin className="social-icon" />
-                </a>
-              </li>
-            </ul>
-          </div>
+      <div className="author_info_img_container">
+        <img className="profile-img" src={user.userImg ? user.userImg : profile} alt="profile" />
+      </div>
+      <div className="author_info_info_container">
+        <h1>{user && user.name}</h1>
+        <p>{user.userInfo}</p>
+        <div className="author_info_links_container">
+          <a style={{ visibility: `${user.personalLink ? "visible" : "collapse"}` }} className="author-links" href={user.personalLink} _blank="true">
+            <BsLink45Deg className="link-icon" />
+          </a>
+          <ul className="author_info_unodredlist">
+            <li>
+              <a style={{ visibility: `${user.instagram ? "visible" : "collapse"}` }} href={user.instagram} _blank="true">
+                <AiFillInstagram className="link-icon" />
+              </a>
+            </li>
+            <li>
+              <a style={{ visibility: `${user.twitter ? "visible" : "collapse"}` }} href={user.twitter} _blank="true">
+                <AiOutlineTwitter className="link-icon" />
+              </a>
+            </li>
+            <li>
+              <a style={{ visibility: `${user.linkden ? "visible" : "collapse"}` }} href={user.linkden} _blank="true">
+                <AiFillLinkedin className="link-icon" />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </Wrapper>

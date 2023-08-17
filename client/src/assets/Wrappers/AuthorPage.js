@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   gap: 2rem;
-
+  margin-top: 5rem;
   .postG {
     padding: 5rem 1rem;
     display: grid;

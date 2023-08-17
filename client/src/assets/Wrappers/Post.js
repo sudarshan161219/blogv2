@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  background-color: #f2f4f7;
+  margin-top: 4rem;
   .like-container,
   .dislike-container,
   .comment-container {
@@ -134,6 +136,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1000px) {
+    margin-top: 2rem;
     .post-img-container {
       /* display: flex; */
       justify-content: center;
