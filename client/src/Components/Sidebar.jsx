@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Wrapper from "../assets/Wrappers/Sidebar";
 import { useAppContext } from "../context/Context";
-import { AiOutlineClose, AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineLogout, AiOutlineLogin } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import profile from "../assets/imgs/profile.png";
@@ -73,12 +73,16 @@ const Sidebar = () => {
             </div>
           </div>
         )}
-        {/* <div className="logout-container">
-          <div className="icon-name" onClick={logoutUser}>
-            <AiOutlineLogout />
-            <strong>Logout</strong>
+
+        {!user && (
+          <div className="login-container">
+            <div className="icon-name" >
+              <AiOutlineLogin />
+              <Link className="Link strong" to="/register">Login/Signin</Link>
+              <strong></strong>
+            </div>
           </div>
-        </div> */}
+        )}
       </aside>
     </Wrapper>
   );

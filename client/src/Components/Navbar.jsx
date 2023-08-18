@@ -30,12 +30,9 @@ const Navbar = () => {
         userPathA ||
         userPathE ||
         userPathSP ||
-        userPathSSP ?  null : <Wrapper className="nav-header ">
+        userPathSSP ? null : <Wrapper className="nav-header ">
         <Sidebar />
         <nav className="nav">
-          {!regpath ? (
-            !user && <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
-          ) : null}
           <div className="nav-links">
             <Link to="/" className="Link logo-logo-name">
               <Logo />
@@ -46,8 +43,18 @@ const Navbar = () => {
               )}
           </div>
           {!regpath ? <NavItems /> : null}
+
+          {!regpath ? (
+            !user && <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
+          ) : null}
+          <Link
+            className="nav-link register Link nav-btn register-btn button-4"
+            to="/register"
+          >
+            Login
+          </Link>
         </nav>
-      </Wrapper>  }
+      </Wrapper>}
     </>
   )
 };

@@ -21,8 +21,12 @@ const Wrapper = styled.header`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-  }
 
+  }
+  .nav-link{
+    height: 35px;
+    display: none;
+  }
   .nav {
     display: flex;
     justify-content: space-between;
@@ -52,6 +56,10 @@ const Wrapper = styled.header`
       align-items: center;
       gap: 3rem;
     }
+
+    .nav-link{
+      display: flex;
+  }
 
     .nav {
       display: flex;

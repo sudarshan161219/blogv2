@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   }
 
   
+  
 .img-container {
   display: flex;
   align-items: center;

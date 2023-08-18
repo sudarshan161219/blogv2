@@ -107,8 +107,8 @@ const Wrapper = styled.aside`
     line-height: 100%;
   }
 
-  .icon-name {
-    color: #EF6262;
+  .logout-container > .icon-name {
+    color: #ef6262;
     font-family: "FontMedium";
     font-size: 1rem;
     letter-spacing: 1.1px;
@@ -120,21 +120,42 @@ const Wrapper = styled.aside`
     -webkit-tap-highlight-color: transparent;
   }
 
-  .icon-name > strong {
-    color: #EF6262;
+  .login-container > .icon-name {
+    color: #fff0f5;
+    font-family: "FontMedium";
+    font-size: 1rem;
+    letter-spacing: 1.1px;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .logout-container > .icon-name > strong {
+    color: #ef6262;
     font-family: "FontMedium";
     font-size: 1rem;
     letter-spacing: 1.1px;
     line-height: 100%;
   }
 
-  .logout-container {
+  .logout-container,
+  .login-container {
     position: absolute;
-    /* padding: 1rem; */
-    bottom: 50px;
+    bottom: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+
+  .login-container > .icon-name > .strong {
+    color: #fff0f5;
+    font-family: "FontMedium";
+    font-size: 1rem;
+    letter-spacing: 1.1px;
+    line-height: 100%;
   }
 
   @media (min-width: 550px) {

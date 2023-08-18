@@ -21,7 +21,7 @@ const NavItems = () => {
   const userPathSP = location.pathname === `/user-profile/${postId}`;
   const userPathSSP = location.pathname === `/user-profile/savedpost`;
   return (
-    <Wrapper className="nav-items ">
+    <Wrapper className="nav-items" style={{display: `${!user ? "none" : "block"}`,}}>
       {!user ? (
         <Link
           className="nav-link register Link nav-btn register-btn button-4"
