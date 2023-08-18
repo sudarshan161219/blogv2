@@ -25,6 +25,7 @@ import CommentsContainer from "./CommentsContainer";
 import SavedPosts from "./Savedposts";
 import SavedSinglePost from "../Pages/profile/SavedSinglePost";
 import Footer from "./Footer";
+import NavSearchComponent  from "./NavSearchComponent"
 export {
   AboutHeroS,
   AboutS,
@@ -45,6 +46,7 @@ export {
   SkeletonLoding,
   ScrolltoTopBtn,
   HomePage,
+  NavSearchComponent,
   AuthorInfoG,
   AuthorPostsG,
   Comments,

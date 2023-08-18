@@ -102,7 +102,11 @@ import {
   GET_USER_STATS_BEGIN,
   GET_USER_STATS_SUCCESS,
   GET_USER_STATS_ERROR,
-  TOGGLE_COMMENT_SECTION
+  TOGGLE_COMMENT_SECTION,
+  HANDLE_CHANGE_NAV,
+  GET_NAV_SEARCH_POST_BEGIN,
+  GET_NAV_SEARCH_POST_SUCCESS,
+  GET_NAV_SEARCH_POST_ERROR,
 } from "./action";
 
 // const user = localStorage.getItem("user");
@@ -110,6 +114,7 @@ const post_id = localStorage.getItem("post_id");
 
 const initialState = {
   isLoading: false,
+  isNavLoading: false,
   profileisLoading: false,
   formLoading: false,
   commentsReplyformLoading: false,
@@ -123,7 +128,7 @@ const initialState = {
   showDeleteCrModal: false,
   showDeletePostModal: false,
   dashNav: false,
-  commentSection:false,
+  commentSection: false,
   like: false,
   dislike: false,
   commentLike: false,
@@ -155,6 +160,7 @@ const initialState = {
   totalPosts: 0,
   page: 1,
   search: "",
+  searchN: "",
   SearchCategory: "all",
   sort: "",
   pageT: 1,
@@ -163,6 +169,8 @@ const initialState = {
   sortT: "",
   allPosts: [],
   post: [],
+  postN:[],
+  authorN:[],
   GauthorPosts: [],
   GauthorInfo: [],
   postLikes: [],
@@ -237,11 +245,11 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: TOGGLE_DASHNAV });
   };
 
-    //* toggle dashnav
-    const toggleCommentSection = () => {
-      dispatch({ type: TOGGLE_COMMENT_SECTION });
-    };
-  
+  //* toggle dashnav
+  const toggleCommentSection = () => {
+    dispatch({ type: TOGGLE_COMMENT_SECTION });
+  };
+
 
   //* toggle deleteCModal
   const toggleDeleteModal = (id) => {
@@ -261,6 +269,10 @@ const ContextProvider = ({ children }) => {
   //* global handle change
   const handleChange = ({ name, value }) => {
     dispatch({ type: HANDLE_CHANGE, payload: { name, value } });
+  };
+
+  const handleChangeN = ({ name, value }) => {
+    dispatch({ type: HANDLE_CHANGE_NAV, payload: { name, value } });
   };
 
   const handleSelectChange = (value) => {
@@ -439,6 +451,32 @@ const ContextProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: GET_TAGS_SEARCH_POST_ERROR,
+      });
+    }
+  };
+
+  const getNavSearchPost = async () => {
+    const { searchN } = state;
+    let url = `/navsearch?search=${searchN}`;
+    dispatch({ type: GET_NAV_SEARCH_POST_BEGIN });
+    try {
+      const { data } = await authFetch.get(url, {
+        credentials: "omit",
+      });
+
+      const { postN,
+        authorN, } = data;
+      dispatch({
+        type: GET_NAV_SEARCH_POST_SUCCESS,
+        payload: {
+          postN,
+          authorN,
+        },
+      });
+      dispatch({ type: CLEAR_VALUES });
+    } catch (error) {
+      dispatch({
+        type: GET_NAV_SEARCH_POST_ERROR,
       });
     }
   };
@@ -1024,6 +1062,7 @@ const ContextProvider = ({ children }) => {
         handleSelectChange,
         handleSortSelectChange,
         handleChangeT,
+        handleChangeN,
         handleSelectChangeT,
         handleSortSelectChangeT,
         registerFn,

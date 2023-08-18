@@ -6,11 +6,12 @@ import {
   tagsSearch,
   getPost,
   getAuthorPage,
-  // likePost
-  getComments
+  navSearch,
+  getComments,
 } from "../controllers/postController.mjs";
 
 router.route("/").get(getAllPost);
+router.route("/navsearch").get(navSearch);
 router.route("/post/:id").get(getPost);
 router.route("/author/:id").get(getAuthorPage);
 router.route("/tags").get(tagsSearch);

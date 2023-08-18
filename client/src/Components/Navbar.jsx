@@ -7,6 +7,8 @@ import { NavItems } from "../Components/export";
 import { BiMenuAltLeft } from "react-icons/bi";
 import Wrapper from "../assets/Wrappers/Nav";
 import { useAppContext } from "../context/Context";
+import { NavSearchComponent} from "../Components/export";
+
 
 const Navbar = () => {
   const { id } = useParams();
@@ -41,6 +43,10 @@ const Navbar = () => {
               ? null : (
                 <Navlinks />
               )}
+          </div>
+
+          <div className="nav-search-container">
+            <NavSearchComponent />
           </div>
           {!regpath ? <NavItems /> : null}
 

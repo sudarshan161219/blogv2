@@ -116,6 +116,26 @@ const tagsSearch = async (req, res) => {
   });
 };
 
+const navSearch = async (req, res) => {
+  const { search } = req.query;
+
+  const queryPostObject = {
+    title: (req.body.title = { $regex: search, $options: "i" }),
+  };
+
+  const queryAuthorObject = {
+    name: (req.body.name = { $regex: search, $options: "i" }),
+  };
+
+  let postN = await Post.find(queryPostObject);
+  let authorN = await User.find(queryAuthorObject).select("-email")
+
+  return res.status(StatusCodes.OK).json({
+    postN,
+    authorN,
+  });
+};
+
 //? get comments
 const getComments = async (req, res) => {
   const { id } = req.params;
@@ -158,4 +178,11 @@ const getComments = async (req, res) => {
   });
 };
 
-export { getAllPost, tagsSearch, getPost, getAuthorPage, getComments };
+export {
+  getAllPost,
+  tagsSearch,
+  getPost,
+  getAuthorPage,
+  getComments,
+  navSearch,
+};

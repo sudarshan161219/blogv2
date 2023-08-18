@@ -76,8 +76,7 @@ import {
   COMMENT_DISLIKES,
   COMMENT_REPLY_LIKES,
   COMMENT_REPLY_DISLIKES,
-  SAVE_POST,
-  UNSAVE_POST,
+  HANDLE_CHANGE_NAV,
   TOGGLE_LIKE_BTN,
   TOGGLE_DISLIKE_BTN,
   TOGGLE_COMMENT_LIKE_BTN,
@@ -101,7 +100,10 @@ import {
   GET_USER_STATS_BEGIN,
   GET_USER_STATS_SUCCESS,
   GET_USER_STATS_ERROR,
-  TOGGLE_COMMENT_SECTION
+  TOGGLE_COMMENT_SECTION,
+  GET_NAV_SEARCH_POST_BEGIN,
+  GET_NAV_SEARCH_POST_SUCCESS,
+  GET_NAV_SEARCH_POST_ERROR,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -287,6 +289,27 @@ const reducer = (state, action) => {
     };
   }
 
+
+  if (action.type === GET_NAV_SEARCH_POST_BEGIN) {
+    return { ...state, isNavLoading: true };
+  }
+
+  if (action.type === GET_NAV_SEARCH_POST_SUCCESS) {
+    return {
+      ...state,
+      isNavLoading: false,
+      postN: action.payload.postN,
+      authorN:action.payload.authorN
+    };
+  }
+
+  if (action.type === GET_NAV_SEARCH_POST_ERROR) {
+    return {
+      ...state,
+      isNavLoading: false,
+    };
+  }
+
   if (action.type === GET_AUTHOR_SINGLE_POST_BEGIN) {
     return { ...state, isLoading: true };
   }
@@ -355,6 +378,11 @@ const reducer = (state, action) => {
   if (action.type === HANDLE_CHANGE) {
     return { ...state, [action.payload.name]: action.payload.value };
   }
+
+  if (action.type === HANDLE_CHANGE_NAV) {
+    return { ...state, [action.payload.name]: action.payload.value };
+  }
+
 
   if (action.type === HANDLE_SELECT_CHANGE) {
     return { ...state, SearchCategory: action.payload.value };
