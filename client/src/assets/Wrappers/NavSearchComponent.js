@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    width: 200px;
+    width: 220px;
   }
 
   .nav-input {
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
     margin-top: 0.2rem;
     position: absolute;
     background-color: #f2f4f7;
-    width: 200px;
+    width: 220px;
     overflow: auto;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
