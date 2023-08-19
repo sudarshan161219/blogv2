@@ -104,6 +104,7 @@ import {
   GET_NAV_SEARCH_POST_BEGIN,
   GET_NAV_SEARCH_POST_SUCCESS,
   GET_NAV_SEARCH_POST_ERROR,
+  CLEAR_NAV_SEARCH_VALUES
 } from "./action";
 
 import { initialState } from "./Context";
@@ -116,7 +117,7 @@ const reducer = (state, action) => {
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
   }
-  if(action.type === TOGGLE_COMMENT_SECTION){
+  if (action.type === TOGGLE_COMMENT_SECTION) {
     return { ...state, commentSection: !state.commentSection };
   }
 
@@ -159,19 +160,19 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_PROFILE_BEGIN) {
-    return { ...state,  profileisLoading: true };
+    return { ...state, profileisLoading: true };
   }
 
   if (action.type === GET_PROFILE_SUCCESS) {
     return {
       ...state,
-       profileisLoading: false,
+      profileisLoading: false,
       user: action.payload.user,
     };
   }
 
   if (action.type === GET_AUTHOR_POST_BEGIN) {
-    return { ...state,  isLoading: true };
+    return { ...state, isLoading: true };
   }
 
   if (action.type === GET_AUTHOR_POST_SUCCESS) {
@@ -299,7 +300,7 @@ const reducer = (state, action) => {
       ...state,
       isNavLoading: false,
       postN: action.payload.postN,
-      authorN:action.payload.authorN
+      authorN: action.payload.authorN
     };
   }
 
@@ -421,6 +422,15 @@ const reducer = (state, action) => {
       sortT: "",
       postg: [],
     };
+  }
+
+  if (action.type === CLEAR_NAV_SEARCH_VALUES) {
+    return {
+      ...state,
+      searchN: "",
+      postN: [],
+      authorN: []
+    }
   }
 
   if (action.type === CREATE_POST_BEGIN) {

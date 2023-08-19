@@ -107,9 +107,9 @@ import {
   GET_NAV_SEARCH_POST_BEGIN,
   GET_NAV_SEARCH_POST_SUCCESS,
   GET_NAV_SEARCH_POST_ERROR,
+  CLEAR_NAV_SEARCH_VALUES
 } from "./action";
 
-// const user = localStorage.getItem("user");
 const post_id = localStorage.getItem("post_id");
 
 const initialState = {
@@ -169,8 +169,8 @@ const initialState = {
   sortT: "",
   allPosts: [],
   post: [],
-  postN:[],
-  authorN:[],
+  postN: [],
+  authorN: [],
   GauthorPosts: [],
   GauthorInfo: [],
   postLikes: [],
@@ -298,6 +298,10 @@ const ContextProvider = ({ children }) => {
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS });
   };
+
+  const clearNavSearch = () => {
+    dispatch({ type: CLEAR_NAV_SEARCH_VALUES })
+  }
 
   const logoutUser = async () => {
     try {
@@ -464,8 +468,7 @@ const ContextProvider = ({ children }) => {
         credentials: "omit",
       });
 
-      const { postN,
-        authorN, } = data;
+      const { postN, authorN } = data;
       dispatch({
         type: GET_NAV_SEARCH_POST_SUCCESS,
         payload: {
@@ -473,7 +476,7 @@ const ContextProvider = ({ children }) => {
           authorN,
         },
       });
-      dispatch({ type: CLEAR_VALUES });
+      // dispatch({ type: CLEAR_VALUES });
     } catch (error) {
       dispatch({
         type: GET_NAV_SEARCH_POST_ERROR,
@@ -1124,7 +1127,9 @@ const ContextProvider = ({ children }) => {
 
         getUserStats,
         getPostApi,
-        toggleCommentSection
+        toggleCommentSection,
+        getNavSearchPost,
+        clearNavSearch
       }}
     >
       {children}

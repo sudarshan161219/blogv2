@@ -1,18 +1,12 @@
 import styled from "styled-components";
 
 const Wrapper = styled.header`
-  /* padding: 0.4rem; */
   color: #1c1c1c;
   background-color: white;
   position: fixed;
   width: 100%;
   top: 0;
-  .scrolled {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: lightblue;
-  }
+
   ul {
     display: none;
   }
@@ -21,9 +15,13 @@ const Wrapper = styled.header`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-
   }
-  .nav-link{
+
+  .nav-links > ul {
+    font-family: fontRegular;
+  }
+
+  .nav-link {
     height: 35px;
     display: none;
   }
@@ -43,8 +41,7 @@ const Wrapper = styled.header`
       color: #1c1c1c;
       display: flex;
       gap: 1.5rem;
-      font-family: "Libre Baskerville", serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     ul > li > .Link {
@@ -57,9 +54,9 @@ const Wrapper = styled.header`
       gap: 3rem;
     }
 
-    .nav-link{
+    .nav-link {
       display: flex;
-  }
+    }
 
     .nav {
       display: flex;
