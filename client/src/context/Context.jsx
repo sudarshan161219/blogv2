@@ -107,7 +107,8 @@ import {
   GET_NAV_SEARCH_POST_BEGIN,
   GET_NAV_SEARCH_POST_SUCCESS,
   GET_NAV_SEARCH_POST_ERROR,
-  CLEAR_NAV_SEARCH_VALUES
+  CLEAR_NAV_SEARCH_VALUES,
+  TOGGLE_SEARCH_NAV_BAR
 } from "./action";
 
 const post_id = localStorage.getItem("post_id");
@@ -128,6 +129,7 @@ const initialState = {
   showDeleteCrModal: false,
   showDeletePostModal: false,
   dashNav: false,
+  searchNavBar: false,
   commentSection: false,
   like: false,
   dislike: false,
@@ -244,6 +246,12 @@ const ContextProvider = ({ children }) => {
   const toggleDashNav = () => {
     dispatch({ type: TOGGLE_DASHNAV });
   };
+
+  //* toggle  nav search 
+  const toggleNavSearch = () => {
+    dispatch({ type: TOGGLE_SEARCH_NAV_BAR });
+  };
+
 
   //* toggle dashnav
   const toggleCommentSection = () => {
@@ -1129,7 +1137,8 @@ const ContextProvider = ({ children }) => {
         getPostApi,
         toggleCommentSection,
         getNavSearchPost,
-        clearNavSearch
+        clearNavSearch,
+        toggleNavSearch
       }}
     >
       {children}

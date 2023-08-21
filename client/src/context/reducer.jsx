@@ -104,7 +104,8 @@ import {
   GET_NAV_SEARCH_POST_BEGIN,
   GET_NAV_SEARCH_POST_SUCCESS,
   GET_NAV_SEARCH_POST_ERROR,
-  CLEAR_NAV_SEARCH_VALUES
+  CLEAR_NAV_SEARCH_VALUES,
+  TOGGLE_SEARCH_NAV_BAR
 } from "./action";
 
 import { initialState } from "./Context";
@@ -116,6 +117,10 @@ const reducer = (state, action) => {
 
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
+  }
+
+  if (action.type ===   TOGGLE_SEARCH_NAV_BAR) {
+    return { ...state, searchNavBar: !state.searchNavBar };
   }
   if (action.type === TOGGLE_COMMENT_SECTION) {
     return { ...state, commentSection: !state.commentSection };
