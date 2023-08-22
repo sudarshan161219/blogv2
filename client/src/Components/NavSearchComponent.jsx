@@ -4,7 +4,7 @@ import Wrapper from '../assets/Wrappers/NavSearchComponent'
 import { useAppContext } from '../context/Context'
 import { NavSearchResultsComponent } from "../Components/export"
 import gif from "../assets/Rolling-0.7s-157px.svg";
-
+import { AiOutlineCloseCircle } from "react-icons/ai"
 
 const NavSearchComponent = () => {
     const [loacalSearch, setLocalSearch] = useState("");
@@ -44,12 +44,18 @@ const NavSearchComponent = () => {
         height: "250px"
     }
 
+    const clearValues = () => {
+        setLocalSearch("")
+        clearNavSearch()
+    }
+
     return (
         <Wrapper>
             <form className='nav-form' >
                 <input name="searchN"
                     value={loacalSearch} onChange={optimizedDebounce} className='nav-input' type="text" placeholder="Search Posts/Authors" />
                 <BsSearch className="search-container-searchIcon" />
+                <AiOutlineCloseCircle onClick={clearValues} style={{ display: `${searchN ? "block" : "none"}` }} className="search-container-closeIcon" />
             </form>
 
             {

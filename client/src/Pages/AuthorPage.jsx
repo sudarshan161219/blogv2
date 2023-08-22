@@ -15,7 +15,7 @@ const AuthorPage = () => {
 
   useEffect(() => {
     getAuthorPage(id);
-  }, [check]);
+  }, [check, id]);
 
 
 

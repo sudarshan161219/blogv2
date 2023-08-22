@@ -6,7 +6,7 @@ import { useAppContext } from '../context/Context';
 
 const NavSearchResultsComponent = ({ searchedItem }) => {
 
-
+const {clearNavSearch} = useAppContext()
   // const { isNavLoading } = useAppContext()
   // if (isNavLoading) {
   //   return <h1>loading</h1>
@@ -16,10 +16,10 @@ const NavSearchResultsComponent = ({ searchedItem }) => {
     <Wrapper>
       {
         searchedItem.title ?
-          <Link to={`/post/${searchedItem._id}`} className='Link searchedItem' >{searchedItem.title}
+          <Link onClick={clearNavSearch} to={`/post/${searchedItem._id}`} className='Link searchedItem' >{searchedItem.title}
             <span className='searchedItem-span'>(artical)</span>
           </Link> :
-          <Link to={`/author/${searchedItem._id}`} className='Link searchedItem searchedItem-author' >
+          <Link onClick={clearNavSearch} to={`/author/${searchedItem._id}`} className='Link searchedItem searchedItem-author' >
             <div className='searchedItem-img-container' >
               <img className='searchedItem-img' src={searchedItem.userImg} alt="searchedItem.name" />
             </div>

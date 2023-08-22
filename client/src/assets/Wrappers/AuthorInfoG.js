@@ -18,6 +18,18 @@ const Wrapper = styled.div`
     text-align: center;
     align-content: center;
   }
+
+  .author_info_btn-container > button > .author_info_btn-container-link {
+    color: #454545;
+  }
+
+  .author_info_btn-container > button {
+    height: 30px;
+  }
+
+  .author_info_btn-container > button:hover > .author_info_btn-container-link{
+    color: white;
+  }
   .author_info_links_container {
     display: flex;
     align-items: center;
@@ -46,7 +58,7 @@ const Wrapper = styled.div`
     font-size: 1.5rem;
   }
 
-  .author_info_btn-container{
+  .author_info_btn-container {
     width: 100%;
     display: flex;
     justify-content: end;

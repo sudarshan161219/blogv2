@@ -281,8 +281,7 @@ h5 {
   color: #24292e;
   cursor: pointer;
   display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: fontRegular;
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;

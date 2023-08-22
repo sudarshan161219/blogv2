@@ -8,8 +8,8 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
-const ProfileAuthorPage = ({authorInfo}) => {
-    const { name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
+const ProfileAuthorPage = ({ authorInfo }) => {
+  const { name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
     authorInfo;
 
   return (
@@ -42,7 +42,9 @@ const ProfileAuthorPage = ({authorInfo}) => {
             </li>
           </ul>
         </div>
-        <div className="author_info_btn-container"><Link className="Link " to="/user-profile/edit">edit profile</Link></div>
+        <div className="author_info_btn-container">
+          <button className="button-4"><Link className="Link author_info_btn-container-link" to="/user-profile/edit">edit profile</Link></button>
+        </div>
       </div>
 
     </Wrapper>

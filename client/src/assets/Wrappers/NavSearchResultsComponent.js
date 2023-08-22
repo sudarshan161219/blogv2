@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 0.4rem;
-  border-bottom: 1px solid #9E9FA5;
+  border-bottom: 1px solid #DBDFEA;
 
 
   .searchedItem {
+    font-family: fontRegular;
     font-size: 1.1rem;
     color: #1d2939;
     display: flex;
