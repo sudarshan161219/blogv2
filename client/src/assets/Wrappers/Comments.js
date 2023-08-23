@@ -89,14 +89,14 @@ const Wrapper = styled.div`
   }
 
   .comment-ripple {
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     border-radius: 100%;
   }
 
   .like-dislike-container {
     display: flex;
     align-items: center;
-    /* gap: 1rem; */
+    gap: 0.5rem;
   }
 
   .edit-comment-icon,

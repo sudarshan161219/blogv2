@@ -161,7 +161,7 @@ const Comments = ({ comment }) => {
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
               <img className="mobile-comment-img" src={user ? user.userImg : profile}
-                alt={user && user.name}  />
+                alt={user && user.name} />
               <strong>{name}</strong>
               &#x2022;
               <span className="date">
@@ -170,10 +170,8 @@ const Comments = ({ comment }) => {
             </div>
             {user && (
               <div onClick={handleReply} className="icon-container">
-                {/* <Ripples className="ripple"> */}
                 <BsReplyFill className="reply-icon" />
                 <strong>reply</strong>
-                {/* </Ripples> */}
               </div>
             )}
           </div>
@@ -215,95 +213,93 @@ const Comments = ({ comment }) => {
           {!edit && (
             <div className="comment-like-dislike-container">
               <div className="like-dislike-container">
+
+
+                {/* // like comment */}
                 <div className="comment-like-container">
-                  {Comment_Liked_Disliked_Id._id === _id &&
-                    Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
-                    <Ripples className="comment-ripple">
+                  <Ripples className="comment-ripple">
+                    {Comment_Liked_Disliked_Id._id === _id &&
+                      Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
                       <BiSolidLike className="ldc-icons" onClick={handleLike} />
-                    </Ripples>
-                  ) : (
-                    <>
-                      {user ? (
-                        <>
-                          {like ? (
-                            <Ripples className="comment-ripple">
+                    ) : (
+                      <>
+                        {user ? (
+                          <>
+                            {like ? (
                               <BiSolidLike
                                 className="ldc-icons"
                                 onClick={handleLike}
                               />
-                            </Ripples>
-                          ) : (
-                            <Ripples className="comment-ripple">
+                            ) : (
                               <BiLike
                                 className="ldc-icons"
                                 onClick={handleLike}
                               />
-                            </Ripples>
-                          )}
-                        </>
-                      ) : (
-                        <Ripples className="comment-ripple">
+                            )}
+                          </>
+                        ) : (
                           <BiLike className="ldc-icons" />
-                        </Ripples>
-                      )}
-                    </>
-                  )}
-                  {postCommentsLikes.map(
-                    (item) =>
-                      item._id === _id && (
-                        <strong key={item._id}>
-                          {item._id === _id && item.count}
-                        </strong>
-                      )
-                  )}
+                        )}
+                      </>
+                    )}
+                    {postCommentsLikes.map(
+                      (item) =>
+                        item._id === _id && (
+                          <strong key={item._id}>
+                            {item._id === _id && item.count}
+                          </strong>
+                        )
+                    )}
+
+                  </Ripples>
                 </div>
+
+                {/* // dislike comment */}
                 <div className="comment-dislike-container">
-                  {Comment_Liked_Disliked_Id._id === _id &&
-                    Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
-                    <>
-                      <Ripples className="comment-ripple">
+                  <Ripples className="comment-ripple">
+                    {Comment_Liked_Disliked_Id._id === _id &&
+                      Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
+                      <>
                         <BiSolidDislike
                           className="ldc-icons"
                           onClick={handleDislike}
                         />
-                      </Ripples>
-                    </>
-                  ) : (
-                    <>
-                      {user ? (
-                        <>
-                          {dislike ? (
-                            <Ripples className="comment-ripple">
+
+                      </>
+                    ) : (
+                      <>
+                        {user ? (
+                          <>
+                            {dislike ? (
                               <BiSolidDislike
                                 className="ldc-icons"
                                 onClick={handleDislike}
                               />
-                            </Ripples>
-                          ) : (
-                            <Ripples className="comment-ripple">
+
+                            ) : (
+
                               <BiDislike
                                 className="ldc-icons"
                                 onClick={handleDislike}
                               />
-                            </Ripples>
-                          )}
-                        </>
-                      ) : (
-                        <Ripples className="comment-ripple">
+                            )}
+                          </>
+                        ) : (
                           <BiDislike className="ldc-icons" />
-                        </Ripples>
-                      )}
-                    </>
-                  )}
-                  {postCommentsDisLikes.map(
-                    (item) =>
-                      item._id === _id && (
-                        <strong key={item._id}>
-                          {item._id === _id && item.count}
-                        </strong>
-                      )
-                  )}
+                        )}
+                      </>
+                    )}
+                    {postCommentsDisLikes.map(
+                      (item) =>
+                        item._id === _id && (
+                          <strong key={item._id}>
+                            {item._id === _id && item.count}
+                          </strong>
+                        )
+                    )}
+                  </Ripples>
                 </div>
+
               </div>
 
               {user && user._id === author._id && (

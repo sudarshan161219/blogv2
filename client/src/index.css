@@ -563,10 +563,11 @@ strong {
   }
 }
 
-.ql-snow {
-  font-family: "Open Sans", sans-serif;
-  line-height: 1.1;
+.ql-snow * {
+  line-height: 1.5;
   letter-spacing: 1px;
+  color: #000000;
+  word-break: break-word;
 }
 
 .ql-editor strong {
@@ -618,8 +619,22 @@ h5 {
   background-color: rgb(242, 244, 247);
 }
 
-.ripple {
+.ripple,
+.react-ripples {
   border-radius: 100%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.react-ripples > strong {
+  font-size: 0.9rem;
+  font-family: fontRegular;
 }
 
 .footer-container {
@@ -633,5 +648,3 @@ h5 {
     display: none;
   }
 }
-
-

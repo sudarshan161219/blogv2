@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   .like-container,
   .dislike-container,
   .comment-container {
-    display: grid;
+    display: flex;
     align-items: center;
   }
 
@@ -54,10 +54,12 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
-
+  
   .like-dislike-comment {
+    gap: 0.5rem;
     display: flex;
     align-items: center;
+    padding-left: 0.5rem;
   }
 
   .post-img-container > img {
@@ -86,7 +88,7 @@ const Wrapper = styled.div`
   }
 
   .ldc-disable-msg > strong {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: FontSemiBold;
     color: #ffffff;
   }
@@ -97,9 +99,7 @@ const Wrapper = styled.div`
   }
 
   .post-ldc-icons {
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    border-radius: 100%;
+    font-size: 1.1rem;
     cursor: pointer;
     color: #1d2939;
   }

@@ -45,7 +45,7 @@ const Post = () => {
   const check = post.length === 0
 
   useEffect(() => {
-      getSinglePost(id);
+    getSinglePost(id);
   }, [id, check]);
 
 
@@ -96,7 +96,7 @@ const Post = () => {
   }
 
 
-  const { _id, title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
+  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
@@ -124,62 +124,69 @@ const Post = () => {
           {user ? (
             <div className="like-dislike-comment-save">
               <div className="like-dislike-comment">
+
+                {/* // like post  */}
                 <div className="like-container">
-                  {like ? (
-                    <Ripples className="ripple">
+                  <Ripples className="ripple">
+                    {like ? (
                       <BiSolidLike
                         className="post-ldc-icons"
                         onClick={handleLike}
                       />
-                    </Ripples>
-                  ) : (
-                    <Ripples className="ripple">
+                    ) : (
                       <BiLike className="post-ldc-icons" onClick={handleLike} />
-                    </Ripples>
-                  )}
-                  <strong>{postLikes || likes.length}</strong>
+                    )}
+                    <strong>{postLikes || likes.length}</strong>
+                  </Ripples>
                 </div>
+
+                {/* // dislike post  */}
                 <div className="dislike-container">
-                  {dislike ? (
-                    <Ripples className="ripple">
+                  <Ripples className="ripple">
+                    {dislike ? (
                       <BiSolidDislike
                         className="post-ldc-icons"
                         onClick={handleDislike}
                       />
-                    </Ripples>
-                  ) : (
-                    <Ripples className="ripple">
+
+                    ) : (
                       <BiDislike
                         className="post-ldc-icons"
                         onClick={handleDislike}
                       />
-                    </Ripples>
-                  )}
-                  <strong>{postDisLikes || dislikes.length}</strong>
-                </div>
-                <div className="comment-container">
-                  <Ripples onClick={() =>   toggleCommentSection()} className="ripple">
-                    <BiComment className="post-ldc-icons" />
+                    )}
+                    <strong>{postDisLikes || dislikes.length}</strong>
                   </Ripples>
-                  <strong>{postComments}</strong>
+                </div>
+
+
+                {/* // post comment  */}
+                <div className="comment-container">
+                  <Ripples onClick={() => toggleCommentSection()} className="ripple">
+                    <BiComment className="post-ldc-icons" />
+                    <strong>{postComments}</strong>
+                  </Ripples>
                 </div>
               </div>
               <div>
-                {save ? (
-                  <Ripples className="ripple">
+
+                {/* // save post */}
+                <Ripples className="ripple">
+                  {save ? (
                     <BsFillBookmarkCheckFill
                       className="post-ldc-icons"
                       onClick={handleSave}
                     />
-                  </Ripples>
-                ) : (
-                  <Ripples className="ripple">
+                  ) : (
+
                     <BsBookmark
                       className="post-ldc-icons"
                       onClick={handleSave}
                     />
-                  </Ripples>
-                )}
+                  )}
+                </Ripples>
+
+
               </div>
             </div>
           ) : (
