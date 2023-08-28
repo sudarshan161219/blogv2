@@ -299,7 +299,7 @@ const getSavedPosts = async (req, res) => {
     throw new UnauthenticatedError("Invalid Credentials");
   }
 
-  let result = await Post.find(queryObject);
+  let result = await Post.find(queryObject).populate("author", ["name"])
   res.status(StatusCodes.OK).json({ result });
 };
 

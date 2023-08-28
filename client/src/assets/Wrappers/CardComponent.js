@@ -82,6 +82,15 @@ const Wrapper = styled.article`
   .edit-icon:active {
     background-color: #afd3e2;
   }
+  .read {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: FontSemiBold;
+    color: #475467;
+    line-height: 130%;
+  }
 
   @media (min-width: 700px) {
     .card {
@@ -142,6 +151,11 @@ const Wrapper = styled.article`
     :hover {
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       transition: all 0.3s;
+    }
+
+    .read:hover{
+      cursor: pointer;
+      opacity: 0.5;
     }
   }
 `;

@@ -40,6 +40,7 @@ const Createpost = () => {
     editPost,
     created,
     edited,
+    editPostId
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
@@ -70,13 +71,13 @@ const Createpost = () => {
 
     if (created) {
       setTimeout(() => {
-        navigate("/user-profile/author-post");
+        navigate("/user-profile/profile");
       }, 1100);
     }
 
     if (edited) {
       setTimeout(() => {
-        navigate("/user-profile/author-post");
+        navigate(`/user-profile/${editPostId}`);
       }, 1100);
     }
   }, [input, edited, created, navigate]);

@@ -3,11 +3,10 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   justify-content: center;
-  /* background-color: #fff; */
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-padding: 5rem 0;
+  padding: 5rem 0;
   h4 {
     text-align: center;
     font-size: 1.8rem;

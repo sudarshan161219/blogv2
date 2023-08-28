@@ -35,7 +35,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/tags" element={<Tags />} />
+        {/* <Route path="/tags" element={<Tags />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/post/:id" element={<SinglePost />} />
         <Route path="/author/:id" element={<AuthorPage />} />
@@ -56,7 +56,7 @@ const App = () => {
         </Route>
       </Routes>
       <ScrolltoTopBtn />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

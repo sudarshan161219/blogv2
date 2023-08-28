@@ -1,30 +1,34 @@
 import React, { useEffect } from "react";
 import { useAppContext } from "../../context/Context";
-import { SavedPosts, SkeletonLoding } from "../../Components/export";
-import Wrapper from "../../assets/Wrappers/Allposts"
+import { SavedPosts, SkeletonLoding, CardComponent } from "../../Components/export";
+import Wrapper from "../../assets/Wrappers/CardComponent"
 const SavedPost = () => {
   const { getSavedPost,savedPosts, isLoading } = useAppContext();
   useEffect(() => {
 getSavedPost() 
   }, []);
   return (
-    <Wrapper>
-      <h1 className="allPost-heading">
+    <>
+          <h1 className="allPost-heading">
         {savedPosts.length === 0 ? "no Saved Posts yet" : "your Saved Posts"}
       </h1>
+    
+        <Wrapper>
       {isLoading ? (
         <div>
           <SkeletonLoding />
         </div>
       ) : (
-        <div className="card">
+        <div >
           {savedPosts.map((item) => (
-            <SavedPosts key={item._id} item={item} />
+            <CardComponent key={item._id} item={item} />
           ))}
         </div>
       )}
     </Wrapper>
+    </>
   );
+
 };
 
 export default SavedPost;

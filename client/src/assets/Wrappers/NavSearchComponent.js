@@ -19,13 +19,14 @@ const Wrapper = styled.div`
     outline: none;
     border-radius: 30px;
     width: 100%;
-    font-family: fontRegular;
+    font-family: fontRegularsec;
     font-size: 0.9rem;
     letter-spacing: 1px;
   }
 
   .nav-input:placeholder-shown {
     padding-left: 2rem;
+    font-family: fontRegularsec;
   }
 
   .search-container-searchIcon {

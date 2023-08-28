@@ -22,7 +22,7 @@ const Footer = () => {
                 !userPathE &&
                 !userPathSP ?
                 <div className="footer-container">
-                    <div>©2023 shwebdev.in. All rights reserved.</div>
+                    <p>©2023 shwebdev.in. All rights reserved.</p>
                     <div className="social-links">
                         <img src="" alt="" />
                         <img src="" alt="" />

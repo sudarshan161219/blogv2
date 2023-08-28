@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
 padding:1rem;
+background-color: var( --bodybg);
 .cards{
   display:grid;
     gap: 1.3rem;
@@ -14,7 +15,7 @@ padding:1rem;
     justify-content: center;
     display: grid;
     gap: 2rem;
-    width: 800px;
+    /* width: 800px; */
     margin: 0 auto;
   }
 
