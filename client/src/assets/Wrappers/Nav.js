@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
+
 const Wrapper = styled.header`
-  color: #1c1c1c;
-  background-color: white;
+  color: var(--navbartext);
+  background-color: var(--navbarbg);
+
+
   position: fixed;
   width: 100%;
   top: 0;
@@ -26,7 +29,7 @@ const Wrapper = styled.header`
   }
 
   .nav-links > ul {
-    font-family: fontRegular;
+    font-family: fontRegularsec;
   }
 
   .nav-link {

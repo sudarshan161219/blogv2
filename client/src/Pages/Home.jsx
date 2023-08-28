@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { HomePage } from "../Components/export";
+import {CardComponent } from "../Components/export";
 import Wrapper from "../assets/Wrappers/Home";
 import { SkeletonLoding } from "../Components/export";
 import usePosts from "../../hooks/usePosts.js";
@@ -29,9 +29,9 @@ const Home = () => {
 
   const content = results.map((post, i) => {
     if (results.length === i + 1) {
-      return <HomePage ref={lastPostRef} item={post} key={i} />
+      return <CardComponent ref={lastPostRef} item={post} key={i} />
     }
-    return <HomePage item={post} key={i} />
+    return <CardComponent item={post} key={i} />
   })
 
 

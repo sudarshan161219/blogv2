@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
-import Wrapper from "../assets/Wrappers/HomePage";
+import Wrapper from "../assets/Wrappers/CardComponent";
 import moment from "moment";
 import { BsPersonCircle } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
 
 
-const HomePage = forwardRef(({ item }, ref) => {
+const CardComponent = forwardRef(({ item }, ref) => {
 
   const { _id, title, coverImg, content: decs, createdAt, author } = item;
 
@@ -22,7 +22,7 @@ const HomePage = forwardRef(({ item }, ref) => {
 
 
   const postBody = (
-    <div className="card">
+    <Link to={`/post/${_id}`} className="card Link">
       <div className="homepage-img-container">
         <img className="homepage-img" src={coverImg} alt=" articalimg" />
       </div>
@@ -39,12 +39,9 @@ const HomePage = forwardRef(({ item }, ref) => {
             className="ptag"
             dangerouslySetInnerHTML={{ __html: htmlDecode(decs.substring(0, 105)) || decs.substring(0, 105) }}
           ></p>
-          <Link className="homepage-link" to={`/post/${_id}`}>
-            Read More
-          </Link>
         </div>
       </div>
-    </div>
+    </Link>
   )
 
 
@@ -55,4 +52,4 @@ const HomePage = forwardRef(({ item }, ref) => {
 
 })
 
-export default HomePage;
+export default CardComponent;

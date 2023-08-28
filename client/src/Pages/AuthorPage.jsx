@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
-import { AuthorInfoG, AuthorPostsG } from "../Components/export";
+import { AuthorInfoG,  CardComponent } from "../Components/export";
 import { Loading, SkeletonLoding } from "../Components/export";
 
 
@@ -31,7 +31,7 @@ const AuthorPage = () => {
             <h1>{GauthorInfo.name} {GauthorPosts.length > 1 ? "Posts" : "Post"} </h1>
           </div>
           {GauthorPosts.map((post) => (
-            <AuthorPostsG key={post._id} post={post} />
+            <CardComponent key={post._id} item={post} />
           ))}
         </div>
       )}

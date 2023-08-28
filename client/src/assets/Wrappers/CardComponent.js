@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
 const Wrapper = styled.article`
-  .card {
-    background-color: #fff;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-  }
+  background-color: var(--cardbg);
+  overflow: hidden;
+  border-radius: 15px;
 
   .homepage-author-info-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+    
   }
 
   .homepage-author-info-container > span:nth-child(2) {
@@ -22,7 +19,7 @@ const Wrapper = styled.article`
     gap: 0.3rem;
   }
 
-  .homepage-img-container{
+  .homepage-img-container {
     height: 200px;
     overflow: hidden;
   }
@@ -38,10 +35,11 @@ const Wrapper = styled.article`
 
   .homepage-text-info-container > p {
     display: none;
+    color: var( --cardtext3);
   }
 
   .homepage-text-info-container {
-    text-align: left;
+    text-align: center;
     display: grid;
     gap: 0.8rem;
   }
@@ -54,12 +52,12 @@ const Wrapper = styled.article`
   }
 
   .ptag > h1,
-  h2, u {
+  h2,
+  u {
     text-decoration: auto;
     font-size: 16px;
     font-family: FontRegular;
   }
-
 
   .action-link-container {
     width: 100%;
@@ -67,7 +65,6 @@ const Wrapper = styled.article`
     align-items: center;
     justify-content: space-between;
   }
-
 
   .edit-icon,
   .delete-icon {
@@ -86,28 +83,21 @@ const Wrapper = styled.article`
     background-color: #afd3e2;
   }
 
-  .read {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-size: 1rem;
-    font-family: FontSemiBold;
-    color: #475467;
-    line-height: 130%;
-  }
-
-
   @media (min-width: 700px) {
     .card {
       padding: 1.2rem;
       display: flex;
       gap: 1rem;
+      align-items: center;
     }
 
     .homepage-info-container {
       padding: 0;
       order: -1;
       width: 60%;
+    }
+    .homepage-text-info-container {
+      text-align: left;
     }
 
     .homepage-img-container {
@@ -116,6 +106,7 @@ const Wrapper = styled.article`
       width: 40%;
       display: grid;
       align-items: center;
+      order: 1;
     }
     .homepage-text-info-container > p {
       display: block;
@@ -130,13 +121,6 @@ const Wrapper = styled.article`
       margin-left: 0.5rem;
     }
 
-    .homepage-link {
-      color: #475467;
-      font-family: FontSemiBold;
-      width: 100px;
-      display: block;
-      /* justify-content: end; */
-    }
   }
 
   @media (min-width: 1020px) {
@@ -153,6 +137,11 @@ const Wrapper = styled.article`
 
     .edit-icon:hover {
       background-color: #afd3e2;
+    }
+
+    :hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      transition: all 0.3s;
     }
   }
 `;

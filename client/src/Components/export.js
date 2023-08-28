@@ -16,9 +16,8 @@ import PageBtnContainer from "./PageBtnContainer";
 import SearchComponent from "./SearchComponent";
 import SkeletonLoding from "./SkeletonLoding";
 import ScrolltoTopBtn from "./ScrolltoTopBtn";
-import HomePage from "./HomePage";
+import CardComponent from "./CardComponent";
 import AuthorInfoG from "./AuthorInfoG";
-import AuthorPostsG from "./AuthorPostsG";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import CommentsContainer from "./CommentsContainer";
@@ -47,10 +46,9 @@ export {
   PageBtnContainer,
   SkeletonLoding,
   ScrolltoTopBtn,
-  HomePage,
+  CardComponent,
   NavSearchComponent,
   AuthorInfoG,
-  AuthorPostsG,
   Comments,
   CommentForm,
   CommentsContainer,

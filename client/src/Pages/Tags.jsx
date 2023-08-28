@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/Tags";
-import { BsSearch } from "react-icons/bs";
-import tagArr from "../utils/tagArr";
 import { SearchComponent } from "../Components/export";
 import { useAppContext } from "../context/Context";
-import { HomePage, SkeletonLoding } from "../Components/export";
+import { CardComponent, SkeletonLoding } from "../Components/export";
 import WrapperR from "../assets/Wrappers/Home";
 
 const Tags = () => {
@@ -39,7 +37,7 @@ const Tags = () => {
         ) : (
           <>
             {postg.map((item) => (
-              <HomePage item={item} key={item._id} />
+              <CardComponent item={item} key={item._id} />
             ))}
           </>
         )}

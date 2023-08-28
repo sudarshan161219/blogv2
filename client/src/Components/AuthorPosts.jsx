@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Wrapper from "../assets/Wrappers/HomePage";
+import Wrapper from "../assets/Wrappers/CardComponent";
 import moment from "moment";
 
 import { BiEdit } from "react-icons/bi";
