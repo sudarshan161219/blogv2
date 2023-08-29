@@ -120,6 +120,7 @@ const initialState = {
   profileisLoading: false,
   formLoading: false,
   light_dark_mode: false,
+  light_dark: "light",
   commentsReplyformLoading: false,
   commentsLoading: false,
   editCommentLoading: false,

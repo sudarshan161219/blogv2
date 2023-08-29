@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    border-radius: 100%;
   }
 
   .nav-items-main-container {

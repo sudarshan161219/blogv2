@@ -117,7 +117,12 @@ const reducer = (state, action) => {
   }
 
   if (action.type === TOGGLE_DARK_LIGHT_MODE) {
-    return { ...state, light_dark_mode: !state.light_dark_mode };
+    const { light_dark_mode} = state
+    return {
+       ...state, 
+      light_dark_mode: !state.light_dark_mode,
+      light_dark: light_dark_mode ? "light" : "dark" 
+     };
   }
 
   if (action.type === TOGGLE_DASHNAV) {

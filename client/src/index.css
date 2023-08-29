@@ -176,6 +176,10 @@ body::-webkit-scrollbar-track {
   --cardtext1: #667085;
   --heading: #1d2939;
   --cardtext3: #475467;
+
+  /* dark mode */
+  --darkBg:#121212;
+  --darkMColor:#ffff
 }
 
 
@@ -203,7 +207,9 @@ body {
   background-color: #fff;
   position: relative;
   scroll-behavior: smooth;
+  transition: ease-in-out 0.3s;
 }
+
 
 h1,
 h2,
@@ -243,6 +249,18 @@ h4 {
 h5 {
   font-size: 1.15rem;
 }
+
+.header.dark{
+background-color: var(--darkBg);
+}
+
+.header.light{
+  background-color: var(--navbarbg);
+  }
+
+  .dark.home{
+    background-color: #1f1e21
+  }
 
 .homepage-author-info-container > span,
 .authorpost-author-info-container > span {

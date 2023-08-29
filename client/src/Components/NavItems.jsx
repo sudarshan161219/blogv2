@@ -41,11 +41,11 @@ const NavItems = () => {
           <div className="dark-light-container" >
             <div style={{ transform: `${light_dark_mode ? "translateY(-25px)" : "translateY(0px)"}`, transition: "ease-in-out 0.3s" }} className="dark-light-icon-container">
               <BsMoonStars style={{ transform: `${light_dark_mode ? "rotate(180deg)" : "rotate(0)"}`, transition: "ease-in-out 0.3s" }} onClick={handleThemeMode} />
-              <BsFillSunFill style={{ transform: `${light_dark_mode ? "rotate(180deg)" : "rotate(0)"}`, transition: "ease-in-out 0.3s" }} onClick={handleThemeMode} />
+              <BsFillSunFill style={{ transform: `${light_dark_mode ? "rotate(180deg)" : "rotate(0)"}`, transition: "ease-in-out 0.3s", color:"#fff" }} onClick={handleThemeMode} />
             </div>
           </div>
 
-          <div className="profile-container" onClick={handleToggle}>
+          <div style={{outline:`${ light_dark_mode ? "2px solid #fff" : "0px"}`}} className="profile-container" onClick={handleToggle}>
 
 
             <div className="img-container">

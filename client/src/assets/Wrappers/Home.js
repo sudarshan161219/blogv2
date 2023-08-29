@@ -5,6 +5,9 @@ const Wrapper = styled.main`
   display: grid;
   gap: 1.2rem;
   padding: 5rem 1rem;
+  transition: ease-in-out 0.3s;
+
+
 `;
 
 export default Wrapper;

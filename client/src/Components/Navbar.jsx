@@ -11,7 +11,8 @@ import { NavSearchComponent } from "../Components/export";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
 
 const Navbar = () => {
-  const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch } = useAppContext();
+  const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch, light_dark_mode, light_dark } = useAppContext();
+
   let location = useLocation();
   const regpath = location.pathname === "/register";
   const userPath = location.pathname === "/user-profile";
@@ -28,14 +29,6 @@ const Navbar = () => {
     clearNavSearch()
   }
 
-  // if (searchNavBar) {
-  //   return (
-  //       <div className="mobile-nav-search-container">
-  //         <AiOutlineClose onClick={handleClose} className="mobile-nav-search-close-icon" />
-  //         <NavSearchComponent />
-  //       </div>
-  //   )
-  // }
 
   return (
     <>
@@ -46,9 +39,9 @@ const Navbar = () => {
         userPathE ||
         userPathSP ||
         userPathSSP ? null :
-        <Wrapper className="nav-header ">
+        <Wrapper className={`header ${light_dark}`}>
           <Sidebar />
-          <nav className="nav">
+          <nav className={`nav  ${light_dark}`}>
             <div className="nav-links">
               <Link to="/" className="Link logo-logo-name">
                 <Logo />
@@ -60,14 +53,14 @@ const Navbar = () => {
             </div>
 
             {!regpath ? <div className="nav-search-container">
-            <NavSearchComponent />
-          </div> : null}
+              <NavSearchComponent />
+            </div> : null}
 
             {!regpath ?
               (
                 user &&
                 <div className="nav-icons">
-                  <AiOutlineSearch onClick={toggleNavSearch} className="nav-search-icon" />
+                  <AiOutlineSearch  onClick={toggleNavSearch} className={`nav-search-icon ${light_dark}`} />
                   <NavItems />
                 </div>
               )
@@ -77,7 +70,7 @@ const Navbar = () => {
             {!regpath ? (
               !user &&
               <div className="mobile-nav-icons">
-                <AiOutlineSearch onClick={toggleNavSearch} className="mobile-nav-search-icon" />
+                <AiOutlineSearch  onClick={toggleNavSearch} className={`mobile-nav-search-icon ${light_dark}`} />
                 <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
               </div>) : null}
 
@@ -86,7 +79,7 @@ const Navbar = () => {
                 (
                   !user &&
                   <div className="desktop-nav-icons">
-                    <AiOutlineSearch onClick={toggleNavSearch} className="desktop-nav-search-icon" />
+                    <AiOutlineSearch  onClick={toggleNavSearch} className={`desktop-nav-search-icon ${light_dark}`} />
                     <Link
                       className="nav-link register Link nav-btn register-btn button-4"
                       to="/register"
@@ -98,7 +91,7 @@ const Navbar = () => {
 
             }
 
-            <div className={`${searchNavBar ? "mobile-nav-search-container-show  mobile-nav-search-container" : " mobile-nav-search-container"}`}>
+            <div className={`${searchNavBar ? `mobile-nav-search-container-show  mobile-nav-search-container ${light_dark}` :  `mobile-nav-search-container ${light_dark}`}`}>
               <AiOutlineClose onClick={handleClose} className="mobile-nav-search-close-icon" />
               <NavSearchComponent />
             </div>

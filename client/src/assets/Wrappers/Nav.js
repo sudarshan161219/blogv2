@@ -1,16 +1,14 @@
 import styled from "styled-components";
 
 
+
 const Wrapper = styled.header`
   color: var(--navbartext);
-  background-color: var(--navbarbg);
-
-
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-
+  transition: ease-in-out 0.3s;
   .nav-icons,
   .mobile-nav-icons {
     display: flex;
@@ -41,7 +39,10 @@ const Wrapper = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
+
   }
+
+
 
   .ham-icon {
     font-size: 2rem;
@@ -73,10 +74,20 @@ const Wrapper = styled.header`
     margin-left: 0.5rem;
   }
 
+  .dark .mobile-nav-search-container {
+    background-color: var(--darkBg);
+  }
+
   .mobile-nav-search-icon,
   .desktop-nav-search-icon,
   .nav-search-icon {
     font-size: 1.6rem;
+  }
+
+  .dark .mobile-nav-search-icon,
+  .dark .desktop-nav-search-icon,
+  .dark .nav-search-icon {
+    color: var(--darkMColor);
   }
 
   .desktop-nav-icons {
@@ -145,8 +156,6 @@ const Wrapper = styled.header`
     }
   }
 
-
-  
   @media (min-width: 1300px) {
     .nav-search-container {
       width: 500px;

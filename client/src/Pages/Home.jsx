@@ -3,9 +3,10 @@ import {CardComponent } from "../Components/export";
 import Wrapper from "../assets/Wrappers/Home";
 import { SkeletonLoding } from "../Components/export";
 import usePosts from "../../hooks/usePosts.js";
-
+import { useAppContext } from "../context/Context";
 
 const Home = () => {
+  const {light_dark} = useAppContext()
   const [pageNum, setPageNum] = useState(1)
   const {
     isLoading, isError, error, results, hasNextPage
@@ -36,7 +37,7 @@ const Home = () => {
 
 
   return (
-    <Wrapper>
+    <Wrapper className={`home ${light_dark}`}>
         {content}
         {isLoading &&  <SkeletonLoding />}
     </Wrapper>

@@ -23,12 +23,13 @@ import {
   SavedSinglePost,
 
 } from "./Pages/profile/export";
-
+import { useAppContext } from "./context/Context";
 
 import { Toaster } from "react-hot-toast";
 const App = () => {
+  const { light_dark_mode } = useAppContext()
   return (
-    <div className="light">
+    <div>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
 
       <Navbar />
