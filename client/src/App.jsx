@@ -28,7 +28,7 @@ import {
 import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
-    <>
+    <div className="light">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
 
       <Navbar />
@@ -57,7 +57,7 @@ const App = () => {
       </Routes>
       <ScrolltoTopBtn />
       <Footer />
-    </>
+    </div>
   );
 };
 

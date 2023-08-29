@@ -108,7 +108,8 @@ import {
   GET_NAV_SEARCH_POST_SUCCESS,
   GET_NAV_SEARCH_POST_ERROR,
   CLEAR_NAV_SEARCH_VALUES,
-  TOGGLE_SEARCH_NAV_BAR
+  TOGGLE_SEARCH_NAV_BAR,
+  TOGGLE_DARK_LIGHT_MODE
 } from "./action";
 
 const post_id = localStorage.getItem("post_id");
@@ -118,6 +119,7 @@ const initialState = {
   isNavLoading: false,
   profileisLoading: false,
   formLoading: false,
+  light_dark_mode: false,
   commentsReplyformLoading: false,
   commentsLoading: false,
   editCommentLoading: false,
@@ -241,6 +243,11 @@ const ContextProvider = ({ children }) => {
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
+
+  //* toggle ligth and dark mode
+  const toggleThemeMode = () => {
+    dispatch({type: TOGGLE_DARK_LIGHT_MODE})
+  }
 
   //* toggle dashnav
   const toggleDashNav = () => {
@@ -1138,7 +1145,8 @@ const ContextProvider = ({ children }) => {
         toggleCommentSection,
         getNavSearchPost,
         clearNavSearch,
-        toggleNavSearch
+        toggleNavSearch,
+        toggleThemeMode
       }}
     >
       {children}

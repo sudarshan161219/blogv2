@@ -73,6 +73,7 @@ const Navbar = () => {
               )
               : null}
 
+
             {!regpath ? (
               !user &&
               <div className="mobile-nav-icons">

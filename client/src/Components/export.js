@@ -21,7 +21,6 @@ import AuthorInfoG from "./AuthorInfoG";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import CommentsContainer from "./CommentsContainer";
-import SavedPosts from "./Savedposts";
 import SavedSinglePost from "../Pages/profile/SavedSinglePost";
 import Footer from "./Footer";
 import NavSearchComponent  from "./NavSearchComponent"
@@ -52,7 +51,6 @@ export {
   Comments,
   CommentForm,
   CommentsContainer,
-  SavedPosts,
   SavedSinglePost,
   Footer,
   NavSearchResultsComponent

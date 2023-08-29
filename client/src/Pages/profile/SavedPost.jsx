@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
 import { useAppContext } from "../../context/Context";
-import { SavedPosts, SkeletonLoding, CardComponent } from "../../Components/export";
-import Wrapper from "../../assets/Wrappers/CardComponent"
+import { SkeletonLoding, CardComponent } from "../../Components/export";
+
+import Wrapper from "../../assets/Wrappers/SavedPost"
+
+
 const SavedPost = () => {
-  const { getSavedPost,savedPosts, isLoading } = useAppContext();
+  const { getSavedPost, savedPosts, isLoading } = useAppContext();
   useEffect(() => {
-getSavedPost() 
+    getSavedPost()
   }, []);
   return (
-    <>
-          <h1 className="allPost-heading">
+    < Wrapper>
+      <h1 className="allPost-heading">
         {savedPosts.length === 0 ? "no Saved Posts yet" : "your Saved Posts"}
       </h1>
-    
-        <Wrapper>
       {isLoading ? (
         <div>
           <SkeletonLoding />
@@ -25,8 +26,7 @@ getSavedPost()
           ))}
         </div>
       )}
-    </Wrapper>
-    </>
+    </ Wrapper>
   );
 
 };

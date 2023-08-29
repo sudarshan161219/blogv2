@@ -69,7 +69,7 @@ const getAuthorPage = async (req, res) => {
   const authorInfo = await User.findById({ _id: authorId });
   authorInfo.views += 1;
   authorInfo.save();
-  const authorPosts = await Post.find(queryObject).sort({ createdAt: -1 });
+  const authorPosts = await Post.find(queryObject).sort({ createdAt: -1 }).populate("author")
   res.status(StatusCodes.OK).json({ authorPosts, authorInfo });
 };
 

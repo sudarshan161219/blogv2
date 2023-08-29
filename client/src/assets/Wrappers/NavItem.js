@@ -6,44 +6,64 @@ const Wrapper = styled.div`
 
   .profile-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
-  
-  
-.img-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 100%;
-  overflow: hidden;
-}
+  .nav-items-main-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-.img-container:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
-}
+  .dark-light-container {
+    height: 20px;
+    overflow: hidden;
+    transition: ease-in-out 0.3s;
+  }
 
-.profile-img {
-  width: 100%;
-}
+  .dark-light-icon-container {
+    display: grid;
+    gap: 0.6rem;
+  }
 
-.img-container:hover > .profile-name {
-  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
-  transform: translate(-90%, 0);
-  opacity: 1;
-}
+  .img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    overflow: hidden;
+  }
 
-.profile-name {
-  font-family: 'Open Sans', sans-serif;
-  position: absolute;
-  transform: translate(10%, 0);
-  opacity: 0;
-  color: #1a1a1a;
-  text-transform: capitalize;
-  letter-spacing: 1.1px;
-}
+  .img-container:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+  }
+
+  .profile-img {
+    width: 100%;
+  }
+
+  .img-container:hover > .profile-name {
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+    transform: translate(-90%, 0);
+    opacity: 1;
+  }
+
+  .profile-name {
+    font-family: "Open Sans", sans-serif;
+    position: absolute;
+    transform: translate(10%, 0);
+    opacity: 0;
+    color: #1a1a1a;
+    text-transform: capitalize;
+    letter-spacing: 1.1px;
+  }
 
   .drop-down {
     font-family: "Open Sans", sans-serif;
@@ -55,7 +75,7 @@ const Wrapper = styled.div`
     background-color: white;
     border-radius: 8px;
     transform: translateY(-30px);
-    visibility:hidden ;
+    visibility: hidden;
     opacity: 0;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -75,7 +95,7 @@ const Wrapper = styled.div`
 
   .list-items {
     font-size: 0.9rem;
-    color: #191A19;
+    color: #191a19;
     letter-spacing: 0.5px;
     font-weight: 500;
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
@@ -89,18 +109,18 @@ const Wrapper = styled.div`
   }
 
   .show-drop-down {
-    visibility:visible ;
+    visibility: visible;
     transform: translateY(0px);
     opacity: 1;
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
   }
 
-  .nav-link{
+  .nav-link {
     height: 35px;
   }
 
   @media (min-width: 768px) {
-    .drop-down{
+    .drop-down {
       display: grid;
     }
   }

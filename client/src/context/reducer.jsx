@@ -105,7 +105,8 @@ import {
   GET_NAV_SEARCH_POST_SUCCESS,
   GET_NAV_SEARCH_POST_ERROR,
   CLEAR_NAV_SEARCH_VALUES,
-  TOGGLE_SEARCH_NAV_BAR
+  TOGGLE_SEARCH_NAV_BAR,
+  TOGGLE_DARK_LIGHT_MODE
 } from "./action";
 
 import { initialState } from "./Context";
@@ -115,11 +116,15 @@ const reducer = (state, action) => {
     return { ...state, showSidebar: !state.showSidebar };
   }
 
+  if (action.type === TOGGLE_DARK_LIGHT_MODE) {
+    return { ...state, light_dark_mode: !state.light_dark_mode };
+  }
+
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
   }
 
-  if (action.type ===   TOGGLE_SEARCH_NAV_BAR) {
+  if (action.type === TOGGLE_SEARCH_NAV_BAR) {
     return { ...state, searchNavBar: !state.searchNavBar };
   }
   if (action.type === TOGGLE_COMMENT_SECTION) {
