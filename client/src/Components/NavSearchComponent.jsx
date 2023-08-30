@@ -15,7 +15,9 @@ const NavSearchComponent = () => {
         postN,
         authorN,
         searchN,
-        isNavLoading
+        isNavLoading,
+        light_dark,
+        light_dark_mode
     } = useAppContext();
 
     useEffect(() => {
@@ -40,10 +42,6 @@ const NavSearchComponent = () => {
 
     const optimizedDebounce = useMemo(() => debounce(), []);
 
-    const myComponentStyle1 = {
-        height: "250px"
-    }
-
     const clearValues = () => {
         setLocalSearch("")
         clearNavSearch()
@@ -53,18 +51,21 @@ const NavSearchComponent = () => {
         <Wrapper>
             <form className='nav-form' >
                 <input name="searchN"
-                    value={loacalSearch} onChange={optimizedDebounce} className='nav-input' type="text" placeholder="Search Posts/Authors" />
-                <BsSearch className="search-container-searchIcon" />
-                <AiOutlineCloseCircle onClick={clearValues} style={{ display: `${searchN ? "block" : "none"}` }} className="search-container-closeIcon" />
+                    value={loacalSearch} onChange={optimizedDebounce} className={`nav-input  ${light_dark}`} type="text" placeholder="Search Posts/Authors" />
+                <BsSearch className={`search-container-searchIcon ${light_dark}`} />
+                <AiOutlineCloseCircle onClick={clearValues} style={{ display: `${searchN ? "block" : "none"}` }} className={`search-container-closeIcon ${light_dark}`} />
             </form>
 
             {
-                isNavLoading ? <div className="nav-search-results">
-                    <img className="nav-search-loading" src={gif} alt="loading...." />
+                isNavLoading ? <div className={`nav-search-results ${light_dark}`}>
+                    {light_dark_mode ?
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div> :
+                        <div class="lds-ring"><img className={`nav-search-loading ${light_dark}`} src={gif} alt="loading...." /> </div>
+                    }
+
                 </div> :
 
-                    <div className="nav-search-results"
-                        style={postN.length > 4 || authorN.length > 4 ? myComponentStyle1 : null}
+                    <div className={`${postN.length >= 1 || authorN.length >= 1 ? `nav-search-results ${light_dark}` : "nav-search-results-hide"}`}
                     >
                         {postN.length !== 0 &&
                             <>

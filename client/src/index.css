@@ -176,6 +176,7 @@ body::-webkit-scrollbar-track {
   --cardtext3: #475467;
 
   /* dark mode */
+
   --darkBg: #121212;
   --darkMCardBg: #121010;
   --darkMColor: #ffff;
@@ -409,6 +410,10 @@ background-color:var( --darkMCardBg);
 
 .dark .globalParagraph {
   color: var(--darkMText2);
+}
+
+.dark.SkeletonLoding {
+  background-color: #1f1e21;
 }
 
 .register-main {

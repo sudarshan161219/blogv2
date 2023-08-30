@@ -4,6 +4,7 @@ const Wrapper = styled.div`
   display: grid;
   gap: 1.2rem;
   padding: 1rem;
+  margin-top:3rem;
   .post-card {
     display: grid;
     width: 100%;
@@ -11,6 +12,10 @@ const Wrapper = styled.div`
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.12);
+  }
+
+  .dark.post-card {
+    background-color: var(--darkMCardBg);
   }
 
   .image {
@@ -55,6 +60,22 @@ const Wrapper = styled.div`
     animation: 1s loader ease-in-out infinite;
   }
 
+  .dark.loader .image,
+  .dark.loader h4,
+  .dark.loader .description {
+    background-color: #141313;
+    background: linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0) 40%,
+        #3f3f3f 50%,
+        rgba(255, 255, 255, 0) 60%
+      )
+      #282828;
+    background-size: 200% 100%;
+    background-position-x: 180%;
+    animation: 1s loader ease-in-out infinite;
+  }
+
   @keyframes loader {
     to {
       background-position-x: -20%;
@@ -93,8 +114,11 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1020px) {
-    width: 800px;
-    margin: auto;
+    .post-card{
+          width: 800px;
+    margin: auto
+    }
+;
   }
 `;
 

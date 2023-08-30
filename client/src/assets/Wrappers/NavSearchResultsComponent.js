@@ -15,6 +15,14 @@ const Wrapper = styled.div`
     gap: 0.5rem;
   }
 
+  .dark.searchedItem{
+    color: var(--darkMText4);
+  }
+
+  .dark.searchedItem-author{
+    color: var(--darkMText4);
+  }
+
   .searchedItem-img-container {
     width: 40px;
     height: 40px;
