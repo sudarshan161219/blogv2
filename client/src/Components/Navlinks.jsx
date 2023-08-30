@@ -11,36 +11,36 @@ import { BiEdit } from "react-icons/bi";
 
 
 const Navlinks = () => {
-  const { toggleSidebar, user } = useAppContext();
+  const { toggleSidebar, user, light_dark } = useAppContext();
 
   return (
-    <ul>
+    <ul className={`ul ${light_dark}`}>
 
       {user &&
         <>
           <li className=" mobile-links">
-            <Link onClick={!toggleSidebar} className="Link" to="/user-profile">
+            <Link onClick={!toggleSidebar} className={`ulLink ${light_dark}`} to="/user-profile">
               <IoGridOutline className="sidebar-icons" /> Dashboard
             </Link>
           </li>
 
 
           <li className="mobile-links">
-            <Link onClick={!toggleSidebar} className="Link " to="/user-profile/createpost">
+            <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/user-profile/createpost">
               <HiOutlinePencil className="sidebar-icons" /> Write a post
             </Link>
           </li>
 
 
           <li className="mobile-links">
-            <Link onClick={!toggleSidebar} className="Link " to="/user-profile/edit">
+            <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/user-profile/edit">
               <BiEdit className="sidebar-icons" /> edit profile
             </Link>
           </li>
 
 
           <li className="mobile-links">
-            <Link onClick={!toggleSidebar} className="Link " to="/user-profile/savedpost">
+            <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/user-profile/savedpost">
               <BsBookmark className="sidebar-icons" /> saved posts
             </Link>
           </li>
@@ -48,18 +48,18 @@ const Navlinks = () => {
       }
 
       <li>
-        <Link onClick={!toggleSidebar} className="Link " to="/">
+        <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/">
           <AiOutlineHome className="sidebar-icons" /> Home
         </Link>
       </li>
       <li>
-        <Link onClick={!toggleSidebar} className="Link " to="/tags">
+        <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/tags">
           <AiOutlineTag className="sidebar-icons" />
           Tags
         </Link>
       </li>
       <li>
-        <Link onClick={!toggleSidebar} className="Link " to="/about">
+        <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/about">
           <TbSquareLetterA className="sidebar-icons" />
           About
         </Link>

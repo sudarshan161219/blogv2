@@ -20,16 +20,7 @@ const Wrapper = styled.div`
     -webkit-tap-highlight-color: transparent;
   }
 
-  .dark-light-container {
-    height: 20px;
-    overflow: hidden;
-    transition: ease-in-out 0.3s;
-  }
 
-  .dark-light-icon-container {
-    display: grid;
-    gap: 0.6rem;
-  }
 
   .img-container {
     display: flex;

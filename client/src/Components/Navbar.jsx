@@ -9,6 +9,7 @@ import Wrapper from "../assets/Wrappers/Nav";
 import { useAppContext } from "../context/Context";
 import { NavSearchComponent } from "../Components/export";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
+import {ThemeSwitch} from "../Components/export"
 
 const Navbar = () => {
   const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch, light_dark_mode, light_dark } = useAppContext();
@@ -71,7 +72,8 @@ const Navbar = () => {
               !user &&
               <div className="mobile-nav-icons">
                 <AiOutlineSearch  onClick={toggleNavSearch} className={`mobile-nav-search-icon ${light_dark}`} />
-                <BiMenuAltLeft className="ham-icon" onClick={toggleSidebar} />
+                <ThemeSwitch />
+                <BiMenuAltLeft className={`ham-icon ${light_dark}`} onClick={toggleSidebar} />
               </div>) : null}
 
             {
@@ -80,8 +82,9 @@ const Navbar = () => {
                   !user &&
                   <div className="desktop-nav-icons">
                     <AiOutlineSearch  onClick={toggleNavSearch} className={`desktop-nav-search-icon ${light_dark}`} />
+                    <ThemeSwitch />
                     <Link
-                      className="nav-link register Link nav-btn register-btn button-4"
+                      className={`nav-link register Link nav-btn register-btn button-4 ${light_dark}`}
                       to="/register"
                     >
                       Login

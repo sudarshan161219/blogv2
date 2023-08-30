@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-
-
 const Wrapper = styled.header`
   color: var(--navbartext);
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  transition: ease-in-out 0.3s;
+
   .nav-icons,
   .mobile-nav-icons {
     display: flex;
@@ -39,10 +37,7 @@ const Wrapper = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-
   }
-
-
 
   .ham-icon {
     font-size: 2rem;
@@ -86,7 +81,8 @@ const Wrapper = styled.header`
 
   .dark .mobile-nav-search-icon,
   .dark .desktop-nav-search-icon,
-  .dark .nav-search-icon {
+  .dark .nav-search-icon,
+  .dark .ham-icon {
     color: var(--darkMColor);
   }
 
@@ -100,17 +96,26 @@ const Wrapper = styled.header`
     display: none;
   }
 
+  .dark .ulLink {
+    color: var(--darkMText4);
+  }
+
   @media (min-width: 768px) {
-    ul {
+    .ul {
       color: #1c1c1c;
       display: flex;
       gap: 1.5rem;
       font-size: 1rem;
     }
 
-    ul > li > .Link {
+    .ulLink {
       color: #1c1c1c;
+      text-decoration: none;
     }
+
+    .dark .ulLink:hover {
+    color: #dedada;
+  }
 
     .nav-links {
       display: flex;

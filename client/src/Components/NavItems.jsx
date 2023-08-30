@@ -3,7 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 import profile from "../assets/imgs/profile.png";
 import Wrapper from "../assets/Wrappers/NavItem";
-import { BsMoonStars, BsFillSunFill } from "react-icons/bs"
+
+import { ThemeSwitch } from "../Components/export"
+
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
   const { user, logoutUser, postId, toggleSidebar, toggleThemeMode,
@@ -14,9 +16,6 @@ const NavItems = () => {
     toggleSidebar();
   };
 
-  const handleThemeMode = () => {
-    toggleThemeMode();
-  };
 
 
   const location = useLocation();
@@ -38,14 +37,10 @@ const NavItems = () => {
         </Link>
       ) : (
         <div className="nav-items-main-container">
-          <div className="dark-light-container" >
-            <div style={{ transform: `${light_dark_mode ? "translateY(-25px)" : "translateY(0px)"}`, transition: "ease-in-out 0.3s" }} className="dark-light-icon-container">
-              <BsMoonStars style={{ transform: `${light_dark_mode ? "rotate(180deg)" : "rotate(0)"}`, transition: "ease-in-out 0.3s" }} onClick={handleThemeMode} />
-              <BsFillSunFill style={{ transform: `${light_dark_mode ? "rotate(180deg)" : "rotate(0)"}`, transition: "ease-in-out 0.3s", color:"#fff" }} onClick={handleThemeMode} />
-            </div>
-          </div>
 
-          <div style={{outline:`${ light_dark_mode ? "2px solid #fff" : "0px"}`}} className="profile-container" onClick={handleToggle}>
+          <ThemeSwitch />
+
+          <div style={{ outline: `${light_dark_mode ? "2px solid #fff" : "0px"}` }} className="profile-container" onClick={handleToggle}>
 
 
             <div className="img-container">

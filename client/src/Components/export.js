@@ -25,7 +25,7 @@ import SavedSinglePost from "../Pages/profile/SavedSinglePost";
 import Footer from "./Footer";
 import NavSearchComponent  from "./NavSearchComponent"
 import NavSearchResultsComponent from "./NavSearchResultsComponent"
-
+import ThemeSwitch from "./ThemeSwitch";
 export {
   AboutHeroS,
   AboutS,
@@ -53,5 +53,6 @@ export {
   CommentsContainer,
   SavedSinglePost,
   Footer,
-  NavSearchResultsComponent
+  NavSearchResultsComponent,
+  ThemeSwitch
 };
