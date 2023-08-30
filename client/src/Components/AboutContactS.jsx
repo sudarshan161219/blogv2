@@ -5,16 +5,16 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
-
+import {Paragraph} from "../Components/export"
 const AboutContactS = () => {
   return (
     <Wrapper>
       <div className="contact-info">
         <h5>want to connect?</h5>
-        <p>
+        <Paragraph>
           Laboris consectetur sunt nulla eiusmod <br /> voluptate eiusmod dolor
           nisi qui..
-        </p>
+        </Paragraph>
       </div>
       <div className="socials">
         <ul>

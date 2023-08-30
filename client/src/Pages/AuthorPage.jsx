@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
-import { Link, useParams } from "react-router-dom";
-import { AuthorInfoG,  CardComponent } from "../Components/export";
-import { Loading, SkeletonLoding } from "../Components/export";
+import { useParams } from "react-router-dom";
+import { Loading, SkeletonLoding, AuthorInfoG,  CardComponent, Heading} from "../Components/export";
 
 
 const AuthorPage = () => {
@@ -17,9 +16,6 @@ const AuthorPage = () => {
     getAuthorPage(id);
   }, [check, id]);
 
-
-
-
   return (
     <Wrapper>
       {isLoading ? <Loading /> : <AuthorInfoG authorInfo={GauthorInfo} />}
@@ -28,7 +24,7 @@ const AuthorPage = () => {
       ) : (
         <div className="postG">
           <div className="postG-heading-container">
-            <h1>{GauthorInfo.name} {GauthorPosts.length > 1 ? "Posts" : "Post"} </h1>
+            <Heading>{GauthorInfo.name} {GauthorPosts.length > 1 ? "Posts" : "Post"} </Heading>
           </div>
           {GauthorPosts.map((post) => (
             <CardComponent key={post._id} item={post} />

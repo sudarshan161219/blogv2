@@ -5,6 +5,7 @@ import {
   SkeletonLoding,
   PageBtnContainer,
   SearchComponent,
+  Heading
 } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
 import DeletePostAlert from "../../Alert/DeletePostAlert";
@@ -32,10 +33,10 @@ const Allposts = () => {
       <DeletePostAlert />
       <SearchComponent />
       <>
-        <h1 className="allPost-heading">
+        <Heading className="allPost-heading">
           {authorpost.length === 0 && "no Posts yet"}
           {authorpost.length > 1 ? "Posts" : "Post"} 
-        </h1>
+        </Heading>
         {isLoading ? (
           <div>
             <SkeletonLoding />

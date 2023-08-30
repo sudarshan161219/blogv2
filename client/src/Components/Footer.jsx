@@ -1,6 +1,8 @@
 import React from 'react'
 import { useLocation } from "react-router-dom";
 import { useAppContext } from '../context/Context';
+import {Paragraph} from "../Components/export"
+
 const Footer = () => {
     const { postId } = useAppContext();
     const location = useLocation()
@@ -24,7 +26,7 @@ const Footer = () => {
                 !userPathS &&
                 !userPathSP ?
                 <div className="footer-container">
-                    <p>©2023 shwebdev.in. All rights reserved.</p>
+                    <Paragraph>©2023 shwebdev.in. All rights reserved.</Paragraph>
                     <div className="social-links">
                         <img src="" alt="" />
                         <img src="" alt="" />

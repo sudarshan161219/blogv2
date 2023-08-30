@@ -1,19 +1,20 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/DeleteAlertModal";
 import { useAppContext } from "../context/Context";
+import { Paragraph} from "../Components/export"
 
 const DeleteAlertModal = () => {
-  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal} =
+  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal } =
     useAppContext();
 
 
-    useEffect(() => {
-      if (showDeleteModal) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "unset";
-      }
-    }, [showDeleteModal]);
+  useEffect(() => {
+    if (showDeleteModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [showDeleteModal]);
 
   const handleCancel = () => {
     !toggleDeleteModal();
@@ -36,10 +37,10 @@ const DeleteAlertModal = () => {
           <h3>Delete Comment</h3>
         </div>
         <div className="modal-info">
-          <p>
+          < Paragraph>
             Are you sure you want to delete this comment? This will remove the
             comment and can’t be undone.
-          </p>
+          </Paragraph>
         </div>
         <div className="modal-btns">
           <button className="no" onClick={handleCancel}>

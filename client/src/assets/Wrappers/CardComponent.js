@@ -33,9 +33,8 @@ const Wrapper = styled.article`
     padding: 1rem;
   }
 
-  .homepage-text-info-container > p {
+   .ptag {
     display: none;
-    color: var( --cardtext3);
   }
 
   .homepage-text-info-container {
@@ -49,6 +48,10 @@ const Wrapper = styled.article`
     font-family: FontSemiBold;
     display: flex;
     justify-content: end;
+  }
+
+  .dark .ptag{
+    color:  var(--darkMText2);
   }
 
   .ptag > h1,
@@ -117,7 +120,7 @@ const Wrapper = styled.article`
       align-items: center;
       order: 1;
     }
-    .homepage-text-info-container > p {
+ .ptag {
       display: block;
     }
 

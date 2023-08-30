@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppContext } from "../../context/Context";
-import { SkeletonLoding, CardComponent } from "../../Components/export";
+import { SkeletonLoding, CardComponent, Heading } from "../../Components/export";
 
 import Wrapper from "../../assets/Wrappers/SavedPost"
 
@@ -12,9 +12,9 @@ const SavedPost = () => {
   }, []);
   return (
     < Wrapper>
-      <h1 className="allPost-heading">
+      <Heading className="allPost-heading">
         {savedPosts.length === 0 ? "no Saved Posts yet" : "your Saved Posts"}
-      </h1>
+      </Heading>
       {isLoading ? (
         <div>
           <SkeletonLoding />

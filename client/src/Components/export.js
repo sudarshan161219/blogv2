@@ -26,6 +26,9 @@ import Footer from "./Footer";
 import NavSearchComponent  from "./NavSearchComponent"
 import NavSearchResultsComponent from "./NavSearchResultsComponent"
 import ThemeSwitch from "./ThemeSwitch";
+import Heading from "./Heading";
+import Paragraph from "./Paragraph"
+
 export {
   AboutHeroS,
   AboutS,
@@ -54,5 +57,7 @@ export {
   SavedSinglePost,
   Footer,
   NavSearchResultsComponent,
-  ThemeSwitch
+  ThemeSwitch,
+  Heading,
+  Paragraph
 };

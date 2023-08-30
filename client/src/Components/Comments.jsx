@@ -11,7 +11,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Ripples from "react-ripples";
 import { toast } from "react-hot-toast";
 import profile from "../assets/imgs/profile.png"
-
+import {Paragraph} from "../Components/export"
 const Comments = ({ comment }) => {
   const {
     likeComment,
@@ -206,7 +206,7 @@ const Comments = ({ comment }) => {
                 </div>
               </form>
             ) : (
-              <p>{content}</p>
+              <Paragraph>{content}</Paragraph>
             )}
           </div>
 

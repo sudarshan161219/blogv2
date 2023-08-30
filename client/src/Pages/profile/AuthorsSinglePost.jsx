@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppContext } from "../../context/Context";
-import { Loading } from "../../Components/export";
+import { Loading, Heading,Paragraph } from "../../Components/export";
 import { Link, useParams } from "react-router-dom";
 import Wrapper from "../../assets/Wrappers/AuthorsSinglePost";
 import { BiEdit } from "react-icons/bi";
@@ -70,8 +70,8 @@ const AuthorsSinglePost = () => {
         </Link>
       </div>
       <div className="info-content">
-        <h1>{title}</h1>
-        <p>{summary}</p>
+        <Heading>{title}</Heading>
+        <Paragraph>{summary}</Paragraph>
         <div className="tags-container">
           {postTags && postTags.map((tag, idx) => {
             return <strong key={idx} className="tags">{tag}</strong>;

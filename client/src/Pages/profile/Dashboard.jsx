@@ -5,6 +5,7 @@ import { GoPencil } from "react-icons/go"
 import { useAppContext } from '../../context/Context'
 import loading from "../../assets/Rolling-0.7s-157px.svg"
 import {Link} from "react-router-dom"
+import {Heading} from "../../Components/export"
 const Dashboard = () => {
   const { getUserStats, mostViewedPosts, totalAuthorPosts, totalViews, totalAuthorViews, statsLoading } = useAppContext()
 
@@ -15,7 +16,7 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
-      <h1>Dashboard</h1>
+      <Heading>Dashboard</Heading>
       <div className="stats-container">
         <div className="total-views-container">
           <strong>total post views</strong>

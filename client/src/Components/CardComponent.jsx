@@ -4,7 +4,7 @@ import moment from "moment";
 import { BsPersonCircle } from "react-icons/bs";
 import { useAppContext } from "../context/Context";
 import { Link } from "react-router-dom";
-
+import {Heading} from "../Components/export"
 
 const CardComponent = forwardRef(({ item }, ref) => {
   const { light_dark } = useAppContext()
@@ -34,9 +34,9 @@ const CardComponent = forwardRef(({ item }, ref) => {
           </span>
         </div>
         <div className="homepage-text-info-container">
-          <h1>{title}</h1>
+          <Heading>{title}</Heading>
           <p
-            className="ptag"
+            className={`ptag globalParagraph ${light_dark}`}
             dangerouslySetInnerHTML={{ __html: htmlDecode(decs.substring(0, 105)) || decs.substring(0, 105) }}
           ></p>
         </div>

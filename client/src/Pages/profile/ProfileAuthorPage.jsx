@@ -8,6 +8,9 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
 } from "react-icons/ai";
+import {Heading, Paragraph} from "../../Components/export"
+
+
 const ProfileAuthorPage = ({ authorInfo }) => {
   const { name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
     authorInfo;
@@ -18,8 +21,8 @@ const ProfileAuthorPage = ({ authorInfo }) => {
         <img className="profile-img" src={userImg ? userImg : profile} alt="profile" />
       </div>
       <div className="author_info_info_container">
-        <h1>{name}</h1>
-        <p>{userInfo}</p>
+        <Heading>{name}</Heading>
+        <Paragraph>{userInfo}</Paragraph>
         <div className="author_info_links_container">
           <a style={{ visibility: `${personalLink ? "visible" : "collapse"}` }} className="author-links" href={personalLink} _blank="true">
             <BsLink45Deg className="link-icon" />

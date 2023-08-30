@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Wrapper from "../assets/Wrappers/DeleteAlertModal"
 import { useAppContext } from "../context/Context";
-
+import {Paragraph} from '../Components/export'
 const DeletePostAlert = () => {
   const { deletePostId, deletePost, toggleDeletePostModal, showDeletePostModal } =
     useAppContext();
@@ -35,10 +35,10 @@ const DeletePostAlert = () => {
           <h3>Delete Comment</h3>
         </div>
         <div className="modal-info">
-          <p>
+          <Paragraph>
             Are you sure you want to delete this post? This will remove the post
             and can’t be undone.
-          </p>
+          </Paragraph>
         </div>
         <div className="modal-btns">
           <button className="no" onClick={handleCancel}>

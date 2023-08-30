@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import {
   Loading,
+  Heading
 } from "../Components/export";
 import {
   BsDot,
@@ -105,7 +106,7 @@ const Post = () => {
     <Wrapper>
       <div className="post-container">
         <div className="post-heading-container">
-          <h1>{title}</h1>
+          <Heading>{title}</Heading>
           <div className="post-date-author-info-container">
             <span>{Fdate}</span>
             <BsDot />

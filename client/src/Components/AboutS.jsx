@@ -6,7 +6,7 @@ import pic2 from "../assets/imgs/Picture-2.webp";
 import pic3 from "../assets/imgs/Picture-3.webp";
 import pic4 from "../assets/imgs/Picture-4.webp";
 import pic5 from "../assets/imgs/Picture-5.webp";
-
+import {Paragraph} from "../Components/export"
 const AboutS = () => {
   return (
     <Wrapper>
@@ -14,12 +14,12 @@ const AboutS = () => {
       <div className="first-container">
         <div className="first-info-container">
           <h4>We tell stories that drives the heart.</h4>
-          <p>
+          <Paragraph>
             Laboris consectetur sunt nulla eiusmod voluptate eiusmod dolor nisi
             qui dolor cillum fugiat ad. Id sit mollit labore sunt sit culpa qui
             minim pariatur et officia elit id. Tempor cupidatat veniam esse ad
             veniam dolore excepteur tempor dolor consectetur ut id.
-          </p>
+          </Paragraph>
         </div>
         <img src={pic1} alt="pic" />
       </div>
@@ -29,12 +29,12 @@ const AboutS = () => {
         <img src={pic2} alt="pic" />
         <div className="second-info-container">
           <h4>We tell the news that makes the most impact.</h4>
-          <p>
+          <Paragraph>
             Laboris consectetur sunt nulla eiusmod voluptate eiusmod dolor nisi
             qui dolor cillum fugiat ad. Id sit mollit labore sunt sit culpa qui
             minim pariatur et officia elit id. Tempor cupidatat veniam esse ad
             veniam dolore excepteur tempor dolor consectetur ut id.
-          </p>
+          </Paragraph>
         </div>
       </div>
 
@@ -42,12 +42,12 @@ const AboutS = () => {
       <div className="third-container">
         <div className="third-info-container">
           <h4>We tell stories that drives the heart.</h4>
-          <p>
+          <Paragraph>
             Laboris consectetur sunt nulla eiusmod voluptate eiusmod dolor nisi
             qui dolor cillum fugiat ad. Id sit mollit labore sunt sit culpa qui
             minim pariatur et officia elit id. Tempor cupidatat veniam esse ad
             veniam dolore excepteur tempor dolor consectetur ut id.
-          </p>
+          </Paragraph>
         </div>
         <div className="img-container">
           <img src={pic3}  alt="pic" />

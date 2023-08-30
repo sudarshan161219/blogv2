@@ -227,12 +227,7 @@ h5 {
   font-family: FontSemiBold;
 }
 
-p {
-  font-size: 1.05rem;
-  font-family: FontRegular;
-  color: #475467;
-  line-height: 150%;
-}
+
 
 h1 {
   font-size: 1.5rem;
@@ -399,9 +394,22 @@ h5 {
 
 .dark .homeCards {
 background-color:var( --darkMCardBg);
-outline: 2px solid var(--darkmText);
 }
 
+.dark .globalHeading {
+  color: var(--darkMText1);
+}
+
+.globalParagraph {
+  font-size: 1rem;
+  font-family: FontRegular;
+  color: var(--cardtext3);
+  line-height: 150%;
+}
+
+.dark .globalParagraph {
+  color: var(--darkMText2);
+}
 
 .register-main {
   display: flex;

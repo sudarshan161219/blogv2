@@ -9,6 +9,8 @@ import Ripples from "react-ripples";
 import CommentReplyForm from "./CommentReplyForm";
 import { useAppContext } from "../context/Context";
 import { toast } from "react-hot-toast";
+import {Paragraph} from "../Components/export"
+
 const CommentReplies = ({ replies, commentId }) => {
   const {
     user,
@@ -194,7 +196,7 @@ const CommentReplies = ({ replies, commentId }) => {
                 </div>
               </form>
             ) : (
-              <p>{repliedComment}</p>
+              <Paragraph>{repliedComment}</Paragraph>
             )}
           </div>
 

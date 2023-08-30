@@ -1,8 +1,8 @@
 import React from 'react'
-
+import {Heading} from '../Components/export'
 const Alert = () => {
   return (
-   <h1 className='alert-heading'>Password don't match😣</h1>
+   <Heading className='alert-heading'>Password don't match😣</Heading>
   )
 }
 
