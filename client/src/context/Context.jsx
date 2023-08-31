@@ -109,18 +109,22 @@ import {
   GET_NAV_SEARCH_POST_ERROR,
   CLEAR_NAV_SEARCH_VALUES,
   TOGGLE_SEARCH_NAV_BAR,
-  TOGGLE_DARK_LIGHT_MODE
+  TOGGLE_DARK_LIGHT_MODE,
 } from "./action";
 
 const post_id = localStorage.getItem("post_id");
+const theme = localStorage.getItem("theme")
+const toggleState = localStorage.getItem("toggleState")
+
+const parse = JSON.parse(toggleState)
 
 const initialState = {
   isLoading: false,
   isNavLoading: false,
   profileisLoading: false,
   formLoading: false,
-  light_dark_mode: false,
-  light_dark: "light",
+  light_dark_mode: parse ? parse : false,
+  light_dark: theme ? theme : "light",
   commentsReplyformLoading: false,
   commentsLoading: false,
   editCommentLoading: false,
@@ -240,15 +244,34 @@ const ContextProvider = ({ children }) => {
   const controller = new AbortController();
   const { signal } = controller;
 
+
+
   //* toggle sidebar
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
 
+
+  const themeFn = () => {
+    if (state.light_dark_mode) {
+      localStorage.setItem("theme", "light");
+      localStorage.setItem("toggleState", false);
+
+    } else {
+      localStorage.setItem("theme", "dark");
+      localStorage.setItem("toggleState", true);
+
+    }
+  }
+
+
   //* toggle ligth and dark mode
   const toggleThemeMode = () => {
-    dispatch({type: TOGGLE_DARK_LIGHT_MODE})
+    dispatch({ type: TOGGLE_DARK_LIGHT_MODE })
+    themeFn()
   }
+
+
 
   //* toggle dashnav
   const toggleDashNav = () => {

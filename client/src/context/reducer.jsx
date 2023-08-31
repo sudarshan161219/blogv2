@@ -106,7 +106,7 @@ import {
   GET_NAV_SEARCH_POST_ERROR,
   CLEAR_NAV_SEARCH_VALUES,
   TOGGLE_SEARCH_NAV_BAR,
-  TOGGLE_DARK_LIGHT_MODE
+  TOGGLE_DARK_LIGHT_MODE,
 } from "./action";
 
 import { initialState } from "./Context";
@@ -124,7 +124,7 @@ const reducer = (state, action) => {
       light_dark: light_dark_mode ? "light" : "dark" 
      };
   }
-
+  
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
   }
