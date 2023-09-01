@@ -10,7 +10,7 @@ import { GrFormClose } from "react-icons/gr"
 import Ripples from "react-ripples";
 
 const SinglePost = () => {
-  const { user, isLoading, commentSection, toggleCommentSection } = useAppContext();
+  const { user, isLoading, commentSection, toggleCommentSection, light_dark } = useAppContext();
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const SinglePost = () => {
 
 
   return (
-    <Wrapper>
+    <Wrapper className={`singlePost ${light_dark}`}>
       <Post />
       <div className={commentSection ? "comment-container-div-visible comment-container-div" : "comment-container-div"}  >
         <div className="icon-container">

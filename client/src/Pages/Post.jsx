@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import {
   Loading,
-  Heading
+  Heading,
+  Paragraph
 } from "../Components/export";
 import {
   BsDot,
@@ -38,7 +39,8 @@ const Post = () => {
     savePost,
     unsavePost,
     postComments,
-    toggleCommentSection
+    toggleCommentSection,
+    light_dark
   } = useAppContext();
 
   const { id } = useParams();
@@ -97,22 +99,22 @@ const Post = () => {
   }
 
 
-  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
+  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes,  } = post;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
 
   return (
-    <Wrapper>
+    <Wrapper >
       <div className="post-container">
         <div className="post-heading-container">
           <Heading>{title}</Heading>
           <div className="post-date-author-info-container">
-            <span>{Fdate}</span>
+            <span className={`Fdate ${light_dark}`}>{Fdate}</span>
             <BsDot />
             <Link
               to={`/author/${author ? author._id : ""}`}
-              className="Link post-author"
+              className={`Link post-author ${light_dark}`}
             >
               <BsPersonCircle />
               {author ? author.name : null}
@@ -218,7 +220,7 @@ const Post = () => {
 
         <div className="ql-snow post-content-container">
           <div
-            className="ql-editor"
+            className={`ql-editor ${light_dark}`}
             dangerouslySetInnerHTML={{ __html: htmlDecode(content) || content }}
           />
         </div>

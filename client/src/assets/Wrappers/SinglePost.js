@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+    padding-top:4rem;
   .comment-container-div {
     display: block;
     position: fixed;
-    background-color: rgb(242, 244, 247);
+   background-color: #f2f4f7;
     height: 600px;
     z-index: 11;
     transform: translateY(900px);
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
     transition: ease-in-out 0.3s;
     overflow: auto;
     bottom: 0;
+
   }
 
   .comment-container-div::-webkit-scrollbar-thumb {

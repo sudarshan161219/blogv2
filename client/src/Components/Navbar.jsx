@@ -30,6 +30,9 @@ const Navbar = () => {
     clearNavSearch()
   }
 
+  if(regpath){
+    return 
+  }
 
   return (
     <>
@@ -47,10 +50,7 @@ const Navbar = () => {
               <Link to="/" className="Link logo-logo-name">
                 <Logo />
               </Link>
-              {regpath
-                ? null : (
                   <Navlinks />
-                )}
             </div>
 
             {!regpath ? <div className="nav-search-container">

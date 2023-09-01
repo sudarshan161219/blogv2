@@ -380,7 +380,7 @@ h5 {
   display: none;
 }
 
-.dark {
+.dark , .light{
   transition: ease-in-out 0.3s;
 }
 
@@ -406,17 +406,27 @@ h5 {
 .globalParagraph {
   font-size: 1rem;
   font-family: FontRegular;
-  color: var(--cardtext3);
+  color: var(--cardtext3); 
   line-height: 150%;
 }
 
-.dark .globalParagraph {
+.dark .globalParagraph, .dark.form-para, .dark.ql-editor > p {
   color: var(--darkMText2);
 }
 
-.dark.SkeletonLoding {
+.dark.SkeletonLoding, .dark.singlePost {
   background-color: #1f1e21;
 }
+.dark.footer-container {
+  background-color: var(--darkBg);
+}
+
+
+.light.singlePost{
+  background-color: #f2f4f7;
+}
+
+
 
 .register-main {
   display: flex;
@@ -475,6 +485,8 @@ h5 {
 
 .form-para {
   margin-top: 1rem;
+  font-size: 0.9rem;
+  font-family: fontRegularsec;
 }
 
 .form-para > .form-link {
@@ -595,7 +607,6 @@ strong {
   display: grid;
   gap: 0.5rem;
   overflow: hidden;
-  /* justify-content: center; */
 }
 
 .guest-btn > button {
@@ -623,6 +634,8 @@ strong {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (min-width: 700px) {

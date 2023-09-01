@@ -7,7 +7,7 @@ import {
   AiOutlineEye,
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { Logo } from "../Components/export";
+import { Logo, Paragraph } from "../Components/export";
 import { useAppContext } from "../context/Context";
 import gif from "../assets/Rolling-0.7s-157px.svg";
 
@@ -172,7 +172,7 @@ const Register = () => {
             )}
           </div>
         </form>
-        <p className="form-para">
+        <p className={`form-para ${light_dark}`}>
           {values.isMember ? "Not a member yet ? " : "Already a member ? "}
           <button
             type="button "

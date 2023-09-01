@@ -4,7 +4,7 @@ import { useAppContext } from '../context/Context';
 import {Paragraph} from "../Components/export"
 
 const Footer = () => {
-    const { postId } = useAppContext();
+    const { postId, light_dark } = useAppContext();
     const location = useLocation()
 
 
@@ -25,7 +25,7 @@ const Footer = () => {
                 !userPathE &&
                 !userPathS &&
                 !userPathSP ?
-                <div className="footer-container">
+                <div className={`footer-container ${light_dark}`}>
                     <Paragraph>©2023 shwebdev.in. All rights reserved.</Paragraph>
                     <div className="social-links">
                         <img src="" alt="" />

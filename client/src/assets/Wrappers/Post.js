@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  background-color: #f2f4f7;
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   .like-container,
   .dislike-container,
   .comment-container {
@@ -36,8 +35,13 @@ const Wrapper = styled.div`
     font-size: 13px;
     line-height: 120%;
   }
-
-  .post-date-author-info-container > span:nth-child(1) {
+  .dark.Fdate {
+    color: var(--darkmText);
+  }
+  .dark.post-author {
+    color: var(--darkMText4);
+  }
+  .light.Fdate {
     color: #475467;
   }
 
@@ -54,7 +58,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  
+
   .like-dislike-comment {
     gap: 0.5rem;
     display: flex;
@@ -136,9 +140,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 1000px) {
-    margin-top: 2rem;
     .post-img-container {
-      /* display: flex; */
       justify-content: center;
     }
     .post-img-container > img {
