@@ -186,7 +186,7 @@ body::-webkit-scrollbar-track {
   --darkMText1: #e4e4e4;
   --darkMText2: #dedada;
   --darkMText3: #a39c9c;
-  --darkMText4 :#cdc8c8;
+  --darkMText4: #cdc8c8;
 }
 
 .noSelect {
@@ -228,8 +228,6 @@ h5 {
   font-family: FontSemiBold;
 }
 
-
-
 h1 {
   font-size: 1.5rem;
 }
@@ -258,8 +256,12 @@ h5 {
   background-color: var(--navbarbg);
 }
 
-.dark.home {
+.dark.home,
+.dark.register-main {
   background-color: #1f1e21;
+}
+.dark.form-heading {
+  color: var(--darkMText2);
 }
 
 .homepage-author-info-container > span,
@@ -378,7 +380,7 @@ h5 {
   display: none;
 }
 
-.dark{
+.dark {
   transition: ease-in-out 0.3s;
 }
 
@@ -394,7 +396,7 @@ h5 {
 }
 
 .dark .homeCards {
-background-color:var( --darkMCardBg);
+  background-color: var(--darkMCardBg);
 }
 
 .dark .globalHeading {
@@ -467,6 +469,8 @@ background-color:var( --darkMCardBg);
   display: flex;
   margin-bottom: 1.5rem;
   align-items: center;
+  gap: 0.5rem;
+  position: relative;
 }
 
 .form-para {
@@ -493,10 +497,8 @@ background-color:var( --darkMCardBg);
 
 .eye-icon {
   position: absolute;
-  right: 0px;
-  top: -5px;
   height: 100%;
-  background: rgb(255, 255, 255);
+  right: 10px;
   z-index: 10;
   cursor: pointer;
 }
@@ -506,17 +508,24 @@ background-color:var( --darkMCardBg);
   border: none;
   letter-spacing: 1.1px;
   width: 300px;
-  padding: 0.8rem 1rem;
-  font-size: 1.2rem;
+  padding: 0.7rem 0.5rem 0.7rem 2rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-family: fontRegularsec;
+  display: flex;
+  align-items: center;
 }
 
 .input-container > .input::placeholder {
   color: rgba(128, 128, 128, 0.671);
+  font-size: 0.9rem;
 }
 
 .aiIcons {
-  margin-top: 0.3rem;
-  font-size: 2rem;
+  font-size: 1rem;
+  position: absolute;
+  color: var(--darkmText);
+  left: 10px;
 }
 
 .btn-hide {

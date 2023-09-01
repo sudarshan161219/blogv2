@@ -9,7 +9,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../Components/export";
 import { useAppContext } from "../context/Context";
-import { Toaster } from "react-hot-toast";
 import gif from "../assets/Rolling-0.7s-157px.svg";
 
 const initialState = {
@@ -27,7 +26,7 @@ const initialState = {
 const Register = () => {
   const [values, setValues] = useState(initialState);
   const [togglePass, setTogglePass] = useState("password");
-  const { user, isLoading, registerFn, loginFn } = useAppContext();
+  const { user, isLoading, registerFn, loginFn, light_dark } = useAppContext();
   const { password, visible, isMember } = values;
   const navigate = useNavigate();
 
@@ -75,14 +74,14 @@ const Register = () => {
   };
 
   return (
-    <main className="register-main">
+    <main className={`register-main ${light_dark}`}>
       <div className="form-container">
         <div className="heading-para">
           <Logo />
-          <h3 className="form-heading">
+          <h3 className={`form-heading ${light_dark}`} >
             {values.isMember ? "Welcome back!" : "Welcome to RBlog!"}
           </h3>
-          <h5 className="form-heading">
+          <h5 className={`form-heading ${light_dark}`}>
             {values.isMember ? "Login" : "Register"}
           </h5>
         </div>
@@ -90,9 +89,9 @@ const Register = () => {
         <form className="register-form" onSubmit={handleSubmit}>
           {!values.isMember && (
             <div className="input-container">
-              <label htmlFor="name">
+              {/* <label htmlFor="name"> */}
                 <AiOutlineUser className="aiIcons" />
-              </label>
+              {/* </label> */}
 
               <input
                 className="input"
@@ -107,9 +106,9 @@ const Register = () => {
           )}
 
           <div className="input-container">
-            <label htmlFor="email">
+            {/* <label htmlFor="email"> */}
               <AiOutlineMail className="aiIcons" />
-            </label>
+            {/* </label> */}
             <input
               className="input"
               id="email"
@@ -123,9 +122,9 @@ const Register = () => {
           </div>
 
           <div className="input-container password-container">
-            <label htmlFor="password">
+
               <AiOutlineKey className="aiIcons" />
-            </label>
+
 
             <input
               className="input"
@@ -139,12 +138,12 @@ const Register = () => {
             {password &&
               (visible ? (
                 <AiOutlineEyeInvisible
-                  className="aiIcons eye-icon"
+                  className=" eye-icon"
                   onClick={togglePassword}
                 />
               ) : (
                 <AiOutlineEye
-                  className="aiIcons eye-icon"
+                  className=" eye-icon"
                   onClick={togglePassword}
                 />
               ))}
