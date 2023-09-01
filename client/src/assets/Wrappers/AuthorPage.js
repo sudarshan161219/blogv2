@@ -4,11 +4,18 @@ const Wrapper = styled.div`
   display: grid;
   gap: 2rem;
   margin-top: 5rem;
-  .postG {
+  .dark.postG {
+    background-color: #1f1e21;
     padding: 5rem 1rem;
     display: grid;
     gap: 2rem;
-    background-color: rgb(242, 244, 247);
+  }
+
+  .light.postG {
+    padding: 5rem 1rem;
+    display: grid;
+    gap: 2rem;
+    background-color: #f2f4f7;
   }
 
   @media (min-width: 1020px) {

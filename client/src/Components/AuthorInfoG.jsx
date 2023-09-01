@@ -16,7 +16,7 @@ const AuthorInfoG = ({ authorInfo }) => {
 
 
   return (
-    <Wrapper>
+    <Wrapper className="">
       <div className="author_info_img_container">
         <img src={authorInfo.userImg ? userImg : profile} alt={name} />
       </div>

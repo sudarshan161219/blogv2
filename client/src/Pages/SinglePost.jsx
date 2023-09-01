@@ -24,7 +24,7 @@ const SinglePost = () => {
 
 
   return (
-    <Wrapper className={`singlePost ${light_dark}`}>
+    <Wrapper className={`Post ${light_dark}`}>
       <Post />
       <div className={commentSection ? "comment-container-div-visible comment-container-div" : "comment-container-div"}  >
         <div className="icon-container">

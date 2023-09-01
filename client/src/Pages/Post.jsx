@@ -133,13 +133,13 @@ const Post = () => {
                   <Ripples className="ripple">
                     {like ? (
                       <BiSolidLike
-                        className="post-ldc-icons"
+                        className={`post-ldc-icons ${light_dark}`}
                         onClick={handleLike}
                       />
                     ) : (
-                      <BiLike className="post-ldc-icons" onClick={handleLike} />
+                      <BiLike className={`post-ldc-icons ${light_dark}`} onClick={handleLike} />
                     )}
-                    <strong>{postLikes || likes.length}</strong>
+                    <strong className={`like-dislike-comment-stats ${light_dark}`}>{postLikes || likes.length}</strong>
                   </Ripples>
                 </div>
 
@@ -148,17 +148,17 @@ const Post = () => {
                   <Ripples className="ripple">
                     {dislike ? (
                       <BiSolidDislike
-                        className="post-ldc-icons"
+                        className={`post-ldc-icons ${light_dark}`}
                         onClick={handleDislike}
                       />
 
                     ) : (
                       <BiDislike
-                        className="post-ldc-icons"
+                        className={`post-ldc-icons ${light_dark}`}
                         onClick={handleDislike}
                       />
                     )}
-                    <strong>{postDisLikes || dislikes.length}</strong>
+                    <strong className={`like-dislike-comment-stats ${light_dark}`}>{postDisLikes || dislikes.length}</strong>
                   </Ripples>
                 </div>
 
@@ -166,8 +166,8 @@ const Post = () => {
                 {/* // post comment  */}
                 <div className="comment-container">
                   <Ripples onClick={() => toggleCommentSection()} className="ripple">
-                    <BiComment className="post-ldc-icons" />
-                    <strong>{postComments}</strong>
+                    <BiComment className={`post-ldc-icons ${light_dark}`} />
+                    <strong className={`like-dislike-comment-stats ${light_dark}`}>{postComments}</strong>
                   </Ripples>
                 </div>
               </div>
@@ -177,13 +177,13 @@ const Post = () => {
                 <Ripples className="ripple">
                   {save ? (
                     <BsFillBookmarkCheckFill
-                      className="post-ldc-icons"
+                      className={`post-ldc-icons ${light_dark}`}
                       onClick={handleSave}
                     />
                   ) : (
 
                     <BsBookmark
-                      className="post-ldc-icons"
+                      className={`post-ldc-icons ${light_dark}`}
                       onClick={handleSave}
                     />
                   )}

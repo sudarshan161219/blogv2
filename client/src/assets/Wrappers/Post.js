@@ -102,11 +102,25 @@ const Wrapper = styled.div`
     color: #0079ff;
   }
 
-  .post-ldc-icons {
+ .light.post-ldc-icons {
     font-size: 1.1rem;
     cursor: pointer;
     color: #1d2939;
   }
+
+  .dark.post-ldc-icons {
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+
+  .light.like-dislike-comment-stats{
+    color: #1d2939;
+  }
+  .dark.like-dislike-comment-stats{
+    color: #fff;
+  }
+
 
   .tags {
     padding: 0 1rem;

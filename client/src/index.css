@@ -414,7 +414,7 @@ h5 {
   color: var(--darkMText2);
 }
 
-.dark.SkeletonLoding, .dark.singlePost {
+.dark.SkeletonLoding, .dark.Post {
   background-color: #1f1e21;
 }
 .dark.footer-container {
@@ -422,7 +422,7 @@ h5 {
 }
 
 
-.light.singlePost{
+.light.Post{
   background-color: #f2f4f7;
 }
 

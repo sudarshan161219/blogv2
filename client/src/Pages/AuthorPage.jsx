@@ -6,7 +6,7 @@ import { Loading, SkeletonLoding, AuthorInfoG,  CardComponent, Heading} from "..
 
 
 const AuthorPage = () => {
-  const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading } =
+  const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading, light_dark } =
     useAppContext();
   const { id } = useParams();
 
@@ -22,7 +22,7 @@ const AuthorPage = () => {
       {isLoading ? (
         <SkeletonLoding />
       ) : (
-        <div className="postG">
+        <div className={`postG ${light_dark}`}>
           <div className="postG-heading-container">
             <Heading>{GauthorInfo.name} {GauthorPosts.length > 1 ? "Posts" : "Post"} </Heading>
           </div>
