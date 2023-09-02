@@ -13,6 +13,7 @@ const CommentsContainer = () => {
     postComments,
     user,
     token,
+    light_dark
   } = useAppContext();
   const { id } = useParams();
 
@@ -30,7 +31,7 @@ const CommentsContainer = () => {
     <>
       {/* {user && ( */}
         <div className="commentsContainerHeading">
-          <h4>
+          <h4 className={`postCommentsHeading ${light_dark}`}>
             {postComments}&nbsp;{postComments === 1 ? "comment" : "comments"}
           </h4>
         </div>

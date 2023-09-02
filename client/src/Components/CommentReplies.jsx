@@ -27,6 +27,7 @@ const CommentReplies = ({ replies, commentId }) => {
     editCommentReplyLoading,
     editCommentReply,
     token,
+    light_dark
   } = useAppContext();
 
   const {
@@ -144,7 +145,7 @@ const CommentReplies = ({ replies, commentId }) => {
   return (
     <Wrapper>
       <div className="comment-reply-container">
-        <div className="comment-info-container">
+        <div className={`comment-info-container ${light_dark}`}>
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
               <img
@@ -152,16 +153,16 @@ const CommentReplies = ({ replies, commentId }) => {
                 src={replieAuthor.userImg}
                 alt="avatar"
               />
-              <strong>{replieAuthor.name}</strong>
+              <strong className={`comment-user-name ${light_dark}`}>{replieAuthor.name}</strong>
               &#x2022;
-              <span className="date">
+              <span className={`date ${light_dark}`}>
                 {Fdate} {createdAt !== updatedAt && "(edited)"}
               </span>
             </div>
             {user && (
               <div onClick={handleReply} className="icon-container">
-                <BsReplyFill className="reply-icon" />
-                <strong>reply</strong>
+                <BsReplyFill className={`reply-icon ${light_dark}`} />
+                <strong className={`icon-text ${light_dark}`}>reply</strong>
               </div>
             )}
           </div>
@@ -209,32 +210,32 @@ const CommentReplies = ({ replies, commentId }) => {
                   <Ripples className="comment-ripple">
                     {CommentReply_Liked_Disliked_Id._id === _id &&
                       CommentReply_Liked_Disliked_Id.likes.includes(user._id) ? (
-                      <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                      <BiSolidLike className={`ldc-icons ${light_dark}`} onClick={handleLike} />
                     ) : (
                       <>
                         {user ? (
                           <>
                             {like ? (
                               <BiSolidLike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleLike}
                               />
                             ) : (
                               <BiLike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleLike}
                               />
                             )}
                           </>
                         ) : (
-                          <BiLike className="ldc-icons" />
+                          <BiLike className={`ldc-icons ${light_dark}`} />
                         )}
                       </>
                     )}
                     {postCommentsReplyLikes.map(
                       (item) =>
                         item._id === _id && (
-                          <strong key={item._id}>
+                          <strong className={`postCommentsLikes_Dislikes ${light_dark}`} key={item._id}>
                             {item._id === _id && item.count}
                           </strong>
                         )
@@ -249,7 +250,7 @@ const CommentReplies = ({ replies, commentId }) => {
                       CommentReply_Liked_Disliked_Id.dislikes.includes(user._id) ? (
                       <>
                         <BiSolidDislike
-                          className="ldc-icons"
+                          className={`ldc-icons ${light_dark}`}
                           onClick={handleDislike}
                         />
                       </>
@@ -259,19 +260,19 @@ const CommentReplies = ({ replies, commentId }) => {
                           <>
                             {dislike ? (
                               <BiSolidDislike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleDislike}
                               />
                             ) : (
                               <BiDislike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleDislike}
                               />
                             )}
                           </>
                         ) : (
                           <BiDislike
-                            className="ldc-icons"
+                            className={`ldc-icons ${light_dark}`}
                           />
                         )}
                       </>
@@ -279,7 +280,7 @@ const CommentReplies = ({ replies, commentId }) => {
                     {postCommentsReplyDisLikes.map(
                       (item) =>
                         item._id === _id && (
-                          <strong key={item._id}>
+                          <strong  className={`postCommentsLikes_Dislikes ${light_dark}`} key={item._id}>
                             {item._id === _id && item.count}
                           </strong>
                         )
@@ -292,10 +293,10 @@ const CommentReplies = ({ replies, commentId }) => {
               {user && user._id === replieAuthor._id && (
                 <div className="comment-edit-delete-container">
                   <Ripples onClick={handleEdit} className="comment-ripple">
-                    <BiEdit className="edit-comment-icon" />
+                    <BiEdit className={`edit-comment-icon ${light_dark}`} />
                   </Ripples>
                   <Ripples className="comment-ripple" onClick={handleClick}>
-                    <AiOutlineDelete className="delete-comment-icon" />
+                    <AiOutlineDelete className={`delete-comment-icon ${light_dark}`} />
                   </Ripples>
                 </div>
               )}

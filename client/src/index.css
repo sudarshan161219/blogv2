@@ -413,19 +413,17 @@ h5 {
   color: var(--darkMText2);
 }
 
-.dark.SkeletonLoding, .dark.Post {
+.dark.SkeletonLoding, .dark.Post, .dark.AuthorPage {
   background-color: #1f1e21;
 }
+
 .dark.footer-container {
   background-color: var(--darkBg);
 }
 
-
 .light.Post{
   background-color: #f2f4f7;
 }
-
-
 
 .register-main {
   display: flex;

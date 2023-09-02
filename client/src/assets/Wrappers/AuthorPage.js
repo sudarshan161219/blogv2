@@ -3,7 +3,8 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: grid;
   gap: 2rem;
-  margin-top: 5rem;
+  padding-top: 5rem;
+
   .dark.postG {
     background-color: #1f1e21;
     padding: 5rem 1rem;

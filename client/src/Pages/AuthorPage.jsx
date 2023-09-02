@@ -17,7 +17,7 @@ const AuthorPage = () => {
   }, [check, id]);
 
   return (
-    <Wrapper>
+    <Wrapper className={`AuthorPage ${light_dark}`}>
       {isLoading ? <Loading /> : <AuthorInfoG authorInfo={GauthorInfo} />}
       {isLoading ? (
         <SkeletonLoding />

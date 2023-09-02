@@ -54,7 +54,8 @@ const Wrapper = styled.div`
     font-size: 2rem;
     cursor: pointer;
   }
-  .dark.close-icon {
+  .dark.close-icon,
+  .dark.postCommentsHeading {
     color: var(--darkMText2);
   }
   @media (min-width: 1000px) {

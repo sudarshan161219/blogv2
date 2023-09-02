@@ -3,9 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   justify-content: end;
-  /* border-left: 1px solid gray; */
-  /* margin-left: 0.5rem; */
-  form {
+ .CommentReplyForm {
     width: 88%;
     display: grid;
     background-color: #fff;
@@ -14,6 +12,9 @@ const Wrapper = styled.div`
     border-radius: 10px;
   }
 
+  .dark.CommentReplyForm{
+    background-color: var(--darkBg);
+  }
   .comment-form {
     height: 120px;
     width: 100%;
@@ -30,6 +31,10 @@ const Wrapper = styled.div`
   }
   .comment-form:focus {
     outline: gray solid 1px;
+  }
+  .dark.comment-form{
+    background-color:#272829;
+    color: var(--darkMText2);
   }
 
   .img-btn {

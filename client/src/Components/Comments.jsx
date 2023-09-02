@@ -11,7 +11,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Ripples from "react-ripples";
 import { toast } from "react-hot-toast";
 import profile from "../assets/imgs/profile.png"
-import {Paragraph} from "../Components/export"
+import { Paragraph } from "../Components/export"
 const Comments = ({ comment }) => {
   const {
     likeComment,
@@ -221,32 +221,32 @@ const Comments = ({ comment }) => {
                   <Ripples className="comment-ripple">
                     {Comment_Liked_Disliked_Id._id === _id &&
                       Comment_Liked_Disliked_Id.likes.includes(user._id) ? (
-                      <BiSolidLike className="ldc-icons" onClick={handleLike} />
+                      <BiSolidLike className={`ldc-icons ${light_dark}`} onClick={handleLike} />
                     ) : (
                       <>
                         {user ? (
                           <>
                             {like ? (
                               <BiSolidLike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleLike}
                               />
                             ) : (
                               <BiLike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleLike}
                               />
                             )}
                           </>
                         ) : (
-                          <BiLike className="ldc-icons" />
+                          <BiLike className={`ldc-icons ${light_dark}`} />
                         )}
                       </>
                     )}
                     {postCommentsLikes.map(
                       (item) =>
                         item._id === _id && (
-                          <strong key={item._id}>
+                          <strong className={`postCommentsLikes_Dislikes ${light_dark}`} key={item._id}>
                             {item._id === _id && item.count}
                           </strong>
                         )
@@ -262,7 +262,7 @@ const Comments = ({ comment }) => {
                       Comment_Liked_Disliked_Id.dislikes.includes(user._id) ? (
                       <>
                         <BiSolidDislike
-                          className="ldc-icons"
+                          className={`ldc-icons ${light_dark}`}
                           onClick={handleDislike}
                         />
 
@@ -273,27 +273,27 @@ const Comments = ({ comment }) => {
                           <>
                             {dislike ? (
                               <BiSolidDislike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleDislike}
                               />
 
                             ) : (
 
                               <BiDislike
-                                className="ldc-icons"
+                                className={`ldc-icons ${light_dark}`}
                                 onClick={handleDislike}
                               />
                             )}
                           </>
                         ) : (
-                          <BiDislike className="ldc-icons" />
+                          <BiDislike className={`ldc-icons ${light_dark}`} />
                         )}
                       </>
                     )}
                     {postCommentsDisLikes.map(
                       (item) =>
                         item._id === _id && (
-                          <strong key={item._id}>
+                          <strong className={`postCommentsLikes_Dislikes ${light_dark}`} key={item._id}>
                             {item._id === _id && item.count}
                           </strong>
                         )
@@ -306,10 +306,10 @@ const Comments = ({ comment }) => {
               {user && user._id === author._id && (
                 <div className="comment-edit-delete-container">
                   <Ripples onClick={handleEdit} className="comment-ripple">
-                    <BiEdit className="edit-comment-icon" />
+                    <BiEdit className={`edit-comment-icon ${light_dark}`} />
                   </Ripples>
                   <Ripples onClick={handleDelete} className="comment-ripple">
-                    <AiOutlineDelete className="delete-comment-icon" />
+                    <AiOutlineDelete className={`delete-comment-icon ${light_dark}`} />
                   </Ripples>
                 </div>
               )}

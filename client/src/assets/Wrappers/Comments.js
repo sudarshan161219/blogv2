@@ -28,7 +28,12 @@ const Wrapper = styled.div`
     font-size: 1.4rem;
   }
   .dark.reply-icon,
-  .dark.icon-text {
+  .dark.icon-text,
+  .dark.ldc-icons,
+  .dark.edit-comment-icon,
+  .dark.delete-comment-icon,
+  .dark.postCommentsLikes_Dislikes
+  {
     color: var(--darkMText2);
   }
 

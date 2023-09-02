@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Loading from "../assets/Rolling-0.7s-157px.svg";
 const CommentReplyForm = ({ name, commentId }) => {
-  const { user, createCommentReply, commentsReplyformLoading } =
+  const { user, createCommentReply, commentsReplyformLoading, light_dark } =
     useAppContext();
   const [text, setText] = useState(`@${name}  `);
   const { id } = useParams();
@@ -34,7 +34,7 @@ const CommentReplyForm = ({ name, commentId }) => {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit}>
+      <form className={`CommentReplyForm ${light_dark}`} onSubmit={handleSubmit}>
         <div className="text-img-container">
           <img
             className="desktop-comment-img"
@@ -47,7 +47,7 @@ const CommentReplyForm = ({ name, commentId }) => {
             placeholder="post your comment"
             name="Rcontent"
             id="Rcontent"
-            className="comment-form"
+            className={`comment-form ${light_dark}`}
             cols="30"
             rows="10"
           ></textarea>

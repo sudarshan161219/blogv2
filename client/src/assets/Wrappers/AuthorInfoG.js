@@ -2,13 +2,16 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 1rem;
+  /* border-bottom: 1px solid var(--darkmText); */
   .author_info_img_container {
     display: flex;
     justify-content: center;
+    border-radius: 100%;
   }
   .author_info_img_container > img {
     width: 150px;
     border-radius: 100%;
+    outline: #fff 1px solid;
   }
 
   .author_info_info_container {
@@ -27,7 +30,7 @@ const Wrapper = styled.div`
     height: 30px;
   }
 
-  .author_info_btn-container > button:hover > .author_info_btn-container-link{
+  .author_info_btn-container > button:hover > .author_info_btn-container-link {
     color: white;
   }
   .author_info_links_container {
@@ -62,6 +65,10 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: end;
+  }
+
+  .dark.link-icon{
+    color:var(--darkMText1)
   }
 
   @media (min-width: 700px) {
