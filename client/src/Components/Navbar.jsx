@@ -1,8 +1,7 @@
 import React from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../Components/Logo";
-import Navlinks from "./Navlinks";
-import Sidebar from "./Sidebar";
+import Navlinks from "./Navlinks"; 
 import { NavItems } from "../Components/export";
 import { BiMenuAltLeft } from "react-icons/bi";
 import Wrapper from "../assets/Wrappers/Nav";
@@ -12,7 +11,7 @@ import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
 import {ThemeSwitch} from "../Components/export"
 
 const Navbar = () => {
-  const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch, light_dark_mode, light_dark } = useAppContext();
+  const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch, light_dark } = useAppContext();
 
   let location = useLocation();
   const regpath = location.pathname === "/register";
@@ -44,7 +43,6 @@ const Navbar = () => {
         userPathSP ||
         userPathSSP ? null :
         <Wrapper className={`header ${light_dark}`}>
-          <Sidebar />
           <nav className={`nav  ${light_dark}`}>
             <div className="nav-links">
               <Link to="/" className="Link logo-logo-name">
@@ -91,9 +89,7 @@ const Navbar = () => {
                     </Link>
                   </div>
                 ) : null
-
             }
-
             <div className={`${searchNavBar ? `mobile-nav-search-container-show  mobile-nav-search-container ${light_dark}` :  `mobile-nav-search-container ${light_dark}`}`}>
               <AiOutlineClose onClick={handleClose} className="mobile-nav-search-close-icon" />
               <NavSearchComponent />

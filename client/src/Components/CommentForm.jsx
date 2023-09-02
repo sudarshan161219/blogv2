@@ -7,7 +7,7 @@ import Loading from "../assets/Rolling-0.7s-157px.svg";
 import profile from "../assets/imgs/profile.png";
 const CommentForm = () => {
   const [text, setText] = useState("");
-  const { user, createComment, formLoading } = useAppContext();
+  const { user, createComment, formLoading, light_dark } = useAppContext();
 
   const { id } = useParams();
 
@@ -32,10 +32,10 @@ const CommentForm = () => {
 
   return (
     <Wrapper>
-        <form onSubmit={handleSubmit}>
+        <form className={`commentForm ${light_dark}`} onSubmit={handleSubmit}>
           <div className="text-img-container">
             <img
-              className="desktop-comment-img"
+              className={`desktop-comment-img ${light_dark}`}
               src={user.userImg ? user.userImg : profile}
               alt={user && user.name}
             />
@@ -46,14 +46,14 @@ const CommentForm = () => {
               placeholder="post your comment"
               name="content"
               id="content"
-              className="comment-form"
+              className={`comment-input ${light_dark}`}
               cols="30"
               rows="10"
             ></textarea>
           </div>
           <div className="img-btn">
             <img
-              className="mobile-comment-img"
+              className={`mobile-comment-img ${light_dark}`}
               src={user.userImg ? user.userImg : profile}
               alt={user && user.name}
               disabled={formLoading}

@@ -338,7 +338,6 @@ h5 {
   vertical-align: middle;
   white-space: nowrap;
   word-wrap: break-word;
-  /* width: 150px; */
   overflow: hidden;
   height: 40px;
   display: grid;

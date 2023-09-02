@@ -31,6 +31,7 @@ const Comments = ({ comment }) => {
     editCommentReplyLoading,
     postCommentsReply,
     token,
+    light_dark
   } = useAppContext();
 
   const {
@@ -157,21 +158,21 @@ const Comments = ({ comment }) => {
   return (
     <Wrapper>
       <div className="comment-container">
-        <div className="comment-info-container">
+        <div className={`comment-info-container ${light_dark}`}>
           <div className="comment-name-time-reply">
             <div className="comment-img-name">
               <img className="mobile-comment-img" src={user ? user.userImg : profile}
                 alt={user && user.name} />
-              <strong>{name}</strong>
+              <strong className={`comment-user-name ${light_dark}`}>{name}</strong>
               &#x2022;
-              <span className="date">
+              <span className={`date ${light_dark}`}>
                 {Fdate} {createdAt !== updatedAt && "(edited)"}
               </span>
             </div>
             {user && (
               <div onClick={handleReply} className="icon-container">
-                <BsReplyFill className="reply-icon" />
-                <strong>reply</strong>
+                <BsReplyFill className={`reply-icon ${light_dark}`} />
+                <strong className={`icon-text ${light_dark}`}>reply</strong>
               </div>
             )}
           </div>
@@ -336,7 +337,7 @@ const Comments = ({ comment }) => {
         )}
 
         {replies.length > 0 && (
-          <button className="replies-btn" onClick={handleReplyClick}>
+          <button className="replies-btn button-4" onClick={handleReplyClick}>
             {showReplies ? "hide reply" : `show replies ${postCommentsReply}`}
           </button>
         )}

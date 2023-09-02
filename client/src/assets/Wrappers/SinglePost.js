@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    padding-top:4rem;
+  padding-top: 4rem;
   .comment-container-div {
     display: block;
     position: fixed;
-   background-color: #f2f4f7;
+    background-color: #f2f4f7;
     height: 600px;
     z-index: 11;
     transform: translateY(900px);
@@ -13,7 +13,9 @@ const Wrapper = styled.div`
     transition: ease-in-out 0.3s;
     overflow: auto;
     bottom: 0;
-
+  }
+  .dark.comment-container-div {
+    background-color: #1f1e21;
   }
 
   .comment-container-div::-webkit-scrollbar-thumb {
@@ -52,6 +54,9 @@ const Wrapper = styled.div`
     font-size: 2rem;
     cursor: pointer;
   }
+  .dark.close-icon {
+    color: var(--darkMText2);
+  }
   @media (min-width: 1000px) {
     .comment-container-div {
       display: block;
@@ -61,7 +66,7 @@ const Wrapper = styled.div`
       z-index: 11;
       transform: translateX(900px);
       /* width: 60%; */
-      width:600px;
+      width: 600px;
       transition: ease-in-out 0.3s;
       overflow: auto;
       right: 0;

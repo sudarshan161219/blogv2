@@ -98,6 +98,7 @@ const Wrapper = styled.header`
 
   .dark .ulLink {
     color: var(--darkMText4);
+    text-decoration: none;
   }
 
   @media (min-width: 768px) {

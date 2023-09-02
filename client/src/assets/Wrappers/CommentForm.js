@@ -12,7 +12,11 @@ padding: 1rem;
     border-radius: 10px;
   }
 
-  .comment-form {
+  .dark.commentForm{
+    background-color: var(--darkBg)
+  }
+
+  .comment-input {
     height: 120px;
     width: 100%;
     resize: none;
@@ -26,8 +30,13 @@ padding: 1rem;
     margin-bottom: 1rem;
     padding: 0.2rem;
   }
-  .comment-form:focus {
+  .comment-input:focus {
     outline: gray solid 1px;
+  }
+
+  .dark.comment-input{
+    background-color:#272829;
+    color: var(--darkMText2);
   }
 
   .img-btn {
@@ -54,6 +63,9 @@ padding: 1rem;
 
   .desktop-comment-img {
     display: none;
+  }
+ .desktop-comment-img, .mobile-comment-img {
+    outline: #fff 1px solid;
   }
 
   .giff {

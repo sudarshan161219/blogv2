@@ -92,6 +92,16 @@ const Wrapper = styled.aside`
     padding: 1.5rem 1rem;
   }
 
+  
+  .light.ulLink ,   .dark.ulLink{
+    color: #b3b3b3;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    font-family: fontRegularsec;
+  }
+
   .navlinks-container > ul {
     display: grid;
     gap: 2rem;

@@ -6,7 +6,7 @@ import DeleteCRAlertModal from "../Alert/DeleteCRAlertModal";
 import { useAppContext } from "../context/Context";
 import { Loading } from "../Components/export";
 import Post from "./Post";
-import { GrFormClose } from "react-icons/gr"
+import { AiOutlineCloseCircle } from "react-icons/ai"
 import Ripples from "react-ripples";
 
 const SinglePost = () => {
@@ -26,17 +26,17 @@ const SinglePost = () => {
   return (
     <Wrapper className={`Post ${light_dark}`}>
       <Post />
-      <div className={commentSection ? "comment-container-div-visible comment-container-div" : "comment-container-div"}  >
+      <div className={commentSection ? `comment-container-div-visible comment-container-div ${light_dark}` : `comment-container-div ${light_dark}`}  >
         <div className="icon-container">
           <Ripples onClick={() => toggleCommentSection()} className="ripple no-select">
-            <GrFormClose className="close-icon" />
+            <AiOutlineCloseCircle className={`close-icon  ${light_dark}`} />
           </Ripples>
         </div>
         {user && <CommentForm />}
         {isLoading ? (
           <Loading />
         ) : (
-          <div className="comments">
+          <div className={`comments `}>
             <CommentsContainer />
           </div>
         )}

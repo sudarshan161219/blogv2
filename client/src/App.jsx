@@ -23,15 +23,16 @@ import {
   SavedSinglePost,
 
 } from "./Pages/profile/export";
+import {  Sidebar} from "./Components/export"
 import { useAppContext } from "./context/Context";
 
 import { Toaster } from "react-hot-toast";
 const App = () => {
   const { light_dark_mode } = useAppContext()
   return (
-    <div>
+    <>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-
+      <Sidebar />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -58,7 +59,7 @@ const App = () => {
       </Routes>
       <ScrolltoTopBtn />
       <Footer />
-    </div>
+    </>
   );
 };
 
