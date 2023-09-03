@@ -17,8 +17,11 @@ const Wrapper = styled.div`
   justify-content: center;
   padding: 1rem;
   /* transition: all 0.1s; */
-  h3 {
+  .modal-heading {
     color: #334253;
+  }
+  .dark.modal-heading{
+    color: var(  --darkMText1);
   }
   p {
     color: #67727e;
@@ -32,6 +35,9 @@ const Wrapper = styled.div`
     color: #000;
     display: grid;
     align-items: center;
+  }
+  .dark.modal{
+    background-color: var(--darkMCardBg);
   }
 
   .modal-btns {

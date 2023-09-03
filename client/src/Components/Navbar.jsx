@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../Components/Logo";
 import Navlinks from "./Navlinks"; 
@@ -11,7 +11,15 @@ import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai"
 import {ThemeSwitch} from "../Components/export"
 
 const Navbar = () => {
-  const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch, light_dark } = useAppContext();
+  const { toggleSidebar, postId, user, toggleNavSearch, searchNavBar, clearNavSearch, light_dark, light_dark_mode } = useAppContext();
+
+  useEffect(() => {
+    if (light_dark_mode) {
+      document.body.style.backgroundColor = "#1f1e21";
+    } else {
+      document.body.style.backgroundColor = "#fafbfc";
+    }
+  }, [light_dark_mode]);
 
   let location = useLocation();
   const regpath = location.pathname === "/register";

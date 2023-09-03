@@ -10,6 +10,7 @@ const DeleteCRAlertModal = () => {
     deleteCommentReply,
     toggleDeleteCrModal,
     deleteCommentReplyId,
+    light_dark
   } = useAppContext();
 
   useEffect(() => {
@@ -36,9 +37,9 @@ const DeleteCRAlertModal = () => {
         zIndex: `${showDeleteCrModal ? 13 : -1}`,
       }}
     >
-      <div className="modal">
-        <div className="modal-heading">
-          <h3>Delete reply</h3>
+      <div className={`modal ${light_dark}`}>
+        <div className="modal-heading-container">
+          <h3  className={`modal-heading ${light_dark}`}>Delete reply</h3>
         </div>
         <div className="modal-info">
           <Paragraph>

@@ -4,7 +4,7 @@ import { useAppContext } from "../context/Context";
 import { Paragraph} from "../Components/export"
 
 const DeleteAlertModal = () => {
-  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal } =
+  const { deleteCommentId, deleteComment, toggleDeleteModal, showDeleteModal, light_dark } =
     useAppContext();
 
 
@@ -32,9 +32,9 @@ const DeleteAlertModal = () => {
         zIndex: `${showDeleteModal ? 13 : -1}`,
       }}
     >
-      <div className="modal">
-        <div className="modal-heading">
-          <h3>Delete Comment</h3>
+      <div className={`modal ${light_dark}`}>
+        <div className="modal-heading-container">
+          <h3 className={`modal-heading ${light_dark}`}>Delete Comment</h3>
         </div>
         <div className="modal-info">
           < Paragraph>

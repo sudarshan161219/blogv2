@@ -5,11 +5,9 @@ const Wrapper = styled.div`
   -webkit-box-pack: center;
   justify-content: center;
   flex-direction: column;
-  /* padding-top: 5rem; */
   padding: 0 1rem;
   margin-top: 5rem;
   gap: 1.5rem;
-  /* margin: 0 1rem; */
 
   .search-container-form {
     position: relative;

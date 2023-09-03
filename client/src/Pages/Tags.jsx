@@ -35,11 +35,11 @@ const Tags = () => {
         {isLoading ? (
           <SkeletonLoding />
         ) : (
-          <>
+          <WrapperR>
             {postg.map((item) => (
               <CardComponent item={item} key={item._id} />
             ))}
-          </>
+          </WrapperR>
         )}
       </Wrapper>
     </Wrapper>

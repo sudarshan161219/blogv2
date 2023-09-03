@@ -20,8 +20,6 @@ const Wrapper = styled.div`
     -webkit-tap-highlight-color: transparent;
   }
 
-
-
   .img-container {
     display: flex;
     align-items: center;
@@ -75,16 +73,21 @@ const Wrapper = styled.div`
     gap: 0.8rem;
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
     display: none;
+    outline: 1px #fff solid;
+  }
+
+  .dark.drop-down {
+    background-color: #191a19;
   }
 
   .name {
     font-size: 0.9rem;
     font-weight: bold;
   }
-  .email {
-    font-size: 0.7rem;
-  }
 
+  .dark.name {
+    color: var(--darkMText1);
+  }
   .list-items {
     font-size: 0.9rem;
     color: #191a19;
@@ -93,7 +96,17 @@ const Wrapper = styled.div`
     transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
     cursor: pointer;
   }
-
+  .dark.list-items {
+    color: var(--darkMText2);
+  }
+  .list-items-logout {
+    color: #c51605;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    font-family: FontMedium;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+    cursor: pointer;
+  }
   .name-email {
     display: grid;
     gap: 0.3rem;
@@ -125,6 +138,12 @@ const Wrapper = styled.div`
     .list-items:hover {
       cursor: pointer;
       color: rgba(0, 0, 0, 0.527);
+      transform: translateX(10px);
+      transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
+    }
+    .dark.list-items:hover {
+      cursor: pointer;
+      color: var(--darkMText3);
       transform: translateX(10px);
       transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s;
     }

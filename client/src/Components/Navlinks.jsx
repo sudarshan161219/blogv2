@@ -52,12 +52,12 @@ const Navlinks = () => {
           <AiOutlineHome className="sidebar-icons" /> Home
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/tags">
           <AiOutlineTag className="sidebar-icons" />
           Tags
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/about">
           <TbSquareLetterA className="sidebar-icons" />

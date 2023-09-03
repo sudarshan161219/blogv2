@@ -9,7 +9,7 @@ import { ThemeSwitch } from "../Components/export"
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
   const { user, logoutUser, postId, toggleSidebar, toggleThemeMode,
-    light_dark_mode } = useAppContext();
+    light_dark_mode, light_dark } = useAppContext();
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -49,10 +49,9 @@ const NavItems = () => {
                 src={user.userImg || profile}
                 alt="profile"
               />
-              <ul className={toggle ? "drop-down show-drop-down" : "drop-down"}>
-                <li className="name-email">
-                  <span className="name">{user.name}</span>
-                  <span className="email">{user.email}</span>
+              <ul className={toggle ? `drop-down ${light_dark} show-drop-down` : `drop-down ${light_dark}`}>
+                <li className="name">
+                  <span className={`name ${light_dark}`}>{user.name}</span>
                 </li>
                 {!userPath &&
                   !userPathP &&
@@ -62,13 +61,13 @@ const NavItems = () => {
                   !userPathSP ? (
                   <>
                     <li className="list-items">
-                      <Link className="Link list-items" to="/user-profile">
+                      <Link className={`Link list-items ${light_dark}`} to="/user-profile">
                         Dashboard
                       </Link>
                     </li>
                     <li className="list-items">
                       <Link
-                        className="Link list-items"
+                        className={`Link list-items ${light_dark}`}
                         to="/user-profile/createpost"
                       >
                         write a post
@@ -77,12 +76,12 @@ const NavItems = () => {
                   </>
                 ) : null}
                 <li className="list-items">
-                  <Link className="Link list-items" to="/user-profile/edit">
+                  <Link className={`Link list-items ${light_dark}`} to="/user-profile/edit">
                     edit profile
                   </Link>
                 </li>
                 {user && (
-                  <li className=" list-items" onClick={() => logoutUser()}>
+                  <li className= "list-items-logout"  onClick={() => logoutUser()}>
                     Log out
                   </li>
                 )}

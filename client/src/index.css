@@ -210,11 +210,11 @@ body::-webkit-scrollbar-thumb {
 
 body {
   line-height: 1;
-  background-color: #fff;
   position: relative;
   scroll-behavior: smooth;
   transition: ease-in-out 0.3s;
 }
+
 
 h1,
 h2,
@@ -379,7 +379,8 @@ h5 {
   display: none;
 }
 
-.dark , .light{
+.dark,
+.light {
   transition: ease-in-out 0.3s;
 }
 
@@ -405,15 +406,19 @@ h5 {
 .globalParagraph {
   font-size: 1rem;
   font-family: FontRegular;
-  color: var(--cardtext3); 
+  color: var(--cardtext3);
   line-height: 150%;
 }
 
-.dark .globalParagraph, .dark.form-para, .dark.ql-editor > p {
+.dark .globalParagraph,
+.dark.form-para,
+.dark.ql-editor > p {
   color: var(--darkMText2);
 }
 
-.dark.SkeletonLoding, .dark.Post, .dark.AuthorPage {
+.dark.SkeletonLoding,
+.dark.Post,
+.dark.AuthorPage {
   background-color: #1f1e21;
 }
 
@@ -421,7 +426,7 @@ h5 {
   background-color: var(--darkBg);
 }
 
-.light.Post{
+.light.Post {
   background-color: #f2f4f7;
 }
 

@@ -5,9 +5,9 @@ import moment from "moment";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useAppContext } from "../context/Context";
-import {Heading} from "../Components/export"
+import {Heading, Paragraph} from "../Components/export"
 const AuthorPosts = ({ item }) => {
-  const { toggleDeletePostModal, setEditPost, user } = useAppContext();
+  const { toggleDeletePostModal, setEditPost, user, light_dark } = useAppContext();
   const { _id, title, coverImg, createdAt, author, content } = item;
 
   const date = moment(createdAt);
@@ -34,10 +34,10 @@ const AuthorPosts = ({ item }) => {
           </div>
           <div className="homepage-text-info-container">
             <Heading>{title}</Heading>
-            <Paragraph
-              className="ptag"
+            <p
+               className={`ptag globalParagraph ${light_dark}`}
               dangerouslySetInnerHTML={{ __html:   htmlDecode(content.substring(0, 105)) || content.substring(0, 105) }}
-            ></Paragraph>
+            ></p>
 
 
             <div className="action-link-container">

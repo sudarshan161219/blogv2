@@ -10,7 +10,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai"
 import Ripples from "react-ripples";
 
 const SinglePost = () => {
-  const { user, isLoading, commentSection, toggleCommentSection, light_dark } = useAppContext();
+  const { user, isLoading, commentSection, toggleCommentSection, light_dark, postComments } = useAppContext();
 
 
   useEffect(() => {
@@ -27,7 +27,14 @@ const SinglePost = () => {
     <Wrapper className={`Post ${light_dark}`}>
       <Post />
       <div className={commentSection ? `comment-container-div-visible comment-container-div ${light_dark}` : `comment-container-div ${light_dark}`}  >
-        <div className="icon-container">
+        <div className={`comment-container-icon-heading ${light_dark}`}>
+          <div className="commentsContainerHeading">
+            <h4 className={`postCommentsHeading ${light_dark}`}>
+              {postComments === 1 ? "comment" : "comments"}
+            </h4>
+            &nbsp;
+            <span className={`commentS ${light_dark}`}>{`(${postComments})`}</span>
+          </div>
           <Ripples onClick={() => toggleCommentSection()} className="ripple no-select">
             <AiOutlineCloseCircle className={`close-icon  ${light_dark}`} />
           </Ripples>

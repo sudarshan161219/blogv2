@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navbar, ScrolltoTopBtn, Footer } from "./Components/export";
+import { useAppContext } from "./context/Context";
 import {
   Register,
   Home,
@@ -23,14 +24,12 @@ import {
   SavedSinglePost,
 
 } from "./Pages/profile/export";
-import {  Sidebar} from "./Components/export"
-import { useAppContext } from "./context/Context";
-
+import { Sidebar } from "./Components/export"
 import { Toaster } from "react-hot-toast";
 const App = () => {
-  const { light_dark_mode } = useAppContext()
+  const { isLoading, light_dark } = useAppContext()
   return (
-    <>
+    <div className={`main ${light_dark}`}>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <Sidebar />
       <Navbar />
@@ -58,8 +57,8 @@ const App = () => {
         </Route>
       </Routes>
       <ScrolltoTopBtn />
-      <Footer />
-    </>
+      {isLoading ? null : <Footer />}
+    </div>
   );
 };
 
