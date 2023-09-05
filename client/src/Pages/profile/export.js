@@ -1,4 +1,3 @@
-import Dashboard from "./Dashboard";
 import Profile from "./Profile";
 import Createpost from "./Createpost";
 import Allposts from "./Allposts";
@@ -9,7 +8,6 @@ import SavedPost from "./SavedPost";
 import SavedSinglePost from "./SavedSinglePost";
 
 export {
-  Dashboard,
   Profile,
   Createpost,
   Allposts,

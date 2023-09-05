@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppContext } from "../context/Context";
 import profile from "../assets/imgs/profile.png";
 import Wrapper from "../assets/Wrappers/NavItem";
@@ -8,7 +8,7 @@ import { ThemeSwitch } from "../Components/export"
 
 const NavItems = () => {
   const [toggle, setToggle] = useState(false);
-  const { user, logoutUser, postId, toggleSidebar, toggleThemeMode,
+  const { user, logoutUser,  toggleSidebar,
     light_dark_mode, light_dark } = useAppContext();
 
   const handleToggle = () => {
@@ -16,16 +16,6 @@ const NavItems = () => {
     toggleSidebar();
   };
 
-
-
-  const location = useLocation();
-  const userPath = location.pathname === "/user-profile";
-  const userPathP = location.pathname === "/user-profile/profile";
-  const userPathC = location.pathname === "/user-profile/createpost";
-  const userPathA = location.pathname === `/user-profile/author-post`;
-  const userPathE = location.pathname === "/user-profile/edit";
-  const userPathSP = location.pathname === `/user-profile/${postId}`;
-  const userPathSSP = location.pathname === `/user-profile/savedpost`;
   return (
     <Wrapper className="nav-items" style={{ display: `${!user ? "none" : "block"}`, }}>
       {!user ? (
@@ -53,16 +43,10 @@ const NavItems = () => {
                 <li className="name">
                   <span className={`name ${light_dark}`}>{user.name}</span>
                 </li>
-                {!userPath &&
-                  !userPathP &&
-                  !userPathC &&
-                  !userPathA &&
-                  !userPathE &&
-                  !userPathSP ? (
                   <>
                     <li className="list-items">
                       <Link className={`Link list-items ${light_dark}`} to="/user-profile">
-                        Dashboard
+                        Profile
                       </Link>
                     </li>
                     <li className="list-items">
@@ -74,7 +58,6 @@ const NavItems = () => {
                       </Link>
                     </li>
                   </>
-                ) : null}
                 <li className="list-items">
                   <Link className={`Link list-items ${light_dark}`} to="/user-profile/edit">
                     edit profile

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
 padding:1rem;
-background-color: var( --bodybg);
+background-color: var(--bodybg);
 .cards{
   display:grid;
     gap: 1.3rem;

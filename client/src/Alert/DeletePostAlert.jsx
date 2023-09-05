@@ -3,7 +3,7 @@ import Wrapper from "../assets/Wrappers/DeleteAlertModal"
 import { useAppContext } from "../context/Context";
 import {Paragraph} from '../Components/export'
 const DeletePostAlert = () => {
-  const { deletePostId, deletePost, toggleDeletePostModal, showDeletePostModal } =
+  const { deletePostId, deletePost, toggleDeletePostModal, showDeletePostModal, light_dark } =
     useAppContext();
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const DeletePostAlert = () => {
         zIndex: `${showDeletePostModal ? 10 : -1}`,
       }}
     >
-      <div className="modal">
-        <div className="modal-heading">
-          <h3>Delete Comment</h3>
+      <div className={`modal ${light_dark}`}>
+      <div className="modal-heading-container">
+          <h3 className={`modal-heading ${light_dark}`}>Delete Post</h3>
         </div>
         <div className="modal-info">
           <Paragraph>

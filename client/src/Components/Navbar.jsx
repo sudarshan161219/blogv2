@@ -43,13 +43,6 @@ const Navbar = () => {
 
   return (
     <>
-      {userPath ||
-        userPathP ||
-        userPathC ||
-        userPathA ||
-        userPathE ||
-        userPathSP ||
-        userPathSSP ? null :
         <Wrapper className={`header ${light_dark}`}>
           <nav className={`nav  ${light_dark}`}>
             <div className="nav-links">
@@ -103,7 +96,7 @@ const Navbar = () => {
               <NavSearchComponent />
             </div>
           </nav>
-        </Wrapper>}
+        </Wrapper>
     </>
   )
 };

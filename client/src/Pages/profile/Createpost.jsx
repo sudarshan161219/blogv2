@@ -4,21 +4,19 @@ import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.webp";
 import { useAppContext } from "../../context/Context";
-// import { useQuill } from "react-quilljs";
+import { Heading } from "../../Components/export"
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import imageCompression from "browser-image-compression";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Select from "react-select";
 import { convertToBase64 } from "../../utils/convert";
 import { options } from "../../utils/categoryList";
+import { IoMdAddCircleOutline } from "react-icons/io"
 import {
-  TOOLBAR_OPTIONS,
   formats,
-  theme,
   placeholder,
-  modules,
   modulesTool,
 } from "../../utils/tools";
 
@@ -40,7 +38,8 @@ const Createpost = () => {
     editPost,
     created,
     edited,
-    editPostId
+    editPostId,
+    light_dark
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
@@ -61,7 +60,7 @@ const Createpost = () => {
 
   useEffect(() => {
     if (isEditing) {
-      setVQuill(htmlDecode(content)|| content);
+      setVQuill(htmlDecode(content) || content);
       if (file === undefined) {
         setFile(coverImg);
       } else if (file !== undefined) {
@@ -139,21 +138,21 @@ const Createpost = () => {
 
   const addTag = (e) => {
     e.preventDefault();
-  
 
-    if(input === "") {return}
-    else{
-        const trimmedInput = input.trim();
-        setTags((prevState) => [...prevState, "#" + trimmedInput]);
+
+    if (input === "") { return }
+    else {
+      const trimmedInput = input.trim();
+      setTags((prevState) => [...prevState, "#" + trimmedInput]);
+      setInput("");
+
+      if (isEditing) {
+        newTag.push("#" + trimmedInput);
+        const merge = [...tags, ...newTag];
+        let uniqueChars = [...new Set(merge)];
+        setTags(uniqueChars);
         setInput("");
-
-        if (isEditing) {
-          newTag.push("#" + trimmedInput);
-          const merge = [...tags, ...newTag];
-          let uniqueChars = [...new Set(merge)];
-          setTags(uniqueChars);
-          setInput("");
-        }
+      }
     }
   };
 
@@ -170,10 +169,10 @@ const Createpost = () => {
 
   return (
     <>
-      <Wrapper className="container">
+      <Wrapper className={`create-post-container ${light_dark}`}>
+        <Heading> {isEditing ? "Edit Post" : "Create Post"} </Heading>
         <div className="row">
           <form onSubmit={handleSubmit} className="quill-form">
-            <h3> {isEditing ? "Edit Post" : "Create Post"} </h3>
             <div className="form-row">
               <div className="input-container">
                 <label className="title-input">
@@ -215,35 +214,47 @@ const Createpost = () => {
                 />
 
                 <div className="tags-container">
-                  <div className="container tag-title-input">
-                    {isEditing
-                      ? newTag.map((tag, index) => (
-                          <div key={index} className="tag-container">
-                            <div className="tag">{tag}</div>
-                            <AiOutlineCloseCircle
-                              onClick={() => deleteTag(index)}
-                              className="tag-delete-icon"
-                            />
-                          </div>
-                        ))
-                      : tags.map((tag, index) => (
-                          <div key={index} className="tag-container">
-                            <div className="tag">{tag}</div>
-                            <AiOutlineCloseCircle
-                              onClick={() => deleteTag(index)}
-                              className="tag-delete-icon"
-                            />
-                          </div>
-                        ))}
+                  <div className="tag-title-input-container">
                     <input
                       value={input}
                       placeholder="add tag"
                       onChange={onChange}
+                      className="tag-input"
                     />
+                    <IoMdAddCircleOutline className="add-tag-btn" onClick={addTag} />
+
                   </div>
-                  <button className="add-tag-btn" onClick={addTag}>
-                    add Tag
-                  </button>
+
+                  {newTag.length !== 0 || tags.length !== 0 ? <div>
+                    {isEditing ?
+                      <ul className="tag-container">
+                        {newTag.map((tag, index) =>
+                        (
+                          <li key={index} className="tag">{tag}
+                            <AiOutlineCloseCircle
+                              onClick={() => deleteTag(index)}
+                              className="tag-delete-icon"
+                            />
+                          </li>
+                        )
+                        )}
+                      </ul>
+                      :
+                      <ul className="tag-container">
+                        {tags.map((tag, index) =>
+                        (
+                          <li key={index} className="tag">{tag}
+                            <AiOutlineCloseCircle
+                              onClick={() => deleteTag(index)}
+                              className="tag-delete-icon"
+                            />
+                          </li>
+                        )
+                        )}
+                      </ul>
+                    }
+                  </div> : null}
+
                 </div>
               </div>
               <EdittorWrapper>
@@ -267,8 +278,8 @@ const Createpost = () => {
                   {isLoading
                     ? "Please wait...."
                     : isEditing
-                    ? "edit"
-                    : "Submit"}
+                      ? "edit"
+                      : "Submit"}
                 </button>
               </div>
             </div>

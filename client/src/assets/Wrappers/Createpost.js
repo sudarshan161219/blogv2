@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   letter-spacing: 1px;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  /* margin: 1.5rem 1rem; */
+
   margin: 1rem;
   h3 {
     margin-bottom: 1rem;
@@ -72,7 +72,6 @@ const Wrapper = styled.div`
   .container {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
     gap: 0.3rem;
     width: 100%;
     max-width: 100%;
@@ -83,27 +82,32 @@ const Wrapper = styled.div`
   }
 
   .add-tag-btn {
-    width: 66px;
-    display: flex;
-    justify-self: end;
-    -webkit-tap-highlight-color: transparent;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    color: #cccccc;
-    background-color: #2b2b2b;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 3px;
     cursor: pointer;
-    border-radius: 8px;
-    padding: 0.3rem;
+    transition: ease-in-out 0.3s;
   }
 
-  .container input {
-    outline: none;
-    border: 0;
-    padding: 0.7rem;
-    font-size: medium;
-    letter-spacing: 1px;
-    font-weight: 500;
+  .add-tag-btn:hover {
+    opacity: 0.7;
+  }
+
+  .tag-title-input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .tag-input {
+    width: 100%;
+    font-family: fontRegularsec;
+    border: none;
+    outline: #cccccc 1px solid;
+    padding: 0.5rem 0rem 0.5rem 00.5rem;
+    height: 20px;
+    font-size: 1rem;
+    border-radius: 5px;
   }
 
   .tag {
@@ -144,7 +148,6 @@ const Wrapper = styled.div`
 
   .tag-select {
     display: grid;
-    /* gap: 0.5rem; */
   }
   .css-b62m3t-container {
     z-index: 10;
@@ -152,6 +155,8 @@ const Wrapper = styled.div`
 
   @media (min-width: 1024px) {
     padding: 1rem 2rem;
+    width: 900px;
+    margin: 0 auto;
     .btn-container {
       display: flex;
       justify-content: end;
@@ -167,12 +172,12 @@ const Wrapper = styled.div`
       cursor: pointer;
     }
 
-    .tag-select {
+    /* .tag-select {
       display: flex;
       gap: 1rem;
       align-items: center;
       flex-direction: row-reverse;
-    }
+    } */
 
     .css-b62m3t-container,
     .tags-container {

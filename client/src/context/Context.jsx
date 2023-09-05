@@ -99,9 +99,6 @@ import {
   CLEAR_SEARCH_VALUES,
   GET_CURRENT_USER_BEGIN,
   GET_CURRENT_USER_SUCCESS,
-  GET_USER_STATS_BEGIN,
-  GET_USER_STATS_SUCCESS,
-  GET_USER_STATS_ERROR,
   TOGGLE_COMMENT_SECTION,
   HANDLE_CHANGE_NAV,
   GET_NAV_SEARCH_POST_BEGIN,
@@ -110,6 +107,7 @@ import {
   CLEAR_NAV_SEARCH_VALUES,
   TOGGLE_SEARCH_NAV_BAR,
   TOGGLE_DARK_LIGHT_MODE,
+  TOGGLE_PAGE
 } from "./action";
 
 const post_id = localStorage.getItem("post_id");
@@ -123,6 +121,7 @@ const initialState = {
   isNavLoading: false,
   profileisLoading: false,
   formLoading: false,
+  togglePage: "post",
   light_dark_mode: parse ? parse : false,
   light_dark: theme ? theme : "light",
   commentsReplyformLoading: false,
@@ -271,6 +270,10 @@ const ContextProvider = ({ children }) => {
     themeFn()
   }
 
+  const togglePageFn = (name) => {
+    dispatch({ type: TOGGLE_PAGE, payload: { name } })
+    console.log(name);
+  }
 
 
   //* toggle dashnav
@@ -1050,25 +1053,6 @@ const ContextProvider = ({ children }) => {
     dispatch({ type: CLEAR_SEARCH_VALUES });
   };
 
-  const getUserStats = async () => {
-    dispatch({ type: GET_USER_STATS_BEGIN })
-
-    try {
-      const { data } = await authFetch("/dashStats")
-      const {
-        mostViewedPosts, totalPosts, totalViews, totalAuthorViews } = data
-      dispatch({
-        type: GET_USER_STATS_SUCCESS, payload: {
-          mostViewedPosts, totalPosts, totalViews, totalAuthorViews
-        }
-      })
-    } catch (error) {
-      dispatch({
-        type: GET_USER_STATS_ERROR
-      })
-    }
-  }
-
 
   const getCurrentUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN });
@@ -1164,13 +1148,14 @@ const ContextProvider = ({ children }) => {
         getSavedPost,
         clearSearchValues,
 
-        getUserStats,
+
         getPostApi,
         toggleCommentSection,
         getNavSearchPost,
         clearNavSearch,
         toggleNavSearch,
-        toggleThemeMode
+        toggleThemeMode,
+        togglePageFn
       }}
     >
       {children}

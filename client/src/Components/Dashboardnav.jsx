@@ -28,14 +28,14 @@ const Dashboardnav = () => {
               <span className="dash-nav-text">Home</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/user-profile" className="Link ">
               <IoGridOutline className="dash-icons" />
               <span className="dash-nav-text">Stats</span>
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link to="profile" className="Link ">
+            <Link to="/user-profile" className="Link ">
               <BsPerson className="dash-icons" />
               <span className="dash-nav-text">Profile</span>
             </Link>

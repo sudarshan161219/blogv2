@@ -44,13 +44,23 @@ const Wrapper = styled.div`
     font-size: 0.9rem;
   }
 
-  /* .icon-container {
-    position: absolute;
-    right: 25px;
-    padding: 0.4rem 0 0.4rem 0.4rem;
-    background-color: white;
-    border-radius: 50%;
-  } */
+  .dark .css-1nmdiq5-menu:hover{
+    background-color: var(--darkMCardBg);
+  color: var(  --darkMText1);
+}
+
+.dark.search-container-input,
+.dark .css-13cymwt-control,
+.dark .css-t3ipsp-control,
+.dark .css-1nmdiq5-menu
+{
+  background-color: var(--darkMCardBg);
+  color: var(  --darkMText1);
+}
+
+.dark.search-container-input:hover{
+   outline: #f0f0f0 1px solid;
+}
 
   .search-container-searchIcon {
     font-size: 1.1rem;

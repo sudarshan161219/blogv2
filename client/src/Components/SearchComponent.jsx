@@ -22,7 +22,8 @@ const SearchComponent = () => {
     SearchCategoryT,
     isLoading,
     clearSearchValues,
-    clearFilters
+    clearFilters,
+    light_dark
   } = useAppContext();
 
   let location = useLocation();
@@ -66,7 +67,7 @@ const SearchComponent = () => {
       <div className="search-container">
         <form className="search-container-form">
           <input
-            className="search-container-input"
+            className={`search-container-input ${light_dark}`}
             type="text"
             name={tagpath ? "searchT" : "search"}
             value={loacalSearch}
@@ -85,6 +86,7 @@ const SearchComponent = () => {
           placeholder="category"
           onChange={selectChange}
           options={options}
+          className={`sort-category ${light_dark}`}
         />
         <Select
           defaultValue={tagpath ? sortT : sort}
@@ -92,6 +94,7 @@ const SearchComponent = () => {
           placeholder="sort"
           onChange={selectSortChange}
           options={sortOptions}
+          className={`sort-category ${light_dark}`}
         />
       </div>
       <div className="select-container">

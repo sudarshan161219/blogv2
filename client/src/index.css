@@ -251,16 +251,21 @@ h5 {
 .header.dark {
   background-color: var(--darkBg);
 }
-
+.dark.create-post-container{
+  background-color: var(--darkMCardBg);
+}
 .header.light {
   background-color: var(--navbarbg);
 }
 
 .dark.home,
-.dark.register-main {
+.dark.register-main,
+.dark.profile {
   background-color: #1f1e21;
 }
-.dark.form-heading {
+.dark.form-heading,
+.dark.ql-editor
+{
   color: var(--darkMText2);
 }
 

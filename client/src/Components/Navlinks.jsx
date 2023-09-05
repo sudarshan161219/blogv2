@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../context/Context";
-import { AiOutlineHome, AiOutlineTag } from "react-icons/ai";
+import { AiOutlineHome} from "react-icons/ai";
 import { TbSquareLetterA } from "react-icons/tb";
-import { IoGridOutline } from "react-icons/io5";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsPerson } from "react-icons/bs";
 import { HiOutlinePencil } from "react-icons/hi";
-import { FiBookOpen } from "react-icons/fi";
 import { BiEdit } from "react-icons/bi";
 
 
@@ -20,7 +18,7 @@ const Navlinks = () => {
         <>
           <li className=" mobile-links">
             <Link onClick={!toggleSidebar} className={`ulLink ${light_dark}`} to="/user-profile">
-              <IoGridOutline className="sidebar-icons" /> Dashboard
+              <BsPerson className="sidebar-icons" /> Profile
             </Link>
           </li>
 

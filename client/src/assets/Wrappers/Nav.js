@@ -6,7 +6,7 @@ const Wrapper = styled.header`
   width: 100%;
   top: 0;
   left: 0;
-
+  z-index: 11;
   .nav-icons,
   .mobile-nav-icons {
     display: flex;
@@ -115,8 +115,8 @@ const Wrapper = styled.header`
     }
 
     .dark .ulLink:hover {
-    color: #dedada;
-  }
+      color: #dedada;
+    }
 
     .nav-links {
       display: flex;

@@ -6,11 +6,9 @@ import Wrapper from "../../assets/Wrappers/SharedLayout";
 const SharedLayout = () => {
   return (
     <Wrapper>
-      <div >
         <div className="dashboard-page">
           <Outlet />
         </div>
-      </div>
       <Dashboardnav />
     </Wrapper>
   );

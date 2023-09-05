@@ -23,7 +23,7 @@ const AuthorPosts = ({ item }) => {
 
 
   return (
-    <Wrapper>
+    <Wrapper className={`homeCards ${light_dark}`}>
       <div className="card">
         <div className="homepage-img-container">
           <img className="homepage-img" src={coverImg} alt=" articalimg" />
@@ -47,13 +47,13 @@ const AuthorPosts = ({ item }) => {
                   onClick={() => setEditPost(_id)}
                   to={"/user-profile/createpost"}
                 >
-                  <BiEdit className="edit-icon" />
+                  <BiEdit className={`edit-icon ${light_dark}`} />
                 </Link>
                 <Link onClick={() => toggleDeletePostModal(_id)} className="Link ">
-                  <AiOutlineDelete className="delete-icon " />
+                  <AiOutlineDelete className={`delete-icon ${light_dark}`} />
                 </Link>
               </div>}
-              <Link className="Link read" to={`/user-profile/${_id}`}>
+              <Link className={`Link read ${light_dark}`} to={`/user-profile/${_id}`}>
                 Read
               </Link>
             </div>

@@ -14,8 +14,7 @@ const AuthorsSinglePost = () => {
     isLoading,
     setPostId,
     setEditPost,
-    token,
-    user,
+    light_dark
   } = useAppContext();
   const { id } = useParams();
   const {
@@ -66,7 +65,7 @@ const AuthorsSinglePost = () => {
           onClick={() => setEditPost(_id)}
           to={"/user-profile/createpost"}
         >
-          <BiEdit className="edit-icon" />
+          <BiEdit className={`edit-icon ${light_dark}`}/>
         </Link>
       </div>
       <div className="info-content">
@@ -81,7 +80,7 @@ const AuthorsSinglePost = () => {
       <br />
       <div className="ql-snow">
         <div
-          className="ql-editor"
+          className={`ql-editor ${light_dark}`}
           dangerouslySetInnerHTML={{ __html: htmlDecode(content) || content}}
         ></div>
       </div>

@@ -48,6 +48,9 @@ const Wrapper = styled.div`
     padding: 0.6rem;
     border-radius: 50%;
   }
+  .dark.edit-icon{
+    color: var(--darkMText2);
+  }
 
   .tags-container {
     display: flex;

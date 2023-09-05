@@ -95,6 +95,13 @@ const Wrapper = styled.article`
     line-height: 130%;
   }
 
+  .dark.edit-icon,
+  .dark.delete-icon,
+  .dark.read{
+    color: var(--darkMText2);
+  }
+
+
   @media (min-width: 700px) {
     .card {
       padding: 1.2rem;

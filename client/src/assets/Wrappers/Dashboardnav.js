@@ -84,9 +84,6 @@ const Wrapper = styled.aside`
     letter-spacing: 1px;
   }
 
-  .dash-icons {
-    /* display: none; */
-  }
 
   .dash-nav-text {
     font-family: FontMedium;
@@ -99,10 +96,7 @@ const Wrapper = styled.aside`
   }
 
   @media (min-width: 768px) {
-    .dashboard-nav {
-      /* width: 50%; */
-      display: block;
-    }
+    display: none;
   }
 
   @media (min-width: 1024px) {
@@ -114,15 +108,14 @@ const Wrapper = styled.aside`
       display: block;
       padding: 1.5rem 0.5rem;
     }
-    display: block;
+
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 200px;
-    /* padding: 1.5rem 0.5rem; */
     background-color: #3b3f44;
-
+    
     .dashboard-nav {
       visibility: visible;
       margin-top: 4rem;

@@ -97,9 +97,6 @@ import {
   CLEAR_SEARCH_VALUES,
   GET_CURRENT_USER_BEGIN,
   GET_CURRENT_USER_SUCCESS,
-  GET_USER_STATS_BEGIN,
-  GET_USER_STATS_SUCCESS,
-  GET_USER_STATS_ERROR,
   TOGGLE_COMMENT_SECTION,
   GET_NAV_SEARCH_POST_BEGIN,
   GET_NAV_SEARCH_POST_SUCCESS,
@@ -107,6 +104,7 @@ import {
   CLEAR_NAV_SEARCH_VALUES,
   TOGGLE_SEARCH_NAV_BAR,
   TOGGLE_DARK_LIGHT_MODE,
+  TOGGLE_PAGE
 } from "./action";
 
 import { initialState } from "./Context";
@@ -127,6 +125,13 @@ const reducer = (state, action) => {
   
   if (action.type === TOGGLE_DASHNAV) {
     return { ...state, dashNav: !state.dashNav };
+  }
+
+  if (action.type === TOGGLE_PAGE) {
+    return{
+      ...state,
+      togglePage: action.payload.name
+    }
   }
 
   if (action.type === TOGGLE_SEARCH_NAV_BAR) {
@@ -780,31 +785,7 @@ const reducer = (state, action) => {
     }
   }
 
-  if (action.type === GET_USER_STATS_BEGIN) {
-    return {
-      ...state,
-      statsLoading: true
-    }
-  }
 
-  if (action.type === GET_USER_STATS_SUCCESS) {
-    return {
-      ...state,
-      statsLoading: false,
-      mostViewedPosts: action.payload.mostViewedPosts,
-      totalAuthorPosts: action.payload.totalPosts,
-      totalViews: action.payload.totalViews,
-      totalAuthorViews: action.payload.totalAuthorViews,
-    }
-  }
-
-  if (action.type === GET_USER_STATS_ERROR) {
-    return {
-      ...state,
-      statsLoading: false,
-      // user: action.payload.user
-    }
-  }
 
 
   throw new Error(`no such action : ${action.type}`);

@@ -65,9 +65,9 @@ const NavSearchComponent = () => {
 
                 </div> :
 
-                    <div className={`${postN.length >= 1 || authorN.length >= 1 ? `nav-search-results ${light_dark}` : "nav-search-results-hide"}`}
+                    <div className={`${postN && postN.length >= 1 || authorN && authorN.length >= 1 ? `nav-search-results ${light_dark}` : "nav-search-results-hide"}`}
                     >
-                        {postN.length !== 0 &&
+                        {postN && postN.length !== 0 &&
                             <>
                                 {postN.map((item) => (
                                     <NavSearchResultsComponent searchedItem={item} key={item._id} />
@@ -76,9 +76,9 @@ const NavSearchComponent = () => {
 
                         }
 
-                        {authorN.length !== 0 &&
+                        {authorN && authorN.length !== 0 &&
                             <>
-                                {authorN.map((item) => (
+                                {authorN && authorN.map((item) => (
                                     <NavSearchResultsComponent searchedItem={item} key={item._id} />
                                 ))}
                             </>
