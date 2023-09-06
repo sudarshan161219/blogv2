@@ -4,7 +4,7 @@ import Wrapper from "../../assets/Wrappers/Createpost";
 import EdittorWrapper from "../../assets/Wrappers/TextEditor";
 import dummyImg from "../../assets/imgs/dummy-cover.webp";
 import { useAppContext } from "../../context/Context";
-import { Heading } from "../../Components/export"
+import { Heading, Paragraph } from "../../Components/export"
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import imageCompression from "browser-image-compression";
@@ -39,13 +39,15 @@ const Createpost = () => {
     created,
     edited,
     editPostId,
-    light_dark
+    light_dark,
+    light_dark_mode
   } = useAppContext();
   const [value, setValue] = useState(initialState);
   const [file, setFile] = useState();
   const [vquill, setVQuill] = useState("");
   const [input, setInput] = useState("");
   const [tags, setTags] = useState([]);
+  const [alert, setAlert] = useState("")
   const [selectedOption, setSelectedOption] = useState(
     isEditing ? category : null
   );
@@ -140,7 +142,11 @@ const Createpost = () => {
     e.preventDefault();
 
 
-    if (input === "") { return }
+    if (input === "" || tags.length === 5 || newTag.length === 5) {
+      input === "" ? setAlert("Please add tag") : setAlert("Only fives tags allowed")
+      setTimeout(() => setAlert(""), 1000)
+      return
+    }
     else {
       const trimmedInput = input.trim();
       setTags((prevState) => [...prevState, "#" + trimmedInput]);
@@ -175,21 +181,16 @@ const Createpost = () => {
           <form onSubmit={handleSubmit} className="quill-form">
             <div className="form-row">
               <div className="input-container">
-                <label className="title-input">
-                  Title
-                  <input
-                    type="text"
-                    name="title"
-                    defaultValue={title}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Title"
-                    required
-                  />
-                </label>
-
+                <input
+                  type="text"
+                  name="title"
+                  defaultValue={title}
+                  onChange={handleChange}
+                  className={`title-input ${light_dark}`}
+                  placeholder="Title"
+                  required
+                />
                 <div className="cover-img-container">
-                  <span>Cover image</span>
                   <label className="image-label" htmlFor="cover-image">
                     <img
                       className="cover-img"
@@ -211,17 +212,19 @@ const Createpost = () => {
                   defaultValue={selectedOption}
                   onChange={handleSelectChange}
                   options={options}
+                  className={`sort-category ${light_dark}`}
                 />
 
                 <div className="tags-container">
+                  <Paragraph>{alert}</Paragraph>
                   <div className="tag-title-input-container">
                     <input
                       value={input}
                       placeholder="add tag"
                       onChange={onChange}
-                      className="tag-input"
+                      className={`tag-input ${light_dark}`}
                     />
-                    <IoMdAddCircleOutline className="add-tag-btn" onClick={addTag} />
+                    <IoMdAddCircleOutline className={`add-tag-btn ${light_dark}`} onClick={addTag} />
 
                   </div>
 
@@ -230,7 +233,7 @@ const Createpost = () => {
                       <ul className="tag-container">
                         {newTag.map((tag, index) =>
                         (
-                          <li key={index} className="tag">{tag}
+                          <li key={index} className={`tag ${light_dark}`}>{tag}
                             <AiOutlineCloseCircle
                               onClick={() => deleteTag(index)}
                               className="tag-delete-icon"
@@ -243,7 +246,7 @@ const Createpost = () => {
                       <ul className="tag-container">
                         {tags.map((tag, index) =>
                         (
-                          <li key={index} className="tag">{tag}
+                          <li key={index} className={`tag ${light_dark}`}>{tag}
                             <AiOutlineCloseCircle
                               onClick={() => deleteTag(index)}
                               className="tag-delete-icon"
@@ -263,7 +266,6 @@ const Createpost = () => {
                   formats={formats}
                   theme="snow"
                   value={vquill}
-
                   placeholder={placeholder}
                   onChange={setVQuill}
                 />

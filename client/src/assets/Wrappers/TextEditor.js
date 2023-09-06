@@ -20,7 +20,9 @@ const Wrapper = styled.div`
     background-color: #f3f3f3;
   }
 
-  
+  .quill .dark {
+    color: #f3f3f3;
+  }
 `;
 
 export default Wrapper;

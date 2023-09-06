@@ -26,6 +26,9 @@ const Wrapper = styled.div`
   .up-icon {
     font-size: 1.3rem;
   }
+  .dark.up-icon{
+    color: white;
+  }
 
   .show {
     transform: translateX(0%);

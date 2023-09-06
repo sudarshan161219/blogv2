@@ -3,7 +3,7 @@ import { useAppContext } from "../context/Context";
 
 
 const Heading = ({children }) => {
-  const {light_dark} = useAppContext
+  const {light_dark} = useAppContext()
   return (
     <h1 className={`globalHeading ${light_dark}`}>{ children }</h1>
   )
