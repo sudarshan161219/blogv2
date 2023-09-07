@@ -13,7 +13,7 @@ import { Heading, Paragraph } from "../../Components/export"
 import { useAppContext } from "../../context/Context";
 
 const ProfileAuthorPage = ({ authorInfo }) => {
-  const { totalPosts, light_dark, togglePageFn, } = useAppContext()
+  const { totalPosts, light_dark, togglePageFn, togglePage } = useAppContext()
   const { name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
     authorInfo;
 
@@ -75,6 +75,7 @@ const ProfileAuthorPage = ({ authorInfo }) => {
       </div>
 
       <div className="profile-nav" >
+        <div style={{transform: `${togglePage === "post" ? "translateX(-77px)" : "translateX(81px)"}`}} className={`navigator ${light_dark}`} ></div>
         <div onClick={handelChange} className={`profile-nav-p ${light_dark}`}>
           <IoGridOutline className="dash-icons" /> POSTS
         </div>

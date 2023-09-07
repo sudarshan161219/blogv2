@@ -51,15 +51,16 @@ const Wrapper = styled.div`
     opacity: 0.5;
   }
 
-
   .author_info_btn-container > button > .author_info_btn-container-link {
     color: #454545;
   }
-
-  .dark.total-posts-span {
-    color: var(--darkMText2);
+  .total-posts-span {
     font-family: fontRegularsec;
     font-size: 0.9rem;
+    color: #454545;
+  }
+  .dark.total-posts-span {
+    color: var(--darkMText2);
   }
 
   .author_info_container {
@@ -117,6 +118,26 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 5rem;
+    position: relative;
+  }
+
+  .light.navigator {
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    top: 0;
+    border-radius: 5px;
+    background-color: #454545;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+  }
+  .dark.navigator {
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    top: 0;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
   }
 
   .profile-nav div {
@@ -124,11 +145,11 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 0.5rem;
     font-family: fontRegularsec;
-    cursor:pointer;
+    cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
 
-  .dark.profile-nav-p{
+  .dark.profile-nav-p {
     color: var(--darkMText2);
   }
 

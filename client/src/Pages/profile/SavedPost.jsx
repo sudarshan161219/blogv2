@@ -12,15 +12,16 @@ const SavedPost = () => {
   }, []);
   return (
     < Wrapper>
-      <Heading className="allPost-heading">
-        {savedPosts.length === 0 ? "no Saved Posts yet" : "your Saved Posts"}
-      </Heading>
+
       {isLoading ? (
         <div>
           <SkeletonLoding />
         </div>
       ) : (
-        <div >
+        <div className="saved-card" >
+          <Heading className="allPost-heading">
+            {savedPosts.length === 0 ? "no Saved Posts yet" : "your Saved Posts"}
+          </Heading>
           {savedPosts.map((item) => (
             <CardComponent key={item._id} item={item} />
           ))}

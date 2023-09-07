@@ -9,7 +9,7 @@ import {
 } from "../../Components/export";
 import Wrapper from "../../assets/Wrappers/Allposts";
 import DeletePostAlert from "../../Alert/DeletePostAlert";
-import SavedPost from "./SavedPost"
+
 const Allposts = () => {
   const {
     numOfPages,
@@ -21,7 +21,6 @@ const Allposts = () => {
     SearchCategory,
     page,
     light_dark,
-    togglePage
   } = useAppContext();
 
   useEffect(() => {
@@ -30,9 +29,6 @@ const Allposts = () => {
 
 
   return (
-
-    // <>
-      // {togglePage ?
         <Wrapper className={`profile ${light_dark}`}>
           <DeletePostAlert />
           <SearchComponent />
@@ -55,10 +51,6 @@ const Allposts = () => {
           </>
           {numOfPages > 1 && <PageBtnContainer />}
         </Wrapper>
-      //   : null
-
-      // }
-    // </>
   );
 };
 

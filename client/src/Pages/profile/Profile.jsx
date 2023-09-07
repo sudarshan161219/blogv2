@@ -3,10 +3,10 @@ import ProfileAuthorPage from "./ProfileAuthorPage"
 import Allposts from "./Allposts";
 import { useAppContext } from "../../context/Context";
 import { Loading } from "../../Components/export";
-
+import SavedPost from "./SavedPost"
 const Profile = () => {
 
-  const { getProfile, user, profileisLoading } = useAppContext();
+  const { getProfile, user, profileisLoading, togglePage } = useAppContext();
   useEffect(() => {
     getProfile();
   }, [user && user.name])
@@ -15,7 +15,7 @@ const Profile = () => {
   return (
     <>
       {profileisLoading ? <Loading /> : <ProfileAuthorPage authorInfo={user} />}
-      <Allposts />
+      {togglePage === "post" ? <Allposts /> : <SavedPost />}
     </>
   );
 };
