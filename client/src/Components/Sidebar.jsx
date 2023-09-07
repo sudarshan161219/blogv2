@@ -50,7 +50,7 @@ const Sidebar = () => {
 
         {user && (
           <Link
-            to="user-profile/profile"
+            to="user-profile/"
             className="nav-profile-container Link"
           >
             <div className="nav-img-name">

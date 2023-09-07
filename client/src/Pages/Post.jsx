@@ -40,7 +40,8 @@ const Post = () => {
     unsavePost,
     postComments,
     toggleCommentSection,
-    light_dark
+    light_dark,
+    
   } = useAppContext();
 
   const { id } = useParams();
@@ -49,7 +50,7 @@ const Post = () => {
 
   useEffect(() => {
     getSinglePost(id);
-  }, [id, check]);
+  }, [id,check]);
 
 
 
@@ -88,22 +89,23 @@ const Post = () => {
     }
   };
 
+
+
   function htmlDecode(content) {
     let e = document.createElement('div');
     e.innerHTML = content;
     return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
   }
 
-  if (isLoading) {
-    return <Loading />;
-  }
 
-
-  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes,  } = post;
+  const { title, coverImg, content, createdAt, author, postTags, likes, dislikes } = post;
 
   const date = moment(createdAt);
   let Fdate = date.format("MMM Do, YYYY");
 
+  if(isLoading){
+    return <Loading />
+  }
   return (
     <Wrapper >
       <div className="post-container">

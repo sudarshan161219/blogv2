@@ -18,10 +18,10 @@ import {
   AuthorsSinglePost,
   SavedPost,
   SavedSinglePost,
-
 } from "./Pages/profile/export";
 import { Sidebar } from "./Components/export"
 import { Toaster } from "react-hot-toast";
+
 const App = () => {
   const { isLoading, light_dark } = useAppContext()
   return (
@@ -42,7 +42,6 @@ const App = () => {
           element={<ProtectedRoutes>{<SharedLayout />}</ProtectedRoutes>}
         >
           <Route index element={<Profile />} />
-          {/* <Route index path="profile" element={<Profile />} /> */}
           <Route path="createpost" element={<Createpost />} />
           <Route path="edit" element={<EditPage />} />
           <Route path=":id" element={<AuthorsSinglePost />} />

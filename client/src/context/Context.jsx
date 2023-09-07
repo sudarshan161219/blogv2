@@ -107,7 +107,8 @@ import {
   CLEAR_NAV_SEARCH_VALUES,
   TOGGLE_SEARCH_NAV_BAR,
   TOGGLE_DARK_LIGHT_MODE,
-  TOGGLE_PAGE
+  TOGGLE_PAGE,
+
 } from "./action";
 
 const post_id = localStorage.getItem("post_id");
@@ -244,8 +245,7 @@ const ContextProvider = ({ children }) => {
   const { signal } = controller;
 
 
-
-  //* toggle sidebar
+//* toggle sidebar
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
@@ -272,7 +272,6 @@ const ContextProvider = ({ children }) => {
 
   const togglePageFn = (name) => {
     dispatch({ type: TOGGLE_PAGE, payload: { name } })
-    console.log(name);
   }
 
 
@@ -1073,9 +1072,9 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-
+ 
   useEffect(() => {
-    getCurrentUser();
+      getCurrentUser();
   }, []);
 
   return (
@@ -1155,7 +1154,8 @@ const ContextProvider = ({ children }) => {
         clearNavSearch,
         toggleNavSearch,
         toggleThemeMode,
-        togglePageFn
+        togglePageFn,
+
       }}
     >
       {children}

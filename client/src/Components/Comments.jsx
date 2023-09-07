@@ -30,7 +30,6 @@ const Comments = ({ comment }) => {
     setCommentId,
     editCommentReplyLoading,
     postCommentsReply,
-    token,
     light_dark
   } = useAppContext();
 
@@ -72,7 +71,6 @@ const Comments = ({ comment }) => {
       setEdit(false);
     }
   }, [
-    token,
     editCommentLoading,
     commentsReplyformLoading,
     editCommentReplyLoading,

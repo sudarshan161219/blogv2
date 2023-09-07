@@ -12,16 +12,11 @@ const Wrapper = styled.div`
     align-items: flex-start;
   }
 
-  .author_img_container {
-    display: flex;
-    justify-content: center;
-    border-radius: 100%;
-    width: 90px;
-    overflow: hidden;
-    outline: #fff 2px solid;
-  }
+
   .author_img_container > img {
-    width: 100%;
+    width: 100px;
+    outline: #fff 2px solid;
+    border-radius: 100%; 
   }
 
   .author_info_heading-button {
@@ -155,6 +150,8 @@ const Wrapper = styled.div`
 
   @media (min-width: 700px) {
     justify-content: center;
+    width: 500px;
+    margin: auto;
     .author_img_container {
       width: 120px;
     }

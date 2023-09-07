@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Wrapper from "../../assets/Wrappers/AuthorInfoG";
 import profile from "../../assets/imgs/profile.png";
 import { Link } from "react-router-dom";
@@ -13,8 +13,8 @@ import { Heading, Paragraph } from "../../Components/export"
 import { useAppContext } from "../../context/Context";
 
 const ProfileAuthorPage = ({ authorInfo }) => {
-  const { totalPosts, light_dark, togglePageFn, togglePage } = useAppContext()
-  const { name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
+  const { totalPosts, light_dark, togglePageFn, togglePage} = useAppContext()
+  const { _id, name, instagram, userInfo, linkden, twitter, personalLink, userImg } =
     authorInfo;
 
 
@@ -24,7 +24,6 @@ const ProfileAuthorPage = ({ authorInfo }) => {
 
   const handelChange1 = () => {
     togglePageFn("save")
-
   }
 
   return (
@@ -75,7 +74,7 @@ const ProfileAuthorPage = ({ authorInfo }) => {
       </div>
 
       <div className="profile-nav" >
-        <div style={{transform: `${togglePage === "post" ? "translateX(-77px)" : "translateX(81px)"}`}} className={`navigator ${light_dark}`} ></div>
+        <div style={{ transform: `${togglePage === "post" ? "translateX(-77px)" : "translateX(81px)"}` }} className={`navigator ${light_dark}`} ></div>
         <div onClick={handelChange} className={`profile-nav-p ${light_dark}`}>
           <IoGridOutline className="dash-icons" /> POSTS
         </div>

@@ -104,12 +104,13 @@ import {
   CLEAR_NAV_SEARCH_VALUES,
   TOGGLE_SEARCH_NAV_BAR,
   TOGGLE_DARK_LIGHT_MODE,
-  TOGGLE_PAGE
+  TOGGLE_PAGE,
 } from "./action";
 
 import { initialState } from "./Context";
 
 const reducer = (state, action) => {
+
   if (action.type === TOGGLE_SIDEBAR) {
     return { ...state, showSidebar: !state.showSidebar };
   }

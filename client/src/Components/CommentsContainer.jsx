@@ -20,7 +20,6 @@ const CommentsContainer = () => {
   useEffect(() => {
    getComments(id) 
   }, [
-    id,
     formLoading,
     commentsReplyformLoading,
     editCommentLoading,

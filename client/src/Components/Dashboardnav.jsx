@@ -28,12 +28,6 @@ const Dashboardnav = () => {
               <span className="dash-nav-text">Home</span>
             </Link>
           </li>
-          {/* <li>
-            <Link to="/user-profile" className="Link ">
-              <IoGridOutline className="dash-icons" />
-              <span className="dash-nav-text">Stats</span>
-            </Link>
-          </li> */}
           <li>
             <Link to="/user-profile" className="Link ">
               <BsPerson className="dash-icons" />
@@ -44,13 +38,6 @@ const Dashboardnav = () => {
             <Link to="createpost" className="Link ">
               <HiOutlinePencil className="dash-icons" />
               <span className="dash-nav-text">Write a Post</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="savedpost" className="Link ">
-              {/* <FiBookOpen className="dash-icons" /> */}
-              <BsBookmark className="dash-icons" />
-              <span className="dash-nav-text">Saved Post</span>
             </Link>
           </li>
         </ul>

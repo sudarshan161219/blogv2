@@ -1,6 +1,7 @@
-import { useRef, useEffect } from "react";
+import {  useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Wrapper from "../assets/Wrappers/SinglePost";
-import { CommentsContainer, CommentForm } from "../Components/export";
+import { CommentsContainer, CommentForm, Heading } from "../Components/export";
 import DeleteAlertModal from "../Alert/DeleteAlertModal";
 import DeleteCRAlertModal from "../Alert/DeleteCRAlertModal";
 import { useAppContext } from "../context/Context";
@@ -10,10 +11,13 @@ import { AiOutlineCloseCircle } from "react-icons/ai"
 import Ripples from "react-ripples";
 
 const SinglePost = () => {
-  const { user, isLoading, commentSection, toggleCommentSection, light_dark, postComments } = useAppContext();
+  const { user, isLoading, commentSection, toggleCommentSection, light_dark, postComments, getSinglePost } = useAppContext();
 
+  const { id } = useParams();
 
   useEffect(() => {
+
+
     if (commentSection) {
       document.body.style.overflow = "hidden";
     } else {
@@ -24,33 +28,35 @@ const SinglePost = () => {
 
 
   return (
-    <Wrapper className={`Post ${light_dark}`}>
-      <Post />
-      <div className={commentSection ? `comment-container-div-visible comment-container-div ${light_dark}` : `comment-container-div ${light_dark}`}  >
-        <div className={`comment-container-icon-heading ${light_dark}`}>
-          <div className="commentsContainerHeading">
-            <h4 className={`postCommentsHeading ${light_dark}`}>
-              {postComments === 1 ? "comment" : "comments"}
-            </h4>
-            &nbsp;
-            <span className={`commentS ${light_dark}`}>{`(${postComments})`}</span>
-          </div>
-          <Ripples onClick={() => toggleCommentSection()} className="ripple no-select">
-            <AiOutlineCloseCircle className={`close-icon  ${light_dark}`} />
-          </Ripples>
-        </div>
-        {user && <CommentForm />}
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div className={`comments `}>
-            <CommentsContainer />
-          </div>
-        )}
+    <>
+ <Wrapper className={`Post ${light_dark}`}>
+  <Post />
+  <div className={commentSection ? `comment-container-div-visible comment-container-div ${light_dark}` : `comment-container-div ${light_dark}`}  >
+    <div className={`comment-container-icon-heading ${light_dark}`}>
+      <div className="commentsContainerHeading">
+        <h4 className={`postCommentsHeading ${light_dark}`}>
+          {postComments === 1 ? "comment" : "comments"}
+        </h4>
+        &nbsp;
+        <span className={`commentS ${light_dark}`}>{`(${postComments})`}</span>
       </div>
-      <DeleteAlertModal />
-      <DeleteCRAlertModal />
-    </Wrapper>
+      <Ripples onClick={() => toggleCommentSection()} className="ripple no-select">
+        <AiOutlineCloseCircle className={`close-icon  ${light_dark}`} />
+      </Ripples>
+    </div>
+    {user && <CommentForm />}
+    {/* {isLoading ? (
+      <Loading />
+    ) : ( */}
+      <div className={`comments `}>
+        <CommentsContainer />
+      </div>
+    {/* )} */}
+  </div>
+  <DeleteAlertModal />
+  <DeleteCRAlertModal />
+</Wrapper>
+</>
   );
 };
 

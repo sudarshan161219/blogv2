@@ -35,13 +35,6 @@ const Navlinks = () => {
               <BiEdit className="sidebar-icons" /> edit profile
             </Link>
           </li>
-
-
-          <li className="mobile-links">
-            <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/user-profile/savedpost">
-              <BsBookmark className="sidebar-icons" /> saved posts
-            </Link>
-          </li>
         </>
       }
 
@@ -50,12 +43,6 @@ const Navlinks = () => {
           <AiOutlineHome className="sidebar-icons" /> Home
         </Link>
       </li>
-      {/* <li>
-        <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/tags">
-          <AiOutlineTag className="sidebar-icons" />
-          Tags
-        </Link>
-      </li> */}
       <li>
         <Link onClick={!toggleSidebar} className={`ulLink ${light_dark} `} to="/about">
           <TbSquareLetterA className="sidebar-icons" />

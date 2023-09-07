@@ -3,18 +3,18 @@ import Wrapper from "../assets/Wrappers/AuthorPage";
 import { useAppContext } from "../context/Context";
 import { useParams } from "react-router-dom";
 import { Loading, SkeletonLoding, AuthorInfoG,  CardComponent, Heading} from "../Components/export";
-
+import ProfileAuthorPage from "../Pages/profile/ProfileAuthorPage"
 
 const AuthorPage = () => {
-  const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading, light_dark } =
+  const { getAuthorPage, GauthorPosts, GauthorInfo, isLoading, light_dark, user } =
     useAppContext();
   const { id } = useParams();
 
-  const check = GauthorPosts.length === 0
+  // const check = GauthorPosts.length === 0
 
   useEffect(() => {
     getAuthorPage(id);
-  }, [check, id]);
+  }, [id]);
 
   return (
     <Wrapper className={`AuthorPage ${light_dark}`}>
